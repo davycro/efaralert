@@ -1,5 +1,7 @@
 EfarDispatch::Application.routes.draw do
-  get "efars/index"
+  
+  resources :efars
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

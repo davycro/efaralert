@@ -6,4 +6,8 @@ initialize = ->
   map = new google.maps.Map $('#map_canvas')[0], myOptions
 
 $ ->
-  initialize()
+  # initialize()
+  # load all efars
+  # efars = 
+  # loop through every efar and check for a lat long
+  # those w/o lat longs need to be updated

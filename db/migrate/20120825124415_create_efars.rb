@@ -11,6 +11,9 @@ class CreateEfars < ActiveRecord::Migration
       t.string :country, :null => false
       t.string :contact_number, :null => false
       t.string :certification_level
+      t.string :lat
+      t.string :long
+      t.boolean :invalid_address, :default => false
       t.timestamps
     end
   end

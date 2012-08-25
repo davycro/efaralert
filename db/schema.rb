@@ -14,18 +14,21 @@
 ActiveRecord::Schema.define(:version => 20120825124415) do
 
   create_table "efars", :force => true do |t|
-    t.string   "surname",             :null => false
-    t.string   "first_name",          :null => false
-    t.string   "address",             :null => false
+    t.string   "surname",                                :null => false
+    t.string   "first_name",                             :null => false
+    t.string   "address",                                :null => false
     t.string   "community"
-    t.string   "postal_code",         :null => false
-    t.string   "city",                :null => false
+    t.string   "postal_code",                            :null => false
+    t.string   "city",                                   :null => false
     t.string   "province"
-    t.string   "country",             :null => false
-    t.string   "contact_number",      :null => false
+    t.string   "country",                                :null => false
+    t.string   "contact_number",                         :null => false
     t.string   "certification_level"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.string   "lat"
+    t.string   "long"
+    t.boolean  "invalid_address",     :default => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
   end
 
 end

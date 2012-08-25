@@ -1,3 +1,5 @@
+
+desc 'seed efar mapping data'
 task :import_master_data => :environment do
   Efar.delete_all
   
@@ -9,6 +11,8 @@ task :import_master_data => :environment do
   
   # start infinite loop
   line = 2 # first line in the spreadsheet
+  num_saved = 0
+  num_rejected = 0
   while true do
     line += 1 # move to the next line
     
@@ -20,12 +24,10 @@ task :import_master_data => :environment do
     
     efar.surname = ss.cell(line, 'A')
     efar.first_name = ss.cell(line, 'B')
-    puts "processing: #{efar.first_name} #{efar.surname}"
-    puts "checking score.."
     # check if efar passed the course
     score = ss.cell(line, 'Y')
     if score.blank?
-      puts "no score, moving on"
+      num_rejected += 1
       next
     end
     if score.present?
@@ -33,11 +35,10 @@ task :import_master_data => :environment do
       if score > 100.0
         score = score / 100.0
       end
-      puts "score: #{score}"
       if score > 80.0
         efar.certification_level = "basic efar"
       else
-        puts "failed moving on"
+        num_rejected += 1
         next
       end
     end
@@ -59,23 +60,12 @@ task :import_master_data => :environment do
     
     efar.save
     if efar.valid?
-      puts "saved!"
+      num_saved += 1
     else
-      puts efar.errors
+      num_rejected += 1
     end
-    
-    
-    
   end
   
-  # break look if no surname or firstname
-  
-  # to be inserted into the database the person must have
-  # if the final score is greater than 100, then divide it by a hundred
-  # surname, firstname, address, community, contact no, final score must be greater than 80
-  
-  sample = ss.cell(3, 'A')
-  
-  puts "hello: #{sample}"
+  puts "done. #{num_saved} efars saved, #{num_rejected} rejected"
   
 end
