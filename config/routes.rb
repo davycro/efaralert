@@ -2,6 +2,9 @@ EfarDispatch::Application.routes.draw do
   
   resources :efars
 
+  namespace :admin do
+    resources :admins
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -52,7 +55,7 @@ EfarDispatch::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'efars#index'
+  root :to => 'admin/admins#index'
 
   # See how all your routes lay out with "rake routes"
 
