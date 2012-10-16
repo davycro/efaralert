@@ -1,0 +1,5 @@
+Admin
+  full_name
+  email
+  password
+  password_digest

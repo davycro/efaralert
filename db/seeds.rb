@@ -5,3 +5,14 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+puts "creating admin named david"
+admin = Admin.new(full_name: 'David Crockett', 
+  email: 'me@davecro.com', 
+  password: 'colorado',
+  password_confirmation: 'colorado')
+if admin.save
+  puts "success"
+else
+  puts "failed"
+end
