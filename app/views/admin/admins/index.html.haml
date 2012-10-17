@@ -1,25 +1,42 @@
-.container
-  .row
-    .span6
-      .dashboard-header
-        .button-column
-          %a.btn.btn-primary{:href => new_admin_admin_path}
-            %i.icon-plus.icon-white
-            Add new Admin
-        .fixed
-          %h3
-            Admins
-  .row
-    .span6
-      %table.table
-        %thead
-          %tr
-            %th Full Name
-            %th Email
-        %tbody
-          - @admins.each do |admin|
-            %tr
-              %td= admin.full_name
-              %td= admin.email
-              %td
-                %a{:href=>edit_admin_admin_path(admin)} Edit
+- content_for :section_header do
+  %h3 Admins
+
+- content_for :section_actions do
+  %a.btn.btn-primary{:href => new_admin_admin_path}
+    %i.icon-plus.icon-white
+    Create new admin
+
+- if flash[:notice].present?
+  .alert
+    = flash[:notice]
+    %button.close{:type=>"button", "data-dismiss"=>"alert"} x
+
+%table.table
+  %thead
+    %tr
+      %th Full Name
+      %th Email
+  %tbody
+    - @admins.each do |admin|
+      %tr
+        %td= admin.full_name
+        %td= admin.email
+        %td
+          .btn-group
+            %a.btn.btn-mini.dropdown-toggle{"data-toggle"=>"dropdown", :href=>'#'}
+              %i.icon-cog
+              %span.caret
+            %ul.dropdown-menu.pull-right
+              %li
+                %a{:href=>edit_admin_admin_path(admin)}
+                  %i.icon-pencil
+                  Edit
+              %li
+                %a{:href=>admin_admin_path(admin), "data-confirm"=>"Are you sure?", "data-method"=>"delete"}
+                  %i.icon-trash
+                  Delete
+          
+.form-actions
+  %a.btn.btn-primary.btn-small{:href => new_admin_admin_path}
+    %i.icon-plus.icon-white
+    Add new Admin  

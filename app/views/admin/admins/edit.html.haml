@@ -1,0 +1,42 @@
+- content_for :section_header do
+  %h3 Edit admin
+
+- content_for :section_actions do
+  %a.btn.btn-link{:href => admin_admins_path } Cancel
+
+- if @admin.errors.present?
+  .alert.alert-error There were some errors editing the admin. See below for more information.
+
+= form_tag(admin_admin_path(@admin), :class => 'form-horizontal', :method=>'put') do
+
+  .control-group{ :class => @admin.errors[:full_name].present? && "error" }
+    %label.control-label Full Name
+    .controls
+      %input{:type=>"text", :name=>"admin[full_name]", :value=>@admin.full_name, :placeholder=>"Full Name"}
+      - if @admin.errors[:full_name].present?
+        %span.help-inline= @admin.errors[:full_name].first
+  
+  .control-group{ :class => @admin.errors[:email].present? && "error" }
+    %label.control-label Email
+    .controls
+      %input{:type=>"text", :name=>"admin[email]", :value=>@admin.email, :placeholder=>"Email"}
+      - if @admin.errors[:email].present?
+        %span.help-inline= @admin.errors[:email].first
+
+  .control-group{ :class => @admin.errors[:password].present? && "error" }
+    %label.control-label New Password
+    .controls
+      %input{:type=>"password", :name=>"admin[password]"}
+      - if @admin.errors[:password].present?
+        %span.help-inline= @admin.errors[:password].first        
+
+  .control-group{ :class => @admin.errors[:password_confirmation].present? && "error" }
+    %label.control-label Confirm password
+    .controls
+      %input{:type=>"password", :name=>"admin[password_confirmation]", :placeholder=>"Confirm Password"}
+      - if @admin.errors[:password_confirmation].present?
+        %span.help-inline= @admin.errors[:password_confirmation].first
+
+  .form-actions
+    %button.btn.btn-primary{:type=>'submit'} Save changes
+    %a.btn{:href=>admin_admins_url} Cancel

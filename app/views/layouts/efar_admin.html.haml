@@ -7,19 +7,10 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
-    .navbar.navbar-fixed-top
+    .navbar.navbar-fixed-top.navbar-inverse
       .navbar-inner
         .container
           %a.brand{:href=>'#'}EFAR Admin
-          %ul.nav
-            %li
-              %a{:href=>'#'} Admins
-            %li
-              %a{:href=>'#'} Researchers
-            %li
-              %a{:href=>'#'} Dispatchers
-            %li
-              %a{:href=>'#'} Efars
           %ul.nav.pull-right
             %li.dropdown
               %a.dropdown-toggle{:href=>"#", :data => {:toggle => "dropdown"}}
@@ -30,5 +21,11 @@
                   %a{:href=>admin_admin_path(@current_admin)} Info
                 %li
                   = link_to 'Logout', admin_session_path, :method => :delete    
-    
-    = yield
+    .container
+      .section
+        .section-header
+          = yield :section_header
+          .section-actions
+            = yield :section_actions
+        .section-body
+          = yield
