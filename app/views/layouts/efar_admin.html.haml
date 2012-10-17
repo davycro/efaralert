@@ -1,0 +1,34 @@
+!!!
+%html
+  %head
+    %title EFAR Dispatcher
+    = stylesheet_link_tag "application", :media => "all"
+    = yield :js
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  %body
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+          %a.brand{:href=>'#'}EFAR Admin
+          %ul.nav
+            %li
+              %a{:href=>'#'} Admins
+            %li
+              %a{:href=>'#'} Researchers
+            %li
+              %a{:href=>'#'} Dispatchers
+            %li
+              %a{:href=>'#'} Efars
+          %ul.nav.pull-right
+            %li.dropdown
+              %a.dropdown-toggle{:href=>"#", :data => {:toggle => "dropdown"}}
+                = @current_admin.full_name
+                %b.caret
+              %ul.dropdown-menu
+                %li
+                  %a{:href=>admin_admin_path(@current_admin)} Info
+                %li
+                  = link_to 'Logout', admin_session_path, :method => :delete    
+    
+    = yield

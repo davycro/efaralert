@@ -1,23 +1,25 @@
-.navbar.navbar-fixed-top
-  .navbar-inner
-    .container
-      %a.brand{:href=>'#'}EFAR Admin
-      %ul.nav
-        %li
-          %a{:href=>'#'} Admins
-        %li
-          %a{:href=>'#'} Researchers
-        %li
-          %a{:href=>'#'} Dispatchers
-        %li
-          %a{:href=>'#'} Efars
-      %ul.nav.pull-right
-        %li.dropdown
-          %a.dropdown-toggle{:href=>"#", :data => {:toggle => "dropdown"}}
-            = @current_admin.full_name
-            %b.caret
-          %ul.dropdown-menu
-            %li
-              %a{:href=>admin_admin_path(@current_admin)} Info
-            %li
-              = link_to 'Logout', admin_session_path, :method => :delete
+.container
+  .row
+    .span6
+      .dashboard-header
+        .button-column
+          %a.btn.btn-primary{:href => new_admin_admin_path}
+            %i.icon-plus.icon-white
+            Add new Admin
+        .fixed
+          %h3
+            Admins
+  .row
+    .span6
+      %table.table
+        %thead
+          %tr
+            %th Full Name
+            %th Email
+        %tbody
+          - @admins.each do |admin|
+            %tr
+              %td= admin.full_name
+              %td= admin.email
+              %td
+                %a{:href=>edit_admin_admin_path(admin)} Edit
