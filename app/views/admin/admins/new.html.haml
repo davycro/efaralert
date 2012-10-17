@@ -1,0 +1,24 @@
+.container
+  .row
+    .span6
+      - if @admin.errors.present?
+        .alert= @admin.errors.full_messages
+      = form_tag(admin_admins_path) do
+        %legend Create New Admin
+        %dl
+          %dt Please be aware of an admin's priviledges! Admins can:
+          %dd Create new admins
+          %dd Delete any admin account
+          %dd Edit any admin account
+          %dd Create, edit, or delete any researcher, efar, or community account
+          %dd In summary, admins are gods of the system, only one or two people should be trusted with this level of control.
+        %label Full Name
+        %input{:type => "text", :name => "admin[full_name]", :value => @admin.full_name}
+        %label Email
+        %input{:type => "text", :name => "admin[email]", :value => @admin.email}
+        %label Password
+        %input{:type => "password", :name => "admin[password]"}
+        %label Password Confirmation
+        %input{:type => "password", :name => "admin[password_confirmation]"}
+        %br
+        %button.btn{:type=>'submit'} Save

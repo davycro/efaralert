@@ -20,6 +20,12 @@ class Admin::AdminsController < ApplicationController
   end
 
   def create
+    @admin = Admin.new(params[:admin])
+    if @admin.save
+      redirect_to admin_admin_path(@admin), :notice => "New admin created"
+    else
+      render :action => 'new'
+    end
   end
 
   def update

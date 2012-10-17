@@ -1,5 +1,5 @@
 class Admin::SessionsController < ApplicationController
-  layout 'efar_chrome'
+  layout 'efar_admin_login'
 
   def new
   end
