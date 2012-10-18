@@ -1,5 +1,5 @@
-class Admin < ActiveRecord::Base
-  attr_accessible :email, :full_name, :password, :password_confirmation
+class Researcher < ActiveRecord::Base
+  attr_accessible :email, :full_name, :password, :password_confirmation, :affiliation
 
   has_secure_password
 
@@ -7,6 +7,7 @@ class Admin < ActiveRecord::Base
     :presence => true
 
   validates :password, :on => :create, :presence => true
+
   validates :email, :uniqueness => true
 
 end

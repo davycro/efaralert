@@ -6,5 +6,7 @@ class Dispatcher < ActiveRecord::Base
   validates :username, :full_name, :password_digest, 
     :presence => true
 
+  validates :password, :on => :create, :presence => true
+
   validates :username, :uniqueness => true
 end

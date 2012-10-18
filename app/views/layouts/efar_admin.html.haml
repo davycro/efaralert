@@ -19,6 +19,8 @@
               %a{:href=>admin_admins_path} Admins
             %li{:class=> controller.controller_name=="dispatchers" && "active"}
               %a{:href=>admin_dispatchers_path} Dispatchers
+            %li{:class=> controller.controller_name=="researchers" && "active"}
+              %a{:href=>admin_researchers_path} Researchers
             %li.divider
             %li
               = link_to 'Logout', admin_session_path, :method => :delete  
