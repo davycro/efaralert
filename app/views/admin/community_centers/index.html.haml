@@ -1,0 +1,43 @@
+- content_for :section_header do
+  %h3 Community Centers
+
+- content_for :section_actions do
+  %a.btn.btn-primary{:href => new_admin_community_center_path}
+    %i.icon-plus.icon-white
+    Create new community center
+
+- if flash[:notice].present?
+  .alert
+    = flash[:notice]
+    %button.close{:type=>"button", "data-dismiss"=>"alert"} x
+
+%table.table
+  %thead
+    %tr
+      %th Name
+      %th Location
+  %tbody
+    - @community_centers.each do |community_center|
+      %tr
+        %td= community_center.name
+        %td
+          %small= community_center.location_summary
+        %td
+          .btn-group
+            %a.btn.btn-mini.dropdown-toggle{"data-toggle"=>"dropdown", :href=>'#'}
+              %i.icon-cog
+              %span.caret
+            %ul.dropdown-menu.pull-right
+              %li
+                %a{:href=>edit_admin_community_center_path(community_center)}
+                  %i.icon-pencil
+                  Edit
+              %li
+                %a{:href=>admin_community_center_path(community_center), "data-confirm"=>"Are you sure?", "data-method"=>"delete"}
+                  %i.icon-trash
+                  Delete
+          
+.form-actions
+  %a.btn.btn-primary.btn-small{:href => new_admin_community_center_path}
+    %i.icon-plus.icon-white
+    Add new community center  

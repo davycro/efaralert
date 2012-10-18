@@ -1,0 +1,13 @@
+= form_for([:admin, @community_center], :html => {:class=> "form-horizontal"}) do |f|
+  
+  = horizontal_text_field(@community_center, :name, :label => "Center Name")
+  = horizontal_text_field(@community_center, :address)
+  = horizontal_text_field(@community_center, :suburb)
+  = horizontal_text_field(@community_center, :postal_code)
+  = horizontal_text_field(@community_center, :city)
+  = horizontal_text_field(@community_center, :province)
+  = horizontal_text_field(@community_center, :country)
+
+  .form-actions
+    %button.btn.btn-primary{:type=>'submit'} Save
+    %a.btn{:href=>admin_researchers_path} Cancel

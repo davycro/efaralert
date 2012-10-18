@@ -16,12 +16,38 @@ Dispatcher
   username
   password_digest
 
-
-Dispatch
-
-Community
+CommunityCenter
+  name
+  address
+  suburb
+  postal_code
+  city
+  province
+  country
 
 HeadEfar
+  full_name
+  community_center_id
+  email
+  password_digest
+
+Efar
+  surname
+  first_names
+  community_center_id
+  contact_number
+  certification_level
+  address
+  suburb
+  postal_code
+  lat
+  long
+  province
+  country
+  address_invalid
+  is_mobile
+
+Dispatch
 
 fake names:
 
@@ -37,5 +63,9 @@ Shaun Ganyaza
 Tsepo Gaji
 Samantha Danster
 Vuyolwethu Saphepha
+
+People's Centre
+Thames Avenue
+Cape Town 7767, South Africa
 
 default password: colorado
