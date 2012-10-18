@@ -1,0 +1,44 @@
+- content_for :section_header do
+  %h3 Head Efars
+
+- content_for :section_actions do
+  %a.btn.btn-primary{:href => new_admin_head_efar_path}
+    %i.icon-plus.icon-white
+    Create new head efar
+
+- if flash[:notice].present?
+  .alert
+    = flash[:notice]
+    %button.close{:type=>"button", "data-dismiss"=>"alert"} x
+
+%table.table
+  %thead
+    %tr
+      %th Full Name
+      %th Email
+      %th Community Centre
+  %tbody
+    - @head_efars.each do |head_efar|
+      %tr
+        %td= head_efar.full_name
+        %td= head_efar.email
+        %td= head_efar.community_center.name
+        %td
+          .btn-group
+            %a.btn.btn-mini.dropdown-toggle{"data-toggle"=>"dropdown", :href=>'#'}
+              %i.icon-cog
+              %span.caret
+            %ul.dropdown-menu.pull-right
+              %li
+                %a{:href=>edit_admin_head_efar_path(head_efar)}
+                  %i.icon-pencil
+                  Edit
+              %li
+                %a{:href=>admin_head_efar_path(head_efar), "data-confirm"=>"Are you sure?", "data-method"=>"delete"}
+                  %i.icon-trash
+                  Delete
+          
+.form-actions
+  %a.btn.btn-primary.btn-small{:href => new_admin_head_efar_path}
+    %i.icon-plus.icon-white
+    Add new head efar  

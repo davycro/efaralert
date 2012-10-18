@@ -1,0 +1,15 @@
+= form_for([:admin, @head_efar], :html => {:class => 'form-horizontal'}) do |f|
+  
+  = horizontal_text_field(@head_efar, :full_name)
+  = horizontal_text_field(@head_efar, :email)
+
+  .control-group
+    %label.control-label Community Center
+    .controls
+      = select("head_efar", "community_center_id", CommunityCenter.all.collect { |c| [c.name, c.id] } )
+
+  = horizontal_password_field(@head_efar)
+
+  .form-actions
+    %button.btn.btn-primary{:type=>'submit'} Save
+    %a.btn{:href=>admin_head_efars_path} Cancel

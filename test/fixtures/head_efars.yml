@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  full_name: MyString
+  community_center_id: 1
+  email: MyString
+  password_digest: MyString
+
+two:
+  full_name: MyString
+  community_center_id: 1
+  email: MyString
+  password_digest: MyString

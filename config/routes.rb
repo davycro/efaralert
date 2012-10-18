@@ -7,6 +7,7 @@ EfarDispatch::Application.routes.draw do
     resources :dispatchers
     resources :researchers
     resources :community_centers
+    resources :head_efars
     resource :session
   end
 

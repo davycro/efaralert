@@ -1,0 +1,10 @@
+- content_for :section_header do
+  %h3 Edit Head Efar
+
+- content_for :section_actions do
+  %a.btn.btn-link{:href => admin_head_efars_path } Cancel
+
+- if @head_efar.errors.present?
+  .alert.alert-error There were some errors saving the head efar. See below for more information.
+
+= render :partial => 'editor'
