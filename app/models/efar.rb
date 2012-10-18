@@ -1,18 +1,20 @@
-# t.string :surname, :null => false
-# t.string :first_name, :null => false
-# t.string :address, :null => false
-# t.string :community
-# t.string :postal_code, :null => false
-# t.string :city, :null => false
-# t.string :province
-# t.string :country, :null => false
-# t.string :contact_number, :null => false
-# t.string :certification_level
-                                 
 class Efar < ActiveRecord::Base
-  # attr_accessible :title, :body
-  validates :surname, :first_name, :address, :postal_code, 
-    :city, :country, :contact_number, :presence => true
+  PER_PAGE = 50
+
+  validates :surname, :address, 
+    :city, :country, :contact_number, :community_center_id, :presence => true
   validates :contact_number, :uniqueness => true
+
+  belongs_to :community_center
   
+  def self.all_for_page(page)  
+    page ||= 0
+    per_page = PER_PAGE
+
+    return self.limit(per_page).offset(per_page*page).all
+  end
+
+  def full_name
+    "#{self.first_names} #{self.surname}"
+  end
 end

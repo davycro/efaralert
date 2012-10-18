@@ -23,7 +23,7 @@ task :import_master_data => :environment do
     efar = Efar.new
     
     efar.surname = ss.cell(line, 'A')
-    efar.first_name = ss.cell(line, 'B')
+    efar.first_names = ss.cell(line, 'B')
     # check if efar passed the course
     score = ss.cell(line, 'Y')
     if score.blank?
@@ -47,9 +47,10 @@ task :import_master_data => :environment do
     # have to parse community and postal code
     # e.g. turn "manenberg 7764 into two strings"
     comm = ss.cell(line, 'D')
-    next if comm.blank?
-    efar.postal_code = comm[/\d{4}$/]
-    efar.community = comm.scan(/\D+/).collect { |w| w.strip }.join(" ")
+    if comm.present?
+      efar.postal_code = comm[/\d{4}$/]
+      efar.suburb = comm.scan(/\D+/).collect { |w| w.strip }.join(" ")
+    end
     efar.province = "Western Cape"
     efar.city = "Cape Town"
     efar.country = "South Africa"
@@ -57,7 +58,9 @@ task :import_master_data => :environment do
     pn = ss.cell(line, 'E')
     next if pn.blank?
     efar.contact_number = pn.scan(/\d+/).join
-    
+    # community center
+    efar.community_center = CommunityCenter.first
+
     efar.save
     if efar.valid?
       num_saved += 1

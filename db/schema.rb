@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121018213849) do
+ActiveRecord::Schema.define(:version => 20121018220308) do
 
   create_table "admins", :force => true do |t|
     t.string   "full_name",       :null => false
@@ -46,21 +46,23 @@ ActiveRecord::Schema.define(:version => 20121018213849) do
   add_index "dispatchers", ["username"], :name => "index_dispatchers_on_username", :unique => true
 
   create_table "efars", :force => true do |t|
-    t.string   "surname",                                :null => false
-    t.string   "first_name",                             :null => false
-    t.string   "address",                                :null => false
-    t.string   "community"
-    t.string   "postal_code",                            :null => false
-    t.string   "city",                                   :null => false
-    t.string   "province"
-    t.string   "country",                                :null => false
-    t.string   "contact_number",                         :null => false
+    t.string   "surname",                                 :null => false
+    t.string   "first_names",         :default => "Anon"
+    t.integer  "community_center_id",                     :null => false
+    t.string   "contact_number",                          :null => false
     t.string   "certification_level"
+    t.string   "address",                                 :null => false
+    t.string   "suburb"
+    t.string   "postal_code"
+    t.string   "city",                                    :null => false
+    t.string   "province"
+    t.string   "country",                                 :null => false
     t.string   "lat"
     t.string   "long"
     t.boolean  "invalid_address",     :default => false
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
+    t.boolean  "is_mobile",           :default => false
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
   end
 
   create_table "head_efars", :force => true do |t|
