@@ -3,3 +3,19 @@ Admin
   email
   password
   password_digest
+
+Researcher
+  full_name
+  email
+  password
+  password_?
+  university
+
+Dispatcher
+  
+
+Dispatch
+
+Community
+
+HeadEfar
