@@ -1,35 +1,9 @@
 = form_for([:admin, @researcher], :html => {:class => 'form-horizontal'}) do |f|
-
-  .control-group{ :class => @researcher.errors[:full_name].present? && "error" }
-    %label.control-label Full Name
-    .controls
-      %input{:type=>"text", :name=>"researcher[full_name]", :value=>@researcher.full_name, :placeholder=>"Full Name"}
-      - if @researcher.errors[:full_name].present?
-        %span.help-inline= @researcher.errors[:full_name].first
   
-  .control-group{ :class => @researcher.errors[:email].present? && "error" }
-    %label.control-label Email
-    .controls
-      %input{:type=>"text", :name=>"researcher[email]", :value=>@researcher.email, :placeholder=>"Email"}
-      - if @researcher.errors[:email].present?
-        %span.help-inline= @researcher.errors[:email].first
-  
-  .control-group
-    %label.control-label Affiliation
-    .controls
-      %input{:type=>"text", :name=>"researcher[affiliation]", :value=>@researcher.affiliation, :placeholder=>"Affiliation"}
-
-  .control-group{ :class => @researcher.errors[:password].present? && "error" }
-    %label.control-label Password
-    .controls
-      %input{:type=>"password", :name=>"researcher[password]", :placeholder=>"Password"}
-      - if @researcher.errors[:password].present?
-        %span.help-inline= @researcher.errors[:password].first        
-
-  .control-group
-    %label.control-label Password Confirmation
-    .controls
-      %input{:type=>"password", :name=>"researcher[password_confirmation]", :placeholder=>"Confirm Password"}
+  = horizontal_text_field(@researcher, :full_name)
+  = horizontal_text_field(@researcher, :email)
+  = horizontal_text_field(@researcher, :affiliation)
+  = horizontal_password_field(@researcher)
 
   .form-actions
     %button.btn.btn-primary{:type=>'submit'} Save

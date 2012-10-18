@@ -9,4 +9,12 @@ module Admin::AdminsHelper
     render :partial => "admin/shared/horizontal_text_field", 
       :locals => locals
   end
+
+  def horizontal_password_field(record, locals={})
+    locals[:record] = record
+
+    render :partial => "admin/shared/horizontal_password_field",
+      :locals => locals
+  end
+
 end
