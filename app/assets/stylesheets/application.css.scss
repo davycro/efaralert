@@ -15,7 +15,7 @@
 @import "bootstrap";
 
 body {
-  padding-top: 60px;
+  padding-top: 20px;
   background-image: asset-url('subtle_freckles.png',image);
 }
 
@@ -59,4 +59,48 @@ body {
 .section-body {
   padding: 10px 15px 0;
 }
+
+.admin-sidebar-nav {
+  background-color: #f7f7f7;
+  border-width: 0px 1px 1px 1px;
+  border-color: #454545;
+  border-style: solid;
+  @include border-bottom-radius(4px);
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+.efar-shield {
+  background-color: #1b1b1b;
+  @include linear-gradient(#333A39, #1f2423);
+  @include border-top-radius(4px);
+  color: white;
+  padding-left: 10px;
+  padding-top: 5px;
+  height: 60px;
+
+  .logo-text {
+    float: left;
+    width: 100px;
+    height: 10px;
+    margin-left: 10px;
+    font-weight: bold;
+    padding-top: 7px;
+    font-size: 20px;
+    color: white;
+  }
+
+  .efar-sprite-logo {
+    background-image: asset-url("efar_sprite.png", image);
+    background-position: -8px -8px;
+    background-repeat: no-repeat;
+    display: block;
+    float: left;
+    width: 50px;
+    height: 55px;
+  }
+}
+
+
+
 

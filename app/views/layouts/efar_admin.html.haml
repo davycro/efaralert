@@ -6,26 +6,28 @@
     = yield :js
     = javascript_include_tag "application"
     = csrf_meta_tags
-  %body
-    .navbar.navbar-fixed-top.navbar-inverse
-      .navbar-inner
-        .container
-          %a.brand{:href=>'#'}EFAR Admin
-          %ul.nav.pull-right
-            %li.dropdown
-              %a.dropdown-toggle{:href=>"#", :data => {:toggle => "dropdown"}}
-                = @current_admin.full_name
-                %b.caret
-              %ul.dropdown-menu
-                %li
-                  %a{:href=>admin_admin_path(@current_admin)} Info
-                %li
-                  = link_to 'Logout', admin_session_path, :method => :delete    
-    .container
-      .section
-        .section-header
-          = yield :section_header
-          .section-actions
-            = yield :section_actions
-        .section-body
-          = yield
+  %body             
+             
+    .container-fluid
+      .row
+        .span3
+          .efar-shield
+            %i.efar-sprite-logo
+            .logo-text EFAR ADMIN
+          %ul.nav.nav-list.admin-sidebar-nav
+            %li.nav-header Accounts
+            %li.active
+              %a{:href=>admin_admins_path} Admins
+            %li
+              %a{:href=>'#'} Dispatchers
+            %li.divider
+            %li
+              = link_to 'Logout', admin_session_path, :method => :delete  
+        .span9
+          .section
+            .section-header
+              = yield :section_header
+              .section-actions
+                = yield :section_actions
+            .section-body
+              = yield
