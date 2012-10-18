@@ -4,6 +4,7 @@ EfarDispatch::Application.routes.draw do
 
   namespace :admin do
     resources :admins
+    resources :dispatchers
     resource :session
   end
 

@@ -7,7 +7,6 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body             
-             
     .container-fluid
       .row
         .span3
@@ -16,10 +15,10 @@
             .logo-text EFAR ADMIN
           %ul.nav.nav-list.admin-sidebar-nav
             %li.nav-header Accounts
-            %li.active
+            %li{:class=> controller.controller_name=="admins" && "active"}
               %a{:href=>admin_admins_path} Admins
-            %li
-              %a{:href=>'#'} Dispatchers
+            %li{:class=> controller.controller_name=="dispatchers" && "active"}
+              %a{:href=>admin_dispatchers_path} Dispatchers
             %li.divider
             %li
               = link_to 'Logout', admin_session_path, :method => :delete  

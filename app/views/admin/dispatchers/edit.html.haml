@@ -1,0 +1,10 @@
+- content_for :section_header do
+  %h3 Edit dispatcher
+
+- content_for :section_actions do
+  %a.btn.btn-link{:href => admin_dispatchers_path } Cancel
+
+- if @dispatcher.errors.present?
+  .alert.alert-error There were some errors updating the dispatcher. See below for more information.
+
+= render :partial => 'editor'

@@ -12,10 +12,30 @@ Researcher
   university
 
 Dispatcher
-  
+  full_name
+  username
+  password_digest
+
 
 Dispatch
 
 Community
 
 HeadEfar
+
+fake names:
+
+Shireen Johnson
+Nicole Jacobs
+Abdul Bassiet
+Thelma Van Wyk
+Rauchmat Sauls
+Xola Sogiba
+Judith September
+Yolanda Qumba
+Shaun Ganyaza
+Tsepo Gaji
+Samantha Danster
+Vuyolwethu Saphepha
+
+default password: colorado
