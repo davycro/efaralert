@@ -1,0 +1,21 @@
+= form_for([:admin, @efar], :html => {:class => 'form-horizontal'}) do |f|
+  
+  = horizontal_text_field(@efar, :first_names)
+  = horizontal_text_field(@efar, :surname)
+  = horizontal_text_field(@efar, :contact_number)
+  = horizontal_text_field(@efar, :address)
+  = horizontal_text_field(@efar, :suburb)
+  = horizontal_text_field(@efar, :postal_code)
+  = horizontal_text_field(@efar, :city)
+  = horizontal_text_field(@efar, :province)
+  = horizontal_text_field(@efar, :country)
+  = horizontal_text_field(@efar, :certification_level)
+
+  .control-group
+    %label.control-label Community Center
+    .controls
+      = select("efar", "community_center_id", CommunityCenter.all.collect { |c| [c.name, c.id] } )
+
+  .form-actions
+    %button.btn.btn-primary{:type=>'submit'} Save
+    %a.btn{:href=>admin_efars_path} Cancel
