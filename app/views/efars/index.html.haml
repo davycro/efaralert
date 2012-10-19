@@ -1,4 +1,7 @@
-- content_for :js do
-  = javascript_include_tag 'http://maps.googleapis.com/maps/api/js?sensor=false'
+#app
 
-#map_canvas
+:javascript
+  jQuery(function(){
+    new App({el: $('#app')});
+  });
+  

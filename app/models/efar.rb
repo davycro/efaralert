@@ -1,7 +1,7 @@
 class Efar < ActiveRecord::Base
   attr_accessible :first_names, :surname, :contact_number, :address, :suburb, :postal_code,
     :city, :province, :country, :certification_level, :community_center_id, :lat, :long, 
-    :invalid_address, :is_mobile
+    :invalid_address, :is_mobile, :location_type, :formatted_address
 
   PER_PAGE = 50
 

@@ -9,11 +9,11 @@ class App.MarkersController extends Spine.Controller
 
   constructor: ->
     super
-    @html JST["views/markers/index"]
-    @createMap()
-    @createMapOverlay()
-    @makeIconsDraggable()
-    @placeExistingMarkers()
+    # @html JST["views/markers/index"]
+    # @createMap()
+    # @createMapOverlay()
+    # @makeIconsDraggable()
+    # @placeExistingMarkers()
 
   createMap: ->
     options = {
@@ -21,7 +21,7 @@ class App.MarkersController extends Spine.Controller
       center: new google.maps.LatLng(-33.96, 18.5)
       mapTypeId: google.maps.MapTypeId.ROADMAP
     }
-    @map = new google.maps.Map(@mapEl[0], options)
+    # @map = new google.maps.Map(@mapEl[0], options)
 
   createMapOverlay: ->
     @overlay = new google.maps.OverlayView()

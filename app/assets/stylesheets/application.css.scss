@@ -102,13 +102,13 @@ body {
   }
 }
 
-// markers fun
 #map {
-  border: 1px solid #333;
-  height: 400px;
-  width: 600px;
-  padding: 25px;
-  margin: 25px;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  float: left;
 }
 
 
