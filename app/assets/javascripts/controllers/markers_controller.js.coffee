@@ -17,8 +17,8 @@ class App.MarkersController extends Spine.Controller
 
   createMap: ->
     options = {
-      zoom: 6
-      center: new google.maps.LatLng(39.828175, -98.5795)
+      zoom: 11
+      center: new google.maps.LatLng(-33.96, 18.5)
       mapTypeId: google.maps.MapTypeId.ROADMAP
     }
     @map = new google.maps.Map(@mapEl[0], options)
