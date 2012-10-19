@@ -1,0 +1,18 @@
+#= require jquery
+#= require jquery_ujs
+#= require jquery.ui.all
+#= require spine/spine
+#= require spine/ajax
+#= require_tree ./lib
+#= require_self
+#= require_tree ./models
+#= require_tree ./controllers
+#= require_tree ./views
+#= require_tree .
+
+class App extends Spine.Controller
+  constructor: ->
+    super
+    @append(new App.MarkersController)
+
+window.App = App

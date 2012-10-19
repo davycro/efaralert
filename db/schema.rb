@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121018220308) do
+ActiveRecord::Schema.define(:version => 20121019030907) do
 
   create_table "admins", :force => true do |t|
     t.string   "full_name",       :null => false
@@ -75,6 +75,14 @@ ActiveRecord::Schema.define(:version => 20121018220308) do
   end
 
   add_index "head_efars", ["email"], :name => "index_head_efars_on_email", :unique => true
+
+  create_table "markers", :force => true do |t|
+    t.decimal  "longitude",  :precision => 10, :scale => 0
+    t.decimal  "latitude",   :precision => 10, :scale => 0
+    t.string   "icon"
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+  end
 
   create_table "researchers", :force => true do |t|
     t.string   "full_name",       :null => false

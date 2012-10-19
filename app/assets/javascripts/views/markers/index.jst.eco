@@ -1,0 +1,4 @@
+<div id="map"></div>
+<img id="0" class="marker" src="/assets/aed-2.png" />
+<img id="1" class="marker" src="/assets/firstaid.png" />
+<img id="2" class="marker" src="/assets/hospital.png" />
