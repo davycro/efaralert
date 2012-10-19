@@ -2,7 +2,7 @@ class EfarsController < ApplicationController
   # GET /efars
   # GET /efars.json
   def index
-    @efars = Efar.limit(100).all
+    @efars = Efar.all
 
     respond_to do |format|
       format.html # index.html.erb

@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(:version => 20121019181507) do
     t.string   "province"
     t.string   "country",                                        :null => false
     t.string   "lat"
-    t.string   "long"
+    t.string   "lng"
     t.boolean  "invalid_address",     :default => false
     t.boolean  "is_mobile",           :default => false
     t.datetime "created_at",                                     :null => false

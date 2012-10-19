@@ -12,8 +12,8 @@ class App.EfarsController extends Spine.Controller
 
   createMap: ->
     options = {
-      zoom: 11
-      center: new google.maps.LatLng(-33.96, 18.5)
+      zoom: 13
+      center: new google.maps.LatLng(-33.9838663, 18.5552215)
       mapTypeId: google.maps.MapTypeId.ROADMAP
     }
     @map = new google.maps.Map(@mapEl[0], options)

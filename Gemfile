@@ -38,6 +38,8 @@ gem 'bourbon'
 # Use unicorn as the app server
 gem 'unicorn'
 
+gem 'geocoder'
+
 # Deploy with Capistrano
 # gem 'capistrano'
 
