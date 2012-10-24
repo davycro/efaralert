@@ -1,7 +1,7 @@
 = form_for([:admin, @community_center], :html => {:class=> "form-horizontal"}) do |f|
   
   = horizontal_text_field(@community_center, :name, :label => "Center Name")
-  = horizontal_text_field(@community_center, :address)
+  = horizontal_text_field(@community_center, :street)
   = horizontal_text_field(@community_center, :suburb)
   = horizontal_text_field(@community_center, :postal_code)
   = horizontal_text_field(@community_center, :city)
