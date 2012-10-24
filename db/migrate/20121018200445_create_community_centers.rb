@@ -2,7 +2,7 @@ class CreateCommunityCenters < ActiveRecord::Migration
   def change
     create_table :community_centers do |t|
       t.string :name, :null => false
-      t.string :address, :null => false
+      t.string :street, :null => false
       t.string :suburb
       t.string :postal_code, :null => false
       t.string :city, :null => false
