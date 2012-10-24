@@ -36,16 +36,28 @@ Efar
   first_names
   community_center_id
   contact_number
-  certification_level
-  address
+  
+  street
   suburb
   postal_code
-  lat
-  long
+  city
   province
   country
-  address_invalid
-  is_mobile
+
+  lat
+  lng
+  location_type
+  formatted_address
+
+  first_language
+  birthday
+  profile
+
+  training_date
+  training_score
+  training_location
+  training_instructor
+
 
 Dispatch
 
