@@ -1,8 +1,12 @@
 EfarDispatch::Application.routes.draw do
   
-  resources :markers
-
-  resources :efars
+  namespace :research do
+    resources :efars do
+      collection do
+        get 'map'
+      end
+    end
+  end
 
   namespace :admin do
     resources :admins

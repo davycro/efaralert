@@ -1,0 +1,59 @@
+@import "bourbon";
+@import "lib/reset";
+
+// layout
+// Body is the container
+// sidebar fixed
+$page-rightbar-width: 200px;
+$page-topbar-height: 75px;
+body {
+  padding-top: $page-topbar-height;
+  width: 100%;
+  height: 100%;
+  background-color: #FFFFFF;
+}
+
+#page-rightbar {
+  width: $page-rightbar-width;
+  height: 100%;
+  background-color: #F8F8F8;
+  position: fixed;
+  display: absolute;
+  top: $page-topbar-height;
+  right: 0;
+  border-left: 1px solid #EBEBEB;
+  @include box-sizing(border-box);
+}
+
+#page-topbar {
+  background-color: #0093d5;
+  height: $page-topbar-height;
+  width: 100%;
+  position: fixed;
+  display: absolute;
+  top: 0;
+  right: 0;
+  border-bottom: 1px solid #1C8CC7;
+  @include box-sizing(border-box);
+
+  .brand {
+    float: left;
+    width: 200px;
+    margin-top: 10px;
+  }
+}
+
+.efar-sprite-research-logo {
+  background-image: asset-url("efar_sprite.png", image);
+  background-position: -9px -99px;
+  background-repeat: no-repeat;
+  display: block;
+  float: left;
+  width: 160px;
+  height: 55px;
+  margin-left: 10px;
+}
+
+.section-header {
+  background-color: #F0F6F8;
+}
