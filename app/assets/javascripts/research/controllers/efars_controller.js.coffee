@@ -6,7 +6,7 @@ class App.EfarsController extends Spine.Controller
 
   constructor: ->
     super
-    @html JST["views/efars/index"]
+    @html JST["research/views/efars/index"]
     @createMap()
     @placeExistingEfars()
 

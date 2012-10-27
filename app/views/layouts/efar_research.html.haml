@@ -7,10 +7,14 @@
       try{Typekit.load();}catch(e){}    
     
     = stylesheet_link_tag 'efar_research'
+
+    %script{:src => "http://maps.googleapis.com/maps/api/js?sensor=false"}
+    = javascript_include_tag 'research'
+
     = csrf_meta_tags
   %body
 
-    .navbar.navbar-inverse.navbar-fixed-top
+    .navbar.navbar-inverse.navbar-fixed-top{:style=>'display: none;'}
       .navbar-inner
         .container-fluid
           %a.brand{ :href=>'#' } EFAR Research
@@ -20,6 +24,7 @@
             %li
               %a{ :href => '#' } Dispatches
 
+  = yield
 
 
     

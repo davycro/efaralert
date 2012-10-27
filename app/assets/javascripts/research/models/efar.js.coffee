@@ -1,6 +1,7 @@
 class App.Efar extends Spine.Model
-  @configure "Efar", "address", "suburb", "postal_code", "city", "country", "lat", "lng", "first_names", "surname"
+  @configure "Efar", "street", "suburb", "postal_code", "city", "country", "lat", "lng", "first_names", "surname"
   @extend Spine.Model.Ajax
+  @url: "/research/efars"
 
   constructor: ->
     super
@@ -8,7 +9,7 @@ class App.Efar extends Spine.Model
       position: new google.maps.LatLng(@lat, @lng)
       icon: '/assets/firstaid.png'
     )
-    @gwindow = new google.maps.InfoWindow(content: JST["views/efars/show"](this))
+    @gwindow = new google.maps.InfoWindow(content: JST["research/views/efars/show"](this))
 
   setMap: (map) ->
     @gmarker.setMap(map)
