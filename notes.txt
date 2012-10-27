@@ -1,3 +1,11 @@
+Oct 27, 2012
+
+  [ ] import bootstrap less files into lib dir
+  [ ] create efar_research style dir
+  [ ] texture background
+  [ ] map
+  [ ] order moleskin notebooks
+
 Admin
   full_name
   email
@@ -87,3 +95,5 @@ michelleklaasen@ymail.com
 research namespace
 
 /research/efars
+
+getvetter.com

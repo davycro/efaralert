@@ -2,17 +2,24 @@
 %html
   %head
     %title EFAR RESEARCH
+    %script{ :type => "text/javascript", :src => "//use.typekit.net/ltc6ssn.js" }
+    :javascript
+      try{Typekit.load();}catch(e){}    
+    
     = stylesheet_link_tag 'efar_research'
     = csrf_meta_tags
   %body
-    #page-topbar
-      .brand
-        %i.efar-sprite-research-logo
-      %ul.nav
-        %li.active
-          %a{ :href => '#' } Efars
-        %li
-          %a{ :href => '#' } Dispatches
+
+    .navbar.navbar-inverse.navbar-fixed-top
+      .navbar-inner
+        .container-fluid
+          %a.brand{ :href=>'#' } EFAR Research
+          %ul.nav
+            %li.active
+              %a{ :href => '#' } EFARs
+            %li
+              %a{ :href => '#' } Dispatches
+
 
 
     
