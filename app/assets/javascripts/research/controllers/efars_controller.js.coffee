@@ -4,6 +4,9 @@ class App.EfarsController extends Spine.Controller
   elements:
     "#map" : "mapEl"
 
+  events:
+    "click .legend-key": "legendClick"
+
   constructor: ->
     super
     @html JST["research/views/efars/index"]
@@ -22,3 +25,17 @@ class App.EfarsController extends Spine.Controller
     App.Efar.bind 'refresh', (efars) =>
       efar.setMap(@map) for efar in efars
     App.Efar.fetch()
+
+  legendClick: (e) ->
+    efar_type = $(e.currentTarget).data('efar-type')
+    if efar_type == "active"
+      @toggleActive()
+    if efar_type == "inactive"
+      @toggleInactive()
+
+  toggleActive: ->
+    efar.toggleVisible() for efar in App.Efar.selectActive()
+
+  toggleInactive: ->
+    efar.toggleVisible() for efar in App.Efar.selectInactive() 
+
