@@ -1,2 +1,4 @@
 <%= "#{@first_names} #{@surname}" %><br/>
-<%= "#{@address}, #{@suburb} #{@postal_code}, #{@city}" %>
+<%= "#{@street}, #{@suburb} #{@postal_code}, #{@city}" %><br/>
+<%= "#{@location_type}" %><br/>
+<%= "#{@training_score}" %>

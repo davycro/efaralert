@@ -84,8 +84,8 @@ task :import_manenberg_efars => :environment do
 
     # check if efar passed the course
     score = ( ss.cell(line, 'Y') || 0.0 ).to_f
-    if score > 100.0
-      score = score / 100.0
+    if score > 1.0
+      score = score / 10.0
     end
     efar.training_score = score
     efar.training_location = ss.cell(line, 'U')

@@ -7,8 +7,8 @@ class Research::EfarsController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json do 
-        @efars = Efar.all
-        render json: @efars
+        @efars = Efar.valid_location.all
+        render json: @efars.to_json
       end
     end
   end

@@ -21,9 +21,11 @@ class Efar < ActiveRecord::Base
   validates :surname, :street, :city, :country, :community_center_id, :presence => true
 
   belongs_to :community_center
-  
-  # geocoded_by :full_address, :latitude => :lat, :longitude => :lng
-  # after_validation :geocode
+
+
+  # scopes
+  scope :valid_location, where("location_type not in (?) and location_type is not null", 
+    %w{sublocality postal_code administrative_area_level_1 locality})
 
   def self.all_for_page(page)  
     page ||= 0
