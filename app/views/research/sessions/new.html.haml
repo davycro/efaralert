@@ -1,2 +1,16 @@
-%h1 Research::Sessions#new
-%p Find me in app/views/research/sessions/new.html.haml
+.container.login-container
+  .row
+    .span2
+      = image_tag 'efar_login_logo_med.png'
+    .span6
+      - if flash[:notice].present?
+        .alert.alert-info=flash[:notice]
+      - if flash[:alert].present?
+        .alert=flash[:alert]
+      %form{ :action => research_session_path, :method => "POST" }
+        %legend Research Panel
+        %p Content restricted to EFAR researchers, please login for access:
+        %input{:type=>"text", :name=>'email', :placeholder=>"Email"}
+        %input{:type=>"password", :name=>"password", :placeholder=>"Password"}
+        %br
+        %button.btn{:type=>"submit"} Sign In

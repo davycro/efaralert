@@ -6,7 +6,9 @@ EfarDispatch::Application.routes.draw do
         get 'map'
       end
     end
+    resource :session
   end
+  match 'research/' => 'research/efars#index'
 
   namespace :admin do
     resources :admins
@@ -17,6 +19,7 @@ EfarDispatch::Application.routes.draw do
     resources :efars
     resource :session
   end
+  match 'admin/' => 'admin/admins#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

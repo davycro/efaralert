@@ -1,4 +1,6 @@
 class Research::EfarsController < ApplicationController
+  before_filter :require_researcher_login
+
   layout 'efar_research'
   
   # GET /efars

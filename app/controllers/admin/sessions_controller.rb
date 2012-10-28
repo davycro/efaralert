@@ -1,5 +1,5 @@
 class Admin::SessionsController < ApplicationController
-  layout 'efar_admin_login'
+  layout 'full_screen_login'
 
   def new
   end
