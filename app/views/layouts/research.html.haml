@@ -17,11 +17,11 @@
     .navbar.navbar-inverse.navbar-fixed-top
       .navbar-inner
         .container-fluid
-          %a.brand{ :href=>'#' } EFAR Research
+          %a.brand{ :href=>research_efars_path } EFAR Research
           %ul.nav
-            %li.active
-              %a{ :href => '#' } EFARs
-            %li
+            %li{:class=> controller.controller_name=="efars" && "active"}
+              %a{ :href => research_efars_path } EFARs
+            %li{:class=> controller.controller_name=="dispatches" && "active"}
               %a{ :href => '#' } Dispatches
           %ul.nav.pull-right
             %li.dropdown
