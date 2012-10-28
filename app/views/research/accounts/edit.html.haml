@@ -16,7 +16,21 @@
             = horizontal_text_field(@researcher, :full_name)
             = horizontal_text_field(@researcher, :email)
             = horizontal_text_field(@researcher, :affiliation)
-            = horizontal_password_field(@researcher)
+
+            .control-group{:class => @researcher.errors.present? && "error" }
+              %label.control-label New password
+              .controls
+                %input{:type=>"password", :name=>"researcher[password]", :placeholder=>""}
+                - if @researcher.errors[:password].blank?  
+                  %span.help-block
+                    %small Enter a new password, or leave blank to keep your old one
+                - if @researcher.errors[:password].present?
+                  %span.help-inline= @researcher.errors[:password].first
+
+            .control-group
+              %label.control-label Confirm password
+              .controls
+                %input{:type=>"password", :name=>"researcher[password_confirmation]", :placeholder=>""}
 
             .form-actions
               %button.btn.btn-primary{:type=>'submit'} Save
