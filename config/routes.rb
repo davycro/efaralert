@@ -6,6 +6,7 @@ EfarDispatch::Application.routes.draw do
         get 'map'
       end
     end
+    resource :account
     resource :session
   end
   match 'research/' => 'research/efars#index'

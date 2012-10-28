@@ -6,7 +6,7 @@
     :javascript
       try{Typekit.load();}catch(e){}    
     
-    = stylesheet_link_tag 'efar_research'
+    = stylesheet_link_tag 'research'
 
     %script{:src => "http://maps.googleapis.com/maps/api/js?sensor=false"}
     = javascript_include_tag 'research'
@@ -30,7 +30,7 @@
                 %b.caret
               %ul{:class=>"dropdown-menu"}
                 %li
-                  %a{ :href => '#' } Edit Account
+                  %a{ :href => research_account_path } My Account
                 %li
                   = link_to 'Logout', research_session_path, :method => :delete
 

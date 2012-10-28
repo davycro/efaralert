@@ -1,0 +1,23 @@
+.container-fluid
+  .row-fluid
+    .span8
+      .section.account
+        .section-header
+          %h3 Edit Account
+          .section-actions
+            %a.btn.btn-link{:href=>research_account_path}
+              Cancel
+        .section-body
+          - if @researcher.errors.present?
+            .alert.alert-error There were some errors updating your account. See below for more information.
+
+          = form_for(@researcher, :as => :account, :url => research_account_path, :method => :put, :html => {:class=>"form-horizontal"}) do |f|
+
+            = horizontal_text_field(@researcher, :full_name)
+            = horizontal_text_field(@researcher, :email)
+            = horizontal_text_field(@researcher, :affiliation)
+            = horizontal_password_field(@researcher)
+
+            .form-actions
+              %button.btn.btn-primary{:type=>'submit'} Save
+              %a.btn{:href=>research_account_path} Cancel  
