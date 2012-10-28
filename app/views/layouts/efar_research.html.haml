@@ -23,6 +23,16 @@
               %a{ :href => '#' } EFARs
             %li
               %a{ :href => '#' } Dispatches
+          %ul.nav.pull-right
+            %li.dropdown
+              %a{ :href => '#', :class => "dropdown-toggle", "data-toggle" => "dropdown" }
+                = @current_researcher.full_name
+                %b.caret
+              %ul{:class=>"dropdown-menu"}
+                %li
+                  %a{ :href => '#' } Edit Account
+                %li
+                  = link_to 'Logout', research_session_path, :method => :delete
 
   = yield
 
