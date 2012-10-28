@@ -6,6 +6,7 @@
 // Global values
 // --------------------------------------------------
 
+
 // Grays
 // -------------------------
 @black:                 #000;
@@ -15,6 +16,7 @@
 @grayLight:             #999;
 @grayLighter:           #eee;
 @white:                 #fff;
+
 
 // Accent colors
 // -------------------------
@@ -27,29 +29,32 @@
 @pink:                  #c3325f;
 @purple:                #7a43b6;
 
+
 // Scaffolding
 // -------------------------
 @bodyBackground:        @white;
 @textColor:             @grayDark;
+
 
 // Links
 // -------------------------
 @linkColor:             #08c;
 @linkColorHover:        darken(@linkColor, 15%);
 
+
 // Typography
 // -------------------------
-@sansFontFamily:        "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
-@serifFontFamily:       "chaparral-pro", Georgia, "Times New Roman", Times, serif;
+@sansFontFamily:        "Helvetica Neue", Helvetica, Arial, sans-serif;
+@serifFontFamily:       Georgia, "Times New Roman", Times, serif;
 @monoFontFamily:        Monaco, Menlo, Consolas, "Courier New", monospace;
 
 @baseFontSize:          14px;
 @baseFontFamily:        @sansFontFamily;
-@baseLineHeight:        18px;
+@baseLineHeight:        20px;
 @altFontFamily:         @serifFontFamily;
 
 @headingsFontFamily:    inherit; // empty to use BS default, @baseFontFamily
-@headingsFontWeight:    400;     // instead of browser default, bold
+@headingsFontWeight:    bold;    // instead of browser default, bold
 @headingsColor:         inherit; // empty to use BS default, @textColor
 
 // Tables
@@ -107,6 +112,7 @@
 @dropdownLinkBackgroundHover:   @dropdownLinkBackgroundActive;
 
 
+
 // COMPONENT VARIABLES
 // --------------------------------------------------
 
@@ -120,6 +126,13 @@
 @zindexFixedNavbar:       1030;
 @zindexModalBackdrop:     1040;
 @zindexModal:             1050;
+
+
+// Sprite icons path
+// -------------------------
+@iconSpritePath:          "../img/glyphicons-halflings.png";
+@iconWhiteSpritePath:     "../img/glyphicons-halflings-white.png";
+
 
 // Input placeholder text color
 // -------------------------
@@ -143,7 +156,9 @@
 
 // Navbar
 // -------------------------
-@navbarHeight:                    @baseLineHeight * 4;
+@navbarCollapseWidth:             979px;
+
+@navbarHeight:                    40px;
 @navbarBackgroundHighlight:       #ffffff;
 @navbarBackground:                darken(@navbarBackgroundHighlight, 5%);
 @navbarBorder:                    darken(@navbarBackground, 12%);
@@ -158,16 +173,16 @@
 @navbarBrandColor:                @navbarLinkColor;
 
 // Inverted navbar
-@navbarInverseBackground:                #0093d5;
-@navbarInverseBackgroundHighlight:       lighten(@navbarInverseBackground, 4%);
+@navbarInverseBackground:                #111111;
+@navbarInverseBackgroundHighlight:       #222222;
 @navbarInverseBorder:                    #252525;
 
-@navbarInverseText:                      #fafafa;
-@navbarInverseLinkColor:                 #f0f0f0;
+@navbarInverseText:                      @grayLight;
+@navbarInverseLinkColor:                 @grayLight;
 @navbarInverseLinkColorHover:            @white;
 @navbarInverseLinkColorActive:           @navbarInverseLinkColorHover;
 @navbarInverseLinkBackgroundHover:       transparent;
-@navbarInverseLinkBackgroundActive:      lighten(@navbarInverseBackground, 4%);
+@navbarInverseLinkBackgroundActive:      @navbarInverseBackground;
 
 @navbarInverseSearchBackground:          lighten(@navbarInverseBackground, 25%);
 @navbarInverseSearchBackgroundFocus:     @white;
@@ -182,6 +197,13 @@
 @paginationBackground:                #fff;
 @paginationBorder:                    #ddd;
 @paginationActiveBackground:          #f5f5f5;
+
+
+// Hero unit
+// -------------------------
+@heroUnitBackground:              @grayLighter;
+@heroUnitHeadingColor:            inherit;
+@heroUnitLeadColor:               inherit;
 
 
 // Form states and alerts
@@ -220,6 +242,7 @@
 @popoverArrowOuterColor:  rgba(0,0,0,.25);
 
 
+
 // GRID
 // --------------------------------------------------
 
@@ -254,22 +277,3 @@
 // 768px-979px
 @fluidGridColumnWidth768:      percentage(@gridColumnWidth768/@gridRowWidth768);
 @fluidGridGutterWidth768:      percentage(@gridGutterWidth768/@gridRowWidth768);
-
-
-// Page Navbar and Leftbar
-// -------------------------
-// @pageNavbarHeight: @baseLineHeight * 4;
-
-// @pageNavbarBackground: #0093d5;
-// @pageNavbarBackgroundHighlight: darken(@pageNavbarBackground, 2%);
-// @pageNavbarLinkBackgroundHover: darken(@pageNavbarBackground, 2%);
-// @pageNavbarLinkBackgroundActive: lighten(@pageNavbarBackground, 4%);
-
-// @pageNavbarLogoHeight: @baseLineHeight * 3;
-
-// @leftbarWidth: 200px;
-// @leftbarMargin: 15px;
-// @leftbarBackground: #222b2b;
-// @pageSectionHeaderBackground: #f0f6f8;
-
-// @sectionHeaderHeight: @pageNavbarHeight;
