@@ -5,9 +5,13 @@ task :seed_efar_requirements => :environment do
     a.password = 'colorado'
     a.password_confirmation = 'colorado'
   end
+end
 
-  puts "creating Lavender Hill community center"
-  CommunityCenter.where(:name => "Mother's Unite", :suburb => "Lavender Hill").first_or_create do |c|
+desc 'import lavender hill efars'
+task :import_lavender_hill_efars => :environment do
+  DEBUG = true
+  puts "creating Lavender Hill Community Center"
+  community_center = CommunityCenter.where(:name => "Mother's Unite", :suburb => "Lavender Hill").first_or_create do |c|
     c.street = "38 Gladiola Road, Hillview"
     c.postal_code = "7945"
     c.city = "Cape Town"
@@ -15,11 +19,71 @@ task :seed_efar_requirements => :environment do
     c.country = "South Africa"
   end
 
+  require 'roo'
+  require 'iconv'
+
+  ss = Excel.new(Rails.root.join('lib/LH_EFAR_DATA.xls').to_s)
+  ss.default_sheet = ss.sheets.first
+
+  start_line = 3
+  stop_line = 70
+
+  line = start_line-1
+  while true do
+    line+=1
+    if line>stop_line
+      break
+    end
+
+    #
+    # Data Extraction
+    surname = ss.cell(line, 'A')
+    first_names = ss.cell(line, 'B')
+    street = ss.cell(line, 'C')
+    # have to parse community and postal code
+    # e.g. turn "manenberg 7764 into two strings"
+    comm = ss.cell(line, 'D')
+    if (comm.present? and comm.is_a?(String))
+      postal_code = comm[/\d{4}$/]
+      suburb = comm.scan(/\D+/).collect { |w| w.strip }.join(" ")
+    end
+    # process phone number
+    pn = ss.cell(line, 'E')
+    if pn.present?
+      contact_number = pn.to_s.scan(/\d+/).join
+    end
+    # check if efar passed the course
+    score = ( ss.cell(line, 'Y') || 0.0 ).to_f
+    if score > 1.0
+      score = score / 10.0
+    end
+
+    #
+    # Save data to database
+    efar = Efar.where(:surname => surname, :first_names => first_names, :street => street).first_or_create do |e|
+      e.postal_code = postal_code
+      e.suburb = suburb
+      e.city = "Cape Town"
+      e.province = "Western Cape"
+      e.country = "South Africa"
+      e.contact_number = contact_number
+      e.training_score = score
+      e.training_location = ss.cell(line, 'U')
+      e.training_date = ss.cell(line, 'T')
+      e.training_instructor  = ss.cell(line, 'V')
+      e.profile = ss.cell(line, 'H')
+      e.birthday = ss.cell(line, 'G')
+      e.community_center = community_center
+    end
+
+    puts efar.to_yaml
+  end
 end
 
 
 desc 'import manenberg efars'
 task :import_manenberg_efars => :environment do
+  raise "shit"
   DEBUG = false
 
   puts "creating manenberg community center"

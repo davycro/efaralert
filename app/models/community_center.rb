@@ -4,6 +4,8 @@ class CommunityCenter < ActiveRecord::Base
   validates :street, :city, :country, :name, :postal_code,
     :presence => true
 
+  has_many :efars
+  
   # converts street into one string
   def location_summary
     if @location_summary.present?
