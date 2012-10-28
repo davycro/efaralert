@@ -18,6 +18,8 @@ class App.EfarsController extends Spine.Controller
       zoom: 13
       center: new google.maps.LatLng(-33.9838663, 18.5552215)
       mapTypeId: google.maps.MapTypeId.ROADMAP
+      streetViewControl: false
+      mapTypeControl: false
     }
     @map = new google.maps.Map(@mapEl[0], options)
 
