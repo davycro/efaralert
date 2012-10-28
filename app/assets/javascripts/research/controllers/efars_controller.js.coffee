@@ -3,6 +3,7 @@ $ = jQuery.sub()
 class App.EfarsController extends Spine.Controller
   elements:
     "#map" : "mapEl"
+    "#legend .nav" : "legendNav"
 
   events:
     "click .legend-key": "legendClick"
@@ -12,6 +13,7 @@ class App.EfarsController extends Spine.Controller
     @html JST["research/views/efars/index"]
     @createMap()
     @placeExistingEfars()
+    @placeLegend()
 
   createMap: ->
     options = {
@@ -28,11 +30,28 @@ class App.EfarsController extends Spine.Controller
       efar.setMap(@map) for efar in efars
     App.Efar.fetch()
 
+  placeLegend: ->
+    App.Efar.bind 'refresh', =>
+      @legendNav.append JST["research/views/efars/legend-key"]({
+          efar_type: "certified"
+          count: App.Efar.selectActive().length
+          key_label: "Certified EFARs"
+          active: true 
+        })
+      @toggleActive()
+
+      @legendNav.append JST["research/views/efars/legend-key"]({
+          efar_type: "failed"
+          count: App.Efar.selectInactive().length
+          key_label: "Failed course" 
+        })
+
   legendClick: (e) ->
     efar_type = $(e.currentTarget).data('efar-type')
-    if efar_type == "active"
+    $(e.currentTarget).toggleClass('active')
+    if efar_type == "certified"
       @toggleActive()
-    if efar_type == "inactive"
+    if efar_type == "failed"
       @toggleInactive()
 
   toggleActive: ->

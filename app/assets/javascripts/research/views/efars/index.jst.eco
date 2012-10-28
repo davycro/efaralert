@@ -1,11 +1,7 @@
 <div id="map"></div>
+
 <div id="legend">
-  <div class="legend-key" data-efar-type="active">
-    <img src="/assets/firstaid.png">
-    Active EFAR
-  </div>
-  <div class="legend-key" data-efar-type="inactive">
-    <img src="/assets/firstaid_dark.png">
-    Inactive EFAR
-  </div>
+  <h5>Show:</h5>
+  <ul class="nav nav-pills nav-stacked">
+  </ul>
 </div>

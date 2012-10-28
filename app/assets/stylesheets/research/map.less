@@ -9,20 +9,34 @@
 }
 #legend {
   background: white;
-  padding: 20px;
+  padding: 10px;
   position: absolute;
-  top: (@navbarHeight + 20px);
+  top: (@navbarHeight * 2);
   right: 20px;
-  border: 1px solid #333;
+  border: 1px solid @grayLight;
   color: #333;
-  width: 120px;
-}
-.legend-key {
-  height: 40px;
-  img {
-    float: left;
+  width: 160px;
+  .border-radius(4px);
+  .box-shadow(2px 2px 5px 6px rgba(100,100,100,0.1));
+  .nav {
+    // font-size: 11px;
   }
 }
+#legend .nav img {
+  float: left;
+  height: 40px;
+}
+#legend .nav a {
+  // margin-left: 35px;
+}
+#legend h5 {
+  font-size: 14px;
+  font-weight: bold;
+  line-height: @baseLineHeight;
+  margin-top: 0px;
+  padding: 0px;
+}
+
 
 // Bootstrap override
 #map img { 

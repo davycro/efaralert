@@ -1,4 +1,15 @@
-<%= "#{@first_names} #{@surname}" %><br/>
-<%= "#{@street}, #{@suburb} #{@postal_code}, #{@city}" %><br/>
-<%= "#{@location_type}" %><br/>
-<%= "#{@training_score}" %>
+<div class="efar-map-box">
+  <h5><%= "#{@first_names} #{@surname}" %></h5>
+  <address>
+    <%= @street %><br>
+    <% if @suburb: %>
+      <%= @suburb %> <%= @postal_code %><br>
+    <% end %>
+    <%= @city %>
+  </address>
+  <small>
+    <strong>Training Location</strong>: <%= @training_location %><br/>
+    <strong>Training Date</strong>: <%= @training_date %><br/>
+    <strong>Training Score</strong>: <%= @training_score*100 %><br/>
+  </small>
+</div>
