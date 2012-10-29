@@ -1,5 +1,0 @@
-<li class="legend-key" data-id="<%= @id %>">
-  <a href="#">
-    <%= @name %> (<%= @efars.length %>)
-  </a>
-</li>

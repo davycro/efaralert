@@ -3,11 +3,9 @@ $ = jQuery.sub()
 class App.MapController extends Spine.Controller
   elements:
     "#map" : "mapEl"
-    "#legend .nav": "legendNav"
-    "#legend .legend-key" : "legendKey"
 
   events:
-    "click .legend-key": "clickLegendKey"
+    "click .map-legend-key": "clickLegendKey"
 
   constructor: ->
     super
@@ -29,8 +27,10 @@ class App.MapController extends Spine.Controller
     # First load Efars
     # After efars have been loaded, fetch the community centers
     App.CommCenter.bind 'refresh', (centers) =>
-      @legendNav.append(JST["research/views/efars/comm_center_label"](center)) for center in centers
-      $(".legend-key").click()
+      @mapEl.append JST["research/views/efars/map_legend"]({
+        centers: centers
+      })
+      $('.map-legend-key:first').click()
 
     App.Efar.bind 'refresh', (efars) =>
       efar.setMap(@map) for efar in efars
@@ -42,3 +42,5 @@ class App.MapController extends Spine.Controller
     center = App.CommCenter.find el.data('id')
     efar.toggleVisible() for efar in center.efars
     el.toggleClass('active')
+    el.find('.default-icon').toggleClass('hide')
+    el.find('.active-icon').toggleClass('hide')

@@ -7,5 +7,6 @@ class App.CommCenter extends Spine.Model
     super
     @efars = App.Efar.selectForCommCenter(@)
 
-  setLabel: ->
+  getIcon: ->
+    App.MarkerIcon.getIconForId(@id)
     

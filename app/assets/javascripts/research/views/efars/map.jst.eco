@@ -1,7 +1,2 @@
 <div id="map"></div>
 
-<div id="legend">
-  <h5>EFARs</h5>
-  <ul class="nav nav-pills nav-stacked">
-  </ul>
-</div>

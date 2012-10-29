@@ -1,0 +1,13 @@
+<ul id="map-legend" class="nav nav-map-legend">
+  <li class="nav-header">EFARs</li>
+  <% for center in @centers: %>
+    <li data-id="<%= center.id %>" class="map-legend-key">
+      <a href="#">
+        <img src="/assets/markers/marker_gray.png" class="default-icon"></img>
+        <img src="<%= center.getIcon() %>" class="active-icon hide"></img>
+
+        <span><%= center.name %> (<%= center.efars.length %>)</span>
+      </a>
+    </li>
+  <%end %>
+</ul>
