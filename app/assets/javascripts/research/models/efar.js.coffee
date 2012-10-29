@@ -17,8 +17,7 @@ class App.Efar extends Spine.Model
     @gwindow = new google.maps.InfoWindow(content: JST["research/views/efars/show"](this))
 
   getIcon: ->
-    icons = [ "/assets/firstaid.png", "/assets/firstaid_red.png" ]
-    return icons[(@community_center_id%icons.length)]
+    return App.MarkerIcon.getIconForId(@community_center_id)
 
   setMap: (map) ->
     @gmarker.setMap(map)

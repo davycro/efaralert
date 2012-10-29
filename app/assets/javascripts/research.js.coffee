@@ -9,6 +9,7 @@
 #= require_tree ./research/models
 #= require_tree ./research/controllers
 #= require_tree ./research/views
+#= require_tree ./research/lib
 
 class App extends Spine.Controller
   constructor: ->
