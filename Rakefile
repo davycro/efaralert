@@ -5,3 +5,14 @@
 require File.expand_path('../config/application', __FILE__)
 
 EfarDispatch::Application.load_tasks
+
+desc "core deployment build"
+task :before_deploy do
+  system("RAILS_ENV=production bundle exec rake assets:precompile")
+  system("git add . ")
+  system("git commit -a -m 'auto-build #{Time.now.strftime("%a, %b %d @ %I:%M%p")}'")
+end
+
+task :deploy => :before_deploy do
+  exec("git push heroku master")
+end

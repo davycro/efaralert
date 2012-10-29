@@ -12,3 +12,7 @@ development:
 test:
   <<: *davcro_macbook_login
   database: efar_dispatch_test
+
+production:
+  <<: *davcro_macbook_login
+  database: efar_dispatch_dev
