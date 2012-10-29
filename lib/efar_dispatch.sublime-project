@@ -1,0 +1,24 @@
+{
+	"folders":
+	[
+		{
+			"path": "/Users/david/Sites/efar_dispatch",
+      "folder_exclude_patterns":
+      [
+        "tmp",
+        "photoshop",
+        "log"
+      ],
+      "file_exclude_patters":
+      [
+        "*.log",
+        "*.ico",
+        "*.png"
+      ]
+		}
+	],
+  "settings":
+  {
+    "rulers": [80]
+  }
+}

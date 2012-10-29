@@ -14,18 +14,21 @@ class Efar < ActiveRecord::Base
   attr_accessible :first_language, :birthday, :profile
 
   # Training Attributes
-  attr_accessible :training_date, :training_location, :training_score, :training_instructor  
+  attr_accessible :training_date, :training_location, :training_score,
+    :training_instructor  
 
   PER_PAGE = 50
 
-  validates :surname, :street, :city, :country, :community_center_id, :presence => true
+  validates :surname, :street, :city, :country, :community_center_id,
+    :presence => true
 
   belongs_to :community_center
 
 
   # scopes
-  scope :valid_location, where("location_type not in (?) and location_type is not null", 
-    %w{sublocality postal_code administrative_area_level_1 locality})
+  scope :valid_location,
+    where("location_type not in (?) and location_type is not null", 
+      %w{sublocality postal_code administrative_area_level_1 locality})
 
   scope :certified, where("training_score >= 0.8")
 
@@ -40,11 +43,12 @@ class Efar < ActiveRecord::Base
     "#{self.first_names} #{self.surname}"
   end
 
-  geocoded_by :geocode_search_address, :latitude => :lat, :longitude => :lng do |obj, results|
+  geocoded_by :geocode_search_address,
+    :latitude => :lat, :longitude => :lng do |obj, results|
     if geo = results.first
-      obj.lat = geo.latitude
-      obj.lng = geo.longitude
-      obj.location_type = geo.types.first
+      obj.lat               = geo.latitude
+      obj.lng               = geo.longitude
+      obj.location_type     = geo.types.first
       obj.formatted_address = geo.formatted_address
     end
   end 
