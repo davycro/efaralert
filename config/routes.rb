@@ -1,11 +1,8 @@
 EfarDispatch::Application.routes.draw do
   
   namespace :research do
-    resources :efars do
-      collection do
-        get 'map'
-      end
-    end
+    resources :efars
+    resources :community_centers
     resource :account
     resource :session
   end

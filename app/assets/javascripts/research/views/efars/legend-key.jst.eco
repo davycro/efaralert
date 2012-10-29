@@ -1,5 +1,0 @@
-<li class="legend-key <%= 'active' if @active %>" data-efar-type="<%= @efar_type %>">
-  <a href="#">
-    <%= @key_label %> (<span class="count"><%= @count %></span>)
-  </a>
-</li>

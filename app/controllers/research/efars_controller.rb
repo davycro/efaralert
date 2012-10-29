@@ -9,7 +9,7 @@ class Research::EfarsController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json do 
-        @efars = Efar.valid_location.all
+        @efars = Efar.valid_location.certified.all
         render json: @efars.to_json
       end
     end

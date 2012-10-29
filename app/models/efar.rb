@@ -27,6 +27,8 @@ class Efar < ActiveRecord::Base
   scope :valid_location, where("location_type not in (?) and location_type is not null", 
     %w{sublocality postal_code administrative_area_level_1 locality})
 
+  scope :certified, where("training_score >= 0.8")
+
   def self.all_for_page(page)  
     page ||= 0
     per_page = PER_PAGE

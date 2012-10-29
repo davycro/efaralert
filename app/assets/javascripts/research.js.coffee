@@ -13,6 +13,6 @@
 class App extends Spine.Controller
   constructor: ->
     super
-    @append(new App.EfarsController)
+    @append(new App.MapController)
 
 window.App = App

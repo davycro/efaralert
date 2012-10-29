@@ -1,27 +1,24 @@
 class CommunityCenter < ActiveRecord::Base
   attr_accessible :street, :city, :country, :name, :postal_code, :province, :suburb
 
+  # Geocoding Attributes
+  attr_accessible :lat, :lng, :location_type, :formatted_address
+
   validates :street, :city, :country, :name, :postal_code,
     :presence => true
 
   has_many :efars
   
-  # converts street into one string
-  def location_summary
-    if @location_summary.present?
-      return @location_summary
+  geocoded_by :geocode_search_address, :latitude => :lat, :longitude => :lng do |obj, results|
+    if geo = results.first
+      obj.lat = geo.latitude
+      obj.lng = geo.longitude
+      obj.location_type = geo.types.first
+      obj.formatted_address = geo.formatted_address
     end
+  end 
 
-    @location_summary = self.street
-    if self.suburb.present?
-      @location_summary += ", #{self.suburb}"
-    end
-    @location_summary += ", #{self.city} #{self.postal_code}"
-    if self.province.present?
-      @location_summary += ", #{self.province}"
-    end
-    @location_summary += ", #{self.country}"
-
-    return @location_summary
+  def geocode_search_address
+    [street, suburb, city, postal_code, province, country].compact.join(", ")
   end
 end
