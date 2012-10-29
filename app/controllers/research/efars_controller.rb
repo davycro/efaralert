@@ -11,7 +11,6 @@ class Research::EfarsController < ApplicationController
       format.json do 
         @efars = Efar.valid_location.certified.all
         render json: @efars.to_json
-        expires_in 1.day
       end
     end
   end
