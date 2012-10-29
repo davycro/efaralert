@@ -3,6 +3,7 @@ EfarDispatch::Application.routes.draw do
   namespace :research do
     resources :efars
     resources :community_centers
+    resources :dispatches
     resource :account
     resource :session
   end
