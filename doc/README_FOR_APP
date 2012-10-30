@@ -27,6 +27,7 @@
     formatted_address
     lat
     lng
+    location_type
 
   ## DispatchMessage
     

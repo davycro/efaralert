@@ -32,6 +32,8 @@ class Efar < ActiveRecord::Base
 
   scope :certified, where("training_score >= 0.8")
 
+  scope :owns_mobile_phone, where("contact_number IS NOT NULL")
+
   def self.all_for_page(page)  
     page ||= 0
     per_page = PER_PAGE

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121028233552) do
+ActiveRecord::Schema.define(:version => 20121030201729) do
 
   create_table "admins", :force => true do |t|
     t.string   "full_name",       :null => false
@@ -37,6 +37,14 @@ ActiveRecord::Schema.define(:version => 20121028233552) do
     t.float    "lng"
     t.string   "location_type"
     t.string   "formatted_address"
+  end
+
+  create_table "dispatch_messages", :force => true do |t|
+    t.integer  "emergency_id", :null => false
+    t.integer  "efar_id",      :null => false
+    t.string   "status"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "dispatchers", :force => true do |t|
@@ -73,6 +81,18 @@ ActiveRecord::Schema.define(:version => 20121028233552) do
     t.string   "training_instructor"
     t.datetime "created_at",                              :null => false
     t.datetime "updated_at",                              :null => false
+  end
+
+  create_table "emergencies", :force => true do |t|
+    t.integer  "dispatcher_id",     :null => false
+    t.string   "input_address",     :null => false
+    t.string   "category"
+    t.string   "formatted_address"
+    t.float    "lat",               :null => false
+    t.float    "lng",               :null => false
+    t.string   "location_type"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "head_efars", :force => true do |t|

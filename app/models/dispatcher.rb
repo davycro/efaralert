@@ -9,4 +9,6 @@ class Dispatcher < ActiveRecord::Base
   validates :password, :on => :create, :presence => true
 
   validates :username, :uniqueness => true
+
+  has_many :emergencies
 end
