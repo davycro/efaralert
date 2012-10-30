@@ -1,0 +1,27 @@
+.container-fluid
+  .row-fluid
+    .span8
+      .section.account
+        .section-header
+          %h3 My Account
+          .section-actions
+            %a.btn.btn-primary{:href=>edit_account_path}
+              %i.icon-cog.icon-white
+              Edit
+        .section-body
+          - if flash[:notice].present?
+            .alert= flash[:notice]
+            
+          .form-horizontal
+            .control-group
+              %label.control-label Username
+              .controls
+                %span.uneditable-input= @dispatcher.username
+            .control-group
+              %label.control-label Full Name
+              .controls
+                %span.uneditable-input= @dispatcher.full_name
+            
+            .form-actions
+              %a.btn.btn-primary{:href=>edit_account_path}
+                Edit account info or password    

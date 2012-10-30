@@ -1,6 +1,6 @@
 class AccountsController < ApplicationController
   before_filter :require_dispatcher_login
-  layout 'dispatcher'
+  layout 'dispatch'
 
   def show
     @dispatcher = @current_dispatcher
@@ -13,7 +13,7 @@ class AccountsController < ApplicationController
   def update
     @dispatcher = @current_dispatcher
     if @dispatcher.update_attributes(params[:dispatcher])
-      redirect_to research_account_path, :notice => "Account updated"
+      redirect_to account_path, :notice => "Account updated"
     else
       render :action => "edit"
     end
