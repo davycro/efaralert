@@ -1,0 +1,31 @@
+!!!
+%html
+  %head
+    %title EFAR DISPATCH
+    = stylesheet_link_tag 'dispatch'
+
+    %script{:src => "http://maps.googleapis.com/maps/api/js?sensor=false"}
+    = javascript_include_tag 'dispatch'
+    = render :partial => 'layouts/ga'
+    = csrf_meta_tags
+  %body
+
+    .navbar.navbar-inverse.navbar-fixed-top
+      .navbar-inner
+        .container-fluid
+          %a.brand{ :href=>emergencies_path } EFAR Dispatch
+          %ul.nav.pull-right
+            %li.dropdown
+              %a{ :href => '#', :class => "dropdown-toggle", "data-toggle" => "dropdown" }
+                = @current_dispatcher.full_name
+                %b.caret
+              %ul{:class=>"dropdown-menu"}
+                %li
+                  %a{ :href => account_path } My Account
+                %li
+                  = link_to 'Logout', session_path, :method => :delete
+
+  = yield
+
+
+    

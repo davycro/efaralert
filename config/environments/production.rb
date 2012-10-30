@@ -20,8 +20,8 @@ EfarDispatch::Application.configure do
   # Generate digests for assets URLs
   config.assets.digest = true
 
-  config.assets.precompile += %w(research.css full_screen_login.css) 
-  config.assets.precompile += %w(research.js full_screen_login.js)
+  config.assets.precompile += %w(research.css full_screen_login.css dispatch.css) 
+  config.assets.precompile += %w(research.js full_screen_login.js dispatch.js)
 
   # Defaults to nil and saved in location specified by config.assets.prefix
   # config.assets.manifest = YOUR_PATH

@@ -1,2 +1,49 @@
-Use this README file to introduce your application and point to useful places in the API for learning more.
-Run "rake doc:app" to generate API documentation for your models, controllers, helpers, and libraries.
+# Organization
+
+  ## Base
+
+  This app is designed for ambulance dispatchers to send text messages to emergency first aid responders (EFARs)
+
+  The base controllers and views are intended to be used by ambulance dispatchers
+
+  Two other access points have been namespaced: research and admin
+
+  ## Research
+
+  Assess point for researchers, view efars, view dispatches
+
+  ## Admin
+
+  Assess point for system adminstrators, universal control of the application
+
+
+# Models
+
+  ## Emergency
+    
+    dispatcher_id
+    input_address
+    category
+    formatted_address
+    lat
+    lng
+
+  ## DispatchMessage
+    
+    emergency_id
+    efar_id
+    status
+
+  ## Dispatcher
+    t.string   "full_name",       :null => false
+    t.string   "username",        :null => false
+    t.string   "password_digest", :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+
+
+# Misc Notes
+  
+
+
+
