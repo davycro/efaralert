@@ -1,2 +1,0 @@
-module EfarsHelper
-end
