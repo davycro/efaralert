@@ -1,0 +1,5 @@
+<tr>
+  <td><%= @created_at %></td>
+  <td><%= @formatted_address %></td>
+  <td><%= @num_efars_notified %></td>
+</tr>

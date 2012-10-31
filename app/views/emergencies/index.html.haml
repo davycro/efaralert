@@ -1,27 +1,9 @@
-.container-fluid
-  .row-fluid
-    .span8
-      .section.emergency
-        .section-header
-          %h3 Dispatches
-          .section-actions
-            %a.btn.btn-primary{:href => new_emergency_path}
-              New Dispatch
-        .section-body
-          - if flash[:notice]
-            .alert= flash[:notice]
-          %table.table
-            %thead
-              %tr
-                %th Date
-                %th Location
-                %th Num Alerted
-            %tbody
-              - @emergencies.each do |emergency|
-                %tr
-                  %td= emergency.created_at
-                  %td= emergency.formatted_address
-                  %td= emergency.dispatch_messages.count
+#app
+
+:javascript
+  jQuery(function(){
+    new App({el: $('#app')});
+  });
             
 
 

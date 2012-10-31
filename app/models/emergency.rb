@@ -17,7 +17,11 @@ class Emergency < ActiveRecord::Base
   end
 
   def nearby_efars
-    Efar.owns_mobile_phone.certified.near([self.lat, self.lng], 0.5)  
+    Efar.owns_mobile_phone.certified.near([self.lat, self.lng], 0.5).limit(10)  
+  end
+
+  def num_efars_notified
+    dispatch_messages.count  
   end
   
 end

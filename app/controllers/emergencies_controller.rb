@@ -9,6 +9,17 @@ class EmergenciesController < ApplicationController
 
   def index
     @emergencies = current_dispatcher.emergencies
+    respond_to do |format|
+      format.html
+      format.json { render json: @emergencies.to_json(:methods => [:num_efars_notified]) }
+    end
+  end
+
+  def show
+    @emergency = Emergency.find(params[:id])
+    respond_to do |format|
+      format.json { render json: @emergency.to_json(:methods => [:num_efars_notified]) }
+    end
   end
 
   def create
@@ -17,7 +28,7 @@ class EmergenciesController < ApplicationController
     respond_to do |format|
       if @emergency.save
         format.html { redirect_to emergencies_path, notice: 'Efar was successfully created.' }
-        format.json { render json: @emergency, status: :created, location: @emergency }
+        format.json { render json: @emergency.to_json(:methods => [:num_efars_notified]), status: :created, location: @emergency }
       else
         format.html { render action: "new" }
         format.json { render json: @emergency.errors, status: :unprocessable_entity }
