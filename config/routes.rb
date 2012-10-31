@@ -8,7 +8,7 @@ EfarDispatch::Application.routes.draw do
   namespace :research do
     resources :efars
     resources :community_centers
-    resources :dispatches
+    resources :emergencies
     resource :account
     resource :session
   end
