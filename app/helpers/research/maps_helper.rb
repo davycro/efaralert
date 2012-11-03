@@ -1,0 +1,2 @@
+module Research::MapsHelper
+end

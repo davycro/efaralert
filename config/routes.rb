@@ -1,18 +1,18 @@
 EfarDispatch::Application.routes.draw do
   
+  get "maps/index"
+
   # Base resources used by dispatchers
   resources :emergencies
   resource :session
   resource :account
 
   namespace :research do
-    resources :efars
-    resources :community_centers
-    resources :emergencies
+    resource :map
     resource :account
     resource :session
   end
-  match 'research/' => 'research/efars#index'
+  match 'research/' => 'research/maps#show'
 
   namespace :admin do
     resources :admins
@@ -24,6 +24,12 @@ EfarDispatch::Application.routes.draw do
     resource :session
   end
   match 'admin/' => 'admin/admins#index'
+
+  namespace :api do
+    resources :efars
+    resources :community_centers
+    resources :emergencies
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

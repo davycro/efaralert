@@ -9,7 +9,7 @@ class Research::SessionsController < ApplicationController
     researcher = Researcher.find_by_email(params[:email])
     if researcher && researcher.authenticate(params[:password])
       session[:researcher_id] = researcher.id
-      redirect_to research_efars_path, :notice => "logged in!"
+      redirect_to research_map_path, :notice => "logged in!"
     else
       flash.now.alert = "Invalid email or password"
       render "new"

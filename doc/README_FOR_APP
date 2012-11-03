@@ -42,6 +42,126 @@
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
 
+# 
+# Research Javascript Notes
+
+
+  constructor will simply render html
+  ready will populate data
+  
+  - goal load map and nav
+
+  map view
+  mapNav view
+
+  - goal toggle legends from nav
+
+  
+
+  class App
+    @researchMap = new ResearchMap
+    @append @researchMap.actitve()
+    Spine.Route.setup()
+
+  class ResearchMap
+
+    constructor
+
+      @topNavbar = new TopNavbar
+      @map       = new Map
+
+      @routes
+        '/research/map/#/efars': (params)->
+          @topNavbar.active(params)
+          @map.markers.efars.active(params)
+        '/research/map/#/emergencies': (params)->
+          @topNavbar.active(params)
+          @map.markers.emergencies.active(params)
+
+  class Map
+
+    constructor
+      @markers = new MapMarkers
+
+  class MapMarkers extends Spine.Stack
+    className: 'map markers'
+
+    controllers:
+      efars: EfarsController
+      emergencies: EmergenciesController
+
+  lib/
+  Spine.Controller.include
+    view: (name)=>
+      JST["research/views/#{name}"]
+
+  $.fn.communityCenterMarkers = ->
+    elementId = $(@).data('id')
+    elementId or= $(@).parents('[data-id]').data('id')
+
+
+  class EfarsController
+    className: 'efars'
+    events:
+      'click [data-type=toggle]': 'toggle'
+
+    constructor
+      super
+      Efar.bind 'refresh', render
+      Efar.fetch()
+
+    render:
+      efars = Efar.all()
+      @markers efars
+      CommunityCenter.bind 'refresh'
+        @html @view('map/legends.community_center')({centers: centers})
+
+    toggle:
+      hello
+
+  class EmergenciesController
+    className: 'emergencies'
+    events:
+      'click [data-type=toggle]': 'toggle'
+
+    constructor
+      super
+      
+
+
+
+  class EfarMarker
+
+    constructor:
+      efar
+      icon
+      marker
+      community_center
+
+
+<li data-community-center-id="community_center_id">
+</li>
+
+elements:
+
+legend
+  label - "EFARs" 
+  keys: [
+    {
+      icon: blue 
+      label: "mothers"
+      isActive: true
+      markers: [efar, efar, efar]
+    },
+    {icon:green, label: "manenberg", isActive: false}
+  ]
+
+
+
+
+
+
+
 
 # Misc Notes
   

@@ -1,2 +1,0 @@
-module Research::EfarsHelper
-end

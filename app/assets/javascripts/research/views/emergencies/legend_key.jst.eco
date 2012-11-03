@@ -1,0 +1,5 @@
+<li>
+  <a href="#" data-id="<%= @id %>">
+    <%= @formatted_address %>
+  </a>
+</li>

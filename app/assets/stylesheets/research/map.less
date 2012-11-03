@@ -13,13 +13,17 @@
 
 @iconHeight: 30px;
 
-#map-legend {
+.map-legend {
   position: absolute;
   top: @navbarHeight + @baseLineHeight*2;
   right: 20px; 
   width: 160px;
   z-index: 1;
 }
+.stack > *:not(.active) {
+  display: none
+} 
+
 .nav-map-legend {
   background: #FFFFFF;
   padding-left: 15px;
@@ -41,7 +45,8 @@
 .nav-map-legend > li > a {
   padding: 3px 15px;
   font-size: 11px;
-  height: @iconHeight;
+  // height: @iconHeight;
+  line-height: 12px;
   color: @grayLight;
   text-shadow: none;
 }

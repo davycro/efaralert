@@ -1,6 +1,5 @@
-class Research::CommunityCentersController < ApplicationController
-  before_filter :require_researcher_login
-  
+class Api::CommunityCentersController < ApplicationController
+
   # GET /community_centers.json
   def index
     respond_to do |format|
@@ -9,5 +8,5 @@ class Research::CommunityCentersController < ApplicationController
       end
     end
   end
-
+  
 end

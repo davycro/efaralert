@@ -24,4 +24,8 @@ class Emergency < ActiveRecord::Base
     dispatch_messages.count  
   end
   
+  def efar_ids
+    @efar_ids ||= dispatch_messages.map(&:efar_id)
+  end
+
 end

@@ -1,3 +1,7 @@
+Spine.Controller.include
+  view: (name) ->
+    JST["research/views/#{name}"]
+
 class App.MarkerIcon
 
   @icons: [
