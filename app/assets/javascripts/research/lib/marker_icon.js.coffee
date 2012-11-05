@@ -2,15 +2,16 @@ Spine.Controller.include
   view: (name) ->
     JST["research/views/#{name}"]
 
-class App.MarkerDropIcon
+class App.MarkerIcon
 
-  @filenamePrefix = "/assets/markers/marker_drop_"
+  @filenamePrefix = "/assets/markers/marker_"
   @filetype       = ".png"
   @activeColors   = ["orange", "blue", "green"]
   @inactiveColor  = "gray"
+  @shape          = "drop"
 
   @iconPath: (color) ->
-    "#{@filenamePrefix}#{color}#{@filetype}"
+    "#{@filenamePrefix}#{@shape}_#{color}#{@filetype}"
 
   @getIconForId: (id) ->
     color = @activeColors[(id%@activeColors.length)]
@@ -18,3 +19,12 @@ class App.MarkerDropIcon
 
   @getDefaultIcon: ->
     return @iconPath("blue")
+
+class App.MarkerIconSplat extends App.MarkerIcon
+  @shape = "splat"
+  @activeColors = "red"
+
+  @getDefaultIcon: ->
+    return @iconPath("red")
+
+

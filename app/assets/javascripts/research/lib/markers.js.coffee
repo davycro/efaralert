@@ -1,5 +1,5 @@
 class App.GoogleMapMarker extends Spine.Module
-  @records = {}
+  @records : {}
 
   @find: (id) ->
     record = @records[id]
@@ -15,19 +15,26 @@ class App.GoogleMapMarker extends Spine.Module
 
   @configure: (modelClass, options) ->
     options or= {}
-    options['iconClass'] or= App.MarkerDropIcon
+    console.log("options: ", options)
+    options['iconClass'] or= App.MarkerIcon
+    @records = {}
     @iconClass = options['iconClass']
     @modelClass = modelClass
     @modelClass.bind 'refresh', (records) =>
       @records[r.id] = new @(r) for r in records
 
+  @select: (callback) ->
+    result = (record for id, record of @records when callback(record))
+    result
+
   constructor: (record) ->
     @record  = record
     @visible = false
-    @map = @constructor.map()
+    @map     = @constructor.map()
+    @id      = record.id
     @marker  = new google.maps.Marker(
         position : new google.maps.LatLng(@record.lat, @record.lng)
-        icon     : @constructor.iconClass.getDefaultIcon()
+        icon     : @getIcon()
         visible  : @visible
       )
     @marker.setMap(@map)
@@ -50,6 +57,9 @@ class App.GoogleMapMarker extends Spine.Module
     else
       @show(options)
 
+  getIcon: ->
+    @constructor.iconClass.getDefaultIcon()
+
 
 class App.CommunityCenterMarker extends App.GoogleMapMarker
   @configure App.CommunityCenter
@@ -57,98 +67,31 @@ class App.CommunityCenterMarker extends App.GoogleMapMarker
   constructor: ->
     super
 
+  getIcon: ->
+    App.MarkerIcon.getIconForId(@record.id)
 
 
-class App.EmergencyMarker extends Spine.Module
-  @records = {}
-
-  App.Emergency.bind 'refresh', (emergencies) =>
-    @records[em.id] = new @(em) for em in emergencies
-
-  @find: (id) ->
-    record = @records[id]
-    throw new Error('Unknown record') unless record
-    record
-
-  @all: ->
-    arr = (record for id, record of @records)
-    arr
+class App.EmergencyMarker extends App.GoogleMapMarker
+  @configure App.Emergency, { 'iconClass': App.MarkerIconSplat }
 
   constructor: (emergency) ->
-    @record  = emergency
-    @visible = false
-    @map     = App.GoogleMap.map
-    @marker  = new google.maps.Marker(
-      position: new google.maps.LatLng(@record.lat, @record.lng)
-      icon: "/assets/markers/marker_splat_red.png"
-      visible: @visible
-    )
-    @marker.setMap(@map)
+    super
 
   show: ->
-    @marker.setVisible(true)
+    super
     m.show() for m in @efarsMarkers()
 
   hide: ->
-    @marker.setVisible(false)
+    super
     m.hide() for m in @efarsMarkers()
-
-  toggleVisible: (options) ->
-    options or= {}
-    if @marker.getVisible()
-      @marker.setVisible(false)
-    else
-      @marker.setVisible(true)
-      @panTo() if options['pan']
-    m.toggleVisible() for m in @efarsMarkers()
-
-  panTo: ->
-    @map.panTo @marker.getPosition()
 
   efarsMarkers: ->
     App.EfarMarker.select (efarMarker) =>
       efarMarker.id in @record.efar_ids
 
 
-class App.EfarMarker
-  @records = {}
+class App.EfarMarker extends App.GoogleMapMarker
+  @configure App.Efar
 
-  @select: (callback) ->
-    result = (record for id, record of @records when callback(record))
-    result
-
-  @all: ->
-    arr = (record for id, record of @records)
-    arr
-
-  App.Efar.bind 'refresh', (efars) =>
-    @records[efar.id] = new @(efar) for efar in efars
-
-  constructor: (efar) ->
-    @record  = efar
-    @visible = false
-    @map     = App.GoogleMap.map
-    @id      = efar.id
-    @marker  = new google.maps.Marker(
-        position: new google.maps.LatLng(@record.lat, @record.lng)
-        icon: "/assets/markers/marker_drop_blue.png"
-        visible: @visible
-      )
-    @marker.setMap(@map)
-
-  toggleVisible: (options) ->
-    options or= {}
-    if @marker.getVisible()
-      @marker.setVisible(false)
-    else
-      @marker.setVisible(true)
-      @panTo() if options['pan']
-
-  show: ->
-    @marker.setVisible(true)
-
-  hide: ->
-    @marker.setVisible(false)
-
-  panTo: ->
-    @map.panTo @marker.getPosition()
+  constructor: ->
+    super
