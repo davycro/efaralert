@@ -1,11 +1,11 @@
-class App.CommCenter extends Spine.Model
+class App.CommunityCenter extends Spine.Model
   @configure "CommunityCenter", "lat", "lng", "name", "suburb"
   @extend Spine.Model.Ajax
-  @url: "/research/community_centers"
+  @url: "/api/community_centers"
 
   constructor: ->
     super
-    @efars = App.Efar.selectForCommCenter(@)
+    # @efars = App.Efar.selectForCommCenter(@)
 
   getIcon: ->
     App.MarkerIcon.getIconForId(@id)

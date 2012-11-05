@@ -1,3 +1,24 @@
+class App.GoogleMapMarker extends Spine.Module
+  @records = {}
+
+  @find: (id) ->
+    record = @records[id]
+    throw new Error('Unknown record') unless record
+    record
+
+  @all: ->
+    arr = (record for id, record of @records)
+    arr
+
+  constructor: (record) ->
+    @record = record
+    @visible = false
+    @map = App.GoogleMap.map
+    
+
+class App.CommunityCenterMarker extends App.GoogleMapMarker
+
+
 class App.EmergencyMarker extends Spine.Module
   @records = {}
 

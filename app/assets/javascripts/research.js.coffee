@@ -30,10 +30,15 @@ class App extends Spine.Controller
         @topbar.activate('efars')
         @legends.efars.active()
 
+      '/community_centers': (params) ->
+        @topbar.activate('community_centers')
+        @legends.community_centers.active()
+
     @append @topbar, @legends
 
     App.Emergency.fetch()
     App.Efar.fetch()
+    App.CommunityCenter.fetch()
 
     Spine.Route.setup()
     @navigate('/emergencies')

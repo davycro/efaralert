@@ -75,6 +75,39 @@ class Emergencies extends Spine.Controller
     @
 
 
+class CommunityCenters extends Spine.Controller
+  elements:
+    '.nav' : 'nav'
+  events:
+    'click a' : 'click'
+
+  constructor: ->
+    super
+    @html @view('community_centers/legend')
+    App.CommunityCenter.bind 'refresh', (community_centers) =>
+      @addCommunityCenter(c) for c in community_centers
+
+  addCommunityCenter: (community_center) ->
+    @nav.append @view('community_centers/legend_key')(community_center)
+
+  click: (e) =>
+    el     = $(e.target)
+    id     = el.data('id')
+    # marker = App.CommunityCenterMarker.find(id)
+    # marker.toggleVisible({pan: true})
+    el.parent().toggleClass('active')
+
+  activate: ->
+    super
+    console.log('community_centers activated')
+    @
+
+  deactivate: ->
+    super
+    # m.hide() for m in App.CommunityCenterMarker.all()
+    @$('.nav .active').removeClass 'active'
+    @
+
 
 class App.Legends extends Spine.Stack
   className: 'legends stack'
@@ -82,5 +115,6 @@ class App.Legends extends Spine.Stack
   controllers:
     efars: Efars
     emergencies: Emergencies    
+    community_centers: CommunityCenters
 
 
