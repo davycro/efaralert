@@ -95,3 +95,8 @@ class App.EfarMarker extends App.GoogleMapMarker
 
   constructor: ->
     super
+
+  getIcon: ->
+    App.MarkerIcon.getIconForId(@record.community_center_id)
+
+    
