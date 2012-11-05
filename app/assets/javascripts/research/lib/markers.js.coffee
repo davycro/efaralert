@@ -10,13 +10,53 @@ class App.GoogleMapMarker extends Spine.Module
     arr = (record for id, record of @records)
     arr
 
+  @map: ->
+    App.GoogleMap.map
+
+  @configure: (modelClass, options) ->
+    options or= {}
+    options['iconClass'] or= App.MarkerDropIcon
+    @iconClass = options['iconClass']
+    @modelClass = modelClass
+    @modelClass.bind 'refresh', (records) =>
+      @records[r.id] = new @(r) for r in records
+
   constructor: (record) ->
-    @record = record
+    @record  = record
     @visible = false
-    @map = App.GoogleMap.map
-    
+    @map = @constructor.map()
+    @marker  = new google.maps.Marker(
+        position : new google.maps.LatLng(@record.lat, @record.lng)
+        icon     : @constructor.iconClass.getDefaultIcon()
+        visible  : @visible
+      )
+    @marker.setMap(@map)
+
+  show: (options) ->
+    options or= {}
+    @marker.setVisible(true)
+    @panTo() if options['pan']
+
+  hide: ->
+    @marker.setVisible(false)
+
+  panTo: ->
+    @map.panTo @marker.getPosition()
+
+  toggleVisible: (options) ->
+    options or= {}
+    if @marker.getVisible()
+      @hide(options)
+    else
+      @show(options)
+
 
 class App.CommunityCenterMarker extends App.GoogleMapMarker
+  @configure App.CommunityCenter
+
+  constructor: ->
+    super
+
 
 
 class App.EmergencyMarker extends Spine.Module

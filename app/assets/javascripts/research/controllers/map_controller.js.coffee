@@ -93,8 +93,9 @@ class CommunityCenters extends Spine.Controller
   click: (e) =>
     el     = $(e.target)
     id     = el.data('id')
-    # marker = App.CommunityCenterMarker.find(id)
-    # marker.toggleVisible({pan: true})
+    marker = App.CommunityCenterMarker.find(id)
+    console.log(marker)
+    marker.toggleVisible({pan: true})
     el.parent().toggleClass('active')
 
   activate: ->
@@ -104,7 +105,7 @@ class CommunityCenters extends Spine.Controller
 
   deactivate: ->
     super
-    # m.hide() for m in App.CommunityCenterMarker.all()
+    m.hide() for m in App.CommunityCenterMarker.all()
     @$('.nav .active').removeClass 'active'
     @
 
@@ -113,8 +114,8 @@ class App.Legends extends Spine.Stack
   className: 'legends stack'
 
   controllers:
-    efars: Efars
-    emergencies: Emergencies    
-    community_centers: CommunityCenters
+    efars             : Efars
+    emergencies       : Emergencies
+    community_centers : CommunityCenters
 
 
