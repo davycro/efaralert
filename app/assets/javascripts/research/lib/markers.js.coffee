@@ -130,8 +130,12 @@ class App.EmergencyMarker extends App.GoogleMapMarker
 class App.EfarMarker extends App.GoogleMapMarker
   @configure App.Efar
 
-  constructor: ->
+  constructor: (efar) ->
     super
+    @window = new google.maps.InfoWindow(content: 
+      JST["research/views/efars/show"](efar))
+    google.maps.event.addListener @marker, 'click', (e) =>
+      @window.open(@map, @marker)
 
   getIcon: ->
     App.MarkerIcon.getIconForId(@record.community_center_id)
