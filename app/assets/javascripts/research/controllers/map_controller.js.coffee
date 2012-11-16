@@ -29,6 +29,8 @@ class Efars extends Spine.Controller
   activate:->
     super
     m.show() for m in App.EfarMarker.all()
+    console.log("there are " + App.EfarMarker.all().length + " efars")
+    console.log("activate efars")
     @
 
   deactivate:->
@@ -38,40 +40,45 @@ class Efars extends Spine.Controller
 
 
 class Emergencies extends Spine.Controller
+  className: 'emergencies'
 
   elements:
     '.nav' : 'nav'
 
   events:
-    'click a' : 'click'
+    'click a' : 'clickSidebarAddress'
 
   constructor:->
     super
-    @html @view('emergencies/legend')
+    @html @view('emergencies/index')
+
+    # render sidebar addresses when em models load
     App.Emergency.bind 'refresh', (emergencies) =>
       @addEmergency(em) for em in emergencies
+
+    # connect marker events with the sidebar
+    App.EmergencyMarker.bind 'deactivate', (marker) =>
+      $("[data-id=#{marker.id}]", @nav).parent().removeClass 'active'  
+    App.EmergencyMarker.bind 'activate', (marker) =>
+      $("[data-id=#{marker.id}]", @nav).parent().addClass 'active'
 
   addEmergency:(em) ->
     # update the legend
     @nav.append @view('emergencies/legend_key')(em)
 
-  click: (e) =>
+  clickSidebarAddress: (e) =>
     el     = $(e.target)
     id     = el.data('id')
-    marker = App.EmergencyMarker.find(id)
-    marker.toggleVisible({pan: true})
-    el.parent().toggleClass('active')
+    App.EmergencyMarker.toggleActive(id)
 
   activate: ->
     super
-    console.log('activate')
+    m.show() for m in App.EmergencyMarker.all()
     @
 
   deactivate: ->
     super
     m.hide() for m in App.EmergencyMarker.all()
-    @$('.nav .active').removeClass 'active'
-    console.log('deactivate')
     @
 
 

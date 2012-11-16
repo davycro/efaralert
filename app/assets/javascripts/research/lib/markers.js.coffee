@@ -1,5 +1,6 @@
 class App.GoogleMapMarker extends Spine.Module
   @records : {}
+  @extend(Spine.Events)
 
   @find: (id) ->
     record = @records[id]
@@ -22,6 +23,7 @@ class App.GoogleMapMarker extends Spine.Module
     @modelClass = modelClass
     @modelClass.bind 'refresh', (records) =>
       @records[r.id] = new @(r) for r in records
+      @trigger 'refresh', @records
 
   @select: (callback) ->
     result = (record for id, record of @records when callback(record))
@@ -74,16 +76,51 @@ class App.CommunityCenterMarker extends App.GoogleMapMarker
 class App.EmergencyMarker extends App.GoogleMapMarker
   @configure App.Emergency, { 'iconClass': App.MarkerIconSplat }
 
+  @findActive: ->
+    result = (record for id, record of @records when record.isActive)
+    result
+
+  @toggleActive: (id) ->
+    marker = @find(id)
+    if marker.isActive
+      marker.deactivate()
+    else
+      marker.activate()
+
   constructor: (emergency) ->
     super
+    @isActive = false
+    @window = new google.maps.InfoWindow(content: 
+      JST["research/views/emergencies/show"](emergency))
+    google.maps.event.addListener @marker, 'click', (event) =>
+      @activate()
+    google.maps.event.addListener @window, 'closeclick', (event) =>
+      @deactivate()
 
-  show: ->
-    super
-    m.show() for m in @efarsMarkers()
+    @show()
+
+  activate: ->
+    @isActive = true
+    @window.open(@map, @marker)
+    @panTo()
+    @showEfars()
+    @constructor.trigger 'activate', @
+
+  deactivate: ->
+    @isActive = false
+    @window.close()
+    @hideEfars()
+    @constructor.trigger 'deactivate', @
 
   hide: ->
     super
+    @deactivate()
+
+  hideEfars: ->
     m.hide() for m in @efarsMarkers()
+
+  showEfars: ->
+    m.show() for m in @efarsMarkers()
 
   efarsMarkers: ->
     App.EfarMarker.select (efarMarker) =>

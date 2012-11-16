@@ -1,6 +1,6 @@
 class App.Emergency extends Spine.Model
   @configure "Emergency", "lat", "lng", "location_type", "input_address",
-    "formatted_address", "created_at"
+    "formatted_address", "created_at", "created_at"
   
   @extend Spine.Model.Ajax
   @url: "/emergencies"
