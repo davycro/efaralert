@@ -39,6 +39,7 @@ class App extends Spine.Controller
     App.Emergency.fetch()
     App.Efar.fetch()
     App.CommunityCenter.fetch()
+    App.DispatchMessage.fetch()
 
     Spine.Route.setup()
     @navigate('/emergencies')

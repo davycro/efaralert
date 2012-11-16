@@ -103,28 +103,28 @@ class App.EmergencyMarker extends App.GoogleMapMarker
     @isActive = true
     @window.open(@map, @marker)
     @panTo()
-    @showEfars()
+    @showDispatchMessages()
     @constructor.trigger 'activate', @
 
   deactivate: ->
     @isActive = false
     @window.close()
-    @hideEfars()
+    @hideDispatchMessages()
     @constructor.trigger 'deactivate', @
 
   hide: ->
     super
     @deactivate()
 
-  hideEfars: ->
-    m.hide() for m in @efarsMarkers()
+  hideDispatchMessages: ->
+    m.hide() for m in @dispatchMessageMarkers()
 
-  showEfars: ->
-    m.show() for m in @efarsMarkers()
+  showDispatchMessages: ->
+    m.show() for m in @dispatchMessageMarkers()
 
-  efarsMarkers: ->
-    App.EfarMarker.select (efarMarker) =>
-      efarMarker.id in @record.efar_ids
+  dispatchMessageMarkers: ->
+    App.DispatchMessageMarker.select (dispatchMessage) =>
+      dispatchMessage.record.emergency_id == @record.id
 
 
 class App.EfarMarker extends App.GoogleMapMarker
@@ -137,7 +137,16 @@ class App.EfarMarker extends App.GoogleMapMarker
     google.maps.event.addListener @marker, 'click', (e) =>
       @window.open(@map, @marker)
 
+  hide: ->
+    super
+    @window.close()
+
   getIcon: ->
     App.MarkerIcon.getIconForId(@record.community_center_id)
 
-    
+
+class App.DispatchMessageMarker extends App.GoogleMapMarker
+  @configure App.DispatchMessage
+
+
+

@@ -29,8 +29,8 @@ class Efars extends Spine.Controller
   activate:->
     super
     m.show() for m in App.EfarMarker.all()
-    console.log("there are " + App.EfarMarker.all().length + " efars")
-    console.log("activate efars")
+    e = App.EfarMarker.find(1445)
+    console.log(e)
     @
 
   deactivate:->
@@ -101,13 +101,11 @@ class CommunityCenters extends Spine.Controller
     el     = $(e.target)
     id     = el.data('id')
     marker = App.CommunityCenterMarker.find(id)
-    console.log(marker)
     marker.toggleVisible({pan: true})
     el.parent().toggleClass('active')
 
   activate: ->
     super
-    console.log('community_centers activated')
     @
 
   deactivate: ->

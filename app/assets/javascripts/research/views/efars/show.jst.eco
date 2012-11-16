@@ -12,4 +12,6 @@
     <strong>Training Date</strong>: <%= @training_date %><br/>
     <strong>Training Score</strong>: <%= @training_score*100 %><br/>
   </small>
+  <br/>
+  ID: <%= @id %>
 </div>
