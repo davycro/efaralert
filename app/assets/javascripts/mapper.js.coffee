@@ -7,10 +7,10 @@
 #= require spine/route
 #= require_tree ./lib
 #= require_self
-#= require_tree ./research/models
-#= require_tree ./research/controllers
-#= require_tree ./research/views
-#= require_tree ./research/lib
+#= require_tree ./mapper/models
+#= require_tree ./mapper/controllers
+#= require_tree ./mapper/views
+#= require_tree ./mapper/lib
 
 class App extends Spine.Controller
   constructor: ->

@@ -1,6 +1,6 @@
 Spine.Controller.include
   view: (name) ->
-    JST["research/views/#{name}"]
+    JST["mapper/views/#{name}"]
 
 class App.MarkerIcon
 

@@ -91,7 +91,7 @@ class App.EmergencyMarker extends App.GoogleMapMarker
     super
     @isActive = false
     @window = new google.maps.InfoWindow(content: 
-      JST["research/views/emergencies/show"](emergency))
+      JST["mapper/views/emergencies/show"](emergency))
     google.maps.event.addListener @marker, 'click', (event) =>
       @activate()
     google.maps.event.addListener @window, 'closeclick', (event) =>
@@ -133,7 +133,7 @@ class App.EfarMarker extends App.GoogleMapMarker
   constructor: (efar) ->
     super
     @window = new google.maps.InfoWindow(content: 
-      JST["research/views/efars/show"](efar))
+      JST["mapper/views/efars/show"](efar))
     google.maps.event.addListener @marker, 'click', (e) =>
       @window.open(@map, @marker)
 

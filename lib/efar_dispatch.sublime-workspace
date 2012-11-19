@@ -4,12 +4,24 @@
 		"selected_items":
 		[
 			[
-				"act",
-				"activate"
+				"con",
+				"console"
+			],
+			[
+				"cons",
+				"console"
+			],
+			[
+				"Emer",
+				"EmergencyMarker"
 			],
 			[
 				"ac",
-				"active"
+				"activate"
+			],
+			[
+				"act",
+				"activate"
 			],
 			[
 				"add",
@@ -42,10 +54,6 @@
 			[
 				"Mar",
 				"MarkerDropIcon"
-			],
-			[
-				"con",
-				"constructor"
 			],
 			[
 				"set",
@@ -118,10 +126,6 @@
 			[
 				"emer",
 				"emergency"
-			],
-			[
-				"cons",
-				"constructor"
 			],
 			[
 				"emerg",
@@ -375,54 +379,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "/Users/david/Sites/efar_dispatch/app/assets/javascripts/research/views/emergencies/index.jst.eco",
-			"settings":
-			{
-				"buffer_size": 31,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/david/Sites/efar_dispatch/app/assets/javascripts/research/lib/markers.js.coffee",
-			"settings":
-			{
-				"buffer_size": 2789,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/david/Sites/efar_dispatch/app/assets/javascripts/research/controllers/map_controller.js.coffee",
-			"settings":
-			{
-				"buffer_size": 2928,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/david/Sites/efar_dispatch/app/assets/stylesheets/research.css.less",
-			"settings":
-			{
-				"buffer_size": 1520,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/david/Sites/efar_dispatch/app/assets/stylesheets/research/map.less",
-			"settings":
-			{
-				"buffer_size": 2115,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/david/Sites/efar_dispatch/app/assets/stylesheets/shared/section-box.less",
-			"settings":
-			{
-				"buffer_size": 560,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -488,23 +444,34 @@
 	},
 	"file_history":
 	[
+		"/Users/david/Sites/efar_dispatch/app/assets/stylesheets/research/map.less",
+		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/research/models/dispatch_message.js.coffee",
+		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/research/views/efars/show.jst.eco",
+		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/research/models/efar.js.coffee",
+		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/research/views/emergencies/index.jst.eco",
+		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/research/lib/markers.js.coffee",
+		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/research.js.coffee",
+		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/research/controllers/map_controller.js.coffee",
+		"/Users/david/Sites/efar_dispatch/app/models/dispatch_message.rb",
+		"/Users/david/Sites/efar_dispatch/app/controllers/api/dispatch_messages_controller.rb",
+		"/Users/david/Sites/efar_dispatch/db/schema.rb",
+		"/Users/david/Sites/efar_dispatch/config/routes.rb",
+		"/Users/david/Sites/efar_dispatch/app/controllers/dispatch_messages_controller.rb",
+		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/dispatch/views/emergencies/index.jst.eco",
+		"/Users/david/Sites/efar_dispatch/app/assets/stylesheets/shared/section-box.less",
+		"/Users/david/Sites/efar_dispatch/app/assets/stylesheets/research.css.less",
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/dispatch/models/emergency.js.coffee",
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/research/views/emergencies/show.jst.eco",
-		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/research/models/efar.js.coffee",
-		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/research/controllers/map_controller.js.coffee",
 		"/Users/david/Sites/efar_dispatch/vendor/assets/stylesheets/twitter_bootstrap/mixins.less",
 		"/Users/david/Sites/efar_dispatch/vendor/assets/stylesheets/twitter_bootstrap/utilities.less",
 		"/Users/david/Sites/efar_dispatch/vendor/assets/stylesheets/twitter_bootstrap/grid.less",
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/research/views/map_nav.jst.eco",
 		"/Users/david/Sites/efar_dispatch/app/assets/stylesheets/research/scaffolding.less",
-		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/research/lib/markers.js.coffee",
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/research/lib/marker_icon.js.coffee",
 		"/Users/david/Library/Application Support/Sublime Text 2/Packages/User/Base File.sublime-settings",
 		"/Users/david/Library/Application Support/Sublime Text 2/Packages/Alignment/Base File.sublime-settings",
-		"/Users/david/Sites/efar_dispatch/app/assets/stylesheets/research/map.less",
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/research/views/community_centers/legend.jst.eco",
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/research/views/community_centers/legend_key.jst.eco",
-		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/research.js.coffee",
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/research/models/community_center.js.coffee",
 		"/Users/david/Sites/efar_dispatch/app/controllers/api/community_centers_controller.rb",
 		"/Users/david/Sites/efar_dispatch/app/models/community_center.rb",
@@ -513,14 +480,12 @@
 		"/Users/david/Sites/efar_dispatch/doc/README_FOR_APP",
 		"/Users/david/Sites/efar_dispatch/app/controllers/api/emergencies_controller.rb",
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/research/models/emergency.js.coffee",
-		"/Users/david/Sites/efar_dispatch/app/models/dispatch_message.rb",
 		"/Users/david/Sites/efar_dispatch/app/models/emergency.rb",
 		"/Users/david/Sites/efar_dispatch/app/views/layouts/research.html.haml",
 		"/Users/david/Sites/efar_dispatch/app/views/research/maps/show.html.haml",
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/research/lib/google_map.js.coffee",
 		"/Users/david/Sites/efar_dispatch/app/controllers/research/sessions_controller.rb",
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/research/controllers/google_map_controller.js.coffee",
-		"/Users/david/Sites/efar_dispatch/config/routes.rb",
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/research/views/map.jst.eco",
 		"/Users/david/Sites/efar_dispatch/app/views/research/maps/index.html.haml",
 		"/Users/david/Sites/efar_dispatch/app/controllers/research/maps_controller.rb",
@@ -532,7 +497,6 @@
 		"/Users/david/Sites/efar_dispatch/app/controllers/emergencies_controller.rb",
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/dispatch/controllers/dispatch_controller.js.coffee",
 		"/Users/david/Sites/efar_dispatch/app/models/efar.rb",
-		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/dispatch/views/emergencies/index.jst.eco",
 		"/Users/david/Code/bootstrap/js/bootstrap-modal.js",
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/dispatch/views/emergencies/emergency-row.jst.eco",
 		"/Users/david/Sites/efar_dispatch/app/views/emergencies/index.html.haml",
@@ -542,7 +506,6 @@
 		"/Users/david/Sites/efar_dispatch/app/views/emergencies/new.html.haml",
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/dispatch/views/emergencies/new.jst.eco",
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/dispatch/models/dispatch_message.js.coffee",
-		"/Users/david/Sites/efar_dispatch/app/controllers/dispatch_messages_controller.rb",
 		"/Users/david/Sites/efar_dispatch/db/migrate/20121030201729_create_dispatch_messages.rb",
 		"/Users/david/Sites/efar_dispatch/config/initializers/geocoder.rb",
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/dispatch/lib/geocoder.js.coffee",
@@ -558,7 +521,6 @@
 		"/Users/david/Sites/efar_dispatch/app/models/dispatcher.rb",
 		"/Users/david/Sites/efar_dispatch/db/migrate/20121030195140_create_emergencies.rb",
 		"/Users/david/Sites/efar_dispatch/app/views/accounts/show.html.haml",
-		"/Users/david/Sites/efar_dispatch/app/assets/stylesheets/research.css.less",
 		"/Users/david/Sites/efar_dispatch/app/controllers/accounts_controller.rb",
 		"/Users/david/Sites/efar_dispatch/app/views/layouts/efar_admin.html.haml",
 		"/Users/david/Sites/efar_dispatch/config/environments/production.rb",
@@ -566,7 +528,6 @@
 		"/Users/david/Sites/efar_dispatch/Gemfile",
 		"/Users/david/Sites/efar_dispatch/config/environments/development.rb",
 		"/Users/david/Sites/efar_dispatch/public/assets/application.js",
-		"/Users/david/Sites/efar_dispatch/db/schema.rb",
 		"/Users/david/Sites/efar_dispatch/app/views/sessions/new.html.haml",
 		"/Users/david/Sites/efar_dispatch/app/controllers/application_controller.rb",
 		"/Users/david/Sites/efar_dispatch/app/views/layouts/_typekit.html.haml",
@@ -610,12 +571,7 @@
 		"/Users/david/Sites/efar_dispatch/app/assets/stylesheets/application.css.scss",
 		"/Users/david/Sites/efar_dispatch/app/views/admin/efars/index.html.haml",
 		"/Users/david/Sites/efar_dispatch/app/assets/stylesheets/efar_research/scaffolding.less",
-		"/Users/david/Sites/efar_dispatch/app/views/layouts/efar_research.html.haml",
-		"/Users/david/Sites/efar_dispatch/app/assets/stylesheets/efar_research.css.less",
-		"/Users/david/Sites/efar_dispatch/app/controllers/admin/sessions_controller.rb",
-		"/Users/david/Sites/efar_dispatch/app/assets/stylesheets/full_screen_login.css.scss",
-		"/Users/david/Sites/efar_dispatch/app/views/research/sessions/new.html.haml",
-		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/full_screen_login.js.coffee"
+		"/Users/david/Sites/efar_dispatch/app/views/layouts/efar_research.html.haml"
 	],
 	"find":
 	{
@@ -634,6 +590,11 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"toggleVisible",
+			"toggleVis",
+			"visible",
+			"@visible",
+			"active",
 			"topbar",
 			"console.log",
 			"key",
@@ -692,185 +653,14 @@
 		"reverse": false,
 		"show_context": true,
 		"use_buffer2": true,
-		"whole_word": true,
+		"whole_word": false,
 		"wrap": true
 	},
 	"groups":
 	[
 		{
-			"selected": 2,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "/Users/david/Sites/efar_dispatch/app/assets/javascripts/research/views/emergencies/index.jst.eco",
-					"settings":
-					{
-						"buffer_size": 31,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								25,
-								25
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/eco/Syntaxes/HTML (ECO).tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "/Users/david/Sites/efar_dispatch/app/assets/javascripts/research/lib/markers.js.coffee",
-					"settings":
-					{
-						"buffer_size": 2789,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2355,
-								2355
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1104.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "/Users/david/Sites/efar_dispatch/app/assets/javascripts/research/controllers/map_controller.js.coffee",
-					"settings":
-					{
-						"buffer_size": 2928,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 725.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 1,
-			"sheets":
-			[
-				{
-					"buffer": 3,
-					"file": "/Users/david/Sites/efar_dispatch/app/assets/stylesheets/research.css.less",
-					"settings":
-					{
-						"buffer_size": 1520,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1520,
-								1520
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/LESS/LESS.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 129.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "/Users/david/Sites/efar_dispatch/app/assets/stylesheets/research/map.less",
-					"settings":
-					{
-						"buffer_size": 2115,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1786,
-								1786
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/LESS/LESS.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 848.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "/Users/david/Sites/efar_dispatch/app/assets/stylesheets/shared/section-box.less",
-					"settings":
-					{
-						"buffer_size": 560,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								15,
-								15
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/LESS/LESS.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -891,18 +681,11 @@
 				0,
 				1,
 				1
-			],
-			[
-				1,
-				0,
-				2,
-				1
 			]
 		],
 		"cols":
 		[
 			0.0,
-			0.511424459158,
 			1.0
 		],
 		"rows":
@@ -922,6 +705,58 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"map",
+				"app/assets/stylesheets/research/map.less"
+			],
+			[
+				"apidis",
+				"app/controllers/api/dispatch_messages_controller.rb"
+			],
+			[
+				"disp",
+				"app/models/dispatch_message.rb"
+			],
+			[
+				"dispatch_me",
+				"app/controllers/api/dispatch_messages_controller.rb"
+			],
+			[
+				"dispa",
+				"app/controllers/dispatch_messages_controller.rb"
+			],
+			[
+				"routes",
+				"config/routes.rb"
+			],
+			[
+				"sch",
+				"db/schema.rb"
+			],
+			[
+				"research.js",
+				"app/assets/javascripts/research.js.coffee"
+			],
+			[
+				"show",
+				"app/assets/javascripts/research/views/efars/show.jst.eco"
+			],
+			[
+				"efarj",
+				"app/assets/javascripts/research/models/efar.js.coffee"
+			],
+			[
+				"efars/show",
+				"app/assets/javascripts/research/views/efars/show.jst.eco"
+			],
+			[
+				"index.eco",
+				"app/assets/javascripts/research/views/emergencies/index.jst.eco"
+			],
+			[
+				"index.ec",
+				"app/assets/javascripts/dispatch/views/emergencies/index.jst.eco"
+			],
 			[
 				"map.js",
 				"app/assets/javascripts/research/controllers/map_controller.js.coffee"
@@ -1027,20 +862,12 @@
 				"app/assets/javascripts/research/views/emergencies/legend_key.jst.eco"
 			],
 			[
-				"map",
-				"app/assets/stylesheets/research/map.less"
-			],
-			[
 				"emergne",
 				"app/assets/javascripts/dispatch/models/emergency.js.coffee"
 			],
 			[
 				"legen",
 				"app/assets/javascripts/research/views/emergencies/legend.jst.eco"
-			],
-			[
-				"research.js",
-				"app/assets/javascripts/research.js.coffee"
 			],
 			[
 				"ermency.",
@@ -1103,10 +930,6 @@
 				"app/controllers/api/efars_controller.rb"
 			],
 			[
-				"routes",
-				"config/routes.rb"
-			],
-			[
 				"efar",
 				"app/models/efar.rb"
 			],
@@ -1147,20 +970,12 @@
 				"app/assets/javascripts/dispatch/views/emergencies/new.jst.eco"
 			],
 			[
-				"index.eco",
-				"app/assets/javascripts/dispatch/views/emergencies/index.jst.eco"
-			],
-			[
 				"emergencies/",
 				"app/views/emergencies/index.html.haml"
 			],
 			[
 				"create",
 				"db/migrate/20121030201729_create_dispatch_messages.rb"
-			],
-			[
-				"dispa",
-				"app/models/dispatch_message.rb"
 			],
 			[
 				"geo",
@@ -1401,38 +1216,6 @@
 			[
 				"comm",
 				"app/models/community_center.rb"
-			],
-			[
-				"impo",
-				"lib/tasks/import_master_data.rake"
-			],
-			[
-				"show.ec",
-				"app/assets/javascripts/research/views/efars/show.jst.eco"
-			],
-			[
-				"/research/e",
-				"app/controllers/research/efars_controller.rb"
-			],
-			[
-				"efars_controller.",
-				"app/assets/javascripts/research/controllers/efars_controller.js.coffee"
-			],
-			[
-				"resear/e",
-				"app/controllers/research/efars_controller.rb"
-			],
-			[
-				"index.ec",
-				"app/assets/javascripts/research/views/efars/index.jst.eco"
-			],
-			[
-				"layouts/ad",
-				"app/views/layouts/efar_admin.html.haml"
-			],
-			[
-				"layouts/r",
-				"app/views/layouts/research.html.haml"
 			]
 		],
 		"width": 0.0

@@ -3,9 +3,7 @@
   %head
     %title EFAR RESEARCH
     = stylesheet_link_tag 'research'
-
-    %script{:src => "http://maps.googleapis.com/maps/api/js?sensor=false"}
-    = javascript_include_tag 'research'
+    = yield :js
     = render :partial => 'layouts/ga'
     = csrf_meta_tags
   %body
