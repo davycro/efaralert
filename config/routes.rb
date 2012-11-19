@@ -1,7 +1,5 @@
 EfarDispatch::Application.routes.draw do
   
-  get "maps/index"
-
   # Base resources used by dispatchers
   resources :emergencies
   resource :session
@@ -11,8 +9,13 @@ EfarDispatch::Application.routes.draw do
     resource :map
     resource :account
     resource :session
+    resources :emergencies do
+      collection do
+        get 'live'
+      end
+    end
   end
-  match 'research/' => 'research/maps#show'
+  match 'research/' => 'research/emergencies#live'
 
   namespace :admin do
     resources :admins

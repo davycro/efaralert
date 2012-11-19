@@ -13,6 +13,9 @@
         .container-fluid
           %a.brand{ :href=>research_map_path } EFAR Research
           %ul.nav
+            %li{:class => controller.controller_name=="emergencies" && "active"}
+              %a{:href => live_research_emergencies_path } Dispatch Feed
+          %ul.nav
             %li{:class=> controller.controller_name=="maps" && "active"}
               %a{ :href => research_map_path } Maps
           %ul.nav.pull-right

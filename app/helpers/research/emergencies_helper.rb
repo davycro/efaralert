@@ -1,0 +1,2 @@
+module Research::EmergenciesHelper
+end
