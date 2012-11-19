@@ -5,6 +5,7 @@ class Research::EmergenciesController < ApplicationController
   layout 'research'
 
   def live
+    @emergencies = Emergency.order("created_at DESC").all
   end
 
 end

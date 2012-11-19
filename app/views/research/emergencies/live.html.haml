@@ -1,2 +1,25 @@
-%h1 Research::Emergencies#feed
-%p Find me in app/views/research/emergencies/feed.html.haml
+.container
+  .row
+    .span12
+      .emergencies-live-feed
+        - @emergencies.each do |em|
+          .emergencies-live-feed-box
+            .row
+              .span2
+                %h4.emergencies-live-feed-box-time-label
+                  = em.formatted_created_at_time
+                .emergencies-live-feed-box-date-label
+                  = em.formatted_created_at_date
+              .span8
+                %h4= em.formatted_address
+                .row
+                  .span1.emergencies-live-feed-box-table-label
+                    Status:
+                  .span7
+                    = em.dispatch_status
+                .row
+                  .span1.emergencies-live-feed-box-table-label
+                    Dispatcher:
+                  .span7
+                    = em.dispatcher.full_name
+

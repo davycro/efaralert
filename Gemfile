@@ -36,7 +36,7 @@ gem 'bourbon'
 # gem 'jbuilder'
 
 # Use thin as the app server
-gem 'thin'
+# gem 'thin'
 
 gem 'geocoder'
 
