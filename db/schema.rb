@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(:version => 20121030201729) do
     t.integer  "dispatcher_id",     :null => false
     t.string   "input_address",     :null => false
     t.string   "category"
+    t.string   "status"
     t.string   "formatted_address"
     t.float    "lat",               :null => false
     t.float    "lng",               :null => false

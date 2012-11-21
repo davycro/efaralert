@@ -6,7 +6,7 @@ class Emergency < ActiveRecord::Base
     :presence => true
 
   belongs_to :dispatcher
-  has_many :dispatch_messages
+  has_many :dispatch_messages, :dependent => :destroy
 
   after_create :create_dispatch_messages
 
