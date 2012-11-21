@@ -1,3 +1,23 @@
+# == Schema Information
+#
+# Table name: community_centers
+#
+#  id                :integer          not null, primary key
+#  name              :string(255)      not null
+#  street            :string(255)      not null
+#  suburb            :string(255)
+#  postal_code       :string(255)      not null
+#  city              :string(255)      not null
+#  province          :string(255)
+#  country           :string(255)      not null
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  lat               :float
+#  lng               :float
+#  location_type     :string(255)
+#  formatted_address :string(255)
+#
+
 class CommunityCenter < ActiveRecord::Base
   attr_accessible :street, :city, :country, :name, :postal_code, :province, :suburb
 

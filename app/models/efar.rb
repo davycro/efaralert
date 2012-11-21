@@ -1,3 +1,33 @@
+# == Schema Information
+#
+# Table name: efars
+#
+#  id                  :integer          not null, primary key
+#  surname             :string(255)      not null
+#  first_names         :string(255)      default("Anon")
+#  community_center_id :integer          not null
+#  contact_number      :string(255)
+#  street              :string(255)      not null
+#  suburb              :string(255)
+#  postal_code         :string(255)
+#  city                :string(255)      not null
+#  province            :string(255)
+#  country             :string(255)      not null
+#  lat                 :float
+#  lng                 :float
+#  location_type       :string(255)
+#  formatted_address   :string(255)
+#  first_language      :string(255)
+#  birthday            :date
+#  profile             :string(255)
+#  training_date       :date
+#  training_score      :float
+#  training_location   :string(255)
+#  training_instructor :string(255)
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#
+
 # The efar table has loose requriements
 class Efar < ActiveRecord::Base
 

@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: emergencies
+#
+#  id                :integer          not null, primary key
+#  dispatcher_id     :integer          not null
+#  input_address     :string(255)      not null
+#  category          :string(255)
+#  status            :string(255)
+#  formatted_address :string(255)
+#  lat               :float            not null
+#  lng               :float            not null
+#  location_type     :string(255)
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#
+
 class Emergency < ActiveRecord::Base
   attr_accessible :input_address, :dispatcher_id, :category, :formatted_address, 
     :lat, :lng, :location_type

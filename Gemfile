@@ -47,3 +47,4 @@ gem 'geocoder'
 # gem 'debugger'
 
 gem "twitter-bootstrap-rails"
+gem 'annotate', ">=2.5.0"
