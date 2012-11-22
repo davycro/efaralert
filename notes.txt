@@ -1,76 +1,12 @@
-Oct 30, 2012
-  
-  [ ] dispatch login
-  [ ] dispatch index
-  [ ] send dispatch
+on load fetch the 20 most recent dispatches
 
-Oct 27, 2012
+every 5 seconds check for new emergencies
 
-  [ ] import bootstrap less files into lib dir
-  [ ] create efar_research style dir
-  [ ] texture background
-  [ ] map
-  [ ] order moleskin notebooks
+every 5 seconds check for status update of an emergency
+every 5 seconds check for num alerted
 
-Admin
-  full_name
-  email
-  password
-  password_digest
+show / hide messages when click messages button
 
-Researcher
-  full_name
-  email
-  password
-  password_?
-  university
-
-Dispatcher
-  full_name
-  username
-  password_digest
-
-CommunityCenter
-  name
-  address
-  suburb
-  postal_code
-  city
-  province
-  country
-
-HeadEfar
-  full_name
-  community_center_id
-  email
-  password_digest
-
-Efar
-  surname
-  first_names
-  community_center_id
-  contact_number
-  
-  street
-  suburb
-  postal_code
-  city
-  province
-  country
-
-  lat
-  lng
-  location_type
-  formatted_address
-
-  first_language
-  birthday
-  profile
-
-  training_date
-  training_score
-  training_location
-  training_instructor
 
 
 Dispatch
@@ -103,6 +39,8 @@ research namespace
 /research/efars
 
 getvetter.com
+
+
 
 
 
