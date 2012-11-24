@@ -45,5 +45,9 @@ class DispatchMessage < ActiveRecord::Base
 
   validates :state, :inclusion => { :in => STATE_MESSAGES.keys }
   before_validation :set_nil_state_to_queued
+
+  def state_message
+    STATE_MESSAGES[self.state]
+  end
   
 end

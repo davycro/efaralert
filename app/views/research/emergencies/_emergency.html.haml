@@ -1,0 +1,37 @@
+.emergencies-live-feed-box
+  .feed-item-status-header
+    = emergency_state_label_html emergency
+  .feed-item-header.row
+    .time
+      = distance_of_time_in_words_to_now emergency.created_at
+      ago
+    .location= emergency.formatted_address
+  .feed-item-summary.row
+    .span1.feed-item-summary-stat-box
+      .feed-item-summary-stat= emergency.dispatch_messages.count
+      .feed-item-summary-stat-label Nearby
+    .span1.feed-item-summary-stat-box
+      .feed-item-summary-stat= emergency.sent_dispatch_messages.count
+      .feed-item-summary-stat-label Alerted
+    .span1.feed-item-summary-stat-box
+      .feed-item-summary-stat= emergency.en_route_dispatch_messages.count
+      .feed-item-summary-stat-label En Route
+    .span1.feed-item-summary-stat-box
+      .feed-item-summary-stat= emergency.on_scene_dispatch_messages.count
+      .feed-item-summary-stat-label On Scene
+    .span1.feed-item-summary-stat-box
+      .feed-item-summary-stat= emergency.failed_dispatch_messages.count
+      .feed-item-summary-stat-label Failed                
+  .feed-item-details
+    %span.datetime= detailed_datetime emergency.created_at
+    %span.dot ·
+    %span.feed-item-dispatcher-name
+      = "Dispached by #{emergency.dispatcher.full_name}"
+    %span.dot ·
+    %a{ :href => '#', 'onclick' => "$('.dispatch-messages').show()" } Show Efars
+
+  .dispatch-messages.hide
+    .feed-item-efars-header
+      Dispatch Messages
+
+    = render :partial => "dispatch_message", :collection => emergency.dispatch_messages

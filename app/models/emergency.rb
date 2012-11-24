@@ -35,13 +35,24 @@ class Emergency < ActiveRecord::Base
     'sent'                 => 'Sent',
     'failed_no_airtime'    => 'Failed, no airtime',
     'no_efars_nearby'      => 'No efars nearby',
-    'failed_unknown_error' => 'Failed, reason unknown'
+    'failed_unknown' => 'Failed, reason unknown'
   }
 
   validates :state, :inclusion => { :in => STATE_MESSAGES.keys }
 
   belongs_to :dispatcher
   has_many :dispatch_messages, :dependent => :destroy
+  has_many :sent_dispatch_messages, :class_name => "DispatchMessage",
+    :conditions => {:state => %w(sent on_scene en_route)}
+  has_many :en_route_dispatch_messages, :class_name => "DispatchMessage",
+    :conditions => {:state => 'en_route'}
+  has_many :on_scene_dispatch_messages, :class_name => "DispatchMessage",
+    :conditions => {:state => 'on_scene'}
+  has_many :failed_dispatch_messages, :class_name => "DispatchMessage",
+    :conditions => { :state => 
+      %w(failed_invalid_contact_number failed_no_airtime failed_unknown) }
+
+
 
   before_validation :set_nil_state_to_new
   after_create :create_dispatch_messages
@@ -67,36 +78,12 @@ class Emergency < ActiveRecord::Base
     Efar.owns_mobile_phone.certified.near([self.lat, self.lng], 0.5).limit(10)  
   end
 
-  def num_efars_notified
-    @num_efars_notified ||= dispatch_messages.count  
-  end
-  
-  def num_pending_messages
-    @num_pending_messages ||= self.dispatch_messages.where(:status => nil).count
-  end
-
-  def num_failed_messages
-    @num_failed_messages ||= self.dispatch_messages.where(:status => "failed").count
+  def state_message
+    STATE_MESSAGES[self.state]
   end
 
   def efar_ids
     @efar_ids ||= dispatch_messages.map(&:efar_id)
-  end
-
-  # hack for displaying time in pretty format
-
-  def timezone
-    "Mountain Time (US & Canada)"
-  end
-
-  def formatted_created_at_time
-    # 20h43
-    self.created_at.in_time_zone(timezone).strftime("%Hh%M")
-  end
-
-  def formatted_created_at_date
-    # 19-Oct-12
-    self.created_at.in_time_zone(timezone).strftime("%d %b %Y")
   end
 
 end
