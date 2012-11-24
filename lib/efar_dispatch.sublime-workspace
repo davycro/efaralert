@@ -419,47 +419,31 @@
 			"file": "/Users/david/Sites/efar_dispatch/app/views/research/emergencies/live.html.haml",
 			"settings":
 			{
-				"buffer_size": 2422,
+				"buffer_size": 2839,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/Users/david/Sites/efar_dispatch/vendor/assets/stylesheets/twitter_bootstrap/mixins.less",
+			"file": "/Users/david/Sites/efar_dispatch/notes.txt",
 			"settings":
 			{
-				"buffer_size": 21706,
+				"buffer_size": 613,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/Users/david/Sites/efar_dispatch/vendor/assets/stylesheets/twitter_bootstrap/type.less",
+			"file": "/Users/david/Sites/efar_dispatch/app/assets/javascripts/live_feed.js.coffee",
 			"settings":
 			{
-				"buffer_size": 3744,
+				"buffer_size": 466,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/Users/david/Sites/efar_dispatch/app/assets/stylesheets/research.css.less",
+			"file": "/Users/david/Sites/efar_dispatch/app/assets/javascripts/mapper/models/emergency.js.coffee",
 			"settings":
 			{
-				"buffer_size": 3471,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/david/Sites/efar_dispatch/vendor/assets/stylesheets/twitter_bootstrap/navs.less",
-			"settings":
-			{
-				"buffer_size": 7343,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/david/Sites/efar_dispatch/vendor/assets/stylesheets/twitter_bootstrap/variables.less",
-			"settings":
-			{
-				"buffer_size": 8473,
+				"buffer_size": 236,
 				"line_ending": "Unix"
 			}
 		}
@@ -528,8 +512,13 @@
 	},
 	"file_history":
 	[
-		"/Users/david/Sites/efar_dispatch/app/helpers/application_helper.rb",
+		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/dispatch/models/emergency.js.coffee",
+		"/Users/david/Sites/efar_dispatch/vendor/assets/stylesheets/twitter_bootstrap/mixins.less",
+		"/Users/david/Sites/efar_dispatch/vendor/assets/stylesheets/twitter_bootstrap/variables.less",
+		"/Users/david/Sites/efar_dispatch/vendor/assets/stylesheets/twitter_bootstrap/navs.less",
+		"/Users/david/Sites/efar_dispatch/vendor/assets/stylesheets/twitter_bootstrap/type.less",
 		"/Users/david/Sites/efar_dispatch/app/assets/stylesheets/research.css.less",
+		"/Users/david/Sites/efar_dispatch/app/helpers/application_helper.rb",
 		"/Users/david/Sites/efar_dispatch/vendor/assets/stylesheets/twitter_bootstrap/bootstrap.less",
 		"/Users/david/Sites/efar_dispatch/vendor/assets/stylesheets/twitter_bootstrap/labels-badges.less",
 		"/Users/david/Sites/efar_dispatch/vendor/assets/stylesheets/twitter_bootstrap/utilities.less",
@@ -545,7 +534,6 @@
 		"/Users/david/Sites/efar_dispatch/app/controllers/research/emergencies_controller.rb",
 		"/Users/david/Sites/efar_dispatch/app/models/dispatch_message.rb",
 		"/Users/david/Sites/efar_dispatch/db/schema.rb",
-		"/Users/david/Sites/efar_dispatch/vendor/assets/stylesheets/twitter_bootstrap/variables.less",
 		"/Users/david/Sites/efar_dispatch/app/views/layouts/efar_admin.html.haml",
 		"/Users/david/Sites/efar_dispatch/app/assets/stylesheets/research/emergencies.less",
 		"/Users/david/Desktop/todo.txt",
@@ -560,7 +548,6 @@
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/mapper/lib/markers.js.coffee",
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/mapper/lib/marker_icon.js.coffee",
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/mapper.js.coffee",
-		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/dispatch/models/emergency.js.coffee",
 		"/Users/david/Sites/efar_dispatch/app/assets/stylesheets/research/map.less",
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/research/models/dispatch_message.js.coffee",
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/research/views/efars/show.jst.eco",
@@ -573,7 +560,6 @@
 		"/Users/david/Sites/efar_dispatch/app/controllers/dispatch_messages_controller.rb",
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/dispatch/views/emergencies/index.jst.eco",
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/research/views/emergencies/show.jst.eco",
-		"/Users/david/Sites/efar_dispatch/vendor/assets/stylesheets/twitter_bootstrap/mixins.less",
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/research/views/map_nav.jst.eco",
 		"/Users/david/Sites/efar_dispatch/app/assets/stylesheets/research/scaffolding.less",
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/research/lib/marker_icon.js.coffee",
@@ -641,7 +627,6 @@
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/research/views/efars/comm_center_label.jst.eco",
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/research/views/efars/map.jst.eco",
 		"/Users/david/Sites/efar_dispatch/vendor/assets/stylesheets/twitter_bootstrap/sprites.less",
-		"/Users/david/Sites/efar_dispatch/vendor/assets/stylesheets/twitter_bootstrap/navs.less",
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/research/efars.js.coffee",
 		"/Users/david/Sites/efar_dispatch/app/views/research/dispatches/index.html.haml",
 		"/Users/david/Sites/efar_dispatch/vendor/assets/stylesheets/twitter_bootstrap/wells.less",
@@ -654,8 +639,7 @@
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/research/views/efars/legend-key.jst.eco",
 		"/Users/david/Sites/efar_dispatch/app/views/admin/shared/_horizontal_password_field.html.haml",
 		"/Users/david/Sites/efar_dispatch/app/views/admin/researchers/index.html.haml",
-		"/Users/david/Sites/efar_dispatch/app/views/research/accounts/show.html.haml",
-		"/Users/david/Sites/efar_dispatch/app/controllers/research/accounts_controller.rb"
+		"/Users/david/Sites/efar_dispatch/app/views/research/accounts/show.html.haml"
 	],
 	"find":
 	{
@@ -767,7 +751,9 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/Ruby/Ruby.tmLanguage"
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -780,15 +766,15 @@
 					"file": "/Users/david/Sites/efar_dispatch/app/views/research/emergencies/live.html.haml",
 					"settings":
 					{
-						"buffer_size": 2422,
+						"buffer_size": 2839,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2377,
-								2377
+								2818,
+								2818
 							]
 						],
 						"settings":
@@ -798,7 +784,35 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 182.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/Users/david/Sites/efar_dispatch/notes.txt",
+					"settings":
+					{
+						"buffer_size": 613,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								181,
+								181
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -806,140 +820,54 @@
 			]
 		},
 		{
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
-					"buffer": 2,
-					"file": "/Users/david/Sites/efar_dispatch/vendor/assets/stylesheets/twitter_bootstrap/mixins.less",
-					"settings":
-					{
-						"buffer_size": 21706,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/LESS/LESS.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 8103.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
 					"buffer": 3,
-					"file": "/Users/david/Sites/efar_dispatch/vendor/assets/stylesheets/twitter_bootstrap/type.less",
+					"file": "/Users/david/Sites/efar_dispatch/app/assets/javascripts/live_feed.js.coffee",
 					"settings":
 					{
-						"buffer_size": 3744,
+						"buffer_size": 466,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								466,
+								466
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/LESS/LESS.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 633.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 4,
-					"file": "/Users/david/Sites/efar_dispatch/app/assets/stylesheets/research.css.less",
+					"file": "/Users/david/Sites/efar_dispatch/app/assets/javascripts/mapper/models/emergency.js.coffee",
 					"settings":
 					{
-						"buffer_size": 3471,
+						"buffer_size": 236,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3460,
-								3460
+								165,
+								141
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/LESS/LESS.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1852.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "/Users/david/Sites/efar_dispatch/vendor/assets/stylesheets/twitter_bootstrap/navs.less",
-					"settings":
-					{
-						"buffer_size": 7343,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3107,
-								3096
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/LESS/LESS.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 2361.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "/Users/david/Sites/efar_dispatch/vendor/assets/stylesheets/twitter_bootstrap/variables.less",
-					"settings":
-					{
-						"buffer_size": 8473,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/LESS/LESS.tmLanguage"
+							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1003,6 +931,18 @@
 		"selected_items":
 		[
 			[
+				"emer",
+				"app/assets/javascripts/mapper/models/emergency.js.coffee"
+			],
+			[
+				"live",
+				"app/assets/javascripts/live_feed.js.coffee"
+			],
+			[
+				"notes",
+				"notes.txt"
+			],
+			[
 				"var",
 				"vendor/assets/stylesheets/twitter_bootstrap/variables.less"
 			],
@@ -1047,20 +987,12 @@
 				"app/assets/stylesheets/research.css.less"
 			],
 			[
-				"live",
-				"app/views/research/emergencies/live.html.haml"
-			],
-			[
 				"admin.rb",
 				"app/models/admin.rb"
 			],
 			[
 				"gem",
 				"Gemfile"
-			],
-			[
-				"emer",
-				"app/models/emergency.rb"
 			],
 			[
 				"seed_",
@@ -1509,10 +1441,6 @@
 			[
 				"full_s",
 				"app/views/layouts/full_screen_login.html.haml"
-			],
-			[
-				"layou",
-				"app/views/layouts/efar_admin.html.haml"
 			]
 		],
 		"width": 0.0
@@ -1528,7 +1456,7 @@
 	"show_minimap": true,
 	"show_open_files": false,
 	"show_tabs": true,
-	"side_bar_visible": false,
-	"side_bar_width": 114.0,
+	"side_bar_visible": true,
+	"side_bar_width": 173.0,
 	"status_bar_visible": true
 }

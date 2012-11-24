@@ -1,3 +1,6 @@
+- content_for :js do
+  = javascript_include_tag 'live_feed'
+
 .container
   .row
     .span8
@@ -31,7 +34,7 @@
             %span.feed-item-dispatcher-name Dispached by Rauchmat Sauls
             %span.dot ·
             %a{ :href => '#' } Show Efars
-            
+
           .feed-item-efars-header
             Dispatch Messages
 
@@ -81,6 +84,11 @@
                 .contact-number 828 413 498
               .footer
                 .datetime 12:58 PM - 21 Nov 12
+
+:javascript
+  jQuery(function(){
+    new LiveFeed({el: $('.emergencies-live-feed')});
+  });
 
 
 
