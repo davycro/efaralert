@@ -8,4 +8,7 @@ class Research::EmergenciesController < ApplicationController
     @emergencies = Emergency.order("created_at DESC").all
   end
 
+  def live_static
+  end
+
 end

@@ -23,6 +23,7 @@ task :seed_development_emergencies => :environment do
   em.dispatch_messages.all.shuffle.first.update_attribute(:state, 
     'failed_no_airtime')
 
+  # this is an empty address
   Emergency.create!(
     dispatcher_id: Dispatcher.all.shuffle.first.id,
     input_address: "50 trill road, Cape Town, South Africa",

@@ -12,6 +12,8 @@ EfarDispatch::Application.routes.draw do
     resources :emergencies do
       collection do
         get 'live'
+        # static page used to design the live feed layout
+        get 'live_static'
       end
     end
   end
