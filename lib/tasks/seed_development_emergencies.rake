@@ -11,7 +11,7 @@ task :seed_development_emergencies => :environment do
 
   Emergency.destroy_all
 
-  Emergency.create(
+  em = Emergency.create!(
     :dispatcher_id     => Dispatcher.all.shuffle.first.id,
     :input_address     => "200 Depsition Crescent, Cape Town, South Africa",
     :formatted_address => "Despsiton Crescent, Cape Town 7945, South Africa",
@@ -19,8 +19,11 @@ task :seed_development_emergencies => :environment do
     :lng               => 18.4871,
     :location_type     => "GEOMETRIC_CENTER"
   )
+  em.dispatch_messages.all.shuffle.first.update_attribute(:state, 'en_route')
+  em.dispatch_messages.all.shuffle.first.update_attribute(:state, 
+    'failed_no_airtime')
 
-  Emergency.create(
+  Emergency.create!(
     dispatcher_id: Dispatcher.all.shuffle.first.id,
     input_address: "50 trill road, Cape Town, South Africa",
     formatted_address: "50 Trill Rd, Cape Town 7925, South Africa",

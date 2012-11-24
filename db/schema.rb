@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(:version => 20121030201729) do
   create_table "dispatch_messages", :force => true do |t|
     t.integer  "emergency_id", :null => false
     t.integer  "efar_id",      :null => false
-    t.string   "status"
+    t.string   "state"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
@@ -87,7 +87,7 @@ ActiveRecord::Schema.define(:version => 20121030201729) do
     t.integer  "dispatcher_id",     :null => false
     t.string   "input_address",     :null => false
     t.string   "category"
-    t.string   "status"
+    t.string   "state"
     t.string   "formatted_address"
     t.float    "lat",               :null => false
     t.float    "lng",               :null => false

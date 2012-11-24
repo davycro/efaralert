@@ -6,7 +6,7 @@
 #  dispatcher_id     :integer          not null
 #  input_address     :string(255)      not null
 #  category          :string(255)
-#  status            :string(255)
+#  state             :string(255)
 #  formatted_address :string(255)
 #  lat               :float            not null
 #  lng               :float            not null
@@ -17,19 +17,49 @@
 
 class Emergency < ActiveRecord::Base
   attr_accessible :input_address, :dispatcher_id, :category, :formatted_address, 
-    :lat, :lng, :location_type
+    :lat, :lng, :location_type, :state
 
   validates :input_address, :dispatcher_id,
     :presence => true
 
+  # 
+  # States
+  #   possible emergency states
+  #   key is stored in the database
+  #   value is the message to output
+  #   DO NOT CHANGE THESE KEYS!!!
+
+  STATE_MESSAGES = {
+    'new'                  => 'New',
+    'sending'              => 'Sending',
+    'sent'                 => 'Sent',
+    'failed_no_airtime'    => 'Failed, no airtime',
+    'no_efars_nearby'      => 'No efars nearby',
+    'failed_unknown_error' => 'Failed, reason unknown'
+  }
+
+  validates :state, :inclusion => { :in => STATE_MESSAGES.keys }
+
   belongs_to :dispatcher
   has_many :dispatch_messages, :dependent => :destroy
 
+  before_validation :set_nil_state_to_new
   after_create :create_dispatch_messages
 
   def create_dispatch_messages
     nearby_efars.each do |efar|
       DispatchMessage.create(:efar_id => efar.id, :emergency_id => self.id)    
+    end
+
+    if self.dispatch_messages.count == 0
+      self.state = 'no_efars_nearby'
+      self.save
+    end
+  end
+
+  def set_nil_state_to_new
+    if self.state.blank? and self.new_record?
+      self.state = 'new'
     end
   end
 
@@ -47,19 +77,6 @@ class Emergency < ActiveRecord::Base
 
   def num_failed_messages
     @num_failed_messages ||= self.dispatch_messages.where(:status => "failed").count
-  end
-
-
-  def dispatch_status
-    if num_efars_notified==0
-      return "No efars near the emergency"
-    end
-    if num_pending_messages > 0
-      return "Sending messages to #{num_pending_messages} efars"
-    end
-    if num_failed_messages==num_efars_notified
-      return "Failed to send messages"
-    end
   end
 
   def efar_ids
