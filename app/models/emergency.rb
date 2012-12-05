@@ -89,6 +89,10 @@ class Emergency < ActiveRecord::Base
   #
   # Needed for JSON
 
+  def num_dispatch_messages
+    dispatch_messages.count
+  end
+
   def num_sent_dispatch_messages
     sent_dispatch_messages.count
   end
@@ -107,13 +111,14 @@ class Emergency < ActiveRecord::Base
 
   def created_at_pretty
     self.created_at.in_time_zone("Mountain Time (US & Canada)").
-      strftime("%-I:%M %p - %d %b %y")
+      strftime("%I:%M %p - %d %b %y")
   end
 
   def as_json(options = {})
     super(:methods => [:efar_ids, :num_sent_dispatch_messages, 
       :num_en_route_dispatch_messages, :num_on_scene_dispatch_messages,
-      :num_failed_dispatch_messages, :created_at_pretty])
+      :num_failed_dispatch_messages, :created_at_pretty, 
+      :num_dispatch_messages])
   end
 
 end
