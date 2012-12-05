@@ -5,11 +5,13 @@
   .row
     .span8
       .emergencies-live-feed
+        #app
         = render :partial => 'emergency', :collection => @emergencies
 
 :javascript
   jQuery(function(){
-    new LiveFeed({el: $('.emergencies-live-feed')});
+    new LiveFeed({el: $('#app')});
+    console.log('here');
   });
 
 

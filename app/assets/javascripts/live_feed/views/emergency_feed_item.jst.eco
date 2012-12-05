@@ -1,0 +1,35 @@
+<div class="emergency-feed-item">
+  <div class="state-header">
+    <span class="label"><%= @state %></span>
+  </div>
+
+  <div class="location-header row">
+    <div class="location">
+      <%= @formatted_address %>
+    </div>
+  </div>
+
+  <div class="feed-item-summary row">
+    <div class="span1 number-box">
+      <div class="number"><%= @efar_ids.length %></div>
+      <div class="number-label">Nearby</div>
+    </div>
+    <div class="span1 number-box">
+      <div class="number"><%= @num_sent_dispatch_messages %></div>
+      <div class="number-label">Alerted</div>
+    </div>
+    <div class="span1 number-box">
+      <div class="number"><%= @num_en_route_dispatch_messages %></div>
+      <div class="number-label">En Route</div>
+    </div>
+    <div class="span1 number-box">
+      <div class="number"><%= @num_on_scene_dispatch_messages %></div>
+      <div class="number-label">On Scene</div>
+    </div>
+    <div class="span1 number-box">
+      <div class="number"><%= @num_failed_dispatch_messages %></div>
+      <div class="number-label">Failed</div>
+    </div>
+  </div>
+
+</div>

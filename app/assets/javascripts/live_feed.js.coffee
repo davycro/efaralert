@@ -5,17 +5,38 @@
 #= require spine/ajax
 #= require_tree ./lib
 #= require_self
+#= require_tree ./live_feed/views
+#= require_tree ./live_feed/models
 
-class Emergency extends Spine.Model
-  @configure "Emergency", "lat", "lng", "location_type", "input_address",
-    "formatted_address", "created_at", "created_at"
-  @extend Spine.Model.Ajax
-  @url: "/api/emergencies"
+# class EmergencyFeedItem extends Spine.Controller
+#   constructor: (emergencyRecord) ->
+#     super
+#     @emergencyRecord = emergencyRecord 
+#     @render()
+
+#   render: ->
+#     @html JST["live_feed/views/emergency_feed_item"](@emergencyRecord)
 
 
 class LiveFeed extends Spine.Controller
-
   contructor: ->
     super
+    console.log('here')
+    @append "hello"
+    Spine.Route.setup()
+  #   Emergency.bind 'refresh', (emergencies) =>
+  #     @addAll(emergencies)
+  #   Emergency.fetch()
+    
+  # addAll: (emergencies) ->
+  #   @addOne(em) for em in emergencies
+
+  # addOne: (emergency) ->
+  #   feedItem = new EmergencyFeedItem(emergency)
+  #   @append feedItem
+
+
+
+
 
 window.LiveFeed = LiveFeed

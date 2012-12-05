@@ -35,7 +35,7 @@ class Emergency < ActiveRecord::Base
     'sent'                 => 'Sent',
     'failed_no_airtime'    => 'Failed, no airtime',
     'no_efars_nearby'      => 'No efars nearby',
-    'failed_unknown' => 'Failed, reason unknown'
+    'failed_unknown'       => 'Failed, reason unknown'
   }
 
   validates :state, :inclusion => { :in => STATE_MESSAGES.keys }
@@ -84,6 +84,36 @@ class Emergency < ActiveRecord::Base
 
   def efar_ids
     @efar_ids ||= dispatch_messages.map(&:efar_id)
+  end
+
+  #
+  # Needed for JSON
+
+  def num_sent_dispatch_messages
+    sent_dispatch_messages.count
+  end
+
+  def num_en_route_dispatch_messages
+    en_route_dispatch_messages.count
+  end
+
+  def num_on_scene_dispatch_messages
+    sent_dispatch_messages.count
+  end
+
+  def num_failed_dispatch_messages
+    failed_dispatch_messages.count
+  end
+
+  def created_at_pretty
+    self.created_at.in_time_zone("Mountain Time (US & Canada)").
+      strftime("%-I:%M %p - %d %b %y")
+  end
+
+  def as_json(options = {})
+    super(:methods => [:efar_ids, :num_sent_dispatch_messages, 
+      :num_en_route_dispatch_messages, :num_on_scene_dispatch_messages,
+      :num_failed_dispatch_messages, :created_at_pretty])
   end
 
 end

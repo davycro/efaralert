@@ -1,22 +1,10 @@
 .feed-item-efar.row
+  .span4
+    %strong= dispatch_message.efar.full_name
   .span2
     .status
       = dispatch_message_state_label_html dispatch_message
+  .pull-right
     .time
       = time_ago_in_words dispatch_message.updated_at
       ago
-  .span4
-    .header= dispatch_message.efar.full_name
-    .body
-      .row
-        .span1
-          %strong Address
-        .span3
-          = dispatch_message.efar.street
-      .row
-        .span1
-          %strong Mobile #
-        .span3
-          = dispatch_message.efar.contact_number
-    .footer
-      .datetime= detailed_datetime dispatch_message.created_at

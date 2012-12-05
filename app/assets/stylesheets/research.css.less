@@ -61,12 +61,28 @@
   padding-top: @baseLineHeight;
 }
 
-.emergencies-live-feed-box {
+.emergency-feed-item {
   background: white;
   margin-bottom: @baseLineHeight;
   padding-left: @baseLineHeight;
   padding-top: @baseLineHeight;
   padding-bottom: 0px;
+
+  .state-header {
+    margin-bottom: @baseLineHeight;  
+  }
+  .location-header {
+    padding: 0 @baseLineHeight;
+    .time { 
+      float: right;
+      position: relative;
+    }
+    .location {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    margin-bottom: @baseLineHeight;  
+  }
 }
 
 .time, .datetime {
@@ -79,40 +95,23 @@
   padding-right: 2px;
 }
 
-.feed-item-status-header {
-  margin-bottom: @baseLineHeight;
-}
-
-.feed-item-header {
-  padding: 0 @baseLineHeight;
-  .time { 
-    float: right;
-    position: relative;
-  }
-  .location {
-    font-size: 20px;
-    font-weight: bold;
-  }
-  margin-bottom: @baseLineHeight;
-}
-
 .feed-item-summary {
   border-top: 1px solid @grayLighter;
   border-bottom: 1px solid @grayLighter;
   margin-bottom: @baseLineHeight;
-  .feed-item-summary-stat-box {
+  .number-box {
     padding-top: @baseLineHeight/2;
     padding-bottom: @baseLineHeight/2;
     border-right: 1px solid @grayLighter;
   }
-  .feed-item-summary-stat-box:last-child {
+  .number-box:last-child {
     border-right: none;
   }
-  .feed-item-summary-stat {
+  .number {
     font-size: 16px;
     font-weight: bold;
   }
-  .feed-item-summary-stat-label {
+  .number-label {
     color: @grayLight;
     font-size: 9px;
     text-transform: uppercase;
@@ -125,37 +124,14 @@
   font-size: 12px;
 }
 
-.feed-item-well {
-  background: #f0f0f0;
-  padding: 0 @baseLineHeight;
-}
-
-.feed-item-efars-header {
-  font-size: 16px;
-  font-weight: bold;
-  color: @grayDarker;
-  margin-bottom: @baseLineHeight;
-}
-
 .feed-item-efar {
   border-top: 1px solid @grayLighter;
-  padding: @baseLineHeight 0;
+  padding: @baseLineHeight/2 0;
   .status {
-    margin-bottom: @baseLineHeight/2;
   }
-  .time { font-size: 11px; }
-  .header {
-    font-weight: bold;
-    margin-bottom: @baseLineHeight/2;  
-  }
-  .body {
-    font-size: 12px;
-    margin-bottom: @baseLineHeight/2;
-    strong { color: @grayLight; }
-  }
-  .footer {
-    color: @grayLighter;
+  .time { 
     font-size: 11px;
+    padding-right: @baseLineHeight;
   }
 }
 
