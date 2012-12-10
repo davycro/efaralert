@@ -423,62 +423,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "/Users/david/Sites/efar_dispatch/app/assets/javascripts/live_feed.js.coffee",
-			"settings":
-			{
-				"buffer_size": 915,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/david/Sites/efar_dispatch/app/views/research/emergencies/_emergency.html.haml",
-			"settings":
-			{
-				"buffer_size": 1194,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/david/Sites/efar_dispatch/app/assets/javascripts/live_feed/models/emergency.js.coffee",
-			"settings":
-			{
-				"buffer_size": 372,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/david/Sites/efar_dispatch/app/models/efar.rb",
-			"settings":
-			{
-				"buffer_size": 2690,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/david/Sites/efar_dispatch/app/models/emergency.rb",
-			"settings":
-			{
-				"buffer_size": 3145,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/david/Desktop/todo.txt",
-			"settings":
-			{
-				"buffer_size": 2440,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/david/Sites/efar_dispatch/Gemfile",
-			"settings":
-			{
-				"buffer_size": 956,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -548,6 +492,16 @@
 	},
 	"file_history":
 	[
+		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/dispatch/views/emergencies/emergency-row.jst.eco",
+		"/Users/david/Sites/efar_dispatch/app/helpers/research/emergencies_helper.rb",
+		"/Users/david/Sites/efar_dispatch/app/models/emergency.rb",
+		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/dispatch/models/emergency.js.coffee",
+		"/Users/david/Desktop/todo.txt",
+		"/Users/david/Sites/efar_dispatch/Gemfile",
+		"/Users/david/Sites/efar_dispatch/app/models/efar.rb",
+		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/live_feed/models/emergency.js.coffee",
+		"/Users/david/Sites/efar_dispatch/app/views/research/emergencies/_emergency.html.haml",
+		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/live_feed.js.coffee",
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/live_feed/views/emergency_feed_item.jst.eco",
 		"/Users/david/Sites/efar_dispatch/app/assets/stylesheets/research.css.less",
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/mapper/controllers/map_controller.js.coffee",
@@ -555,26 +509,20 @@
 		"/Users/david/Sites/efar_dispatch/app/views/layouts/research.html.haml",
 		"/Users/david/Sites/efar_dispatch/app/views/research/emergencies/live.html.haml",
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/mapper.js.coffee",
-		"/Users/david/Sites/efar_dispatch/app/models/emergency.rb",
 		"/Users/david/Sites/efar_dispatch/app/controllers/api/emergencies_controller.rb",
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/mapper/lib/google_map.js.coffee",
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/mapper/lib/markers.js.coffee",
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/mapper/views/efars/show.jst.eco",
-		"/Users/david/Sites/efar_dispatch/app/helpers/research/emergencies_helper.rb",
 		"/Users/david/Sites/efar_dispatch/app/views/research/emergencies/_dispatch_message.html.haml",
-		"/Users/david/Sites/efar_dispatch/app/views/research/emergencies/_emergency.html.haml",
 		"/Users/david/Sites/efar_dispatch/lib/tasks/seed_development_emergencies.rake",
 		"/Users/david/Sites/efar_dispatch/app/models/dispatch_message.rb",
 		"/Users/david/Sites/efar_dispatch/config/routes.rb",
 		"/Users/david/Sites/efar_dispatch/app/controllers/research/emergencies_controller.rb",
-		"/Users/david/Sites/efar_dispatch/app/models/efar.rb",
 		"/Users/david/Sites/efar_dispatch/app/helpers/admin/researchers_helper.rb",
 		"/Users/david/Sites/efar_dispatch/db/migrate/20121030195140_create_emergencies.rb",
 		"/Users/david/Sites/efar_dispatch/db/migrate/20121030201729_create_dispatch_messages.rb",
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/mapper/models/emergency.js.coffee",
-		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/live_feed.js.coffee",
 		"/Users/david/Sites/efar_dispatch/notes.txt",
-		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/dispatch/models/emergency.js.coffee",
 		"/Users/david/Sites/efar_dispatch/vendor/assets/stylesheets/twitter_bootstrap/mixins.less",
 		"/Users/david/Sites/efar_dispatch/vendor/assets/stylesheets/twitter_bootstrap/variables.less",
 		"/Users/david/Sites/efar_dispatch/vendor/assets/stylesheets/twitter_bootstrap/navs.less",
@@ -584,7 +532,6 @@
 		"/Users/david/Sites/efar_dispatch/vendor/assets/stylesheets/twitter_bootstrap/labels-badges.less",
 		"/Users/david/Sites/efar_dispatch/vendor/assets/stylesheets/twitter_bootstrap/utilities.less",
 		"/Users/david/Sites/efar_dispatch/vendor/assets/stylesheets/twitter_bootstrap/grid.less",
-		"/Users/david/Sites/efar_dispatch/Gemfile",
 		"/Users/david/Sites/efar_dispatch/app/models/admin.rb",
 		"/Users/david/Library/Application Support/Sublime Text 2/Packages/Alignment/Default (OSX).sublime-keymap",
 		"/Users/david/Library/Application Support/Sublime Text 2/Packages/User/Base File.sublime-settings",
@@ -592,7 +539,6 @@
 		"/Users/david/Sites/efar_dispatch/db/schema.rb",
 		"/Users/david/Sites/efar_dispatch/app/views/layouts/efar_admin.html.haml",
 		"/Users/david/Sites/efar_dispatch/app/assets/stylesheets/research/emergencies.less",
-		"/Users/david/Desktop/todo.txt",
 		"/Users/david/Sites/efar_dispatch/config/environments/production.rb",
 		"/Users/david/Sites/efar_dispatch/config/environments/development.rb",
 		"/Users/david/Sites/efar_dispatch/app/assets/stylesheets/shared/section-box.less",
@@ -635,7 +581,6 @@
 		"/Users/david/Sites/efar_dispatch/app/controllers/emergencies_controller.rb",
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/dispatch/controllers/dispatch_controller.js.coffee",
 		"/Users/david/Code/bootstrap/js/bootstrap-modal.js",
-		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/dispatch/views/emergencies/emergency-row.jst.eco",
 		"/Users/david/Sites/efar_dispatch/app/views/emergencies/index.html.haml",
 		"/Users/david/Sites/efar_dispatch/app/assets/stylesheets/dispatch.css.less",
 		"/Users/david/Sites/efar_dispatch/vendor/assets/stylesheets/twitter_bootstrap/modals.less",
@@ -674,8 +619,7 @@
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/research/views/efars/comm_center_label.jst.eco",
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/research/views/efars/map.jst.eco",
 		"/Users/david/Sites/efar_dispatch/vendor/assets/stylesheets/twitter_bootstrap/sprites.less",
-		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/research/efars.js.coffee",
-		"/Users/david/Sites/efar_dispatch/app/views/research/dispatches/index.html.haml"
+		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/research/efars.js.coffee"
 	],
 	"find":
 	{
@@ -773,202 +717,6 @@
 			"sheets":
 			[
 			]
-		},
-		{
-			"selected": 5,
-			"sheets":
-			[
-				{
-					"buffer": 0,
-					"file": "/Users/david/Sites/efar_dispatch/app/assets/javascripts/live_feed.js.coffee",
-					"settings":
-					{
-						"buffer_size": 915,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								915,
-								915
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "/Users/david/Sites/efar_dispatch/app/views/research/emergencies/_emergency.html.haml",
-					"settings":
-					{
-						"buffer_size": 1194,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								662,
-								662
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Haml/Syntaxes/Ruby Haml.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "/Users/david/Sites/efar_dispatch/app/assets/javascripts/live_feed/models/emergency.js.coffee",
-					"settings":
-					{
-						"buffer_size": 372,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								15,
-								15
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "/Users/david/Sites/efar_dispatch/app/models/efar.rb",
-					"settings":
-					{
-						"buffer_size": 2690,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Ruby/Ruby.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 817.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "/Users/david/Sites/efar_dispatch/app/models/emergency.rb",
-					"settings":
-					{
-						"buffer_size": 3145,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2467,
-								2467
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Ruby/Ruby.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1013.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "/Users/david/Desktop/todo.txt",
-					"settings":
-					{
-						"buffer_size": 2440,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								112,
-								112
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "/Users/david/Sites/efar_dispatch/Gemfile",
-					"settings":
-					{
-						"buffer_size": 956,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								803,
-								818
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Ruby/Ruby.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 187.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
-			]
 		}
 	],
 	"incremental_find":
@@ -988,18 +736,11 @@
 				0,
 				1,
 				1
-			],
-			[
-				1,
-				0,
-				2,
-				1
 			]
 		],
 		"cols":
 		[
 			0.0,
-			0.5,
 			1.0
 		],
 		"rows":
@@ -1024,12 +765,16 @@
 		"selected_items":
 		[
 			[
-				"g",
-				"Gemfile"
+				"emergecies_he",
+				"app/helpers/research/emergencies_helper.rb"
 			],
 			[
 				"emerg",
 				"app/models/emergency.rb"
+			],
+			[
+				"g",
+				"Gemfile"
 			],
 			[
 				"efar",
@@ -1530,10 +1275,6 @@
 			[
 				"dispatch.js",
 				"app/assets/javascripts/dispatch.js.coffee"
-			],
-			[
-				"hori",
-				"app/views/admin/shared/_horizontal_text_field.html.haml"
 			]
 		],
 		"width": 0.0
@@ -1549,7 +1290,7 @@
 	"show_minimap": true,
 	"show_open_files": false,
 	"show_tabs": true,
-	"side_bar_visible": false,
-	"side_bar_width": 173.0,
+	"side_bar_visible": true,
+	"side_bar_width": 268.0,
 	"status_bar_visible": true
 }
