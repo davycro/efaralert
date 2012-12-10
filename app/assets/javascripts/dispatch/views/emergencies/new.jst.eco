@@ -15,10 +15,31 @@
             
             <div class="control-group">
               <label class="control-label">
-                Emergency Address
+                Emergency Address:
               </label>
               <div class="controls">
                 <input type="text" name="input_location"/>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label">
+                Category (optional)
+              </label>
+              <div class="controls">
+                <select name='input_details'>
+                  <option>Bleeding, uncontrolled</option>
+                  <option>Motor vehicle accident</option>
+                  <option>Broken bone</option>
+                  <option>Unconscious patient</option>
+                  <option>Fall from a height</option>
+                  <option>Seizure</option>
+                  <option>Burn</option>
+                  <option>Implaed object</option>
+                  <option>Shortness of breath</option>
+                  <option>Abdominal pain</option>
+                  <option>Confused patient</option>
+                </select>
               </div>
             </div>
 

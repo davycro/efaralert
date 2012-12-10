@@ -2,10 +2,11 @@ $ = jQuery.sub()
 
 class App.DispatchController extends Spine.Controller
   elements:
-    "#myModal" : "myModal"
-    "#input-address" : "inputAddress"
+    "#myModal"                 : "myModal"
+    "#input-address"           : "inputAddress"
+    "#input-category"          : "inputCategory"
     ".table-emergencies tbody" : "emergenciesTable"
-    "#myModal .alert" : "dispatchAlertBox"
+    "#myModal .alert"          : "dispatchAlertBox"
 
   events:
     "submit form" : "sendDispatch"
@@ -29,12 +30,13 @@ class App.DispatchController extends Spine.Controller
       @inputAddress.focus()
     @myModal.on 'hide', =>
       @inputAddress.val ''
+      @inputCategory.prop('selectedIndex', 0)
       @dispatchAlertBox.hide()
 
   sendDispatch: (e) ->
     # disable form, propagate dispatch
     e.preventDefault()
-    App.Emergency.fromStreetAddress @inputAddress.val(), {
+    App.Emergency.fromStreetAddress @inputAddress.val(), @inputCategory.val(), {
       success: @dispatchSuccess
       failed: @dispatchFailed }
 

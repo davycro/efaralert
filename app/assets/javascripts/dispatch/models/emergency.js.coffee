@@ -1,12 +1,13 @@
 class App.Emergency extends Spine.Model
   @configure "Emergency", "lat", "lng", "location_type", "input_address",
     "formatted_address", "created_at", "created_at", "created_at_pretty",
-    "num_dispatch_messages"
+    "num_dispatch_messages", "category"
   
   @extend Spine.Model.Ajax
   @url: "/emergencies"
 
-  @fromStreetAddress: (street, callbacks) ->
+  @fromStreetAddress: (street, category, callbacks) ->
+    input_category = category
     address = street + ", Cape Town, South Africa"
     input_address = address
     geocoder = new google.maps.Geocoder()
@@ -19,7 +20,8 @@ class App.Emergency extends Spine.Model
             'formatted_address': result.formatted_address
             'lat': result.geometry.location.lat()
             'lng': result.geometry.location.lng()
-            'location_type': result.geometry.location_type   
+            'location_type': result.geometry.location_type
+            'category' : input_category   
           }
           callbacks.success(em)
         else

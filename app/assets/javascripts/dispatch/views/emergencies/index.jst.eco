@@ -42,6 +42,21 @@
     <div class="modal-body">
       <div class="alert alert-error hide"></div>
       <input type="text" id="input-address" class="input-block-level" placeholder="Full Address"/>
+      <label>Emergency type (optional):</label>
+      <select id='input-category'>
+        <option selected="true"></option>
+        <option>Bleeding, uncontrolled</option>
+        <option>Motor vehicle accident</option>
+        <option>Broken bone</option>
+        <option>Unconscious patient</option>
+        <option>Fall from a height</option>
+        <option>Seizure</option>
+        <option>Burn</option>
+        <option>Implaed object</option>
+        <option>Shortness of breath</option>
+        <option>Abdominal pain</option>
+        <option>Confused patient</option>
+      </select>
     </div>
     <div class="modal-footer">
       <button class="btn btn-primary">Send dispatch</button>
