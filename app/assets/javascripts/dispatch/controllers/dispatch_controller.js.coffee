@@ -1,5 +1,10 @@
 $ = jQuery.sub()
 
+class Show extends Spine.Controller
+  className: 'show'
+
+  
+
 class Index extends Spine.Controller
   className: 'index'
   elements:

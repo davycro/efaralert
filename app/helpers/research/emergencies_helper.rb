@@ -33,7 +33,7 @@ module Research::EmergenciesHelper
   end
 
   def detailed_datetime(dt)
-    dt.in_time_zone("Mountain Time (US & Canada)").strftime("%-I:%M %p - %d %b %y")
+    dt.in_time_zone("Africa/Johannesburg").strftime("%-I:%M %p - %d %b %y")
   end
 
 end

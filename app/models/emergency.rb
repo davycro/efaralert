@@ -110,7 +110,7 @@ class Emergency < ActiveRecord::Base
   end
 
   def created_at_pretty
-    self.created_at.in_time_zone("Mountain Time (US & Canada)").
+    self.created_at.in_time_zone("Africa/Johannesburg").
       strftime("%I:%M %p - %d %b %y")
   end
 
