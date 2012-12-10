@@ -3,6 +3,7 @@
 #= require twitter/bootstrap
 #= require spine/spine
 #= require spine/ajax
+#= require spine/route
 #= require_tree ./lib
 #= require_self
 #= require_tree ./dispatch/models
@@ -13,6 +14,7 @@
 class App extends Spine.Controller
   constructor: ->
     super
-    @append(new App.DispatchController)
+    @append(new App.Dispatches)
+    Spine.Route.setup()
 
 window.App = App

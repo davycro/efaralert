@@ -6,7 +6,7 @@
         <div class="section-header">
           <h3>Dispatches</h3>
           <div class="section-actions">
-            <a href="#" class="btn btn-primary btn-new-dispatch">
+            <a class="btn btn-primary btn-new-dispatch" data-type="new">
               New Dispatch
             </a>
           </div>
@@ -32,35 +32,4 @@
   </div>
 </div>
 
-<!-- Modal -->
-<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <form>
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      <h3 id="myModalLabel">Dispatch EFAR's to:</h3>
-    </div>
-    <div class="modal-body">
-      <div class="alert alert-error hide"></div>
-      <input type="text" id="input-address" class="input-block-level" placeholder="Full Address"/>
-      <label>Emergency type (optional):</label>
-      <select id='input-category'>
-        <option selected="true"></option>
-        <option>Bleeding, uncontrolled</option>
-        <option>Motor vehicle accident</option>
-        <option>Broken bone</option>
-        <option>Unconscious patient</option>
-        <option>Fall from a height</option>
-        <option>Seizure</option>
-        <option>Burn</option>
-        <option>Implaed object</option>
-        <option>Shortness of breath</option>
-        <option>Abdominal pain</option>
-        <option>Confused patient</option>
-      </select>
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-primary">Send dispatch</button>
-      <button class="btn btn-link" data-dismiss="modal" aria-hidden="true">Cancel</button>
-    </div>
-  </form>
-</div>
+
