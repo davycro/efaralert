@@ -102,7 +102,7 @@ class Emergency < ActiveRecord::Base
   end
 
   def num_on_scene_dispatch_messages
-    sent_dispatch_messages.count
+    on_scene_dispatch_messages.count
   end
 
   def num_failed_dispatch_messages

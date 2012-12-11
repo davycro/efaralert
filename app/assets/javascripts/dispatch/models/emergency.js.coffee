@@ -31,5 +31,11 @@ class App.Emergency extends Spine.Model
         console.log(status)
         callbacks.failed('Geocoder error')
 
+  # only fetch records that are recent and need to be polled 
+  @fetchForPoll: ->
+    params = { 'data' : { 'for_poll': true } }
+    @fetch(params)
+
+
   constructor: ->
     super

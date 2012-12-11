@@ -18,11 +18,13 @@ class Index extends Spine.Controller
 
     App.Emergency.bind 'refresh change', @change
     App.Emergency.fetch()
+    setTimeout @doPoll, 3*1000
 
   render: =>
     @html @view('emergencies/index')
 
   change: =>
+    console.log('change table')
     emergencies = App.Emergency.all()
     @emergenciesTable.html ''
     @emergenciesTable.prepend(
@@ -30,6 +32,11 @@ class Index extends Spine.Controller
 
   new: ->
     @navigate '/dispatches/new'
+
+  doPoll: =>
+    console.log('polling')
+    App.Emergency.fetchForPoll()
+    setTimeout(@doPoll, 5000)
 
 
 class New extends Spine.Controller
@@ -95,7 +102,6 @@ class App.Dispatches extends Spine.Controller
       "/dispatches/new": ->
         @new.activate()
       "/dispatches": ->
-        console.log('dispatches')
 
     @navigate '/dispatches'
 
