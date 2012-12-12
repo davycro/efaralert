@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121030201729) do
+ActiveRecord::Schema.define(:version => 20121212151642) do
 
   create_table "admins", :force => true do |t|
     t.string   "full_name",       :null => false
@@ -40,12 +40,16 @@ ActiveRecord::Schema.define(:version => 20121030201729) do
   end
 
   create_table "dispatch_messages", :force => true do |t|
-    t.integer  "emergency_id", :null => false
-    t.integer  "efar_id",      :null => false
+    t.integer  "emergency_id",             :null => false
+    t.integer  "efar_id",                  :null => false
     t.string   "state"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+    t.string   "clickatell_id"
+    t.string   "clickatell_error_message"
   end
+
+  add_index "dispatch_messages", ["clickatell_id"], :name => "index_dispatch_messages_on_clickatell_id"
 
   create_table "dispatchers", :force => true do |t|
     t.string   "full_name",       :null => false

@@ -1,3 +1,5 @@
+require Rails.root.join 'config/environments/config_variables'
+
 EfarDispatch::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 

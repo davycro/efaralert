@@ -121,4 +121,9 @@ class Emergency < ActiveRecord::Base
       :num_dispatch_messages])
   end
 
+  def address_formatted_for_text_message
+    # should only display the street
+    formatted_address.split(",").first
+  end
+
 end

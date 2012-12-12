@@ -92,7 +92,7 @@ class Efar < ActiveRecord::Base
   def contact_number_formatted_for_clickatell
     # TODO make this error proof
     # quick shim, add +27 to the number
-    "27"+"#{self.contact_number}"
+    "27#{self.contact_number}"
   end
 
 end

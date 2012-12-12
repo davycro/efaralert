@@ -2,16 +2,17 @@
 #
 # Table name: dispatch_messages
 #
-#  id           :integer          not null, primary key
-#  emergency_id :integer          not null
-#  efar_id      :integer          not null
-#  state        :string(255)
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
+#  id            :integer          not null, primary key
+#  emergency_id  :integer          not null
+#  efar_id       :integer          not null
+#  state         :string(255)
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  clickatell_id :string(255)
 #
 
 class DispatchMessage < ActiveRecord::Base
-  attr_accessible :efar_id, :emergency_id, :state
+  attr_accessible :efar_id, :emergency_id, :state, :clickatell_id
   belongs_to :efar
   belongs_to :emergency
 
@@ -33,14 +34,12 @@ class DispatchMessage < ActiveRecord::Base
   end
 
   STATE_MESSAGES = {
-    'queued'                        => 'Queued',
-    'sending'                       => 'Sending',
-    'sent'                          => 'Sent',
-    'en_route'                      => 'En Route',
-    'on_scene'                      => 'On Scene',
-    'failed_invalid_contact_number' => 'Failed, invalid contact number',
-    'failed_no_airtime'             => 'Failed, no airtime',
-    'failed_unknown'                => 'Failed, reason unknown'
+    'queued'   => 'Queued',
+    'sending'  => 'Sending',
+    'sent'     => 'Sent',
+    'en_route' => 'En Route',
+    'on_scene' => 'On Scene',
+    'failed'   => 'Failed'
   }
 
   validates :state, :inclusion => { :in => STATE_MESSAGES.keys }
@@ -52,11 +51,21 @@ class DispatchMessage < ActiveRecord::Base
 
   def deliver!
     message = %/
-      EFAR #{efar.first_names}, your help is needed! Emergency at  
-      #{emergency.formatted_address}. Will you rescue? Reply YES or NO 
-      /
-    CLICK_A_TELL_API.send_message efar.contact_number_formatted_for_clickatell,
-      message
+      EFAR #{efar.full_name}, your help is needed! Emergency at  
+      #{emergency.address_formatted_for_text_message}. Will you rescue? 
+      Reply YES or NO 
+      /.squish
+    resp = SMS_API.send_message(efar.contact_number_formatted_for_clickatell, 
+      message)
+    if resp[:status] == 'success'
+      self.state = 'sent'
+      self.clickatell_id = resp[:clickatell_id]
+    end
+    if resp[:status] == 'failed'
+      self.state = 'failed'
+      self.clickatell_error_message = resp[:clickatell_error_message]
+    end
+    self.save
   end
   
 end
