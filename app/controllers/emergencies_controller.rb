@@ -27,6 +27,7 @@ class EmergenciesController < ApplicationController
     @emergency.dispatcher = current_dispatcher
     respond_to do |format|
       if @emergency.save
+        @emergency.dispatch_messages.each { |m| m.deliver! }
         format.html { redirect_to emergencies_path, notice: 'Efar was successfully created.' }
         format.json { render json: @emergency.to_json(:methods => [:num_efars_notified]), status: :created, location: @emergency }
       else

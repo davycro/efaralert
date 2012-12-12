@@ -49,5 +49,14 @@ class DispatchMessage < ActiveRecord::Base
   def state_message
     STATE_MESSAGES[self.state]
   end
+
+  def deliver!
+    message = %/
+      EFAR #{efar.first_names}, your help is needed! Emergency at  
+      #{emergency.formatted_address}. Will you rescue? Reply YES or NO 
+      /
+    CLICK_A_TELL_API.send_message efar.contact_number_formatted_for_clickatell,
+      message
+  end
   
 end

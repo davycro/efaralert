@@ -89,4 +89,10 @@ class Efar < ActiveRecord::Base
     [street, suburb, city, postal_code, province, country].compact.join(", ")
   end
 
+  def contact_number_formatted_for_clickatell
+    # TODO make this error proof
+    # quick shim, add +27 to the number
+    "27"+"#{self.contact_number}"
+  end
+
 end
