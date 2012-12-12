@@ -46,7 +46,11 @@ class DispatchMessage < ActiveRecord::Base
   before_validation :set_nil_state_to_queued
 
   def state_message
-    STATE_MESSAGES[self.state]
+    if self.state=='failed'
+      return "Failed, #{self.clickatell_error_message}"
+    else
+      return STATE_MESSAGES[self.state]
+    end
   end
 
   def deliver!
@@ -57,6 +61,7 @@ class DispatchMessage < ActiveRecord::Base
       /.squish
     resp = SMS_API.send_message(efar.contact_number_formatted_for_clickatell, 
       message)
+    puts "*** RESPONSE #{resp}"
     if resp[:status] == 'success'
       self.state = 'sent'
       self.clickatell_id = resp[:clickatell_id]
@@ -65,7 +70,7 @@ class DispatchMessage < ActiveRecord::Base
       self.state = 'failed'
       self.clickatell_error_message = resp[:clickatell_error_message]
     end
-    self.save
+    self.save!
   end
   
 end

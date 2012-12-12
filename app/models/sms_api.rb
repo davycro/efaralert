@@ -14,7 +14,7 @@ class SmsApi
     begin
       message_id = @api.send_message(number, message)
       if message_id.present?
-        response[:status] = 'sent'
+        response[:status] = 'success'
         response[:clickatell_id] = message_id
       else
         respose[:status] = 'failed'

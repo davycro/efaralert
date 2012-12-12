@@ -7,9 +7,8 @@ module Research::EmergenciesHelper
       'new' => 'label-info',
       'sending' => 'label-warning',
       'sent' => 'label-success',
-      'failed_no_airtime' => 'label-important',
-      'no_efars_nearby' => '', # default gray
-      'failed_unknown_error' => 'label-important'
+      'failed' => 'label-important',
+      'no_efars_nearby' => '' # default gray
     }
     content_tag :span, emergency.state_message, 
       :class => "label #{state_classnames[emergency.state]}"
@@ -21,12 +20,10 @@ module Research::EmergenciesHelper
     state_classnames = {
       'queued' => '',
       'sending' => 'label-warning',
-      'sent' => '',
+      'sent' => 'label-warning',
       'en_route' => 'label-info',
       'on_scene' => 'label-success',
-      'failed_unknown' => 'label-important',
-      'failed_no_airtime' => 'label-important',
-      'failed_invalid_contact_number' => 'label-important'
+      'failed' => 'label-important'
     }
     content_tag :span, dispatch_message.state_message,
       :class => "label #{state_classnames[dispatch_message.state]}"
