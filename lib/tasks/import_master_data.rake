@@ -1,10 +1,26 @@
-desc 'seed data require for efar import'
-task :seed_efar_requirements => :environment do
+desc 'seed admin login data'
+task :seed_admin => :environment do
   puts "creating admin named david"
-  Admin.where(:full_name => 'David Crockett', :email => 'me@davecro.com').first_or_create do |a|
+  Admin.where(:full_name => 'David Crockett', :email => 'me@davecro.com').
+    first_or_create do |a|
+    
     a.password = 'colorado'
     a.password_confirmation = 'colorado'
   end
+end
+
+desc 'seed manenberg peoples centre'
+task :seed_manenberg_community_centre => :environment do
+  puts "creating manenberg community center"
+  community_center = CommunityCenter.where(:name => "The People's Centre", :suburb => "Manenberg").first_or_create do |c|
+    c.street = "2a Scheldt Road"
+    c.postal_code = "7764"
+    c.city = "Cape Town"
+    c.province = "Western Cape"
+    c.country = "South Africa"
+  end
+  community_center.geocode
+  community_center.save!
 end
 
 desc 'import lavender hill efars'

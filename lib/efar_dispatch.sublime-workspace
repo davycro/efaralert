@@ -4,11 +4,11 @@
 		"selected_items":
 		[
 			[
-				"er",
-				"emergenciesTable"
+				"em",
+				"emergencies"
 			],
 			[
-				"em",
+				"er",
 				"emergenciesTable"
 			],
 			[
@@ -443,7 +443,7 @@
 			"file": "/Users/david/Sites/efar_dispatch/app/assets/javascripts/dispatch/controllers/dispatch_controller.js.coffee",
 			"settings":
 			{
-				"buffer_size": 1950,
+				"buffer_size": 2083,
 				"line_ending": "Unix"
 			}
 		},
@@ -451,7 +451,7 @@
 			"file": "/Users/david/Sites/efar_dispatch/app/models/emergency.rb",
 			"settings":
 			{
-				"buffer_size": 3391,
+				"buffer_size": 3395,
 				"line_ending": "Unix"
 			}
 		},
@@ -460,6 +460,30 @@
 			"settings":
 			{
 				"buffer_size": 1271,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/david/Sites/efar_dispatch/app/assets/javascripts/dispatch/models/emergency.js.coffee",
+			"settings":
+			{
+				"buffer_size": 1509,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/david/Sites/efar_dispatch/app/assets/javascripts/dispatch/views/emergencies/emergency-row.jst.eco",
+			"settings":
+			{
+				"buffer_size": 225,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/david/Sites/efar_dispatch/app/assets/javascripts/dispatch/views/emergencies/index.jst.eco",
+			"settings":
+			{
+				"buffer_size": 846,
 				"line_ending": "Unix"
 			}
 		}
@@ -678,6 +702,7 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"log",
 			"feed-item-summary-stat",
 			"feed-item-summary-stat-box",
 			"emergency",
@@ -762,15 +787,15 @@
 					"file": "/Users/david/Sites/efar_dispatch/app/assets/javascripts/dispatch/controllers/dispatch_controller.js.coffee",
 					"settings":
 					{
-						"buffer_size": 1950,
+						"buffer_size": 2083,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								77,
-								77
+								808,
+								808
 							]
 						],
 						"settings":
@@ -780,7 +805,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 244.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -790,15 +815,15 @@
 					"file": "/Users/david/Sites/efar_dispatch/app/models/emergency.rb",
 					"settings":
 					{
-						"buffer_size": 3391,
+						"buffer_size": 3395,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2916,
-								2916
+								2914,
+								2914
 							]
 						],
 						"settings":
@@ -808,7 +833,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1271.0,
+						"translation.y": 1442.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -832,6 +857,88 @@
 						"settings":
 						{
 							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/Users/david/Sites/efar_dispatch/app/assets/javascripts/dispatch/models/emergency.js.coffee",
+					"settings":
+					{
+						"buffer_size": 1509,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1478,
+								1478
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 248.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/Users/david/Sites/efar_dispatch/app/assets/javascripts/dispatch/views/emergencies/emergency-row.jst.eco",
+					"settings":
+					{
+						"buffer_size": 225,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								219,
+								219
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/eco/Syntaxes/HTML (ECO).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/Users/david/Sites/efar_dispatch/app/assets/javascripts/dispatch/views/emergencies/index.jst.eco",
+					"settings":
+					{
+						"buffer_size": 846,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								497,
+								497
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/eco/Syntaxes/HTML (ECO).tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},

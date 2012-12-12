@@ -5,3 +5,5 @@ spec
 *.xls
 *.xlsx
 photoshop
+
+mysql_dumps_for_development_environment
