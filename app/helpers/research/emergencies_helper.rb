@@ -1,9 +1,5 @@
 module Research::EmergenciesHelper
 
-  def emergency_category_and_location(em=@emergency)
-    
-  end
-
   def emergency_state_label_html(emergency)
     # style the label tag based on the emergency state
     # classnames come from twitter bootstrap

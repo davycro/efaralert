@@ -40,6 +40,8 @@
 @import "twitter_bootstrap/navs";
 @import "twitter_bootstrap/navbar";
 
+@import "twitter_bootstrap/labels-badges";
+
 // Components: Popovers
 @import "twitter_bootstrap/modals";
 @import "twitter_bootstrap/tooltip";
@@ -65,4 +67,56 @@
     cursor: pointer;
   }
 }
+
+.emergencies-show {
+
+  .emergency-header {
+    background: white;
+    margin-top: @baseLineHeight;
+    padding: @baseLineHeight;
+
+    .time {
+      float: right;
+      font-size: 11px;
+      color: @grayLight;
+    }
+    .location-and-category {
+      font-size: 18px; 
+      font-weight: bold;
+    }
+  }
+
+  .emergency-summary {
+    background: white;
+    padding: 0 @baseLineHeight @baseLineHeight;
+    font-size: 14px;
+  }
+
+  .dispatch-message-item {
+    background: #fbfbfb;
+    padding: @baseLineHeight/2 @baseLineHeight;
+
+    .efar-name {
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: @baseLineHeight/2;
+    }
+    .efar-summary-group {
+      font-size: 12px;
+      .clearfix();
+      
+      .group-label {
+        float: left;
+        width: 120px;
+        font-weight: bold;
+        color: @grayLight;
+      }
+      .group-item {
+        display: inline-block;
+      }
+    }
+  }
+}
+
+
 
