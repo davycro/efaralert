@@ -1,0 +1,20 @@
+.emergency-box
+  
+  .header.row
+    .time
+      = distance_of_time_in_words_to_now @emergency.created_at
+    .location
+      = @emergency.category_formatted_for_nil
+      @
+      = @emergency.address_formatted_for_text_message
+
+  .summary-box
+
+
+
+
+
+:javascript
+  // jQuery(function(){
+  //   new App({el: $('#app')});
+  // });

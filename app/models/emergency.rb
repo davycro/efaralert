@@ -126,4 +126,11 @@ class Emergency < ActiveRecord::Base
     formatted_address.split(",").first
   end
 
+  def category_formatted_for_nil
+    if @category.blank?
+      @category = 'Unspecified injury'
+    end
+    @category
+  end
+
 end

@@ -1,4 +1,4 @@
-<tr>
+<tr data-type="show" data-url="/emergencies/<%= @id %>">
   <td><%= @created_at_pretty %></td>
   <td><%= @formatted_address %></td>
   <td><%= @num_dispatch_messages %></td>

@@ -18,6 +18,7 @@ class EmergenciesController < ApplicationController
   def show
     @emergency = Emergency.find(params[:id])
     respond_to do |format|
+      format.html
       format.json { render json: @emergency.to_json(:methods => [:num_efars_notified]) }
     end
   end

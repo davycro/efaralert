@@ -11,6 +11,7 @@ class Index extends Spine.Controller
     ".table-emergencies tbody" : "emergenciesTable"
   events:
     'click [data-type=new]': 'new'
+    'click [data-type=show]': 'show'
 
   constructor: ->
     super
@@ -37,6 +38,9 @@ class Index extends Spine.Controller
     console.log('polling')
     App.Emergency.fetchForPoll()
     setTimeout(@doPoll, 5000)
+
+  show: (e) ->
+    @redirectTo $(e.currentTarget).data('url')  
 
 
 class New extends Spine.Controller
