@@ -5,6 +5,8 @@ EfarDispatch::Application.routes.draw do
   resource :session
   resource :account
 
+  match 'clickatell/' => 'clickatell#callback'
+
   namespace :research do
     resource :map
     resource :account

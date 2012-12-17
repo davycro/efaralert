@@ -6,13 +6,17 @@ class SmsApi
     self.authenticate
   end
 
-  def send_message(number, message)
+  def send_message(number, message, opts={})
     retries = 1
     tries = 0
 
     response = {}
     begin
-      message_id = @api.send_message(number, message)
+      message_id = @api.send_message(number, message, 
+        :set_mobile_originated => true, 
+        :from => '44259', 
+        :mo=>'1', 
+        :client_message_id => opts[:client_message_id])
       if message_id.present?
         response[:status] = 'success'
         response[:clickatell_id] = message_id

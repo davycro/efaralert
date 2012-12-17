@@ -19,7 +19,7 @@ class Index extends Spine.Controller
 
     App.Emergency.bind 'refresh change', @change
     App.Emergency.fetch()
-    # setTimeout @doPoll, 3*1000
+    setTimeout @doPoll, 3*1000
 
   render: =>
     @html @view('emergencies/index')

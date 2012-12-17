@@ -53,15 +53,61 @@ class DispatchMessage < ActiveRecord::Base
     end
   end
 
+  def process_response(text)
+    if text.downcase=='help'
+      self.send_help_message
+      return true
+    end
+    if self.state=='sent'
+      self.state='en_route'
+      self.save
+      self.send_en_route_message
+      return true
+    end
+    if self.state=='en_route'
+      self.state='on_scene'
+      self.save
+      self.send_on_scene_message
+      return true
+    end
+    return false
+  end
+
+  def send_help_message
+    Rails.logger.info "Sending Help Message"
+    message = %/
+      Ok, someone will call to assist you immediately
+    /.squish
+    SMS_API.send_message(efar.contact_number_formatted_for_clickatell, message)  
+  end
+
+  def send_on_scene_message
+    Rails.logger.info "Sending ON SCENE Message"
+
+    message = %/
+      Thank you for responding. Reply HELP if you need assistance
+    /.squish
+    SMS_API.send_message(efar.contact_number_formatted_for_clickatell, message)
+  end
+
+  def send_en_route_message
+    Rails.logger.info "Sending EN ROUTE Message"
+
+    message = %/
+      Thank you! Reply YES when you arrive at the emergency. Reply HELP if you 
+      need assistance.
+    /.squish
+    SMS_API.send_message(efar.contact_number_formatted_for_clickatell, message)
+  end
+
   def deliver!
     message = %/
       EFAR #{efar.full_name}, your help is needed! Emergency at  
       #{emergency.address_formatted_for_text_message}. Will you rescue? 
-      Reply YES or NO 
+      Reply YES or ignore 
       /.squish
     resp = SMS_API.send_message(efar.contact_number_formatted_for_clickatell, 
-      message)
-    puts "*** RESPONSE #{resp}"
+      message, :client_message_id => self.id)
     if resp[:status] == 'success'
       self.state = 'sent'
       self.clickatell_id = resp[:clickatell_id]

@@ -53,6 +53,7 @@ class Efar < ActiveRecord::Base
     :presence => true
 
   belongs_to :community_center
+  has_many :dispatch_messages
 
 
   # scopes
@@ -92,7 +93,7 @@ class Efar < ActiveRecord::Base
   def contact_number_formatted_for_clickatell
     # TODO make this error proof
     # quick shim, add +27 to the number
-    "27#{self.contact_number}"
+    "#{self.contact_number}"
   end
 
 end
