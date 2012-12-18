@@ -2,13 +2,14 @@
 #
 # Table name: dispatch_messages
 #
-#  id            :integer          not null, primary key
-#  emergency_id  :integer          not null
-#  efar_id       :integer          not null
-#  state         :string(255)
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  clickatell_id :string(255)
+#  id                       :integer          not null, primary key
+#  emergency_id             :integer          not null
+#  efar_id                  :integer          not null
+#  state                    :string(255)
+#  created_at               :datetime         not null
+#  updated_at               :datetime         not null
+#  clickatell_id            :string(255)
+#  clickatell_error_message :string(255)
 #
 
 class DispatchMessage < ActiveRecord::Base

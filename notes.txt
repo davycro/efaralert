@@ -1,12 +1,3 @@
-on load fetch the 20 most recent dispatches
-
-every 5 seconds check for new emergencies
-
-every 5 seconds check for status update of an emergency
-every 5 seconds check for num alerted
-
-show / hide messages when click messages button
-
 
 
 Dispatch
@@ -41,6 +32,15 @@ research namespace
 getvetter.com
 
 
+=== WORK LOG
+
+18 Dec
+
+  [x] Seed Head EFAR
+  [ ] add config param to silence text messages
+  [ ] send head EFAR messages
+  [ ] fix line spacing on the show ui
+  [ ] add polling to show ui
 
 
 

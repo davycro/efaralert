@@ -7,7 +7,8 @@
       [
         "tmp",
         "photoshop",
-        "log"
+        "log",
+        "mysql_dumps_for_development_environment"
       ],
       "file_exclude_patters":
       [

@@ -9,15 +9,17 @@
 #  password_digest     :string(255)      not null
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
+#  contact_number      :string(255)      not null
 #
 
 class HeadEfar < ActiveRecord::Base
-  attr_accessible :community_center_id, :email, :full_name, :password, :password_confirmation
+  attr_accessible :community_center_id, :email, :full_name, :contact_number, 
+    :password, :password_confirmation
 
   has_secure_password
 
-  validates :community_center_id, :email, :full_name, :password_digest,
-    :presence => true
+  validates :community_center_id, :email, :full_name, :password_digest, 
+    :contact_number, :presence => true
 
   validates :password, :on => :create, :presence => true
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121212151642) do
+ActiveRecord::Schema.define(:version => 20121218093900) do
 
   create_table "admins", :force => true do |t|
     t.string   "full_name",       :null => false
@@ -107,6 +107,7 @@ ActiveRecord::Schema.define(:version => 20121212151642) do
     t.string   "password_digest",     :null => false
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
+    t.string   "contact_number",      :null => false
   end
 
   add_index "head_efars", ["email"], :name => "index_head_efars_on_email", :unique => true

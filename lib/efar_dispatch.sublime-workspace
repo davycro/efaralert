@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"dispat",
+				"dispatch_message"
+			],
+			[
+				"disp",
+				"dispatch_message"
+			],
+			[
 				"click",
 				"clickatell_error_message"
 			],
@@ -42,10 +50,6 @@
 			[
 				"input",
 				"inputAddress"
-			],
-			[
-				"disp",
-				"dispatches"
 			],
 			[
 				"c",
@@ -455,57 +459,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "/Users/david/Sites/efar_dispatch/app/views/emergencies/show.html.haml",
-			"settings":
-			{
-				"buffer_size": 1109,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/david/Sites/efar_dispatch/app/models/efar.rb",
-			"settings":
-			{
-				"buffer_size": 2847,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/david/Sites/efar_dispatch/vendor/assets/stylesheets/twitter_bootstrap/forms.less",
-			"settings":
-			{
-				"buffer_size": 14835,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/david/Sites/efar_dispatch/app/assets/javascripts/dispatch/views/emergencies/index.jst.eco",
-			"settings":
-			{
-				"buffer_size": 858,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/david/Sites/efar_dispatch/app/helpers/research/emergencies_helper.rb",
-			"settings":
-			{
-				"buffer_size": 1106,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "7528.3000, pay to Tunisia\n\nBank            : Standard Bank\nAccount Holder  : Tunesia Skippers\nAccount Type    : Current account\nAccount no      : 310946298\nBranch Code     : 026609\nSwift code      : SBZAZAJJ\nAddy            : PROMENADE SHOPPING MALL, SHOP 73-75 AZ BERMAN ROAD, \n MITCHELLS PLAIN, Cape Town, RSA\n\n\n\nR200 - Taxi\nR600 - Key deposit\nR115 x 27 = 3105 - Dec rent\nR115 x 20 = 2300 - Jan rent\n\nTotal = 6205 = 745 USD to Annemarie \n\nAccount: Freeland Lodge cc\nBank: First National Bank\nAccount Type: Business Cheque Account\nBranch code: 201409\nAccount Number: 62087196046\nBank Address: 82-84 Adderley Street, Cape Town, 8001, RSA\nSwift Code/IBAN: FIRNZAJJXXX\n\nhttp://capetown-westerncape.gumtree.co.za/c-Real-Estate-flatshare-house-share-beautiful-house-in-Obs-to-share-W0QQAdIdZ439469232\n\n84 671 5721\n\n[x] setup dev db\n[x] send basic message\n\nrescue failed messages\nstore clickatell response\n\nClient ID:CDRN71\nUsername:davycro\nPassword:LPaXEQYEKOJbZH\n\nKIM\n\n1500\n\n11am\n\nhttp://api.clickatell.com/http/sendmsg?user=davycro&password=LPaXEQYEKOJbZH&api_id=3404223&to=27846715721&text=Message\n\ncall: 0218381585 or 0738283939 for chevy spark\nhttp://capetown-westerncape.gumtree.co.za/c-Cars-Vehicles-cars-selling-my-Chevrolet-spark-lite-W0QQAdIdZ439022634\n\ncall: 0827774774\nhttp://capetown-westerncape.gumtree.co.za/c-Cars-Vehicles-cars-2004-Chevrolet-Spark-LS-a-c-electric-windows-central-locking-W0QQAdIdZ438843007\n\n[x] email / message about car\n[x] inbox zero\n[x] shampoo / conditioner\n[x] lotion\n[x] suncream\n[x] green-light\n[x] look for housing\n[x] add drop down to efar software\n\n[ ] pay david\n[x] tell annemarie about commitment\n\n\n\ncell-c smartdata bundle\n\n\n\nWhy did the fish fall off its bike? Because it's a fish.\nHow does Moses make his tea? Hebrews it.\n\nQ: How does Hitler tie his shoes?\nA: In little Nazis!\n\nQ. Where does a king keep his armies?\nA. In his sleevies!\n\n\n\n vocab:\n \n vim\n mercurial…\n \n  \n---\n \n while in Colorado:\n \n ---\n \n reading list:\n moonwalking with einstein\n cutting for stone\n \n music to download:\n the who - baba oriley\n best of john williams\n the strokes this is it\n \n learning list:\n javascript, the good parts\n javascript mvc practices\n ruby 1.9\n objective c\n \n backup every one of my harddrives to the cloud\n \n  \n http://www.naturalstrength.com/2011/05/muscle-building-circa-1924-chapter-3.html\n ^ 21 days\n \n Jembjo's Knysna Lodge, 4 Queen Street, Lower Central, Knysna, South Africa\n Tel: +27 44 382 2658\n   \n---\n\nNetflix login\nme@davecro.com\nkingswing\n\nhttp://www.facebook.com/profile.php?id=224083\nhttp://forum.bodybuilding.com/showthread.php?t=132271453chr\n\nblog post on big companies adopting lean startup tactics.\nBluDomain\n\n\n[option-space] + [option-space] + [option-J] + [enter] + [option-J] + [option-space] + [option-J] ▲\n\n\n- index fund\n- value weighted index fund\n \nBAC\n\nPedophiles are the hipsters of sexual assault ... they were into her before she got big.\n\nIf you watch 127 hours backwards it is a lovely film about a disabled man who finds an arm in the desert.\n\nfew Brady's short of a bunch\n\nBlog topics -\n\nBluDomain\nLooking outside the tech industry for a startup idea\nGoPro revolution and videos of avalanche survival and falling off the cliff guy\n\nEarly Zuck interviews with the Crimson\nvalue of sketching\n                \n\n\n\n\n                      \n\n\n\n\n\n",
-			"file": "/Users/david/Desktop/todo.txt",
-			"file_size": 3320,
-			"file_write_time": 1355460595000000,
-			"settings":
-			{
-				"buffer_size": 3316,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -575,22 +528,28 @@
 	},
 	"file_history":
 	[
-		"/Users/david/Sites/efar_dispatch/app/assets/stylesheets/dispatch.css.less",
+		"/Users/david/Sites/efar_dispatch/config/routes.rb",
+		"/Users/david/Sites/efar_dispatch/app/models/efar.rb",
+		"/Users/david/Sites/efar_dispatch/app/models/sms_api.rb",
+		"/Users/david/Sites/efar_dispatch/app/controllers/clickatell_controller.rb",
+		"/Users/david/Sites/efar_dispatch/app/models/dispatch_message.rb",
+		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/dispatch/controllers/dispatch_controller.js.coffee",
+		"/Users/david/Sites/efar_dispatch/config/environments/config_variables.rb",
+		"/Users/david/Sites/efar_dispatch/mysql_dumps_for_development_environment/efars_with_mapping_info.sql",
+		"/Users/david/Sites/efar_dispatch/app/views/emergencies/show.html.haml",
+		"/Users/david/Sites/efar_dispatch/vendor/assets/stylesheets/twitter_bootstrap/forms.less",
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/dispatch/views/emergencies/index.jst.eco",
-		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/dispatch/views/emergencies/emergency-row.jst.eco",
 		"/Users/david/Sites/efar_dispatch/app/helpers/research/emergencies_helper.rb",
+		"/Users/david/Desktop/todo.txt",
+		"/Users/david/Sites/efar_dispatch/app/assets/stylesheets/dispatch.css.less",
+		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/dispatch/views/emergencies/emergency-row.jst.eco",
 		"/Users/david/Sites/efar_dispatch/app/controllers/emergencies_controller.rb",
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/dispatch/lib/view.js.coffee",
-		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/dispatch/controllers/dispatch_controller.js.coffee",
 		"/Users/david/Sites/efar_dispatch/app/controllers/admin/dispatchers_controller.rb",
 		"/Users/david/Sites/efar_dispatch/app/models/emergency.rb",
-		"/Users/david/Sites/efar_dispatch/app/models/dispatch_message.rb",
-		"/Users/david/Sites/efar_dispatch/app/models/sms_api.rb",
 		"/Users/david/Sites/efar_dispatch/config/initializers/clickatell.rb",
 		"/Users/david/Sites/efar_dispatch/config/environments/development.rb",
-		"/Users/david/Sites/efar_dispatch/config/environments/config_variables.rb",
 		"/Users/david/Sites/efar_dispatch/.gitignore",
-		"/Users/david/Sites/efar_dispatch/app/models/efar.rb",
 		"/Users/david/Sites/efar_dispatch/db/migrate/20121212151642_add_clickatell_id_to_dispatch_messages.rb",
 		"/Users/david/Sites/efar_dispatch/Gemfile",
 		"/Users/david/Sites/efar_dispatch/lib/tasks/import_master_data.rake",
@@ -606,7 +565,6 @@
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/dispatch.js.coffee",
 		"/Users/david/Library/Application Support/Sublime Text 2/Packages/User/Base File.sublime-settings",
 		"/Users/david/Library/Application Support/Sublime Text 2/Packages/Alignment/Base File.sublime-settings",
-		"/Users/david/Desktop/todo.txt",
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/live_feed/models/emergency.js.coffee",
 		"/Users/david/Sites/efar_dispatch/app/views/research/emergencies/_emergency.html.haml",
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/live_feed.js.coffee",
@@ -623,7 +581,6 @@
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/mapper/views/efars/show.jst.eco",
 		"/Users/david/Sites/efar_dispatch/app/views/research/emergencies/_dispatch_message.html.haml",
 		"/Users/david/Sites/efar_dispatch/lib/tasks/seed_development_emergencies.rake",
-		"/Users/david/Sites/efar_dispatch/config/routes.rb",
 		"/Users/david/Sites/efar_dispatch/app/controllers/research/emergencies_controller.rb",
 		"/Users/david/Sites/efar_dispatch/app/helpers/admin/researchers_helper.rb",
 		"/Users/david/Sites/efar_dispatch/db/migrate/20121030195140_create_emergencies.rb",
@@ -698,11 +655,7 @@
 		"/Users/david/Sites/efar_dispatch/app/controllers/accounts_controller.rb",
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/application.js.coffee",
 		"/Users/david/Sites/efar_dispatch/public/assets/application.js",
-		"/Users/david/Sites/efar_dispatch/app/views/sessions/new.html.haml",
-		"/Users/david/Sites/efar_dispatch/app/controllers/application_controller.rb",
-		"/Users/david/Sites/efar_dispatch/app/views/layouts/_typekit.html.haml",
-		"/Users/david/Sites/efar_dispatch/app/assets/stylesheets/dispatch/scaffolding.less",
-		"/Users/david/Sites/efar_dispatch/app/controllers/sessions_controller.rb"
+		"/Users/david/Sites/efar_dispatch/app/views/sessions/new.html.haml"
 	],
 	"find":
 	{
@@ -799,181 +752,13 @@
 	"groups":
 	[
 		{
-			"selected": 2,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "/Users/david/Sites/efar_dispatch/app/views/emergencies/show.html.haml",
-					"settings":
-					{
-						"buffer_size": 1109,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								794,
-								794
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Haml/Syntaxes/Ruby Haml.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "/Users/david/Sites/efar_dispatch/app/models/efar.rb",
-					"settings":
-					{
-						"buffer_size": 2847,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Ruby/Ruby.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 440.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "/Users/david/Sites/efar_dispatch/vendor/assets/stylesheets/twitter_bootstrap/forms.less",
-					"settings":
-					{
-						"buffer_size": 14835,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								13896,
-								13921
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/LESS/LESS.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 9066.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		},
 		{
-			"selected": 2,
 			"sheets":
 			[
-				{
-					"buffer": 3,
-					"file": "/Users/david/Sites/efar_dispatch/app/assets/javascripts/dispatch/views/emergencies/index.jst.eco",
-					"settings":
-					{
-						"buffer_size": 858,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/eco/Syntaxes/HTML (ECO).tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "/Users/david/Sites/efar_dispatch/app/helpers/research/emergencies_helper.rb",
-					"settings":
-					{
-						"buffer_size": 1106,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								948,
-								948
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Ruby/Ruby.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "/Users/david/Desktop/todo.txt",
-					"settings":
-					{
-						"buffer_size": 3316,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								415,
-								415
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 171.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -1005,7 +790,7 @@
 		"cols":
 		[
 			0.0,
-			0.5,
+			0.849285509919,
 			1.0
 		],
 		"rows":
@@ -1029,6 +814,22 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"dis",
+				"app/models/dispatch_message.rb"
+			],
+			[
+				"confi",
+				"config/environments/config_variables.rb"
+			],
+			[
+				"dispa",
+				"app/controllers/dispatch_messages_controller.rb"
+			],
+			[
+				"routes",
+				"config/routes.rb"
+			],
 			[
 				"emer",
 				"app/helpers/research/emergencies_helper.rb"
@@ -1194,10 +995,6 @@
 				"app/controllers/research/emergencies_controller.rb"
 			],
 			[
-				"routes",
-				"config/routes.rb"
-			],
-			[
 				"create_eme",
 				"db/migrate/20121030195140_create_emergencies.rb"
 			],
@@ -1292,10 +1089,6 @@
 			[
 				"seci",
 				"app/assets/stylesheets/shared/section-box.less"
-			],
-			[
-				"dispa",
-				"app/views/layouts/dispatch.html.haml"
 			],
 			[
 				"layouts/res",
@@ -1532,14 +1325,6 @@
 			[
 				"new.ec",
 				"app/assets/javascripts/dispatch/views/emergencies/new.jst.eco"
-			],
-			[
-				"emergencies/",
-				"app/views/emergencies/index.html.haml"
-			],
-			[
-				"geo",
-				"config/initializers/geocoder.rb"
 			]
 		],
 		"width": 0.0
@@ -1556,6 +1341,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 240.0,
+	"side_bar_width": 302.0,
 	"status_bar_visible": true
 }
