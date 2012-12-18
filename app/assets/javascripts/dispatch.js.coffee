@@ -52,8 +52,8 @@ class IndexController
     if number==0
       $(elem).hide()
     if number>0
-      $(elem).show()
       $('span', elem).html(number)  
+      $(elem).show()
 
   doPoll: =>
     App.Emergency.fetchForPoll()

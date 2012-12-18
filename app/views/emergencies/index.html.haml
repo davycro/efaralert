@@ -28,16 +28,16 @@
                     %span.label No EFARs nearby
                   - if em.dispatch_messages.count>0
                     %ul.inline.emergency-status-data
-                      %li.hide{'data-type'=>'emergency-sent-messages-count'}
+                      %li{'data-type'=>'emergency-sent-messages-count'}
                         %span.badge.badge-inverse= em.sent_dispatch_messages.count
                         notified
-                      %li.hide{'data-type'=>'emergency-en-route-messages-count'}
+                      %li{'data-type'=>'emergency-en-route-messages-count'}
                         %span.badge.badge-info= em.en_route_dispatch_messages.count
                         en route
-                      %li.hide{'data-type'=>'emergency-on-scene-messages-count'}
+                      %li{'data-type'=>'emergency-on-scene-messages-count'}
                         %span.badge.badge-success= em.on_scene_dispatch_messages.count
                         on scene
-                      %li.hide{'data-type'=>'emergency-failed-messages-count'}
+                      %li{'data-type'=>'emergency-failed-messages-count'}
                         %span.badge.badge-important= em.failed_dispatch_messages.count
                         messages failed
                   %dt

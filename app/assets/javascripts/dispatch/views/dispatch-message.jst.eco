@@ -1,4 +1,4 @@
-<div class="item dispatch-message-item">
+<div class="dispatch-message-item">
   <div class="row-fluid">
     <div class="span2">
       <% if @state=='queued': %>

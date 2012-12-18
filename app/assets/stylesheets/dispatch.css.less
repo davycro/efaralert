@@ -97,17 +97,12 @@
 .section > .header > .pull-right > .btn {
   margin: @baseLineHeight/4 0;
 }
+.section > .header > .pull-right > .time {
+  margin: @baseLineHeight/2 0;
+}
 .time {
   color: @grayLight;
   font-size: 12px;
-}
-
-.item {
-  border-bottom: 1px solid @grayLight;
-  padding-top: @baseLineHeight;
-}
-.item:last-child {
-  border-bottom: none;
 }
 
 .item-emergency {
@@ -117,12 +112,14 @@
 .item-emergency:last-child {
   border-bottom: none;
 }
+.emergency-status-data > li {
+  display: none;
+}
 
 .emergencies-show {
   .dispatch-message-item {
-    background: white;
     padding: @baseLineHeight/2 @baseLineHeight;
-
+    border-bottom: 1px solid @grayLighter;
     .efar-name {
       font-size: 14px;
       font-weight: bold;
@@ -142,6 +139,9 @@
         display: inline-block;
       }
     }
+  }
+  .dispatch-message-item:last-child {
+    border-bottom: none;
   }
 }
 
