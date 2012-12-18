@@ -8,6 +8,28 @@
 #= require_tree ./dispatch/models
 #= require_tree ./dispatch/lib
 
+class EmergencyIndexController
+  constructor:->
+    App.Emergency.bind 'refresh change', @change
+    # App.Emergency.fetch()
+    setTimeout @doPoll, 3*1000
+
+  change: =>
+    emergencies = App.Emergency.all()
+    @updateStats(em) for em in emergencies
+
+  updateStats: (emergency) ->
+    elem = $("[data-emergency-id=#{emergency.id}]")
+    $('[data-type=emergency-sent-messages-count]', elem).html(emergency.num_sent_dispatch_messages)
+    $('[data-type=emergency-en-route-messages-count]', elem).html(emergency.num_en_route_dispatch_messages)
+    $('[data-type=emergency-on-scene-messages-count]', elem).html(emergency.num_on_scene_dispatch_messages)
+    $('[data-type=emergency-failed-messages-count]', elem).html(emergency.num_failed_dispatch_messages)
+
+  doPoll: =>
+    App.Emergency.fetchForPoll()
+    setTimeout(@doPoll, 5*1000)
+
+
 class NewDispatchModalController
   constructor: ->
     @setElements()
@@ -56,6 +78,7 @@ class NewDispatchModalController
 class App
   constructor: ->
     @modalController = new NewDispatchModalController
+    @emergencyIndexController = new EmergencyIndexController
 
 
 window.App = App

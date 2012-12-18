@@ -9,40 +9,47 @@
         %h4= "Showing #{pluralize(@emergencies.count, "dispatch")} from the last 24 hours"
       
     - @emergencies.each do |em|
-      .item{ :class => em.dispatch_messages.count==0 && "faded" }
+      .item{ :class => em.dispatch_messages.count==0 && "faded", 'data-emergency-id' => em.id }
         .header
           .pull-right
-            %span.time
+            .time
               = distance_of_time_in_words_to_now em.created_at
               ago
           .header-body
-            - if em.dispatch_messages.count==0
-              %span.label No nearby efars
             %h4
               = em.category_formatted_for_nil
               @
               = em.address_formatted_for_text_message
+
+        - if em.dispatch_messages.count==0
+          .section-content
+            %span.label No nearby efars
+
         - if em.dispatch_messages.count > 0
           .stats-row
             .row
               .span1.number-box
-                .number= em.dispatch_messages.count
+                .number
+                  = em.dispatch_messages.count
                 .number-label Nearby
               .span1.number-box
-                .number= em.sent_dispatch_messages.count
+                .number{'data-type'=>'emergency-sent-messages-count'}
+                  = em.sent_dispatch_messages.count
                 .number-label Alerted
               .span1.number-box
-                .number= em.en_route_dispatch_messages.count
+                .number{'data-type'=>'emergency-en-route-messages-count'}
+                  = em.en_route_dispatch_messages.count
                 .number-label En Route
               .span1.number-box
-                .number= em.on_scene_dispatch_messages.count
+                .number{'data-type'=>'emergency-on-scene-messages-count'}
+                  = em.on_scene_dispatch_messages.count
                 .number-label On Scene
               .span1.number-box
-                .number= em.failed_dispatch_messages.count
+                .number{'data-type'=>'emergency-failed-messages-count'}
+                  = em.failed_dispatch_messages.count
                 .number-label Failed
           .footer
             = link_to "View details", em
-
 
 
             

@@ -50,7 +50,7 @@ class Emergency < ActiveRecord::Base
     :conditions => {:state => 'on_scene'}
   has_many :failed_dispatch_messages, :class_name => "DispatchMessage",
     :conditions => { :state => 
-      %w(failed_invalid_contact_number failed_no_airtime failed_unknown) }
+      %w(failed) }
 
 
 
