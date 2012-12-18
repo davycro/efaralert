@@ -28,6 +28,7 @@ class CommunityCenter < ActiveRecord::Base
     :presence => true
 
   has_many :efars
+  has_one :head_efar
   
   geocoded_by :geocode_search_address, :latitude => :lat, :longitude => :lng do |obj, results|
     if geo = results.first

@@ -96,4 +96,8 @@ class Efar < ActiveRecord::Base
     "#{self.contact_number}"
   end
 
+  def head_efar
+    @head_efar ||= self.community_center.head_efar
+  end
+
 end

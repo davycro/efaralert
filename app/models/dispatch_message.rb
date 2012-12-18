@@ -76,10 +76,19 @@ class DispatchMessage < ActiveRecord::Base
 
   def send_help_message
     Rails.logger.info "Sending Help Message"
+
     message = %/
       Ok, someone will call to assist you immediately
     /.squish
-    SMS_API.send_message(efar.contact_number_formatted_for_clickatell, message)  
+    self.send_message_to_efar(message)
+
+    message_for_head_efar = %/
+      EFAR #{self.efar.full_name} needs your help at 
+      #{emergency.address_formatted_for_text_message}! Please call them at 
+      #{self.efar.contact_number}
+    /.squish
+    SMS_API.send_message(self.efar.head_efar.contact_number, 
+      message_for_head_efar)
   end
 
   def send_on_scene_message
@@ -88,7 +97,7 @@ class DispatchMessage < ActiveRecord::Base
     message = %/
       Thank you for responding. Reply HELP if you need assistance
     /.squish
-    SMS_API.send_message(efar.contact_number_formatted_for_clickatell, message)
+    self.send_message_to_efar(message)
   end
 
   def send_en_route_message
@@ -98,17 +107,18 @@ class DispatchMessage < ActiveRecord::Base
       Thank you! Reply YES when you arrive at the emergency. Reply HELP if you 
       need assistance.
     /.squish
-    SMS_API.send_message(efar.contact_number_formatted_for_clickatell, message)
+    self.send_message_to_efar(message)
   end
 
   def deliver!
     message = %/
-      EFAR #{efar.full_name}, your help is needed! Emergency at  
+      EFAR #{efar.full_name}, your help is needed! 
+      #{emergency.category_formatted_for_nil} at  
       #{emergency.address_formatted_for_text_message}. Will you rescue? 
       Reply YES or ignore 
       /.squish
-    resp = SMS_API.send_message(efar.contact_number_formatted_for_clickatell, 
-      message, :client_message_id => self.id)
+    resp = self.send_message_to_efar(message)
+
     if resp[:status] == 'success'
       self.state = 'sent'
       self.clickatell_id = resp[:clickatell_id]
@@ -118,6 +128,11 @@ class DispatchMessage < ActiveRecord::Base
       self.clickatell_error_message = resp[:clickatell_error_message]
     end
     self.save!
+  end
+
+  def send_message_to_efar(message)
+    return SMS_API.send_message(efar.contact_number_formatted_for_clickatell,
+      message)
   end
   
 end

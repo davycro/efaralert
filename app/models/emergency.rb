@@ -128,7 +128,7 @@ class Emergency < ActiveRecord::Base
 
   def category_formatted_for_nil
     if @category.blank?
-      @category = 'Unspecified injury'
+      @category = 'Emergency'
     end
     @category
   end
