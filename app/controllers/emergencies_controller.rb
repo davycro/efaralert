@@ -8,7 +8,7 @@ class EmergenciesController < ApplicationController
   end
 
   def index
-    @emergencies = current_dispatcher.emergencies
+    @emergencies = current_dispatcher.emergencies.order('created_at DESC')
     respond_to do |format|
       format.html
       format.json { render json: @emergencies.to_json(:methods => [:num_efars_notified]) }
