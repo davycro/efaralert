@@ -31,8 +31,7 @@ class ShowController
 class IndexController
   constructor:->
     App.Emergency.bind 'refresh change', @change
-    # App.Emergency.fetch()
-    setTimeout @doPoll, 3*1000
+    @doPoll()
 
   change: =>
     emergencies = App.Emergency.all()
@@ -40,10 +39,21 @@ class IndexController
 
   updateStats: (emergency) ->
     elem = $("[data-emergency-id=#{emergency.id}]")
-    $('[data-type=emergency-sent-messages-count]', elem).html(emergency.num_sent_dispatch_messages)
-    $('[data-type=emergency-en-route-messages-count]', elem).html(emergency.num_en_route_dispatch_messages)
-    $('[data-type=emergency-on-scene-messages-count]', elem).html(emergency.num_on_scene_dispatch_messages)
-    $('[data-type=emergency-failed-messages-count]', elem).html(emergency.num_failed_dispatch_messages)
+    @updateStat $('[data-type=emergency-sent-messages-count]', elem), 
+      emergency.num_sent_dispatch_messages 
+    @updateStat $('[data-type=emergency-en-route-messages-count]', elem), 
+      emergency.num_en_route_dispatch_messages 
+    @updateStat $('[data-type=emergency-on-scene-messages-count]', elem), 
+      emergency.num_on_scene_dispatch_messages 
+    @updateStat $('[data-type=emergency-failed-messages-count]', elem), 
+      emergency.num_failed_dispatch_messages 
+
+  updateStat: (elem, number) ->
+    if number==0
+      $(elem).hide()
+    if number>0
+      $(elem).show()
+      $('span', elem).html(number)  
 
   doPoll: =>
     App.Emergency.fetchForPoll()
