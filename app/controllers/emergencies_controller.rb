@@ -8,7 +8,9 @@ class EmergenciesController < ApplicationController
   end
 
   def index
-    @emergencies = current_dispatcher.emergencies.order('created_at DESC')
+    @emergencies = current_dispatcher.emergencies.
+      order('created_at DESC').
+      where(:created_at => 24.hours.ago .. Time.now)
     respond_to do |format|
       format.html
       format.json { render json: @emergencies.to_json }
