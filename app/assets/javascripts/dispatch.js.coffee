@@ -76,9 +76,11 @@ class NewDispatchModalController
     @alertBox.hide()
 
 class App
-  constructor: ->
+  constructor: (actionName) ->
     @modalController = new NewDispatchModalController
-    @emergencyIndexController = new EmergencyIndexController
+    if actionName=='index'
+      @emergencyIndexController = new EmergencyIndexController
+      
 
 
 window.App = App
