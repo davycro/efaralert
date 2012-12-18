@@ -1,51 +1,38 @@
-.container.emergencies-show
-  
-  .row
-    .span10
+.emergencies-show
+  %ul.breadcrumb
+    %li
+      %a{:href => emergencies_path } Dispatches
+      %span.divider /
+    %li.active
+      = @emergency.category_formatted_for_nil
+      @
+      = @emergency.address_formatted_for_text_message
 
-      %ul.breadcrumb
-        %li
-          %a{:href => emergencies_path } Dispatches
-          %span.divider /
-        %li.active
-          = @emergency.category_formatted_for_nil
-          @
-          = @emergency.address_formatted_for_text_message  
-
-      .emergency-header.clearfix
+  .section
+    .header.section-header
+      .pull-right
         .time
           = distance_of_time_in_words_to_now @emergency.created_at
-          ago
-        .location-and-category
+          ago  
+      .header-body
+        %h4
           = @emergency.category_formatted_for_nil
           @
           = @emergency.address_formatted_for_text_message
-      .emergency-summary
-        = pluralize @emergency.dispatch_messages.count, "EFAR"
-        notified
-  - @emergency.dispatch_messages.each do |dm|
-    .row
-      .span10
-        .dispatch-message-item
-          .efar-name= dm.efar.full_name
-          .efar-summary-group
-            .group-label Status
-            .group-item
-              = dispatch_message_state_label_html(dm)
+    - @emergency.dispatch_messages.each do |dm|
+      .item.dispatch-message-item
+        .row-fluid
+          .span2
+            = dispatch_message_state_label_html(dm)
+            %span.time
               = distance_of_time_in_words_to_now dm.updated_at
               ago
-          .efar-summary-group
-            .group-label Address
-            .group-item= dm.efar.formatted_address
-          .efar-summary-group
-            .group-label Mobile #
-            .group-item= dm.efar.contact_number      
+          .span10
+            .efar-name= dm.efar.full_name
+            .efar-summary-group
+              .group-label Address
+              .group-item= dm.efar.formatted_address
+            .efar-summary-group
+              .group-label Mobile #
+              .group-item= dm.efar.contact_number
 
-
-
-
-
-:javascript
-  // jQuery(function(){
-  //   new App({el: $('#app')});
-  // });
