@@ -6,7 +6,20 @@ class SmsApi
     self.authenticate
   end
 
+  # don't sent text messages in dev environment
+  def in_silent_mode?
+    if ENV['CLICKATELL_SILENT_MODE'].present? and ENV['CLICKATELL_SILENT_MODE']=='1'
+      return true
+    else
+      return false
+    end
+  end
+
   def send_message(number, message, opts={})
+    if in_silent_mode?
+      return {:status => 'success', :clickatell_id => '123'}
+    end
+
     retries = 1
     tries = 0
 
