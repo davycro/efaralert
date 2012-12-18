@@ -1,7 +1,0 @@
-<tr data-type="show" data-url="/emergencies/<%= @id %>">
-  <td><%= @created_at_pretty %></td>
-  <td><%= @formatted_address %></td>
-  <td><%= @num_dispatch_messages %></td>
-  <td><%= @num_en_route_dispatch_messages %></td>
-  <td><%= @num_on_scene_dispatch_messages %></td>
-</tr>
