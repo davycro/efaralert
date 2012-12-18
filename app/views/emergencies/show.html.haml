@@ -2,6 +2,16 @@
   
   .row
     .span10
+
+      %ul.breadcrumb
+        %li
+          %a{:href => emergencies_path } Dispatches
+          %span.divider /
+        %li.active
+          = @emergency.category_formatted_for_nil
+          @
+          = @emergency.address_formatted_for_text_message  
+
       .emergency-header.clearfix
         .time
           = distance_of_time_in_words_to_now @emergency.created_at

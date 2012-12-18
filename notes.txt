@@ -37,8 +37,9 @@ getvetter.com
 18 Dec
 
   [x] Seed Head EFAR
-  [ ] add config param to silence text messages
+  [x] add config param to silence text messages
   [x] send head EFAR messages
+  [ ] keyboard shortcut for sending a dispatch
   [ ] fix line spacing on the show ui
   [ ] add polling to show ui
 
