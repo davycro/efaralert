@@ -2,11 +2,13 @@
 // Twitter Bootstrap Custom Import
 // --------------------------------------------------
 
-// Reset
+// CSS Reset
 @import "twitter_bootstrap/reset";
 
 // Core variables and mixins
-@import "twitter_bootstrap/variables";
+@import "twitter_bootstrap/variables"; // Modify this for custom colors, font-sizes, etc
+@navbarInverseBackgroundHighlight: #313837;
+@navbarBackground: #1F2423;
 @import "twitter_bootstrap/mixins";
 
 // Grid system and page structure
@@ -20,37 +22,43 @@
 @import "twitter_bootstrap/forms";
 @import "twitter_bootstrap/tables";
 
-// Components: Sprites
+// Components: common
 @import "twitter_bootstrap/sprites";
 @iconSpritePath: '/assets/glyphicons-halflings.png';
 @iconWhiteSpritePath: '/assets/glyphicons-halflings-white.png';
 
-// Components: Common
 @import "twitter_bootstrap/dropdowns";
+@import "twitter_bootstrap/wells";
 @import "twitter_bootstrap/component-animations";
 @import "twitter_bootstrap/close";
-@import "twitter_bootstrap/wells";
 
 // Components: Buttons & Alerts
 @import "twitter_bootstrap/buttons";
 @import "twitter_bootstrap/button-groups";
-@import "twitter_bootstrap/alerts"; // Note: alerts share common CSS with buttons and thus have styles in buttons.less
+@import "twitter_bootstrap/alerts"; // Note: alerts share common CSS with buttons and thus have styles in buttons
 
 // Components: Nav
 @import "twitter_bootstrap/navs";
 @import "twitter_bootstrap/navbar";
 @import "twitter_bootstrap/breadcrumbs";
-
-@import "twitter_bootstrap/labels-badges";
+// @import "twitter_bootstrap/pagination";
+// @import "twitter_bootstrap/pager";
 
 // Components: Popovers
 @import "twitter_bootstrap/modals";
-@import "twitter_bootstrap/tooltip";
-@import "twitter_bootstrap/popovers";
+// @import "twitter_bootstrap/tooltip";
+// @import "twitter_bootstrap/popovers";
+
+// Components: Misc
+// @import "twitter_bootstrap/thumbnails";
+@import "twitter_bootstrap/labels-badges";
+// @import "twitter_bootstrap/progress-bars";
+// @import "twitter_bootstrap/accordion";
+// @import "twitter_bootstrap/carousel";
+// @import "twitter_bootstrap/hero-unit";
 
 // Utility classes
 @import "twitter_bootstrap/utilities"; // Has to be last to override when necessary
-
 
 //
 // Layout classes
@@ -58,7 +66,71 @@
 
 @import "dispatch/scaffolding";
 @import "shared/accounts";
-@import "shared/section-box";
+
+@horizontalPadding: @baseLineHeight;
+.section {
+  background-color: white;
+  margin-bottom: @baseLineHeight;
+  .border-radius(4px);
+  border: 1px solid #ccc;
+}
+.header,
+.header-label {
+  overflow: hidden;
+  *overflow: visible;
+  zoom: 1;
+}
+.header {
+  padding: 0 @horizontalPadding;
+  border-bottom: 1px solid @grayLighter;
+}
+.footer {
+  padding: @baseLineHeight/2 @horizontalPadding;
+  font-size: 12px;
+}
+.section-header {
+  padding: @baseLineHeight/2 @horizontalPadding;
+  border-bottom: 1px solid #dddddd;
+}
+.header > .pull-right > .btn {
+  margin: @baseLineHeight/4 0;
+}
+.header > .pull-right > .time {
+  margin: @baseLineHeight/2 0;
+}
+.time {
+  color: @grayLight;
+  font-size: 12px;
+}
+.stats-row {
+  padding: 0 @horizontalPadding;  
+  border-bottom: 1px solid @grayLighter;
+  .number-box {
+    padding-top: @baseLineHeight/2;
+    padding-bottom: @baseLineHeight/2;
+    border-right: 1px solid @grayLighter;
+  }
+  .number-box:last-child {
+    border-right: none;
+  }
+  .number {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  .number-label {
+    color: @grayLight;
+    font-size: 9px;
+    text-transform: uppercase;
+  }
+}
+.item {
+  border-bottom: 1px solid @grayLight;
+  padding-top: @baseLineHeight;
+}
+.item:last-child {
+  border-bottom: none;
+}
+
 
 .emergency {
   // nil

@@ -12,8 +12,7 @@
 
     .navbar.navbar-inverse.navbar-fixed-top
       .navbar-inner
-        .container-fluid
-          %a.brand{ :href=>emergencies_path } EFAR Dispatch
+        .container
           %ul.nav
             %li
               %a{:href => emergencies_path } Dispatch Feed
@@ -28,7 +27,10 @@
                 %li
                   = link_to 'Logout', session_path, :method => :delete
 
-  = yield
+  .container
+    .row
+      .span12
+        = yield
 
 
     

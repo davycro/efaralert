@@ -1,4 +1,47 @@
-#app
+.emergencies-index
+  .section
+
+    .header.section-header
+      .pull-right
+        %a.btn.btn-primary{'data-type'=>'new-dispatch'}
+          New Dispatch
+      .header-body
+        %h4= "Showing #{pluralize(@emergencies.count, "dispatch")} from the last 24 hours"
+      
+    - @emergencies.each do |em|
+      .item
+        .header
+          .pull-right
+            .time
+              = distance_of_time_in_words_to_now em.created_at
+              ago
+          .header-body
+            %h4
+              = em.category_formatted_for_nil
+              @
+              = em.address_formatted_for_text_message
+        .stats-row
+          .row
+            .span1.number-box
+              .number= em.dispatch_messages.count
+              .number-label Nearby
+            .span1.number-box
+              .number= em.sent_dispatch_messages.count
+              .number-label Alerted
+            .span1.number-box
+              .number= em.en_route_dispatch_messages.count
+              .number-label En Route
+            .span1.number-box
+              .number= em.on_scene_dispatch_messages.count
+              .number-label On Scene
+            .span1.number-box
+              .number= em.failed_dispatch_messages.count
+              .number-label Failed
+        .footer
+          = link_to "View details", em
+
+
+#app.hide
 
 :javascript
   jQuery(function(){
