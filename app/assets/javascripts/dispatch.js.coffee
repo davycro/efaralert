@@ -15,13 +15,17 @@ class ShowController
     @dispatchMessages = $('[data-type=dispatch-messages]')
     @emergencyId = $(@dispatchMessages).data('emergency-id')
     App.DispatchMessage.bind 'refresh', @change
-    App.DispatchMessage.fetchForEmergency(@emergencyId)
+    @doPoll()
 
   change: =>
     messages = App.DispatchMessage.all()
     @dispatchMessages.html ''
     @dispatchMessages.append(JST["dispatch/views/dispatch-message"](m)) for m in messages
     jQuery(".timeago").timeago();
+
+  doPoll: =>
+    App.DispatchMessage.fetchForEmergency(@emergencyId)
+    setTimeout @doPoll, 6*1000
 
 
 class IndexController
