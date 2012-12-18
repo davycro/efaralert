@@ -7,8 +7,22 @@
 #= require_self
 #= require_tree ./dispatch/models
 #= require_tree ./dispatch/lib
+#= require_tree ./dispatch/views
 
-class EmergencyIndexController
+class ShowController
+  constructor:->
+    @dispatchMessages = $('[data-type=dispatch-messages]')
+    @emergencyId = $(@dispatchMessages).data('emergency-id')
+    App.DispatchMessage.bind 'refresh', @change
+    App.DispatchMessage.fetchForEmergency(@emergencyId)
+
+  change: =>
+    messages = App.DispatchMessage.all()
+    @dispatchMessages.html ''
+    @dispatchMessages.append(JST["dispatch/views/dispatch-message"](m)) for m in messages
+
+
+class IndexController
   constructor:->
     App.Emergency.bind 'refresh change', @change
     # App.Emergency.fetch()
@@ -30,7 +44,7 @@ class EmergencyIndexController
     setTimeout(@doPoll, 5*1000)
 
 
-class NewDispatchModalController
+class NewDispatchController
   constructor: ->
     @setElements()
     @setEvents()
@@ -77,10 +91,12 @@ class NewDispatchModalController
 
 class App
   constructor: (actionName) ->
-    @modalController = new NewDispatchModalController
+    @modalController = new NewDispatchController
     if actionName=='index'
-      @emergencyIndexController = new EmergencyIndexController
-      
+      @emergencyIndexController = new IndexController
+    if actionName=='show'
+      @showController = new ShowController
+
 
 
 window.App = App

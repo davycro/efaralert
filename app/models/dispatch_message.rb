@@ -134,5 +134,9 @@ class DispatchMessage < ActiveRecord::Base
     return SMS_API.send_message(efar.contact_number_formatted_for_clickatell,
       message)
   end
+
+  def as_json(options = {})
+    super(:methods => [:efar, :lat, :lng])
+  end
   
 end

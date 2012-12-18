@@ -100,4 +100,8 @@ class Efar < ActiveRecord::Base
     @head_efar ||= self.community_center.head_efar
   end
 
+  def as_json(options = {})
+    super(:methods => [:formatted_address, :lat, :lng, :full_name])
+  end
+
 end

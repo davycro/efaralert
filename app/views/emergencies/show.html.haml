@@ -19,20 +19,5 @@
           = @emergency.category_formatted_for_nil
           @
           = @emergency.address_formatted_for_text_message
-    - @emergency.dispatch_messages.each do |dm|
-      .item.dispatch-message-item
-        .row-fluid
-          .span2
-            = dispatch_message_state_label_html(dm)
-            %span.time
-              = distance_of_time_in_words_to_now dm.updated_at
-              ago
-          .span10
-            .efar-name= dm.efar.full_name
-            .efar-summary-group
-              .group-label Address
-              .group-item= dm.efar.formatted_address
-            .efar-summary-group
-              .group-label Mobile #
-              .group-item= dm.efar.contact_number
+    .dispatch-messages-content{'data-type'=>'dispatch-messages', 'data-emergency-id'=>@emergency.id}
 
