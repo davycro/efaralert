@@ -3,6 +3,7 @@
 #= require twitter/bootstrap
 #= require spine/spine
 #= require spine/ajax
+#= require jquery.timeago
 #= require_tree ./lib
 #= require_self
 #= require_tree ./dispatch/models
@@ -20,6 +21,7 @@ class ShowController
     messages = App.DispatchMessage.all()
     @dispatchMessages.html ''
     @dispatchMessages.append(JST["dispatch/views/dispatch-message"](m)) for m in messages
+    jQuery(".timeago").timeago();
 
 
 class IndexController
@@ -97,6 +99,7 @@ class App
     if actionName=='show'
       @showController = new ShowController
 
+    
 
 
 window.App = App

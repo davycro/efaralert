@@ -1,5 +1,5 @@
 class App.DispatchMessage extends Spine.Model
-  @configure "DispatchMessage", "efar_id", "dispatch_id", "state", "efar"
+  @configure "DispatchMessage", "efar_id", "dispatch_id", "state", "efar", "updated_at"
   
   @extend Spine.Model.Ajax
   @url: "/api/dispatch_messages"

@@ -12,6 +12,7 @@
       <% else if @state=='failed': %>
         <span class='label label-important'>Message failed</span>
       <% end %>
+      <span class='timeago time' title="<%= @updated_at %>"><%= @updated_at %></span>
     </div>
     <div class="span10">
 
