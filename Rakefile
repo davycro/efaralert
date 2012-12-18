@@ -9,7 +9,7 @@ EfarDispatch::Application.load_tasks
 
 desc "core deployment build"
 task :before_deploy do
-  puts `RAILS_ENV=production PRECOMPILE_ENV=true bundle exec rake assets:precompile`
+  system("RAILS_ENV=production PRECOMPILE_ENV=true bundle exec rake assets:precompile")
   system("git add . ")
   system("git commit -a -m 'auto-build #{Time.now.strftime("%a, %b %d @ %I:%M%p")}'")
 end

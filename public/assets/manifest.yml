@@ -25,6 +25,8 @@ subtle_freckles.png: subtle_freckles-f166b1c8e3a4747b0f8bf83e1ac29c15.png
 application.js: application-38ced7912e2e5e893a37075d8ee12ae3.js
 dispatch.js: dispatch-5f68400552dc36bd988645fda2040402.js
 full_screen_login.js: full_screen_login-38ced7912e2e5e893a37075d8ee12ae3.js
+live_feed.js: live_feed-7412b6b9763b02c7f3a56cfb3706f947.js
+mapper.js: mapper-44192d640d60dc98c8449eecd71c5737.js
 application.css: application-d8e65dc6190ee590be2925412980f226.css
 dispatch.css: dispatch-7c3f81aa96f829b72424d316974d9802.css
 full_screen_login.css: full_screen_login-a6a16df3b13e322d421967006ad1f326.css
