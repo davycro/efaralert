@@ -1,19 +1,8 @@
-- content_for :js do
-  = javascript_include_tag 'live_feed'
-
-.container
-  .row
-    .span8
-      .emergencies-live-feed
-        #app
-        = render :partial => 'emergency', :collection => @emergencies
-
+#app
 :javascript
   jQuery(function(){
-    new LiveFeed({el: $('#app')});
-    console.log('here');
+    new App({el: $('#app')});
   });
-
 
 
  

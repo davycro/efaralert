@@ -5,7 +5,7 @@ class Api::EmergenciesController < ApplicationController
     respond_to do |format|
       format.json do 
         @emergencies = Emergency.all
-        render json: @emergencies
+        render json: @emergencies.as_json(:methods => [:dispatch_messages])
       end
     end
   end

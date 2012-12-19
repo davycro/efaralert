@@ -4,6 +4,7 @@
     %title EFAR RESEARCH
     = stylesheet_link_tag 'research', :media => 'all'
     = yield :js
+    = javascript_include_tag 'dispatch_feed'
     = render :partial => 'layouts/ga'
     = csrf_meta_tags
   %body

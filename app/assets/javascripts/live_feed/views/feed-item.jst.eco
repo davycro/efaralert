@@ -1,0 +1,9 @@
+<div class="dispatch-feed-item">
+  <h4>
+    <% if @category: %>
+      <%= @category %>
+    <% else: %>
+      Unspecified injury
+    <% end %>
+  </h4>
+</div>
