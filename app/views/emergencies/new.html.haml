@@ -6,18 +6,18 @@
       .header-body
         %h4 New Dispatch
     .body
-      %form
+      %form{'data-type'=>'search'}
         %fieldset.search-field
           .input-append
             %input.input-xxlarge{ :type=>'text', :name=>'searchAddress', :placeholder => 'Emergency Location' }
-            %button.btn Search
+            %button.btn{ 'data-type'=>'search' } Search
           %span.help-block
             %small For best results type in the suburb (e.g. "Manenberg", or "Lavendar Hill"). If a street number cannot be found, then try inputting a cross street (e.g. "4th St and NYC")
 
-        .mapfield
-          %h5 Results
-          .row-fluid
-            .span8
-              #map-results
-            .span4
-              Addresses will go here
+      .mapfield
+        %h5 Results
+        .row-fluid
+          .span8
+            #map-results
+          .span4
+            %ul.nav.nav-pills.nav-stacked{'data-type'=>'searchResults'}

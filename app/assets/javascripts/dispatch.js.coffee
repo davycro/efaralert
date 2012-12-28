@@ -105,10 +105,21 @@ class NewDispatchController
     @inputCategory.prop('selectedIndex', 0)
     @alertBox.hide()
 
-class SearchAddressController
 
-class MapController
+class MapController extends Spine.Controller
+  elements:
+    '#map-results' : 'mapEl'
+    'input[name=searchAddress]' : 'searchInput'
+    'ul[data-type=searchResults]' : 'searchResultsNav'
+    '[data-type=geocodeResult]' : 'geocodeResult'
+
+  events:
+    'click [data-type=geocodeResult]' : 'clickGeocodeResult'
+    'submit form[data-type=search]' : 'submitSearch'
+
   constructor: ->
+    @el = $('.emergencies-new')
+    super()
     @setMap()
 
   setMap:->
@@ -119,8 +130,53 @@ class MapController
       streetViewControl: false
       mapTypeControl: false
     }
-    el = $('#map-results')[0]
-    @map = new google.maps.Map(el, options)
+    console.log(@mapEl)
+    @map = new google.maps.Map(@mapEl[0], options)
+
+  submitSearch: (e) =>
+    e.preventDefault()
+    searchAddress = @searchInput.val() + ", Cape Town, South Africa"
+    geocoder = new google.maps.Geocoder()
+    geocoder.geocode {'address': searchAddress}, (results, status) =>
+      if (status == google.maps.GeocoderStatus.OK)
+        @searchResultsNav.html ''
+        @addSearchResult(result) for result in results
+        @geocodeResult.first().click()
+        # console.log results
+        # result = results[0]
+        # if result.geometry.location_type != google.maps.GeocoderLocationType.APPROXIMATE
+        #   em = App.Emergency.create {
+        #     'input_address': input_address
+        #     'formatted_address': result.formatted_address
+        #     'lat': result.geometry.location.lat()
+        #     'lng': result.geometry.location.lng()
+        #     'location_type': result.geometry.location_type
+        #     'category' : input_category   
+        #   }
+        #   callbacks.success(em)
+        # else
+        #   callbacks.failed('Invalid address please try again or press ESC to cancel')
+      else
+        console.log(status)
+
+  addSearchResult: (result) ->
+    @searchResultsNav.append JST["dispatch/views/map-search-result-nav"](result)
+    marker = new google.maps.Marker(
+        position: result.geometry.location
+      )
+    marker.setMap(@map)
+    $('[data-type=geocodeResult]', @searchResultsNav).last().data('marker', marker)    
+    @refreshElements()
+
+  clickGeocodeResult: (e) =>
+    el = $(e.srcElement)
+    $('li', @searchResultsNav).removeClass('active')
+    el.parent().addClass('active')
+    @activeMarker = el.data('marker')
+    @map.panTo(@activeMarker.getPosition())
+
+
+
 
 
 class App
