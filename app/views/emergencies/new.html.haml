@@ -1,0 +1,23 @@
+.emergencies-new
+  .section
+    .header
+      .pull-right
+        %a.btn.btn-link{ :href => emergencies_path } Cancel
+      .header-body
+        %h4 New Dispatch
+    .body
+      %form
+        %fieldset.search-field
+          .input-append
+            %input.input-xxlarge{ :type=>'text', :name=>'searchAddress', :placeholder => 'Emergency Location' }
+            %button.btn Search
+          %span.help-block
+            %small For best results type in the suburb (e.g. "Manenberg", or "Lavendar Hill"). If a street number cannot be found, then try inputting a cross street (e.g. "4th St and NYC")
+
+        .mapfield
+          %h5 Results
+          .row-fluid
+            .span8
+              #map-results
+            .span4
+              Addresses will go here

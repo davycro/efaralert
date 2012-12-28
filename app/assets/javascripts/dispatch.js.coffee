@@ -105,6 +105,24 @@ class NewDispatchController
     @inputCategory.prop('selectedIndex', 0)
     @alertBox.hide()
 
+class SearchAddressController
+
+class MapController
+  constructor: ->
+    @setMap()
+
+  setMap:->
+    options = {
+      zoom: 13
+      center: new google.maps.LatLng(-33.9838663, 18.5552215)
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+      streetViewControl: false
+      mapTypeControl: false
+    }
+    el = $('#map-results')[0]
+    @map = new google.maps.Map(el, options)
+
+
 class App
   constructor: (actionName) ->
     @modalController = new NewDispatchController
@@ -112,6 +130,8 @@ class App
       @emergencyIndexController = new IndexController
     if actionName=='show'
       @showController = new ShowController
+    if actionName=='new'
+      @mapController = new MapController
 
     
 
