@@ -3,7 +3,7 @@
 
     .header
       .pull-right
-        %a.btn.btn-primary{'data-type'=>'new-dispatch'}
+        %a.btn.btn-primary{:href=>new_emergency_path}
           New Dispatch
       .header-body
         %h4= "Showing #{pluralize(@emergencies.count, "dispatch")} from the last 24 hours"
