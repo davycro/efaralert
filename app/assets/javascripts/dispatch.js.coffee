@@ -110,6 +110,7 @@ class MapController extends Spine.Controller
   elements:
     '#map-results' : 'mapEl'
     'input[name=searchAddress]' : 'searchInput'
+    'select[name=category]' : 'selectCategory'
     'ul[data-type=searchResults]' : 'searchResultsNav'
     '[data-type=geocodeResult]' : 'geocodeResult'
 
@@ -121,11 +122,13 @@ class MapController extends Spine.Controller
     @el = $('.emergencies-new')
     @markers = []
     super()
+    @selectCategory.focus()
     @setMap()
+
 
   setMap:->
     options = {
-      zoom: 13
+      zoom: 15
       center: new google.maps.LatLng(-33.9838663, 18.5552215)
       mapTypeId: google.maps.MapTypeId.ROADMAP
       streetViewControl: false
@@ -161,17 +164,19 @@ class MapController extends Spine.Controller
         console.log(status)
 
   addSearchResult: (result) ->
+    console.log(result)
     @searchResultsNav.append JST["dispatch/views/map-search-result-nav"](result)
     marker = new google.maps.Marker(
         position: result.geometry.location
       )
     marker.setMap(@map)
     $('[data-type=geocodeResult]', @searchResultsNav).last().data('marker', marker)
-    @markers.push(marker)    
+    @markers.push(marker)
     @refreshElements()
 
   clickGeocodeResult: (e) =>
-    el = $(e.srcElement)
+    console.log(e)
+    el = $(e.currentTarget)
     $('li', @searchResultsNav).removeClass('active')
     el.parent().addClass('active')
     @activeMarker = el.data('marker')
