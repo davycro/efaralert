@@ -6,10 +6,26 @@
       .header-body
         %h4 New Dispatch
     .body
-      %form{'data-type'=>'search'}
+      %form.form-inline{'data-type'=>'search'}
         %fieldset.search-field
-          .input-append
-            %input.input-xxlarge{ :type=>'text', :name=>'searchAddress', :placeholder => 'Emergency Location' }
+          
+          %select{'name' => 'category'}
+            %option{'selected' => true, 'value' => ''} General emergency
+            %option Uncontrolled bleed
+            %option Motor vehicle accident
+            %option Broken bone
+            %option Unconscious person
+            %option Fall from a height
+            %option Seizure
+            %option Burn
+            %option Impaled object
+            %option Shortness of breath
+            %option Abdominal pain
+            %option Confused person
+
+          .input-append.input-prepend
+            %span.add-on @
+            %input.input-xlarge{ :type=>'text', :name=>'searchAddress', :placeholder => 'Emergency Location' }
             %button.btn{ 'data-type'=>'search' } Search
           %span.help-block
             %small For best results type in the suburb (e.g. "Manenberg", or "Lavendar Hill"). If a street number cannot be found, then try inputting a cross street (e.g. "4th St and NYC")
