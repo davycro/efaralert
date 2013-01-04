@@ -23,6 +23,7 @@ class Admin::EfarsController < ApplicationController
 
   def create
     @efar = Efar.new(params[:efar])
+    @efar.geocode
     if @efar.save
       redirect_to admin_efars_path, :notice => "New efar created"
     else
