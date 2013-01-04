@@ -4,6 +4,42 @@
 		"selected_items":
 		[
 			[
+				"searc",
+				"searchResultsNav"
+			],
+			[
+				"search",
+				"searchForm"
+			],
+			[
+				"eme",
+				"emergencies"
+			],
+			[
+				"click",
+				"clickAddressNavItem"
+			],
+			[
+				"add",
+				"addressNavItem"
+			],
+			[
+				"lo",
+				"location"
+			],
+			[
+				"for",
+				"formatted_address"
+			],
+			[
+				"results",
+				"results"
+			],
+			[
+				"setE",
+				"setElements"
+			],
+			[
 				"emer",
 				"emergency"
 			],
@@ -14,10 +50,6 @@
 			[
 				"alert",
 				"alertBox"
-			],
-			[
-				"click",
-				"clickatell_id"
 			],
 			[
 				"mess",
@@ -148,10 +180,6 @@
 				"activate"
 			],
 			[
-				"add",
-				"addClass"
-			],
-			[
 				"re",
 				"refresh"
 			],
@@ -244,10 +272,6 @@
 				"emergencies"
 			],
 			[
-				"eme",
-				"emergency_marker"
-			],
-			[
 				"efar",
 				"efar_markers"
 			],
@@ -258,10 +282,6 @@
 			[
 				"req",
 				"requiredResources"
-			],
-			[
-				"for",
-				"forin	Array Comprehension"
 			],
 			[
 				"Efars",
@@ -412,10 +432,6 @@
 				"record_attribute"
 			],
 			[
-				"lo",
-				"location_summary"
-			],
-			[
 				"admin",
 				"admin_admins_path"
 			],
@@ -471,6 +487,38 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "/Users/david/Sites/efar_dispatch/app/views/emergencies/new.html.haml",
+			"settings":
+			{
+				"buffer_size": 833,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/david/Sites/efar_dispatch/app/assets/stylesheets/dispatch.css.less",
+			"settings":
+			{
+				"buffer_size": 4090,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/david/Sites/efar_dispatch/app/assets/javascripts/dispatch.js.coffee",
+			"settings":
+			{
+				"buffer_size": 5531,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/david/Sites/efar_dispatch/app/assets/javascripts/dispatch/views/map-search-result-nav.jst.eco",
+			"settings":
+			{
+				"buffer_size": 216,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -540,6 +588,7 @@
 	},
 	"file_history":
 	[
+		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/mapper.js.coffee",
 		"/Users/david/Sites/efar_dispatch/notes.txt",
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/live_feed/views/feed-item.jst.eco",
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/live_feed/views/dispatch-feed.jst.eco",
@@ -554,7 +603,6 @@
 		"/Users/david/Sites/efar_dispatch/app/views/layouts/dispatch.html.haml",
 		"/Users/david/Sites/efar_dispatch/app/views/research/emergencies/live.html.haml",
 		"/Users/david/Sites/efar_dispatch/app/controllers/research/emergencies_controller.rb",
-		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/mapper.js.coffee",
 		"/Users/david/Sites/efar_dispatch/config/environments/production.rb",
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/live_feed/models/emergency.js.coffee",
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/mapper/views/map_nav.jst.eco",
@@ -766,13 +814,125 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "/Users/david/Sites/efar_dispatch/app/views/emergencies/new.html.haml",
+					"settings":
+					{
+						"buffer_size": 833,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								830,
+								830
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Haml/Syntaxes/Ruby Haml.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		},
 		{
+			"selected": 1,
 			"sheets":
 			[
+				{
+					"buffer": 1,
+					"file": "/Users/david/Sites/efar_dispatch/app/assets/stylesheets/dispatch.css.less",
+					"settings":
+					{
+						"buffer_size": 4090,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4008,
+								4008
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/LESS/LESS.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1786.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/Users/david/Sites/efar_dispatch/app/assets/javascripts/dispatch.js.coffee",
+					"settings":
+					{
+						"buffer_size": 5531,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3908,
+								3922
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2081.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/Users/david/Sites/efar_dispatch/app/assets/javascripts/dispatch/views/map-search-result-nav.jst.eco",
+					"settings":
+					{
+						"buffer_size": 216,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								34,
+								34
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/eco/Syntaxes/HTML (ECO).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -804,7 +964,7 @@
 		"cols":
 		[
 			0.0,
-			0.611105765708,
+			0.365744645717,
 			1.0
 		],
 		"rows":
@@ -828,6 +988,10 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"mapp",
+				"app/assets/javascripts/mapper.js.coffee"
+			],
 			[
 				"dispatch-me",
 				"app/assets/javascripts/dispatch/views/dispatch-message.jst.eco"
@@ -1103,10 +1267,6 @@
 			[
 				"lib/.coffee",
 				"app/assets/javascripts/mapper/lib/markers.js.coffee"
-			],
-			[
-				"mapp",
-				"app/assets/javascripts/mapper.js.coffee"
 			],
 			[
 				"controllers/.js",

@@ -119,6 +119,7 @@ class MapController extends Spine.Controller
 
   constructor: ->
     @el = $('.emergencies-new')
+    @markers = []
     super()
     @setMap()
 
@@ -130,7 +131,6 @@ class MapController extends Spine.Controller
       streetViewControl: false
       mapTypeControl: false
     }
-    console.log(@mapEl)
     @map = new google.maps.Map(@mapEl[0], options)
 
   submitSearch: (e) =>
@@ -140,6 +140,7 @@ class MapController extends Spine.Controller
     geocoder.geocode {'address': searchAddress}, (results, status) =>
       if (status == google.maps.GeocoderStatus.OK)
         @searchResultsNav.html ''
+        @clearMarkers()
         @addSearchResult(result) for result in results
         @geocodeResult.first().click()
         # console.log results
@@ -165,7 +166,8 @@ class MapController extends Spine.Controller
         position: result.geometry.location
       )
     marker.setMap(@map)
-    $('[data-type=geocodeResult]', @searchResultsNav).last().data('marker', marker)    
+    $('[data-type=geocodeResult]', @searchResultsNav).last().data('marker', marker)
+    @markers.push(marker)    
     @refreshElements()
 
   clickGeocodeResult: (e) =>
@@ -175,6 +177,9 @@ class MapController extends Spine.Controller
     @activeMarker = el.data('marker')
     @map.panTo(@activeMarker.getPosition())
 
+  clearMarkers: =>
+    marker.setMap(null) for marker in @markers
+    @markers = [ ]
 
 
 
