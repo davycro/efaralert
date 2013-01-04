@@ -13,14 +13,18 @@
 class ShowController
   constructor:->
     @dispatchMessages = $('[data-type=dispatch-messages]')
+    @notice = $('.notice', @dispatchMessages)
     @emergencyId = $(@dispatchMessages).data('emergency-id')
     App.DispatchMessage.bind 'refresh', @change
     @doPoll()
 
   change: =>
     messages = App.DispatchMessage.all()
-    @dispatchMessages.html ''
-    @dispatchMessages.append(JST["dispatch/views/dispatch-message"](m)) for m in messages
+    if messages.length == 0
+      @notice.html "No nearby efars"
+    else
+      @dispatchMessages.html ''
+      @dispatchMessages.append(JST["dispatch/views/dispatch-message"](m)) for m in messages
     jQuery(".timeago").timeago();
 
   doPoll: =>
