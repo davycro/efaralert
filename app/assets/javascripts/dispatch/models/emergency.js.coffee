@@ -37,6 +37,22 @@ class App.Emergency extends Spine.Model
     params = { 'data' : { 'for_poll': true } }
     @fetch(params)
 
+  @createFromMarker: (marker, input_address, input_category, callbacks) ->
+    geocoder = new google.maps.Geocoder()
+    geocoder.geocode {'latLng':marker.getPosition()}, (results, status) =>
+      if (status == google.maps.GeocoderStatus.OK)
+        result = results[0]
+        em = App.Emergency.create {
+          'input_address': input_address
+          'category': input_category
+          'formatted_address': result.formatted_address
+          'lat': result.geometry.location.lat()
+          'lng': result.geometry.location.lng()
+          'location_type': result.geometry.location_type
+        }, callbacks
+        console.log(callbacks)      
+
+
 
   constructor: ->
     super

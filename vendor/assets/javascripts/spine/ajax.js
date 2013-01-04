@@ -206,6 +206,7 @@
     };
 
     Singleton.prototype.recordResponse = function(options) {
+      console.log(options);
       var _this = this;
       if (options == null) {
         options = {};

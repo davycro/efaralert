@@ -114,10 +114,12 @@ class MapController extends Spine.Controller
     'ul[data-type=searchResults]' : 'searchResultsNav'
     '[data-type=geocodeResult]' : 'geocodeResult'
     'button[data-type=submitDispatch]' : 'submitDispatchButton'
+    '#submitDispatchModal' : 'submitDispatchModal'
 
   events:
     'click [data-type=geocodeResult]' : 'clickGeocodeResult'
     'submit form[data-type=search]' : 'submitSearch'
+    'click [data-type=submitDispatch]' : 'submitDispatch'
 
   constructor: ->
     @el = $('.emergencies-new')
@@ -147,20 +149,6 @@ class MapController extends Spine.Controller
         @clearMarkers()
         @addSearchResult(result) for result in results
         @geocodeResult.first().click()
-        # console.log results
-        # result = results[0]
-        # if result.geometry.location_type != google.maps.GeocoderLocationType.APPROXIMATE
-        #   em = App.Emergency.create {
-        #     'input_address': input_address
-        #     'formatted_address': result.formatted_address
-        #     'lat': result.geometry.location.lat()
-        #     'lng': result.geometry.location.lng()
-        #     'location_type': result.geometry.location_type
-        #     'category' : input_category   
-        #   }
-        #   callbacks.success(em)
-        # else
-        #   callbacks.failed('Invalid address please try again or press ESC to cancel')
       else
         console.log(status)
 
@@ -193,6 +181,20 @@ class MapController extends Spine.Controller
     @submitDispatchButton.removeClass 'disabled'
   disableSubmitDispatchButton: =>
     @submitDispatchButton.addClass 'disabled'
+
+  submitDispatch: =>
+    @submitDispatchModal.modal({keyboard: false})
+    input_address = @searchInput.val()
+    input_category = @selectCategory.val()
+    App.Emergency.createFromMarker(@activeMarker, input_address, input_category, {success: @dispatchCreated, fail: @dispatchFailed})
+
+  dispatchCreated: ->
+    # scope is a spine js model instance
+    window.location = "/emergencies/#{@id}"
+
+  dispatchFailed: ->
+    console.log('failed to create dispatch')
+
 
 
 
