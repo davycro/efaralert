@@ -113,6 +113,7 @@ class MapController extends Spine.Controller
     'select[name=category]' : 'selectCategory'
     'ul[data-type=searchResults]' : 'searchResultsNav'
     '[data-type=geocodeResult]' : 'geocodeResult'
+    'button[data-type=submitDispatch]' : 'submitDispatchButton'
 
   events:
     'click [data-type=geocodeResult]' : 'clickGeocodeResult'
@@ -175,16 +176,23 @@ class MapController extends Spine.Controller
     @refreshElements()
 
   clickGeocodeResult: (e) =>
-    console.log(e)
     el = $(e.currentTarget)
     $('li', @searchResultsNav).removeClass('active')
     el.parent().addClass('active')
     @activeMarker = el.data('marker')
     @map.panTo(@activeMarker.getPosition())
+    @enableSubmitDispatchButton()
+    @submitDispatchButton.focus()
 
   clearMarkers: =>
+    @disableSubmitDispatchButton()
     marker.setMap(null) for marker in @markers
     @markers = [ ]
+
+  enableSubmitDispatchButton: =>
+    @submitDispatchButton.removeClass 'disabled'
+  disableSubmitDispatchButton: =>
+    @submitDispatchButton.addClass 'disabled'
 
 
 
