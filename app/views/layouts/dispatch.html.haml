@@ -34,34 +34,6 @@
       .span12
         = yield
 
-  #newDispatchModal.modal.hide.fade{ 'tabindex' => '-1', 'role' => 'dialog', 'aria-labelledby' => 'newDispatchFormHeader', 'aria-hidden' => 'true'}
-    %form
-      .modal-header
-        %button{'type' => 'button', 'class' => 'close', 'data-dismiss' => 'modal', 'aria-hidden' => 'true'}
-          &times;
-        %h3#newDispatchFormHeader
-          Dispatch EFAR's to:
-        .modal-body
-          .alert.alert-error.hide
-          %input.input-block-level{'type'=>'text', 'name'=>'address', 'placeholder'=>'Full Address'}
-          %label Emergency category (optional):
-          %select{'name' => 'category'}
-            %option{'selected' => true}
-            %option Bleeding, uncontrolled
-            %option Motor vehicle accident
-            %option Broken bone
-            %option Unconscious person
-            %option Fall from a height
-            %option Seizure
-            %option Burn
-            %option Impaled object
-            %option Shortness of breath
-            %option Abdominal pain
-            %option Confused person
-        .modal-footer
-          %button.btn.btn-primary Send dispatch
-          %button.btn.btn-link{'data-dismiss'=>'modal', 'aria-hidden'=>'true'} Cancel
-
 :javascript
   jQuery(function(){
     new App("#{controller.action_name}");

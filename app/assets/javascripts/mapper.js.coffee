@@ -5,7 +5,6 @@
 #= require spine/ajax
 #= require spine/manager
 #= require spine/route
-#= require_tree ./lib
 #= require_self
 #= require_tree ./mapper/models
 #= require_tree ./mapper/controllers
