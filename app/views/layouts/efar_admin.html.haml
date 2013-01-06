@@ -2,9 +2,9 @@
 %html
   %head
     %title EFAR Dispatcher
-    = stylesheet_link_tag "application", :media => "all"
+    = stylesheet_link_tag "admin", :media => "all"
     = yield :js
-    = javascript_include_tag "application"
+    = javascript_include_tag "admin"
     = csrf_meta_tags
     = render :partial => 'layouts/ga'
   %body             
