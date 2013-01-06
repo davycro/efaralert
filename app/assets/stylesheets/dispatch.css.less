@@ -1,73 +1,26 @@
-//
-// Twitter Bootstrap Custom Import
-// --------------------------------------------------
-
-// CSS Reset
-@import "twitter_bootstrap/reset";
-
-// Core variables and mixins
-@import "twitter_bootstrap/variables"; // Modify this for custom colors, font-sizes, etc
-@navbarInverseBackgroundHighlight: #313837;
-@navbarBackground: #1F2423;
-@import "twitter_bootstrap/mixins";
-
-// Grid system and page structure
-@import "twitter_bootstrap/scaffolding";
-@import "twitter_bootstrap/grid";
-@import "twitter_bootstrap/layouts";
-
-// Base CSS
-@import "twitter_bootstrap/type";
-@import "twitter_bootstrap/code";
-@import "twitter_bootstrap/forms";
-@import "twitter_bootstrap/tables";
-
-// Components: common
-@import "twitter_bootstrap/sprites";
-@iconSpritePath: '/assets/glyphicons-halflings.png';
-@iconWhiteSpritePath: '/assets/glyphicons-halflings-white.png';
-
-@import "twitter_bootstrap/dropdowns";
-@import "twitter_bootstrap/wells";
-@import "twitter_bootstrap/component-animations";
-@import "twitter_bootstrap/close";
-
-// Components: Buttons & Alerts
-@import "twitter_bootstrap/buttons";
-@import "twitter_bootstrap/button-groups";
-@import "twitter_bootstrap/alerts"; // Note: alerts share common CSS with buttons and thus have styles in buttons
-
-// Components: Nav
-@import "twitter_bootstrap/navs";
-@import "twitter_bootstrap/navbar";
-@import "twitter_bootstrap/breadcrumbs";
-// @import "twitter_bootstrap/pagination";
-// @import "twitter_bootstrap/pager";
-
-// Components: Popovers
-@import "twitter_bootstrap/modals";
-// @import "twitter_bootstrap/tooltip";
-// @import "twitter_bootstrap/popovers";
-
-// Components: Misc
-// @import "twitter_bootstrap/thumbnails";
-@import "twitter_bootstrap/labels-badges";
-// @import "twitter_bootstrap/progress-bars";
-// @import "twitter_bootstrap/accordion";
-// @import "twitter_bootstrap/carousel";
-// @import "twitter_bootstrap/hero-unit";
-
-// Utility classes
-@import "twitter_bootstrap/utilities"; // Has to be last to override when necessary
+@import "bootstrap_and_overrides";
 
 //
-// Layout classes
+// Variables
 // --------------------------------------------------
 
-@import "dispatch/scaffolding";
-@import "shared/accounts";
-
+// Padding given to left and right margins of section boxes
 @horizontalPadding: @baseLineHeight;
+
+//
+// Scaffolding and layout styles
+// --------------------------------------------------
+
+body {
+  padding-top: @navbarHeight + @baseLineHeight;
+  background: #E5E5E7;
+}
+
+//
+// Shared components
+// --------------------------------------------------
+
+// Section box component
 .section {
   background-color: white;
   margin-bottom: @baseLineHeight;
@@ -102,20 +55,27 @@
 .section > .header > .pull-right > .time {
   margin: @baseLineHeight/2 0;
 }
+
 .time {
   color: @grayLight;
   font-size: 12px;
 }
 
-.item-emergency {
-  padding: @baseLineHeight/2 @horizontalPadding 0;
-  border-bottom: 1px solid @grayLighter;
-}
-.item-emergency:last-child {
-  border-bottom: none;
-}
-.emergency-status-data > li {
-  display: none;
+//
+// View specific
+// --------------------------------------------------
+
+.emergencies-index {
+  .item-emergency {
+    padding: @baseLineHeight/2 @horizontalPadding 0;
+    border-bottom: 1px solid @grayLighter;
+  }
+  .item-emergency:last-child {
+    border-bottom: none;
+  }
+  .emergency-status-data > li {
+    display: none;
+  }
 }
 
 .emergencies-show {
@@ -150,6 +110,9 @@
   }
 }
 
+.section.account {
+  margin-top: @baseLineHeight;
+}
 .account-editor .section-body {
   padding-top: @baseLineHeight;
 }
@@ -158,11 +121,7 @@
   margin-bottom: 0px;
 }
 
-//
-// Emergencies New
-
 .emergencies-new {
-
   form {
   }
   .search-field {
@@ -175,11 +134,10 @@
     cursor:pointer;
   }
 }
-
 #map-results {
   width: 100%;
   height: 300px;
-  background: red;
+  background: @gray;
 }
 
 
