@@ -1,139 +1,140 @@
-//
-// Twitter Bootstrap Custom Import
-// --------------------------------------------------
-
-// Reset
-@import "twitter_bootstrap/reset";
-
-// Core variables and mixins
-@import "twitter_bootstrap/variables";
-@import "twitter_bootstrap/mixins";
-
-// Grid system and page structure
-@import "twitter_bootstrap/scaffolding";
-@import "twitter_bootstrap/grid";
-@import "twitter_bootstrap/layouts";
-
-// Base CSS
-@import "twitter_bootstrap/type";
-@import "twitter_bootstrap/code";
-@import "twitter_bootstrap/forms";
-@import "twitter_bootstrap/tables";
-
-// Components: Sprites
-@import "twitter_bootstrap/sprites";
-@iconSpritePath: '/assets/glyphicons-halflings.png';
-@iconWhiteSpritePath: '/assets/glyphicons-halflings-white.png';
-
-// Components: Common
-@import "twitter_bootstrap/dropdowns";
-@import "twitter_bootstrap/component-animations";
-@import "twitter_bootstrap/close";
-@import "twitter_bootstrap/wells";
-
-// Components: Buttons & Alerts
-@import "twitter_bootstrap/buttons";
-@import "twitter_bootstrap/button-groups";
-@import "twitter_bootstrap/alerts"; // Note: alerts share common CSS with buttons and thus have styles in buttons.less
-
-// Components: Nav
-@import "twitter_bootstrap/navs";
-@import "twitter_bootstrap/navbar";
-
-// Components: Misc
-@import "twitter_bootstrap/labels-badges";
-
-// Utility classes
-@import "twitter_bootstrap/utilities"; // Has to be last to override when necessary
-
-
-//
-// Layout classes
-// --------------------------------------------------
-
-@import "research/scaffolding";
-@import "research/map";
+@import "bootstrap_and_overrides";
 @import "shared/section-box";
-@import "shared/accounts";
-@import "research/emergencies";
 
-.emergencies-live-feed {
-  padding-top: @baseLineHeight;
+//
+// Scaffolding and layout
+// --------------------------------------------------
+
+body {
+  padding-top: @navbarHeight;
+  background: #E5E5E7;
+}
+.research-content {
+  margin-top: @baseLineHeight;
 }
 
-.emergency-feed-item {
-  background: white;
-  margin-bottom: @baseLineHeight;
-  padding-left: @baseLineHeight;
-  padding-top: @baseLineHeight;
-  padding-bottom: 0px;
+//
+// Mapping
+// --------------------------------------------------
 
-  .state-header {
-    margin-bottom: @baseLineHeight;  
-  }
-  .location-header {
-    padding: 0 @baseLineHeight;
-    .time { 
-      float: right;
-      position: relative;
-    }
-    .location {
-      font-size: 20px;
-      font-weight: bold;
-    }
-    margin-bottom: @baseLineHeight;  
-  }
+//
+// variables
+@topbarHeight: 40px;
+
+#map {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: @navbarHeight+@topbarHeight;
+  left: 0;
+  float: left;
+  z-index: -1;
 }
 
-.time, .datetime {
+//
+// Map legend
+
+@iconHeight: 30px;
+
+.map-legend {
+  position: absolute;
+  top: @navbarHeight + @baseLineHeight*4;
+  right: 20px; 
+  width: 160px;
+  z-index: 1;
+}
+.stack > *:not(.active) {
+  display: none
+} 
+
+.nav-map-legend {
+  background: #FFFFFF;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-bottom: 0px;
+  padding-bottom: 5px;
+  border: 1px solid rgb(50,50,50);
+  border: 1px solid rgba(50,50,50,0.35);
+  .background-clip(padding-box);
+  .border-radius(4px);
+  .box-shadow(0px 2px 4px 0px rgba(30,30,30,0.4));
+}
+.nav-map-legend > li > a,
+.nav-map-legend .nav-header {
+  margin-left:  -15px;
+  margin-right: -15px;
+  text-shadow: 0 1px 0 rgba(255,255,255,.5);
+}
+.nav-map-legend > li > a {
+  padding: 3px 15px;
+  font-size: 11px;
+  // height: @iconHeight;
+  line-height: 12px;
   color: @grayLight;
+  text-shadow: none;
+}
+.nav-map-legend > li > a > span {
+  line-height: @iconHeight;
+}
+.nav-map-legend > .active > a,
+.nav-map-legend > .active > a:hover {
+  color: @grayDark;
+  text-shadow: 0 1px 0 rgba(255,255,255,.5);
+  background-color: none;
+}
+.nav-map-legend > li > a:hover {
+  background-color: @grayLighter;
 }
 
-.dot {
-  color: @grayLight;
-  padding-left: 2px;
-  padding-right: 2px;
-}
-
-.feed-item-summary {
-  border-top: 1px solid @grayLighter;
-  border-bottom: 1px solid @grayLighter;
-  margin-bottom: @baseLineHeight;
-  .number-box {
-    padding-top: @baseLineHeight/2;
-    padding-bottom: @baseLineHeight/2;
-    border-right: 1px solid @grayLighter;
-  }
-  .number-box:last-child {
-    border-right: none;
-  }
-  .number {
-    font-size: 16px;
-    font-weight: bold;
-  }
-  .number-label {
-    color: @grayLight;
-    font-size: 9px;
-    text-transform: uppercase;
+//
+// Topbar
+.topbar {
+  background-color: #f6f6f6;
+  border-bottom: 1px solid #ccc;
+  #gradient > .vertical(#fafafa, #f2f2f2);
+  .background-clip(padding-box);
+  padding: 0 15px 0;
+  .clearfix();
+  height: @topbarHeight;
+  .nav {
+    float: right;
+    margin-bottom: 0;
+    margin-top: 3px;
   }
 }
 
-.feed-item-details {
-  padding-bottom: @baseLineHeight;
-  color: @grayLight;
-  font-size: 12px;
-}
-
-.feed-item-efar {
-  border-top: 1px solid @grayLighter;
-  padding: @baseLineHeight/2 0;
-  .status {
-  }
-  .time { 
+//
+// Emergencies
+.emergencies {
+  width: 160px;
+  background: #F5F5F5;
+  height: 100%;
+  position: fixed;
+  right: 0;
+  .nav > li > a {
     font-size: 11px;
-    padding-right: @baseLineHeight;
+    line-height: 12px;
   }
 }
 
+//
+// Bootstrap override
+#map img { 
+  max-width: none;
+}
+
+#map label { 
+  width: auto; display:inline; 
+}
+
+// map legend comes after override
+.nav-map-legend > li > img {
+  display: block;
+  height: @iconHeight;
+  .ie7-restore-right-whitespace();
+  background-repeat: no-repeat;
+  float: left;
+  margin-right: 5px;  
+}
 
 

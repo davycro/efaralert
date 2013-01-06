@@ -1,2 +1,0 @@
-module Research::AccountsHelper
-end

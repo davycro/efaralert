@@ -1,6 +1,8 @@
-TODO:
+Bug list:
+
+  [ ] dropdowns not working
+  [ ] deploy flow not working
   
-  [ ] Confirmation step, suggest other addresses
 
 Dispatch
 

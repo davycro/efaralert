@@ -4,7 +4,7 @@
     %title EFAR RESEARCH
     = stylesheet_link_tag 'research', :media => 'all'
     = yield :js
-    = javascript_include_tag 'dispatch_feed'
+    = javascript_include_tag 'mapper'
     = render :partial => 'layouts/ga'
     = csrf_meta_tags
   %body
@@ -13,9 +13,6 @@
       .navbar-inner
         .container-fluid
           %a.brand{ :href=>research_map_path } EFAR Research
-          %ul.nav
-            %li{:class => controller.controller_name=="emergencies" && "active"}
-              %a{:href => live_research_emergencies_path } Dispatch Feed
           %ul.nav
             %li{:class=> controller.controller_name=="maps" && "active"}
               %a{ :href => research_map_path } Maps

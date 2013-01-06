@@ -11,15 +11,8 @@ EfarDispatch::Application.routes.draw do
     resource :map
     resource :account
     resource :session
-    resources :emergencies do
-      collection do
-        get 'live'
-        # static page used to design the live feed layout
-        get 'live_static'
-      end
-    end
   end
-  match 'research/' => 'research/emergencies#live'
+  match 'research/' => 'research/maps#show'
 
   namespace :admin do
     resources :admins
