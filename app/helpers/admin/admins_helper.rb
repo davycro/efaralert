@@ -5,6 +5,7 @@ module Admin::AdminsHelper
     locals[:record_attribute] = record_attribute
     locals[:label] ||= record_attribute.to_s.titleize
     locals[:placeholder] ||= ""
+    locals[:help_text]  ||= ""
 
     render :partial => "admin/shared/horizontal_text_field", 
       :locals => locals

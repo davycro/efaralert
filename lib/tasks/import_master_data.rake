@@ -25,7 +25,6 @@ end
 
 desc 'import lavender hill efars'
 task :import_lavender_hill_efars => :environment do
-  DEBUG = true
   puts "creating Lavender Hill Community Center"
   community_center = CommunityCenter.where(:name => "Mother's Unite", :suburb => "Lavender Hill").first_or_create do |c|
     c.street = "38 Gladiola Road, Hillview"
@@ -38,7 +37,7 @@ task :import_lavender_hill_efars => :environment do
   require 'roo'
   require 'iconv'
 
-  ss = Excel.new(Rails.root.join('lib/LH_EFAR_DATA.xls').to_s)
+  ss = Excel.new(Rails.root.join('lib/LH_Register.xls').to_s)
   ss.default_sheet = ss.sheets.first
 
   start_line = 3
@@ -54,7 +53,7 @@ task :import_lavender_hill_efars => :environment do
     #
     # Data Extraction
     surname = ss.cell(line, 'A')
-    first_names = ss.cell(line, 'B')
+    first_name = ss.cell(line, 'B')
     street = ss.cell(line, 'C')
     # have to parse community and postal code
     # e.g. turn "manenberg 7764 into two strings"
@@ -98,8 +97,7 @@ end
 
 
 desc 'import manenberg efars'
-task :import_manenberg_efars => :environment do
-  raise "shit"
+task :import_manenberg_efars_candidates => :environment do
   DEBUG = false
 
   puts "creating manenberg community center"
@@ -111,19 +109,19 @@ task :import_manenberg_efars => :environment do
     c.country = "South Africa"
   end
 
-  Efar.delete_all
+  CandidateEfar.delete_all
   
   require 'roo'
   require 'iconv'
   
-  ss = Excel.new(Rails.root.join('lib/EFAR_Master_Data.xls').to_s)
+  ss = Excel.new(Rails.root.join('lib/Manenberg_EFAR_Master_Register.xls').to_s)
   ss.default_sheet = ss.sheets.first
   
   start_line = 3
   if DEBUG
-    stop_line = 5
+    stop_line = 30
   else
-    stop_line = 1245
+    stop_line = 1692
   end
   num_saved = 0
   num_rejected = 0
@@ -136,23 +134,18 @@ task :import_manenberg_efars => :environment do
       break
     end
     
-    efar = Efar.new
+    efar = CandidateEfar.new
     
-    efar.surname = ss.cell(line, 'A')
-    efar.first_names = ss.cell(line, 'B')
-    efar.street = ss.cell(line, 'C')
+    surname = ss.cell(line, 'A')
+    first_name = ss.cell(line, 'B')
+    efar.full_name = "#{first_name} #{surname}"
 
-    # have to parse community and postal code
-    # e.g. turn "manenberg 7764 into two strings"
-    comm = ss.cell(line, 'D')
-    if (comm.present? and comm.is_a?(String))
-      efar.postal_code = comm[/\d{4}$/]
-      efar.suburb = comm.scan(/\D+/).collect { |w| w.strip }.join(" ")
+    street = ss.cell(line, 'C')
+    suburb = ss.cell(line, 'D')
+    if street.present?
+      efar.full_address = [street, suburb, "Cape Town", "South Africa"].compact.join(", ")
     end
-    efar.province = "Western Cape"
-    efar.city = "Cape Town"
-    efar.country = "South Africa"
-
+    
     # process phone number
     pn = ss.cell(line, 'E')
     if pn.present?
@@ -160,7 +153,7 @@ task :import_manenberg_efars => :environment do
     end
 
     # community center
-    efar.community_center = community_center
+    efar.community_center_id = community_center.id
 
     # check if efar passed the course
     score = ( ss.cell(line, 'Y') || 0.0 ).to_f
@@ -168,28 +161,14 @@ task :import_manenberg_efars => :environment do
       score = score / 10.0
     end
     efar.training_score = score
-    efar.training_location = ss.cell(line, 'U')
-    efar.training_instructor = ss.cell(line, 'V')
-    efar.training_date = ss.cell(line, 'T')
-
-    # personal attributes
-    efar.birthday = ss.cell(line, 'G')
-    efar.profile = ss.cell(line, 'H')
-    efar.first_language = ss.cell(line, 'K')    
-
-    efar.save
-
-    if efar.valid?
-      num_saved += 1
-    else
-      num_rejected += 1
-    end
-
-    if DEBUG
-      puts efar.to_yaml
+     
+    if score>0.8
+      if efar.save
+        $stdout.printf("%-3s %-50s %-20s %-5s\n", '', efar.full_name, efar.contact_number, efar.training_score)
+      end
     end
   end
   
-  puts "done. #{num_saved} efars saved, #{num_rejected} rejected"
+  puts "done."
   
 end

@@ -35,6 +35,16 @@ getvetter.com
 
 
 
+# have to parse community and postal code
+# e.g. turn "manenberg 7764 into two strings"
+comm = ss.cell(line, 'D')
+if (comm.present? and comm.is_a?(String))
+  efar.postal_code = comm[/\d{4}$/]
+  efar.suburb = comm.scan(/\D+/).collect { |w| w.strip }.join(" ")
+end
+
+
+
 
 
 

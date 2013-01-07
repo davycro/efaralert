@@ -21,7 +21,6 @@
 #  updated_at          :datetime         not null
 #
 
-# The efar table has loose requriements
 # The efar table represents all efars willing to provide a mobile phone number
 class Efar < ActiveRecord::Base
 

@@ -4,3 +4,5 @@
     %input{:type=>"text", :name=>"#{record.class.to_s.underscore}[#{record_attribute}]", :value=>record[record_attribute.to_sym], :placeholder=>"#{placeholder}"}
     - if record.errors[record_attribute.to_sym].present?
       %span.help-inline= record.errors[record_attribute.to_sym].first
+    - if help_text.present?
+      %span.help-block= help_text
