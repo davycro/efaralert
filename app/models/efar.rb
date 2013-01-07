@@ -4,9 +4,9 @@
 #
 #  id                  :integer          not null, primary key
 #  surname             :string(255)      not null
-#  first_names         :string(255)      default("Anon")
+#  first_name          :string(255)      not null
 #  community_center_id :integer          not null
-#  contact_number      :string(255)
+#  contact_number      :string(255)      not null
 #  street              :string(255)      not null
 #  suburb              :string(255)
 #  postal_code         :string(255)
@@ -16,23 +16,17 @@
 #  lat                 :float
 #  lng                 :float
 #  location_type       :string(255)
-#  formatted_address   :string(255)
 #  first_language      :string(255)
-#  birthday            :date
-#  profile             :string(255)
-#  training_date       :date
-#  training_score      :float
-#  training_location   :string(255)
-#  training_instructor :string(255)
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #
 
 # The efar table has loose requriements
+# The efar table represents all efars willing to provide a mobile phone number
 class Efar < ActiveRecord::Base
 
   # Individual Attributes
-  attr_accessible :first_names, :surname, :contact_number, :community_center_id
+  attr_accessible :first_name, :surname, :contact_number, :community_center_id
 
   # Location Attributes
   attr_accessible :street, :suburb, :postal_code, :city, :province, :country
@@ -41,16 +35,12 @@ class Efar < ActiveRecord::Base
   attr_accessible :lat, :lng, :location_type, :formatted_address
 
   # Personal Attributes
-  attr_accessible :first_language, :birthday, :profile
-
-  # Training Attributes
-  attr_accessible :training_date, :training_location, :training_score,
-    :training_instructor  
+  attr_accessible :first_language
 
   PER_PAGE = 50
 
-  validates :surname, :street, :city, :country, :community_center_id,
-    :presence => true
+  validates :surname, :street, :city, :country, :community_center_id, 
+    :contact_number, :presence => true
 
   belongs_to :community_center
   has_many :dispatch_messages
@@ -61,10 +51,6 @@ class Efar < ActiveRecord::Base
     where("location_type not in (?) and location_type is not null", 
       %w{sublocality postal_code administrative_area_level_1 locality})
 
-  scope :certified, where("training_score >= 0.8")
-
-  scope :owns_mobile_phone, where("contact_number IS NOT NULL")
-
   def self.all_for_page(page)  
     page ||= 0
     per_page = PER_PAGE
@@ -73,7 +59,7 @@ class Efar < ActiveRecord::Base
   end
 
   def full_name
-    "#{self.first_names} #{self.surname}"
+    "#{self.first_name} #{self.surname}"
   end
 
   geocoded_by :geocode_search_address,
@@ -82,7 +68,6 @@ class Efar < ActiveRecord::Base
       obj.lat               = geo.latitude
       obj.lng               = geo.longitude
       obj.location_type     = geo.types.first
-      obj.formatted_address = geo.formatted_address
     end
   end 
 
@@ -101,7 +86,16 @@ class Efar < ActiveRecord::Base
   end
 
   def as_json(options = {})
-    super(:methods => [:formatted_address, :lat, :lng, :full_name])
+    super(:methods => [:lat, :lng, :full_name])
+  end
+
+  def set_defaults
+    if self.new_record?
+      self.city           = "Cape Town"
+      self.province       = "Western Cape"
+      self.country        = "South Africa"
+      self.first_language = "English"
+    end
   end
 
 end

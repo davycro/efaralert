@@ -1,6 +1,6 @@
 = form_for([:admin, @efar], :html => {:class => 'form-horizontal'}) do |f|
   
-  = horizontal_text_field(@efar, :first_names)
+  = horizontal_text_field(@efar, :first_name)
   = horizontal_text_field(@efar, :surname)
   = horizontal_text_field(@efar, :contact_number)
   = horizontal_text_field(@efar, :street)
@@ -9,7 +9,7 @@
   = horizontal_text_field(@efar, :city)
   = horizontal_text_field(@efar, :province)
   = horizontal_text_field(@efar, :country)
-  = horizontal_text_field(@efar, :training_score)
+  = horizontal_text_field(@efar, :first_language)
 
   .control-group
     %label.control-label Community Center

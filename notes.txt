@@ -1,7 +1,5 @@
-Bug list:
-
-  [ ] dropdowns not working
-  [ ] deploy flow not working
+Add mobile efars through the web interface
+populate database of efar candidates
   
 
 Dispatch

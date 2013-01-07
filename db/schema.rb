@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121218093900) do
+ActiveRecord::Schema.define(:version => 20130107094539) do
 
   create_table "admins", :force => true do |t|
     t.string   "full_name",       :null => false
@@ -62,29 +62,22 @@ ActiveRecord::Schema.define(:version => 20121218093900) do
   add_index "dispatchers", ["username"], :name => "index_dispatchers_on_username", :unique => true
 
   create_table "efars", :force => true do |t|
-    t.string   "surname",                                 :null => false
-    t.string   "first_names",         :default => "Anon"
-    t.integer  "community_center_id",                     :null => false
-    t.string   "contact_number"
-    t.string   "street",                                  :null => false
+    t.string   "surname",             :null => false
+    t.string   "first_name",          :null => false
+    t.integer  "community_center_id", :null => false
+    t.string   "contact_number",      :null => false
+    t.string   "street",              :null => false
     t.string   "suburb"
     t.string   "postal_code"
-    t.string   "city",                                    :null => false
+    t.string   "city",                :null => false
     t.string   "province"
-    t.string   "country",                                 :null => false
+    t.string   "country",             :null => false
     t.float    "lat"
     t.float    "lng"
     t.string   "location_type"
-    t.string   "formatted_address"
     t.string   "first_language"
-    t.date     "birthday"
-    t.string   "profile"
-    t.date     "training_date"
-    t.float    "training_score"
-    t.string   "training_location"
-    t.string   "training_instructor"
-    t.datetime "created_at",                              :null => false
-    t.datetime "updated_at",                              :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
   end
 
   create_table "emergencies", :force => true do |t|

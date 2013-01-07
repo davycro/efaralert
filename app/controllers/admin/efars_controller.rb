@@ -15,6 +15,7 @@ class Admin::EfarsController < ApplicationController
 
   def new
     @efar = Efar.new
+    @efar.set_defaults
   end
 
   def show
@@ -33,6 +34,7 @@ class Admin::EfarsController < ApplicationController
 
   def update
     @efar = Efar.find(params[:id])
+    @efar.geocode
     if @efar.update_attributes(params[:efar])
       redirect_to admin_efars_path, :notice => "Changes saved"
     else
