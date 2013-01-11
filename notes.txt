@@ -44,6 +44,22 @@ if (comm.present? and comm.is_a?(String))
 end
 
 
+[] remove first step from the flow
+
+
+Meeting with Gerry
+
+- sent message needs a NO options instead of "ignore"
+- head efar *ALWAYS* included in dispatches for their neighborhood
+- send to multiple efars
+
+- send message to head efars, including list of notified efars
+- move people to safe area where they can link with ambulances
+- counsler
+- radios
+- engage mtn and *vodacom*
+- Add landmarks or directions in message  
+
 
 
 

@@ -16,3 +16,5 @@
 
 /mysql_dumps_for_development_environment
 /config/environments/config_variables.rb
+
+/lib/efar_dispatch.sublime-workspace
