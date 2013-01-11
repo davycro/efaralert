@@ -35,12 +35,12 @@ class DispatchMessage < ActiveRecord::Base
   end
 
   STATE_MESSAGES = {
-    'queued'   => 'Queued',
-    'sending'  => 'Sending',
-    'sent'     => 'Sent',
-    'en_route' => 'En Route',
-    'on_scene' => 'On Scene',
-    'failed'   => 'Failed'
+    'queued'     => 'Queued',
+    'sending'    => 'Sending',
+    'sent'       => 'Sent',
+    'responding' => 'Responding',
+    'declined'   => 'Declined',
+    'failed'     => 'Failed'
   }
 
   validates :state, :inclusion => { :in => STATE_MESSAGES.keys }
@@ -55,26 +55,28 @@ class DispatchMessage < ActiveRecord::Base
   end
 
   def process_response(text)
+    text = text.downcase
     if text.downcase=='help'
-      self.send_help_message
+      self.send_help_message_to_efar_and_head_efar
       return true
     end
     if self.state=='sent'
-      self.state='en_route'
-      self.save
-      self.send_en_route_message
-      return true
-    end
-    if self.state=='en_route'
-      self.state='on_scene'
-      self.save
-      self.send_on_scene_message
+      if text=='yes' or text=='y' or text=='ye'
+        self.state='responding'
+        self.save
+        self.send_responding_message_to_efar_and_head_efar
+      end
+      if text=='no' or text=='n'
+        self.state='declined'
+        self.save
+        self.send_declined_message_to_efar_and_head_efar
+      end
       return true
     end
     return false
   end
 
-  def send_help_message
+  def send_help_message_to_efar_and_head_efar
     Rails.logger.info "Sending Help Message"
 
     message = %/
@@ -87,35 +89,37 @@ class DispatchMessage < ActiveRecord::Base
       #{emergency.address_formatted_for_text_message}! Please call them at 
       #{self.efar.contact_number}
     /.squish
-    SMS_API.send_message(self.efar.head_efar.contact_number, 
-      message_for_head_efar)
+    self.efar.head_efars.each do |head_efar|
+      SMS_API.send_message(head_efar.contact_number, 
+        message_for_head_efar)
+    end
   end
 
-  def send_on_scene_message
-    Rails.logger.info "Sending ON SCENE Message"
+  def send_responding_message_to_efar_and_head_efar
+    Rails.logger.info "Sending RESPONDING Message"
 
     message = %/
       Thank you for responding. Reply HELP if you need assistance
     /.squish
     self.send_message_to_efar(message)
+
+    message_for_head_efar = %/
+      #{efar.full_name} responding to emergency at #{emergency.address_formatted_for_text_message}. Their contact number is: #{efar.contact_number}
+    /.squish
+    self.efar.head_efars.each do |head_efar|
+      SMS_API.send_message(head_efar.contact_number, message_for_head_efar)
+    end
   end
 
-  def send_en_route_message
-    Rails.logger.info "Sending EN ROUTE Message"
-
-    message = %/
-      Thank you! Reply YES when you arrive at the emergency. Reply HELP if you 
-      need assistance.
-    /.squish
-    self.send_message_to_efar(message)
+  def send_declined_message_to_efar_and_head_efar
+    # nil, this is a todo item
   end
 
   def deliver!
     message = %/
       EFAR #{efar.full_name}, your help is needed! 
       #{emergency.category_formatted_for_nil} at  
-      #{emergency.address_formatted_for_text_message}. Will you rescue? 
-      Reply YES or ignore 
+      #{emergency.address_formatted_for_text_message}. Will you rescue? Reply YES when you arrive at the accident, or reply NO if you cannot help.
       /.squish
     resp = self.send_message_to_efar(message)
 

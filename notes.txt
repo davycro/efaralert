@@ -44,8 +44,21 @@ if (comm.present? and comm.is_a?(String))
 end
 
 
-[] remove first step from the flow
+[x] remove first step from the flow
+[ ] include all head efars in a dispatch
+[ ] add landmarks to dispatch
+[ ] geolocate community centers on save, or update
 
+Tests:
+- test multiple head efars works
+- test that all text response categories work (eg Yes, or Y)
+- test that new labels work
+- test send_help_message_to_efar_and_head_efar
+- test response processing
+- test dispatch efars
+- test dispatch head efars method (both in emergency model)
+- test send_responding_message_to_efar_and_head_efar
+- test num_sent, num_responding, num_failed, etc
 
 Meeting with Gerry
 

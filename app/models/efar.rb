@@ -80,8 +80,8 @@ class Efar < ActiveRecord::Base
     "#{self.contact_number}"
   end
 
-  def head_efar
-    @head_efar ||= self.community_center.head_efar
+  def head_efars
+    @head_efars ||= self.community_center.head_efars
   end
 
   def as_json(options = {})

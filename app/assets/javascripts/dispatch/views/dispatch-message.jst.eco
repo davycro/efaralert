@@ -5,10 +5,10 @@
         <span class='label'>Queued</span>
       <% else if @state=='sent': %>
         <span class='label label-warning'>Sent</span>
-      <% else if @state=='en_route': %>
-        <span class='label label-info'>En route</span>
-      <% else if @state=='on_scene': %>
-        <span class='label label-success'>On scene</span>
+      <% else if @state=='responding': %>
+        <span class='label label-success'>Responding</span>
+      <% else if @state=='declined': %>
+        <span class='label'>Declined</span>
       <% else if @state=='failed': %>
         <span class='label label-important'>Message failed</span>
       <% end %>

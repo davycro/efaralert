@@ -22,55 +22,23 @@ class Emergency < ActiveRecord::Base
   validates :input_address, :dispatcher_id,
     :presence => true
 
-  # 
-  # States
-  #   possible emergency states
-  #   key is stored in the database
-  #   value is the message to output
-  #   DO NOT CHANGE THESE KEYS!!!
-
-  STATE_MESSAGES = {
-    'new'                  => 'New',
-    'sending'              => 'Sending',
-    'sent'                 => 'Sent',
-    'failed_no_airtime'    => 'Failed, no airtime',
-    'no_efars_nearby'      => 'No efars nearby',
-    'failed_unknown'       => 'Failed, reason unknown'
-  }
-
-  validates :state, :inclusion => { :in => STATE_MESSAGES.keys }
-
   belongs_to :dispatcher
   has_many :dispatch_messages, :dependent => :destroy
   has_many :sent_dispatch_messages, :class_name => "DispatchMessage",
-    :conditions => {:state => %w(sent on_scene en_route)}
-  has_many :en_route_dispatch_messages, :class_name => "DispatchMessage",
-    :conditions => {:state => 'en_route'}
-  has_many :on_scene_dispatch_messages, :class_name => "DispatchMessage",
-    :conditions => {:state => 'on_scene'}
+    :conditions => {:state => %w(sent responding declined)}
+  has_many :responding_dispatch_messages, :class_name => "DispatchMessage",
+    :conditions => {:state => 'responding'}
+  has_many :declined_dispatch_messages, :class_name => "DispatchMessage",
+    :conditions => {:state => 'declined'}
   has_many :failed_dispatch_messages, :class_name => "DispatchMessage",
     :conditions => { :state => 
       %w(failed) }
 
-
-
-  before_validation :set_nil_state_to_new
   after_create :create_dispatch_messages
 
   def create_dispatch_messages
     nearby_efars.each do |efar|
       DispatchMessage.create(:efar_id => efar.id, :emergency_id => self.id)    
-    end
-
-    if self.dispatch_messages.count == 0
-      self.state = 'no_efars_nearby'
-      self.save
-    end
-  end
-
-  def set_nil_state_to_new
-    if self.state.blank? and self.new_record?
-      self.state = 'new'
     end
   end
 
@@ -78,16 +46,12 @@ class Emergency < ActiveRecord::Base
     Efar.near([self.lat, self.lng], 0.5).limit(10)  
   end
 
-  def state_message
-    STATE_MESSAGES[self.state]
-  end
+  #
+  # Needed for JSON
 
   def efar_ids
     @efar_ids ||= dispatch_messages.map(&:efar_id)
   end
-
-  #
-  # Needed for JSON
 
   def num_dispatch_messages
     dispatch_messages.count
@@ -97,12 +61,12 @@ class Emergency < ActiveRecord::Base
     sent_dispatch_messages.count
   end
 
-  def num_en_route_dispatch_messages
-    en_route_dispatch_messages.count
+  def num_responding_dispatch_messages
+    responding_dispatch_messages.count
   end
 
-  def num_on_scene_dispatch_messages
-    on_scene_dispatch_messages.count
+  def num_declined_dispatch_messages
+    declined_dispatch_messages.count
   end
 
   def num_failed_dispatch_messages
@@ -116,7 +80,7 @@ class Emergency < ActiveRecord::Base
 
   def as_json(options = {})
     super(:methods => [:efar_ids, :num_sent_dispatch_messages, 
-      :num_en_route_dispatch_messages, :num_on_scene_dispatch_messages,
+      :num_responding_dispatch_messages, :num_declined_dispatch_messages,
       :num_failed_dispatch_messages, :created_at_pretty, 
       :num_dispatch_messages])
   end
@@ -131,6 +95,37 @@ class Emergency < ActiveRecord::Base
       self.category = 'Emergency'
     end
     self.category
+  end
+
+  def dispatch_efars!
+    self.dispatch_messages.each { |m| m.deliver! }
+  end
+
+  def dispatch_head_efars!
+    if sent_dispatch_messages.count>0
+      ## Compose message to the head efars
+      # find head efars
+      head_efars = sent_dispatch_messages.map(&:efar).map(&:head_efars).uniq.compact
+      if head_efars.blank?
+        return false
+      end
+      # initiate the message text
+      message = %/
+        #{self.category_formatted_for_nil} at #{self.address_formatted_for_text_message}. #{sent_dispatch_messages.count} people alerted:
+      /.squish
+
+      # make list of names and contact numbers
+      message += "\n"
+      sent_dispatch_messages.map(&:efar).each do |efar|
+        message += "#{efar.full_name} - #{efar.contact_number}\n"
+      end
+
+      # send message to every head efar
+      head_efars.each do |head_efar|
+        SMS_API.send_message(head_efar.contact_number, message)
+      end
+    end
+
   end
 
 end

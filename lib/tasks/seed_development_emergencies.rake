@@ -19,9 +19,9 @@ task :seed_development_emergencies => :environment do
     :lng               => 18.4871,
     :location_type     => "GEOMETRIC_CENTER"
   )
-  em.dispatch_messages.all.shuffle.first.update_attribute(:state, 'en_route')
+  em.dispatch_messages.all.shuffle.first.update_attribute(:state, 'responding')
   em.dispatch_messages.all.shuffle.first.update_attribute(:state, 
-    'failed_no_airtime')
+    'failed')
 
   # this is an empty address
   Emergency.create!(

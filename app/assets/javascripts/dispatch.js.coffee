@@ -44,10 +44,10 @@ class IndexController
     elem = $("[data-emergency-id=#{emergency.id}]")
     @updateStat $('[data-type=emergency-sent-messages-count]', elem), 
       emergency.num_sent_dispatch_messages 
-    @updateStat $('[data-type=emergency-en-route-messages-count]', elem), 
-      emergency.num_en_route_dispatch_messages 
-    @updateStat $('[data-type=emergency-on-scene-messages-count]', elem), 
-      emergency.num_on_scene_dispatch_messages 
+    @updateStat $('[data-type=emergency-responding-messages-count]', elem), 
+      emergency.num_responding_dispatch_messages 
+    @updateStat $('[data-type=emergency-declined-messages-count]', elem), 
+      emergency.num_declined_dispatch_messages 
     @updateStat $('[data-type=emergency-failed-messages-count]', elem), 
       emergency.num_failed_dispatch_messages 
 
