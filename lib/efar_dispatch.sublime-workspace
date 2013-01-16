@@ -4,6 +4,62 @@
 		"selected_items":
 		[
 			[
+				"course",
+				"course_pass"
+			],
+			[
+				"tra",
+				"training_score"
+			],
+			[
+				"commu",
+				"community_center"
+			],
+			[
+				"comm",
+				"community_center_id"
+			],
+			[
+				"cour",
+				"course_pass"
+			],
+			[
+				"cou",
+				"course_pass_column"
+			],
+			[
+				"con",
+				"contact_number_column"
+			],
+			[
+				"com",
+				"community_column"
+			],
+			[
+				"add",
+				"address_column"
+			],
+			[
+				"first",
+				"first_name_column"
+			],
+			[
+				"su",
+				"surname_column"
+			],
+			[
+				"Ef",
+				"CandidateEfar"
+			],
+			[
+				"sel",
+				"selected_row"
+			],
+			[
+				"spread",
+				"spread_sheet_root_file_path"
+			],
+			[
 				"contact",
 				"contact_number"
 			],
@@ -84,10 +140,6 @@
 				"submitDispatchModal"
 			],
 			[
-				"add",
-				"addClass"
-			],
-			[
 				"ge",
 				"geocodeResult"
 			],
@@ -150,10 +202,6 @@
 			[
 				"cli",
 				"clickatell_error_message"
-			],
-			[
-				"com",
-				"community_center"
 			],
 			[
 				"en",
@@ -234,10 +282,6 @@
 			[
 				"resour",
 				"resources"
-			],
-			[
-				"con",
-				"console"
 			],
 			[
 				"cons",
@@ -360,10 +404,6 @@
 				"className"
 			],
 			[
-				"comm",
-				"community_centers"
-			],
-			[
 				"in",
 				"inputAddress"
 			],
@@ -384,20 +424,12 @@
 				"U"
 			],
 			[
-				"tra",
-				"training_instructor"
-			],
-			[
 				"pr",
 				"province"
 			],
 			[
 				"post",
 				"postal_code"
-			],
-			[
-				"first",
-				"first_or_create"
 			],
 			[
 				"pas",
@@ -482,38 +514,6 @@
 			[
 				"admin",
 				"admin_admins_path"
-			],
-			[
-				"func",
-				"function"
-			],
-			[
-				"pro",
-				"proxy"
-			],
-			[
-				"pto",
-				"prototype"
-			],
-			[
-				"ORM",
-				"ORMModule"
-			],
-			[
-				"de",
-				"destroy"
-			],
-			[
-				"incl",
-				"include"
-			],
-			[
-				"extend",
-				"extended"
-			],
-			[
-				"prot",
-				"prototype"
 			]
 		]
 	},
@@ -588,6 +588,10 @@
 	},
 	"file_history":
 	[
+		"/Users/david/Sites/efar_dispatch/app/models/candidate_efar.rb",
+		"/Users/david/Sites/efar_dispatch/db/schema.rb",
+		"/Users/david/Library/Application Support/Sublime Text 2/Packages/Alignment/Default (OSX).sublime-keymap",
+		"/Users/david/Sites/efar_dispatch/lib/tasks/import_master_data.rake",
 		"/Users/david/Sites/efar_dispatch/config/environments/config_variables.rb",
 		"/Users/david/Sites/efar_dispatch/test/unit/emergency_test.rb",
 		"/Users/david/Desktop/todo.txt",
@@ -606,8 +610,6 @@
 		"/Users/david/Sites/efar_dispatch/app/models/community_center.rb",
 		"/Users/david/Sites/efar_dispatch/.gitignore",
 		"/Users/david/Sites/efar_dispatch/db/migrate/20130107103852_create_candidate_efars.rb",
-		"/Users/david/Sites/efar_dispatch/app/models/candidate_efar.rb",
-		"/Users/david/Sites/efar_dispatch/lib/tasks/import_master_data.rake",
 		"/Users/david/Gems/tunl/bin/tunl",
 		"/Users/david/Sites/efar_dispatch/app/controllers/admin/efars_controller.rb",
 		"/Users/david/Sites/efar_dispatch/app/helpers/admin/admins_helper.rb",
@@ -618,10 +620,8 @@
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/admin.js.coffee",
 		"/Users/david/Library/Application Support/Sublime Text 2/Packages/User/Base File.sublime-settings",
 		"/Users/david/Library/Application Support/Sublime Text 2/Packages/User/Ruby.sublime-settings",
-		"/Users/david/Library/Application Support/Sublime Text 2/Packages/Alignment/Default (OSX).sublime-keymap",
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/mapper/views/efars/show.jst.eco",
 		"/Users/david/Sites/efar_dispatch/app/assets/javascripts/mapper/models/efar.js.coffee",
-		"/Users/david/Sites/efar_dispatch/db/schema.rb",
 		"/Users/david/Sites/efar_dispatch/config/environments/development.rb",
 		"/Users/david/Sites/efar_dispatch/db/migrate/20130107083253_remove_superflouous_efar_attributes.rb",
 		"/Users/david/Sites/efar_dispatch/.rvmrc",
@@ -857,7 +857,7 @@
 		"cols":
 		[
 			0.0,
-			0.513787700486,
+			0.599036593896,
 			1.0
 		],
 		"rows":
@@ -882,6 +882,14 @@
 		"selected_items":
 		[
 			[
+				"cand",
+				"app/models/candidate_efar.rb"
+			],
+			[
+				"sc",
+				"db/schema.rb"
+			],
+			[
 				"notes",
 				"notes.txt"
 			],
@@ -904,10 +912,6 @@
 			[
 				"disp",
 				"app/models/dispatch_message.rb"
-			],
-			[
-				"cand",
-				"app/models/candidate_efar.rb"
 			],
 			[
 				"create",
@@ -1388,10 +1392,6 @@
 			[
 				"seci",
 				"app/assets/stylesheets/shared/section-box.less"
-			],
-			[
-				"layouts/res",
-				"app/views/layouts/research.html.haml"
 			]
 		],
 		"width": 0.0
