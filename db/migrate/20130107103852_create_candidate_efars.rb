@@ -7,6 +7,8 @@ class CreateCandidateEfars < ActiveRecord::Migration
       t.integer :community_center_id, :null => false
       t.string :training_score
       t.timestamps
+      t.string :first_invite_status_part_one
+      t.string :first_invite_status_part_two
     end
   end
 end

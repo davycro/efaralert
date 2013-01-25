@@ -114,7 +114,7 @@ task :import_lavender_hill_efar_candidates => :environment do
   #
   # row configuration parameters
   start_row = 3
-  final_row = 154
+  final_row = 161
 
   #
   # miscelleanous settings
@@ -153,7 +153,7 @@ task :import_lavender_hill_efar_candidates => :environment do
 
     surname    = ss.cell(selected_row, surname_column)
     first_name = ss.cell(selected_row, first_name_column)
-    efar.full_name = "#{first_name} #{surname}"
+    efar.full_name = "#{first_name} #{surname}".titleize
 
     address   = ss.cell(selected_row, address_column)
     community = ss.cell(selected_row, community_column)
@@ -162,7 +162,7 @@ task :import_lavender_hill_efar_candidates => :environment do
 
     contact_number = ss.cell(selected_row, contact_number_column)
     if contact_number.present?
-      efar.contact_number = contact_number.to_s.scan(/\d+/).join
+      efar.contact_number = contact_number.to_s.scan(/\d+/).join.to(8)
     end
 
     course_pass = ss.cell(selected_row, course_pass_column)
@@ -175,11 +175,12 @@ task :import_lavender_hill_efar_candidates => :environment do
     end
 
     efar.community_center_id = community_center.id
-    $stdout.printf("%-3s %-50s %-20s %-5s\n", 
-      '', efar.full_name, efar.contact_number, efar.training_score)
 
     if efar_certified
-      efar.save
+      if efar.save
+        $stdout.printf("%-3s %-50s %-20s %-5s\n", 
+          '', efar.full_name, efar.contact_number, efar.training_score)
+      end
     end
     
     selected_row += 1 # must be at the end of the loop
