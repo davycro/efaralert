@@ -17,6 +17,7 @@ class SmsApi
 
   def send_message(number, message, opts={})
     if in_silent_mode?
+      log 'in silent mode, no message sent!'
       return {:status => 'success', :clickatell_id => '123'}
     end
 
@@ -28,12 +29,15 @@ class SmsApi
       message_id = @api.send_message(number, message, 
         :set_mobile_originated => true, 
         :from => '44259', 
-        :mo=>'1', 
+        :mo=>'1',
+        :concat => '3',
         :client_message_id => opts[:client_message_id])
       if message_id.present?
+        log "message sent to #{number}, #{message}"
         response[:status] = 'success'
         response[:clickatell_id] = message_id
       else
+        log "failed to message #{number}, no message id"
         respose[:status] = 'failed'
         response[:clickatell_error_message] = 'no message id'
       end
@@ -44,6 +48,7 @@ class SmsApi
         tries += 1
         retry
       else
+        log "failed to message #{number}, #{e.message}"
         response[:status] = 'failed'
         response[:clickatell_error_message] = e.message
       end
@@ -55,6 +60,10 @@ class SmsApi
   def authenticate
     @api = Clickatell::API.authenticate ENV['CLICKATELL_API_ID'], 
       ENV['CLICKATELL_USERNAME'], ENV['CLICKATELL_PASSWORD']
+  end
+
+  def log(message)
+    Rails.logger.info "SMS API: #{message}"
   end
 
 end

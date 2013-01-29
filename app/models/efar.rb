@@ -31,7 +31,7 @@ class Efar < ActiveRecord::Base
   attr_accessible :street, :suburb, :postal_code, :city, :province, :country
 
   # Geocoding Attributes
-  attr_accessible :lat, :lng, :location_type, :formatted_address
+  attr_accessible :lat, :lng, :location_type
 
   # Personal Attributes
   attr_accessible :first_language
@@ -84,8 +84,12 @@ class Efar < ActiveRecord::Base
     @head_efars ||= self.community_center.head_efars
   end
 
+  def formatted_address
+    geocode_search_address
+  end
+
   def as_json(options = {})
-    super(:methods => [:lat, :lng, :full_name])
+    super(:methods => [:lat, :lng, :full_name, :formatted_address])
   end
 
   def set_defaults
@@ -95,6 +99,10 @@ class Efar < ActiveRecord::Base
       self.country        = "South Africa"
       self.first_language = "English"
     end
+  end
+
+  def send_text_message(message)
+    return SMS_API.send_message(self.contact_number, message)
   end
 
 end

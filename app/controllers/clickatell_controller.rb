@@ -5,8 +5,7 @@ class ClickatellController < ApplicationController
     # lookup efar by contact number
     # assume that response is for the latest dispatch message
     text = params[:text]
-    efar = Efar.find_by_contact_number params[:from]
-    dispatch_message = efar.dispatch_messages.order('created_at DESC').first
+    dispatch_message = DispatchMessage.find_most_active_for_number(params[:from])
     Rails.logger.info dispatch_message
     if params[:text].present?
       dispatch_message.process_response text

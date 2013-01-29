@@ -26,4 +26,8 @@ class HeadEfar < ActiveRecord::Base
   validates :email, :uniqueness => true
 
   belongs_to :community_center
+
+  def send_text_message(message)
+    return SMS_API.send_message(self.contact_number, message)
+  end
 end

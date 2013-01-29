@@ -25,14 +25,13 @@ class Emergency < ActiveRecord::Base
   belongs_to :dispatcher
   has_many :dispatch_messages, :dependent => :destroy
   has_many :sent_dispatch_messages, :class_name => "DispatchMessage",
-    :conditions => {:state => %w(sent responding declined)}
-  has_many :responding_dispatch_messages, :class_name => "DispatchMessage",
-    :conditions => {:state => 'responding'}
-  has_many :declined_dispatch_messages, :class_name => "DispatchMessage",
-    :conditions => {:state => 'declined'}
-  has_many :failed_dispatch_messages, :class_name => "DispatchMessage",
-    :conditions => { :state => 
-      %w(failed) }
+    :conditions => {:state => %w(sent en_route on_scene declined)}
+
+  %w(en_route on_scene declined failed).each do |dispatch_message_state_name|
+    has_many "#{dispatch_message_state_name}_dispatch_messages".to_sym,
+      :class_name => "DispatchMessage", 
+      :conditions => { :state => dispatch_message_state_name }
+  end
 
   after_create :create_dispatch_messages
 
@@ -61,8 +60,12 @@ class Emergency < ActiveRecord::Base
     sent_dispatch_messages.count
   end
 
-  def num_responding_dispatch_messages
-    responding_dispatch_messages.count
+  def num_en_route_dispatch_messages
+    en_route_dispatch_messages.count
+  end
+
+  def num_on_scene_dispatch_messages
+    on_scene_dispatch_messages.count
   end
 
   def num_declined_dispatch_messages
@@ -80,9 +83,9 @@ class Emergency < ActiveRecord::Base
 
   def as_json(options = {})
     super(:methods => [:efar_ids, :num_sent_dispatch_messages, 
-      :num_responding_dispatch_messages, :num_declined_dispatch_messages,
+      :num_on_scene_dispatch_messages, :num_declined_dispatch_messages,
       :num_failed_dispatch_messages, :created_at_pretty, 
-      :num_dispatch_messages])
+      :num_dispatch_messages, :num_en_route_dispatch_messages])
   end
 
   def address_formatted_for_text_message
@@ -101,11 +104,14 @@ class Emergency < ActiveRecord::Base
     self.dispatch_messages.each { |m| m.deliver! }
   end
 
+  def head_efars
+    @head_efars ||= self.sent_dispatch_messages.map(&:head_efars).flatten.uniq.compact
+  end
+
   def dispatch_head_efars!
     if sent_dispatch_messages.count>0
       ## Compose message to the head efars
       # find head efars
-      head_efars = sent_dispatch_messages.map(&:efar).map(&:head_efars).uniq.compact
       if head_efars.blank?
         return false
       end
@@ -122,7 +128,7 @@ class Emergency < ActiveRecord::Base
 
       # send message to every head efar
       head_efars.each do |head_efar|
-        SMS_API.send_message(head_efar.contact_number, message)
+        head_efar.send_text_message(message)
       end
     end
 
