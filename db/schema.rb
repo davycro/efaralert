@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130123164749) do
+ActiveRecord::Schema.define(:version => 20130131082506) do
 
   create_table "admins", :force => true do |t|
     t.string   "full_name",       :null => false
@@ -77,23 +77,24 @@ ActiveRecord::Schema.define(:version => 20130123164749) do
 
   add_index "dispatchers", ["username"], :name => "index_dispatchers_on_username", :unique => true
 
+  create_table "efar_contact_numbers", :force => true do |t|
+    t.integer "efar_id",        :null => false
+    t.string  "contact_number", :null => false
+  end
+
+  create_table "efar_locations", :force => true do |t|
+    t.integer "efar_id",           :null => false
+    t.string  "occupied_at"
+    t.string  "given_address",     :null => false
+    t.string  "formatted_address", :null => false
+    t.float   "lat",               :null => false
+    t.float   "lng",               :null => false
+    t.string  "location_type"
+  end
+
   create_table "efars", :force => true do |t|
-    t.string   "surname",             :null => false
-    t.string   "first_name",          :null => false
-    t.integer  "community_center_id", :null => false
-    t.string   "contact_number",      :null => false
-    t.string   "street",              :null => false
-    t.string   "suburb"
-    t.string   "postal_code"
-    t.string   "city",                :null => false
-    t.string   "province"
-    t.string   "country",             :null => false
-    t.float    "lat"
-    t.float    "lng"
-    t.string   "location_type"
-    t.string   "first_language"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.string  "full_name",           :null => false
+    t.integer "community_center_id", :null => false
   end
 
   create_table "emergencies", :force => true do |t|
