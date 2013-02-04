@@ -20,3 +20,21 @@ trill_road:
   lat: -33.93909
   lng: 18.47024
   location_type: street_address
+
+herschel_road:
+  efar: david
+  occupied_at: nighttime
+  given_address: "7 Herschel Rd, Cape Town, Western Cape 7925"
+  formatted_address: "7 Herschel Road, Cape Town 7925, South Africa"
+  lat: -33.9385
+  lng: 18.4704799
+  location_type: street_address
+
+dove_street:
+  efar: david
+  occupied_at: anytime
+  given_address: "1 Dove Street, Cape Town, Western Cape 7925"
+  formatted_address: "1 Dove Street, Cape Town 7925, South Africa"
+  lat: -33.9341
+  lng: 18.4652
+  location_type: street_address

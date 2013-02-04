@@ -41,8 +41,12 @@ class Emergency < ActiveRecord::Base
     end
   end
 
+  def nearby_efar_locations
+    EfarLocation.near([self.lat, self.lng], 0.5)
+  end
+
   def nearby_efars
-    Efar.near([self.lat, self.lng], 0.5).limit(10)  
+    nearby_efar_locations.map(&:efar).compact.uniq
   end
 
   #

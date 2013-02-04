@@ -18,8 +18,14 @@
 require 'test_helper'
 
 class EmergencyTest < ActiveSupport::TestCase
+  
   # Replace this with your real tests.
-  test "the truth" do
-  assert true
+  test "should find nearby efar locations" do
+    trill_road = efar_locations(:trill_road)
+    broken_bone = Emergency.new(lat: trill_road.lat, lng: trill_road.lng)
+    nearby_efar_locations = broken_bone.nearby_efar_locations
+    assert nearby_efar_locations.include?(trill_road)
+    assert nearby_efar_locations.include?(efar_locations(:herschel_road))
+    assert_equal broken_bone.nearby_efars, [efars(:david)]
   end
 end
