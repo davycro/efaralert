@@ -15,4 +15,8 @@ class EfarTest < ActiveSupport::TestCase
     david = efars(:david)
     assert david.locations.present?
   end
+  test "has many contact numbers" do
+    david = efars(:david)
+    assert david.contact_numbers.present?
+  end
 end

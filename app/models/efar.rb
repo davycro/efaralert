@@ -20,6 +20,7 @@ class Efar < ActiveRecord::Base
   belongs_to :community_center
   has_many :dispatch_messages
   has_many :locations, :class_name => 'EfarLocation'
+  has_many :contact_numbers, :class_name => 'EfarContactNumber'
 
   def self.all_for_page(page)  
     page ||= 0
@@ -33,12 +34,15 @@ class Efar < ActiveRecord::Base
   end
 
   def as_json(options = {})
-    super(:methods => [:locations])
+    super(:methods => [:locations, :contact_numbers])
   end
 
   def send_text_message(message)
-    # TODO fix this
-    # return SMS_API.send_message(self.contact_number, message)
+    responses = []
+    self.contact_numbers.each do |contact_number|
+      responses << SMS_API.send_message(contact_number.contact_number, message)
+    end
+    return responses
   end
 
 end

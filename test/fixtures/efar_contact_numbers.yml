@@ -7,10 +7,6 @@
 #  contact_number :string(255)      not null
 #
 
-class EfarContactNumber < ActiveRecord::Base
-  
-  belongs_to :efar
-
-  validates :contact_number, :efar_id, :presence => true
-  
-end
+davids_number:
+  efar: david
+  contact_number: 27714399721
