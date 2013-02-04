@@ -1,0 +1,22 @@
+# == Schema Information
+#
+# Table name: efar_locations
+#
+#  id                :integer          not null, primary key
+#  efar_id           :integer          not null
+#  occupied_at       :string(255)
+#  given_address     :string(255)      not null
+#  formatted_address :string(255)      not null
+#  lat               :float            not null
+#  lng               :float            not null
+#  location_type     :string(255)
+#
+
+trill_road:
+  efar: david
+  occupied_at: daytime
+  given_address: "50 Trill Road, Cape Town, Western Cape, South Africa"
+  formatted_address: "50 Trill Road, Cape Town 7925, South Africa"
+  lat: -33.93909
+  lng: 18.47024
+  location_type: street_address

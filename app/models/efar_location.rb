@@ -29,9 +29,10 @@ class EfarLocation < ActiveRecord::Base
   geocoded_by :given_address,
     :latitude => :lat, :longitude => :lng do |obj, results|
     if geo = results.first
-      obj.lat           = geo.latitude
-      obj.lng           = geo.longitude
-      obj.location_type = geo.types.first
+      obj.lat               = geo.latitude
+      obj.lng               = geo.longitude
+      obj.location_type     = geo.types.first
+      obj.formatted_address = geo.formatted_address
     end
   end
 

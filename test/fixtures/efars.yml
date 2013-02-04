@@ -1,0 +1,12 @@
+# == Schema Information
+#
+# Table name: efars
+#
+#  id                  :integer          not null, primary key
+#  full_name           :string(255)      not null
+#  community_center_id :integer          not null
+#
+
+david:
+  full_name: 'david crockett'
+  community_center: mothers_unite
