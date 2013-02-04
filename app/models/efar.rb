@@ -28,7 +28,7 @@ class Efar < ActiveRecord::Base
 
     return self.limit(per_page).offset(per_page*page).all
   end
-
+  
   def head_efars
     @head_efars ||= self.community_center.head_efars
   end
@@ -42,7 +42,14 @@ class Efar < ActiveRecord::Base
     self.contact_numbers.each do |contact_number|
       responses << SMS_API.send_message(contact_number.contact_number, message)
     end
-    return responses
+    # return a success response if there is one
+    responses.each do |response|
+      if response[:status]=='success'
+        return response
+      end
+    end
+    # if not, then just return any random response
+    return responses.first
   end
 
 end

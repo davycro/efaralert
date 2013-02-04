@@ -176,7 +176,6 @@ class DispatchMessage < ActiveRecord::Base
       #{emergency.address_formatted_for_text_message}. Will you rescue? Reply YES or NO
       /.squish
     resp = self.efar.send_text_message(message)
-
     if resp[:status] == 'success'
       self.state = 'sent'
       self.clickatell_id = resp[:clickatell_id]
@@ -193,7 +192,9 @@ class DispatchMessage < ActiveRecord::Base
   end
 
   def self.find_most_active_for_number(contact_number)
-    efar = Efar.find_by_contact_number contact_number
+    listing = EfarContactNumber.find_by_contact_number contact_number
+    return nil if listing.blank?
+    efar = listing.efar
     return nil if efar.blank?
     dispatch_message = efar.dispatch_messages.where("created_at >= :start_date", { :start_date => 2.hours.ago }).order('created_at DESC').first
     return dispatch_message
