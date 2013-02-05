@@ -27,7 +27,7 @@
           Address
         </div>
         <div class="group-item">
-          <%= @efar.formatted_address %>
+          <%= @efar_location.formatted_address %>
         </div>
       </div>
 
@@ -36,7 +36,9 @@
           Mobile #
         </div>
         <div class="group-item">
-          <%= @efar.contact_number %>
+          <% for contact_number in @efar.contact_numbers: %>
+            <%= contact_number %><br>
+          <% end %>
         </div>
       </div>
 
