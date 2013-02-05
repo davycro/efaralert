@@ -7,11 +7,21 @@
     .controls
       = select("efar", "community_center_id", CommunityCenter.all.collect { |c| [c.name, c.id] } )
 
-  .control-group
-    %label.control-label Contact Number
-    .controls
-      
+  - @efar.contact_numbers.each do |listing|
+    .control-group
+      %label.control-label Contact Number
+      .controls
+        %input{:type=>'text', :name => 'efar[contact_numbers]'}
 
   .form-actions
     %button.btn.btn-primary{:type=>'submit'} Save
     %a.btn{:href=>admin_efars_path} Cancel
+
+.modal{'role'=>'dialog', 'backdrop'=>'static', 'tabindex'=>'1'}
+  .modal-body
+    #location-search-app
+
+:javascript
+  jQuery(function(){
+    new App.LocationSearch("#location-search-app");
+  });

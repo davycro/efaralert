@@ -1,0 +1,11 @@
+<div class='location-search-results'>
+  <h5>Results</h5>
+  <div class='row-fluid'>
+    <div class='span8'>
+      <div class='google-map'></div>
+    </div>
+    <div class='span4'>
+      <div class='google-map-sidebar'></div>
+    </div>
+  </div>  
+</div>
