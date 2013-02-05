@@ -15,7 +15,9 @@
           <div class='search-map'></div>
         </div>
         <div class='span4'>
-          <div class='map-sidebar'></div>
+          <div class='map-sidebar'>
+            <ul class='nav nav-pills nav-stacked'></ul>
+          </div>
         </div>
       </div>
     </div>

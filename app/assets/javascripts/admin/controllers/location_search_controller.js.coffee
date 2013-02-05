@@ -45,6 +45,27 @@ class SearchMap extends Spine.Controller
 
 
 class MapSidebar extends Spine.Controller
+  elements:
+    'ul' : 'sidebarList'
+  events:
+    'click [data-type=GeoLocation]' : 'clickGeoLocation'
+
+  constructor: (elSelector) ->
+    @el = $(elSelector)
+    super()
+    App.GeoLocation.bind 'refresh', (records) =>
+      @sidebarList.html ''
+      @addRecord(record) for record in records
+
+  addRecord: (record) ->
+    @sidebarList.append @view('location_search/sidebar_list_item')(record)
+
+  clickGeoLocation: (e) =>
+    e.preventDefault()
+    el = $(e.currentTarget)
+    record = App.GeoLocation.find(el.data('id'))
+    console.log('click!')
+    console.log(record)
 
 
 class SearchBar extends Spine.Controller
@@ -84,3 +105,4 @@ class App.LocationSearch extends Spine.Controller
     @modalEl.modal({keyboard: false})
     @searchBar = new SearchBar(@searchBarEl)
     @searchMap = new SearchMap(@searchMapEl)
+    @mapSidebar = new MapSidebar(@mapSidebarEl)
