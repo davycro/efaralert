@@ -1,4 +1,4 @@
-class SearchResultsMap extends Spine.Controller
+class SearchMap extends Spine.Controller
   constructor: (elSelector) ->
     @el = $(elSelector)
     super()
@@ -15,33 +15,43 @@ class SearchResultsMap extends Spine.Controller
     @map = new google.maps.Map(@el[0], options) 
 
 
-class SearchResultsSidebar extends Spine.Controller
-
-
-
-class SearchResults extends Spine.Controller
-  elements:
-    '.google-map' : 'googleMapEl'
-
-  constructor: ->
-    super
-    @html @view("location_search/search_results")
-    @mapController = new SearchResultsMap(@googleMapEl)
+class MapSidebar extends Spine.Controller
 
 
 class SearchBar extends Spine.Controller
+  elements:
+    'input' : 'searchInput'
+  events:
+    'submit form' : 'submitSearch'
 
-  constructor: ->
-    super
-    @html @view("location_search/search_bar")    
+  constructor: (elSelector) ->
+    @el = $(elSelector)
+    super()
+
+  submitSearch: (e) =>
+    e.preventDefault()
+    searchAddress = @searchInput.val() + ", Cape Town, South Africa"
+    geocoder = new google.maps.Geocoder()
+    geocoder.geocode {'address': searchAddress}, (results, status) =>
+      if (status == google.maps.GeocoderStatus.OK)
+        console.log(results)
+      else
+        console.log(status)
 
 
 
 
 class App.LocationSearch extends Spine.Controller
+  elements:
+    '.search-bar' : 'searchBarEl'
+    '.search-map' : 'searchMapEl'
+    '.map-sidebar' : 'mapSidebarEl'
+    '.modal' : 'modalEl'
+
   constructor: (elSelector) ->
     @el = $(elSelector)
     super()
-    @searchBar = new SearchBar()
-    @searchResults = new SearchResults()
-    @append @searchBar, @searchResults
+    @html @view("location_search/modal")
+    @modalEl.modal({keyboard: false})
+    @searchBar = new SearchBar(@searchBarEl)
+    @searchMap = new SearchMap(@searchMapEl)
