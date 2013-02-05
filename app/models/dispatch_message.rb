@@ -10,6 +10,7 @@
 #  updated_at               :datetime         not null
 #  clickatell_id            :string(255)
 #  clickatell_error_message :string(255)
+#  efar_location_id         :integer          not null
 #
 
 class DispatchMessage < ActiveRecord::Base
@@ -24,7 +25,7 @@ class DispatchMessage < ActiveRecord::Base
     'failed'     => 'Failed'
   }
 
-  attr_accessible :efar_id, :emergency_id, :state, :clickatell_id
+  attr_accessible :efar_id, :emergency_id, :state, :clickatell_id, :efar_location_id
 
   before_validation :set_nil_state_to_queued
   validates :state, :inclusion => { :in => STATE_MESSAGES.keys }
@@ -34,6 +35,7 @@ class DispatchMessage < ActiveRecord::Base
 
   belongs_to :efar
   belongs_to :emergency
+  belongs_to :efar_location
 
   def head_efars
     self.efar.head_efars

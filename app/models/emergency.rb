@@ -36,13 +36,17 @@ class Emergency < ActiveRecord::Base
   after_create :create_dispatch_messages
 
   def create_dispatch_messages
-    nearby_efars.each do |efar|
-      DispatchMessage.create(:efar_id => efar.id, :emergency_id => self.id)    
+    nearby_efar_locations.each do |location|
+      dm = DispatchMessage.new
+      dm.efar = location.efar
+      dm.emergency = self
+      dm.efar_location = location
+      dm.save
     end
   end
 
   def nearby_efar_locations
-    EfarLocation.near([self.lat, self.lng], 0.5)
+    EfarLocation.near([self.lat, self.lng], 0.5).limit(10)
   end
 
   def nearby_efars

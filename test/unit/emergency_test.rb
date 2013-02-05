@@ -19,13 +19,27 @@ require 'test_helper'
 
 class EmergencyTest < ActiveSupport::TestCase
   
-  # Replace this with your real tests.
-  test "should find nearby efar locations" do
+  def initialize_emergency_at_trill_road
     trill_road = efar_locations(:trill_road)
-    broken_bone = Emergency.new(lat: trill_road.lat, lng: trill_road.lng)
+    emergency = Emergency.new(lat: trill_road.lat,
+      lng: trill_road.lng,
+      dispatcher_id: 1,
+      input_address: "50 trill road, cape town")
+    return emergency  
+  end
+
+  test "should find nearby efar locations" do
+    broken_bone = initialize_emergency_at_trill_road
     nearby_efar_locations = broken_bone.nearby_efar_locations
-    assert nearby_efar_locations.include?(trill_road)
+    assert nearby_efar_locations.include?(efar_locations(:trill_road))
     assert nearby_efar_locations.include?(efar_locations(:herschel_road))
-    assert_equal broken_bone.nearby_efars, [efars(:david)]
+  end
+
+  test "should create dispatch messages" do
+    emergency = initialize_emergency_at_trill_road
+    assert emergency.save, "Emergency did not save: #{emergency.to_yaml}"
+    emergency = Emergency.find(emergency.id)
+    assert emergency.dispatch_messages.present?, "No dispatch messages created"
+    assert emergency.dispatch_messages.detect { |dm| dm.efar_location.id==efar_locations(:trill_road).id }, "Couldn't trill road"
   end
 end
