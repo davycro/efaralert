@@ -1,22 +1,18 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the top of the
- * compiled file, but it's generally better to create a new file per style scope.
- *
- *= require_self
- */
+@import "bootstrap_and_overrides";
 
-@import "bourbon";
-@import "bootstrap";
+//
+// Variables
+// --------------------------------------------------
+
+// Padding given to left and right margins of section boxes
+@horizontalPadding: @baseLineHeight;
+
+//
+// Scaffolding and layout styles
+// --------------------------------------------------
 
 body {
   padding-top: 20px;
-  background-image: asset-url('subtle_freckles.png',image);
 }
 
 .fixed {
@@ -28,20 +24,23 @@ body {
   *zoom:1;
 }
 
-// SECTION CODE
+//
+// Shared components
+// --------------------------------------------------
+
+// Section box component
 .section {
   background-color: white;
   margin-bottom: 20px;
-  @include border-radius(4px);
+  .border-radius(4px);
   border: 1px solid #ccc;
 }
-
 .section-header {
   background-color: #f6f6f6;
   border-top: 1px solid white;
   border-bottom: 1px solid #ccc;
-  @include linear-gradient(#fafafa, #f2f2f2);
-  @include border-top-radius(4px);
+  #gradient > .vertical(#fafafa, #f2f2f2);
+  .border-top-radius(4px);
   height: 46px;
   padding: 0 15px 0;
 
@@ -65,15 +64,15 @@ body {
   border-width: 0px 1px 1px 1px;
   border-color: #454545;
   border-style: solid;
-  @include border-bottom-radius(4px);
+  .border-bottom-radius(4px);
   padding-bottom: 10px;
   padding-top: 10px;
 }
 
 .efar-shield {
   background-color: #1b1b1b;
-  @include linear-gradient(#333A39, #1f2423);
-  @include border-top-radius(4px);
+  #gradient > .vertical(#333A39, #1f2423);
+  .border-top-radius(4px);
   color: white;
   padding-left: 10px;
   padding-top: 5px;
@@ -92,7 +91,7 @@ body {
   }
 
   .efar-sprite-logo {
-    background-image: asset-url("efar_sprite.png", image);
+    background-image: url("/assets/efar_sprite.png");
     background-position: -8px -8px;
     background-repeat: no-repeat;
     display: block;
@@ -102,8 +101,10 @@ body {
   }
 }
 
-// Location search
-// 
+//
+// View specific
+// --------------------------------------------------
+
 #location-search-app {
   .google-map {
     width: 100%;
