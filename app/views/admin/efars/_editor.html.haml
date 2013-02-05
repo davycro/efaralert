@@ -1,20 +1,16 @@
 = form_for([:admin, @efar], :html => {:class => 'form-horizontal'}) do |f|
   
-  = horizontal_text_field(@efar, :first_name)
-  = horizontal_text_field(@efar, :surname)
-  = horizontal_text_field(@efar, :contact_number, :help_text => "Note: Replace the leading 0 with 27")
-  = horizontal_text_field(@efar, :street)
-  = horizontal_text_field(@efar, :suburb)
-  = horizontal_text_field(@efar, :postal_code)
-  = horizontal_text_field(@efar, :city)
-  = horizontal_text_field(@efar, :province)
-  = horizontal_text_field(@efar, :country)
-  = horizontal_text_field(@efar, :first_language)
+  = horizontal_text_field(@efar, :full_name)
 
   .control-group
     %label.control-label Community Center
     .controls
       = select("efar", "community_center_id", CommunityCenter.all.collect { |c| [c.name, c.id] } )
+
+  .control-group
+    %label.control-label Contact Number
+    .controls
+      
 
   .form-actions
     %button.btn.btn-primary{:type=>'submit'} Save

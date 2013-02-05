@@ -15,7 +15,6 @@ class Admin::EfarsController < ApplicationController
 
   def new
     @efar = Efar.new
-    @efar.set_defaults
   end
 
   def show
