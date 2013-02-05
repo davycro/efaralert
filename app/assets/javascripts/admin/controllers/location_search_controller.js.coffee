@@ -1,8 +1,37 @@
+class App.GeoLocation extends Spine.Model
+  @configure "GeoLocation", "lat", "lng", 
+    "formatted_address", "location_type", "marker"
+
+  @reloadFromResults: (results) ->
+    @destroyAll()
+    @addOne(result) for result in results
+    @trigger 'refresh', @all()
+
+  @addOne: (result) ->
+    location = @create({
+        lat: result.geometry.location.lat(),
+        lng: result.geometry.location.lng(),
+        formatted_address: result.formatted_address,
+        location_type: result.geometry.location_type
+      })
+    location.setMarker(result)
+    location.save()
+
+  @bind 'destroy', (record) =>
+    record.marker.setMap(null)
+
+  setMarker: (result) ->
+    @marker = new google.maps.Marker(position: result.geometry.location)
+
+
 class SearchMap extends Spine.Controller
   constructor: (elSelector) ->
     @el = $(elSelector)
     super()
     @renderMap()
+    App.GeoLocation.bind 'refresh', (records) =>
+      record.marker.setMap(@map) for record in records
+      @map.panTo(records[0].marker.getPosition())
 
   renderMap: ->
     options = {
@@ -34,7 +63,7 @@ class SearchBar extends Spine.Controller
     geocoder = new google.maps.Geocoder()
     geocoder.geocode {'address': searchAddress}, (results, status) =>
       if (status == google.maps.GeocoderStatus.OK)
-        console.log(results)
+        App.GeoLocation.reloadFromResults(results)
       else
         console.log(status)
 
