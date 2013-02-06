@@ -23,9 +23,8 @@ class Admin::EfarsController < ApplicationController
 
   def create
     @efar = Efar.new(params[:efar])
-    @efar.geocode
     if @efar.save
-      redirect_to admin_efars_path, :notice => "New efar created"
+      redirect_to admin_efar_path(@efar), :notice => "New efar created"
     else
       render :action => 'new'
     end
@@ -33,9 +32,8 @@ class Admin::EfarsController < ApplicationController
 
   def update
     @efar = Efar.find(params[:id])
-    @efar.geocode
     if @efar.update_attributes(params[:efar])
-      redirect_to admin_efars_path, :notice => "Changes saved"
+      redirect_to admin_efar_path(@efar), :notice => "Changes saved"
     else
       render :action => 'edit'
     end

@@ -1,0 +1,8 @@
+<div class='control-group'>
+  <label class='control-label'>
+    <%= @index + 1 %>
+  </label>
+  <div class="controls">
+    <input type="text" name="efar[contact_numbers_attributes][<%= @index %>][contact_number]" data-type='contactNumberInput'>
+  </div>
+</div>

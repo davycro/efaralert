@@ -11,6 +11,7 @@ class EfarContactNumber < ActiveRecord::Base
   
   belongs_to :efar
 
-  validates :contact_number, :efar_id, :presence => true
+  validates :contact_number, :presence => true, :uniqueness => true
+  attr_accessible :contact_number
   
 end

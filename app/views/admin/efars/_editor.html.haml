@@ -1,4 +1,6 @@
-= form_for([:admin, @efar], :html => {:class => 'form-horizontal'}) do |f|
+- @efar.contact_numbers.build
+
+= form_for([:admin, @efar], :html => {:class => 'form-horizontal efar-form-editor'}) do |f|
   
   = horizontal_text_field(@efar, :full_name)
 
@@ -7,11 +9,27 @@
     .controls
       = select("efar", "community_center_id", CommunityCenter.all.collect { |c| [c.name, c.id] } )
 
-  - @efar.contact_numbers.each do |listing|
-    .control-group
-      %label.control-label Contact Number
-      .controls
-        %input{:type=>'text', :name => 'efar[contact_numbers]'}
+  .clearfix
+    %h5.control-label Contact Numbers
+
+  .efar-contact-number-fields{'data-length'=>@efar.contact_numbers.size}
+    - @efar.contact_numbers.each_with_index do |listing, i|
+      .control-group{ :class => listing.errors[:contact_number].present? && "error" }
+        %label.control-label= "#{i+1}"
+        .controls
+          - unless listing.new_record?
+            %input{ :type=>'hidden',:name=>"efar[contact_numbers_attributes][#{i}][id]", :value => listing.id }
+          %input{:type=>'text',:name=>"efar[contact_numbers_attributes][#{i}][contact_number]", :value => listing.contact_number }
+          - if listing.errors[:contact_number].present?
+            %span.help-inline= listing.errors[:contact_number].first
+          - unless listing.nil? || listing.new_record?
+            %span Destroy
+            %input{ :type=>'checkbox', :name=>"efar[contact_numbers_attributes][#{i}][_destroy]"}
+
+  .control-group
+    .controls
+      %button.btn.btn-small{'data-type'=>'create-new-contact-number-field', 'type'=>'button'} Add number
+          
 
   .form-actions
     %button.btn.btn-primary{:type=>'submit'} Save
@@ -22,5 +40,6 @@
 :javascript
 
   jQuery(function(){
+    new App.EfarFormEditor();
     new App.LocationSearch("#location-search-app");
   });

@@ -11,7 +11,7 @@
 class Efar < ActiveRecord::Base
 
   # Individual Attributes
-  attr_accessible :full_name, :community_center_id
+  attr_accessible :full_name, :community_center_id, :contact_numbers_attributes
 
   PER_PAGE = 50
 
@@ -19,8 +19,12 @@ class Efar < ActiveRecord::Base
 
   belongs_to :community_center
   has_many :dispatch_messages
-  has_many :locations, :class_name => 'EfarLocation'
-  has_many :contact_numbers, :class_name => 'EfarContactNumber'
+  has_many :locations, :class_name => 'EfarLocation', :dependent => :destroy
+  has_many :contact_numbers, :class_name => 'EfarContactNumber',
+    :dependent => :destroy, :inverse_of => :efar
+
+  accepts_nested_attributes_for :contact_numbers, :allow_destroy => :true,
+    :reject_if => :all_blank
 
   def self.all_for_page(page)  
     page ||= 0
