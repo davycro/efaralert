@@ -31,7 +31,10 @@ class SearchMap extends Spine.Controller
     @renderMap()
     App.GeoLocation.bind 'refresh', (records) =>
       record.marker.setMap(@map) for record in records
-      @map.panTo(records[0].marker.getPosition())
+      App.GeoLocation.trigger 'selectLocation', records[0]
+
+    App.GeoLocation.bind 'selectLocation', (record) =>
+      @map.panTo(record.marker.getPosition())
 
   renderMap: ->
     options = {
@@ -56,6 +59,11 @@ class MapSidebar extends Spine.Controller
     App.GeoLocation.bind 'refresh', (records) =>
       @sidebarList.html ''
       @addRecord(record) for record in records
+      App.GeoLocation.trigger 'selectLocation', records[0]
+
+    App.GeoLocation.bind 'selectLocation', (record) =>
+      $('li', @sidebarList).removeClass('active')
+      $("[data-id=#{record.id}]", @sidebarList).parent().addClass('active')
 
   addRecord: (record) ->
     @sidebarList.append @view('location_search/sidebar_list_item')(record)
@@ -64,8 +72,7 @@ class MapSidebar extends Spine.Controller
     e.preventDefault()
     el = $(e.currentTarget)
     record = App.GeoLocation.find(el.data('id'))
-    console.log('click!')
-    console.log(record)
+    App.GeoLocation.trigger 'selectLocation', record
 
 
 class SearchBar extends Spine.Controller
@@ -106,3 +113,8 @@ class App.LocationSearch extends Spine.Controller
     @searchBar = new SearchBar(@searchBarEl)
     @searchMap = new SearchMap(@searchMapEl)
     @mapSidebar = new MapSidebar(@mapSidebarEl)
+
+    @selectedLocation = null
+
+    App.GeoLocation.bind 'selectLocation', (record) =>
+      @selectedLocation = record
