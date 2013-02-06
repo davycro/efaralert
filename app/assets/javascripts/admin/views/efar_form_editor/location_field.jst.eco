@@ -1,0 +1,22 @@
+<div class='control-group'>
+  <label class='control-label'>
+    <%= @index + 1 %>
+  </label>
+  <div class="controls">
+    <address>
+      <%= @location.formatted_address %>
+    </address>
+    <select name="<%= @namePrefix %>[occupied_at]">
+      <option>Anytime</option>
+      <option>Daytime</option>
+      <option>Nighttime</option>
+    </select>
+    <span>Delete</span>
+    <input type="checkbox" name="<%= @namePrefix %>[_destroy]">
+
+    <input type="hidden" name="<%= @namePrefix %>[formatted_address] %>" value="<%= @location.formatted_address %>">
+    <input type="hidden" name="<%= @namePrefix %>[lat] %>" value="<%= @location.lat %>">
+    <input type="hidden" name="<%= @namePrefix %>[lng] %>" value="<%= @location.lng %>">
+    <input type="hidden" name="<%= @namePrefix %>[location_type] %>" value="<%= @location.location_type %>">
+  </div>
+</div>

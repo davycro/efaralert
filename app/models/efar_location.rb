@@ -5,7 +5,6 @@
 #  id                :integer          not null, primary key
 #  efar_id           :integer          not null
 #  occupied_at       :string(255)
-#  given_address     :string(255)      not null
 #  formatted_address :string(255)      not null
 #  lat               :float            not null
 #  lng               :float            not null
@@ -20,21 +19,10 @@ class EfarLocation < ActiveRecord::Base
   attr_accessible :occupied_at
 
   # geocoding attributes
-  attr_accessible :given_address, :formatted_address, :lat, :lng,
+  attr_accessible :formatted_address, :lat, :lng,
     :location_type
 
-  validates :given_address, :efar_id, :presence => true
-  after_validation :geocode
-
-  geocoded_by :given_address,
-    :latitude => :lat, :longitude => :lng do |obj, results|
-    if geo = results.first
-      obj.lat               = geo.latitude
-      obj.lng               = geo.longitude
-      obj.location_type     = geo.types.first
-      obj.formatted_address = geo.formatted_address
-    end
-  end
+  validates :lat, :lng, :formatted_address, :presence => true
 
   scope :valid_location,
     where("location_type not in (?) and location_type is not null", 

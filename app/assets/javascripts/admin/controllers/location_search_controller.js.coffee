@@ -36,6 +36,9 @@ class SearchMap extends Spine.Controller
     App.GeoLocation.bind 'selectLocation', (record) =>
       @map.panTo(record.marker.getPosition())
 
+    App.LocationSearch.bind 'startSearch', =>
+      @resize()
+
   renderMap: ->
     options = {
       zoom: 15
@@ -44,7 +47,10 @@ class SearchMap extends Spine.Controller
       streetViewControl: false
       mapTypeControl: false  
     }
-    @map = new google.maps.Map(@el[0], options) 
+    @map = new google.maps.Map(@el[0], options)
+
+  resize: ->
+    google.maps.event.trigger(@map, 'resize') 
 
 
 class MapSidebar extends Spine.Controller
@@ -64,6 +70,9 @@ class MapSidebar extends Spine.Controller
     App.GeoLocation.bind 'selectLocation', (record) =>
       $('li', @sidebarList).removeClass('active')
       $("[data-id=#{record.id}]", @sidebarList).parent().addClass('active')
+
+    App.LocationSearch.bind 'cancelSearch', =>
+      @sidebarList.html ''  
 
   addRecord: (record) ->
     @sidebarList.append @view('location_search/sidebar_list_item')(record)
@@ -85,6 +94,10 @@ class SearchBar extends Spine.Controller
     @el = $(elSelector)
     super()
 
+    App.LocationSearch.bind 'startSearch', =>
+      @searchInput.val('')
+      @searchInput.focus()
+
   submitSearch: (e) =>
     e.preventDefault()
     searchAddress = @searchInput.val() + ", Cape Town, South Africa"
@@ -97,11 +110,19 @@ class SearchBar extends Spine.Controller
 
 
 class App.LocationSearch extends Spine.Controller
+  @extend Spine.Events
+
+  events:
+    'click [data-type=save]' : 'clickSaveButton'
+    'click [data-type=cancel]' : 'clickCancelButton'
+
   elements:
     '.search-bar' : 'searchBarEl'
     '.search-map' : 'searchMapEl'
     '.map-sidebar' : 'mapSidebarEl'
+    '.search-actions' : 'searchActionsEl'
     '.modal' : 'modalEl'
+    '[data-type=save]' : 'saveButton'
 
   constructor: (elSelector) ->
     @el = $(elSelector)
@@ -111,10 +132,25 @@ class App.LocationSearch extends Spine.Controller
     @searchMap = new SearchMap(@searchMapEl)
     @mapSidebar = new MapSidebar(@mapSidebarEl)
 
+    @modalEl.on 'shown', =>
+      App.LocationSearch.trigger 'startSearch', @
+
     @selectedLocation = null
 
     App.GeoLocation.bind 'selectLocation', (record) =>
       @selectedLocation = record
+      @saveButton.show()
+      @saveButton.focus()      
 
   openModal: ->
-    @modalEl.modal({keyboard: false})
+    @modalEl.modal()
+
+  clickSaveButton: (e) =>
+    App.LocationSearch.trigger 'saveLocation', @selectedLocation
+    @modalEl.modal('hide')  
+
+  clickCancelButton: (e) =>
+    @modalEl.modal('hide')
+    App.LocationSearch.trigger 'cancelSearch'
+    App.GeoLocation.destroyAll()
+

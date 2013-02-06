@@ -1,7 +1,9 @@
-- @efar.contact_numbers.build
+- @efar.contact_numbers.build if @efar.contact_numbers.size==0
 
 = form_for([:admin, @efar], :html => {:class => 'form-horizontal efar-form-editor'}) do |f|
   
+  %legend Personal Info
+
   = horizontal_text_field(@efar, :full_name)
 
   .control-group
@@ -9,8 +11,7 @@
     .controls
       = select("efar", "community_center_id", CommunityCenter.all.collect { |c| [c.name, c.id] } )
 
-  .clearfix
-    %h5.control-label Contact Numbers
+  %legend Contact Numbers
 
   .efar-contact-number-fields{'data-length'=>@efar.contact_numbers.size}
     - @efar.contact_numbers.each_with_index do |listing, i|
@@ -29,7 +30,17 @@
   .control-group
     .controls
       %button.btn.btn-small{'data-type'=>'create-new-contact-number-field', 'type'=>'button'} Add number
-          
+  
+  %legend Locations
+
+  .control-group
+    .controls
+      %button.btn.btn-small{'data-type'=>'add-location', 'type'=>'button'} Add Location
+
+  .locations-list{'data-input-prefix'=>'efar[locations_attributes]'}
+
+
+
 
   .form-actions
     %button.btn.btn-primary{:type=>'submit'} Save
@@ -41,5 +52,4 @@
 
   jQuery(function(){
     new App.EfarFormEditor();
-    new App.LocationSearch("#location-search-app");
   });

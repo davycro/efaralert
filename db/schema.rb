@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130205092300) do
+ActiveRecord::Schema.define(:version => 20130206144626) do
 
   create_table "admins", :force => true do |t|
     t.string   "full_name",       :null => false
@@ -86,7 +86,6 @@ ActiveRecord::Schema.define(:version => 20130205092300) do
   create_table "efar_locations", :force => true do |t|
     t.integer "efar_id",           :null => false
     t.string  "occupied_at"
-    t.string  "given_address",     :null => false
     t.string  "formatted_address", :null => false
     t.float   "lat",               :null => false
     t.float   "lng",               :null => false
