@@ -96,8 +96,6 @@ class SearchBar extends Spine.Controller
         console.log(status)
 
 
-
-
 class App.LocationSearch extends Spine.Controller
   elements:
     '.search-bar' : 'searchBarEl'
@@ -109,7 +107,6 @@ class App.LocationSearch extends Spine.Controller
     @el = $(elSelector)
     super()
     @html @view("location_search/modal")
-    @modalEl.modal({keyboard: false})
     @searchBar = new SearchBar(@searchBarEl)
     @searchMap = new SearchMap(@searchMapEl)
     @mapSidebar = new MapSidebar(@mapSidebarEl)
@@ -118,3 +115,6 @@ class App.LocationSearch extends Spine.Controller
 
     App.GeoLocation.bind 'selectLocation', (record) =>
       @selectedLocation = record
+
+  openModal: ->
+    @modalEl.modal({keyboard: false})

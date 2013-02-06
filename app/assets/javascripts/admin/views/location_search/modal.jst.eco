@@ -23,5 +23,11 @@
     </div>
   </div>
   <div class="modal-footer">
+    <div class="search-actions">
+      <button class="btn btn-primary" data-type='save'>
+        Add address
+      </button>
+      <a class='btn btn-link' data-type='cancel'>Cancel</a>
+    </div>
   </div>
 </div>

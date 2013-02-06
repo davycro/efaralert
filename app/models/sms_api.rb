@@ -3,7 +3,7 @@ class SmsApi
   attr :api
 
   def initialize
-    self.authenticate
+    self.authenticate unless in_silent_mode?
   end
 
   # don't sent text messages in dev environment
