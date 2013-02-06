@@ -1,22 +1,40 @@
-<div class='control-group'>
-  <label class='control-label'>
-    <%= @index + 1 %>
-  </label>
-  <div class="controls">
-    <address>
-      <%= @location.formatted_address %>
-    </address>
-    <select name="<%= @namePrefix %>[occupied_at]">
-      <option>Anytime</option>
-      <option>Daytime</option>
-      <option>Nighttime</option>
-    </select>
-    <span>Delete</span>
-    <input type="checkbox" name="<%= @namePrefix %>[_destroy]">
+<div class='location-item'>
 
-    <input type="hidden" name="<%= @namePrefix %>[formatted_address] %>" value="<%= @location.formatted_address %>">
-    <input type="hidden" name="<%= @namePrefix %>[lat] %>" value="<%= @location.lat %>">
-    <input type="hidden" name="<%= @namePrefix %>[lng] %>" value="<%= @location.lng %>">
-    <input type="hidden" name="<%= @namePrefix %>[location_type] %>" value="<%= @location.location_type %>">
+  <div class="control-group">
+    <label class="control-label">
+      Address
+    </label>
+    <div class="controls">
+      <span class="input-xlarge uneditable-input">
+        <%= @location['formatted_address'] %>
+      </span>
+    </div>
   </div>
+
+  <div class="control-group">
+    <label class="control-label">
+      Occupied at
+    </label>
+    <div class="controls">
+      <select name="<%= @namePrefix %>[occupied_at]">
+        <option>anytime</option>
+        <option>daytime</option>
+        <option>nighttime</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label">
+      Delete?
+    </label>
+    <div class="controls">
+      <input type="checkbox" name="<%= @namePrefix %>[_destroy]">
+    </div>
+  </div>
+
+  <input type="hidden" name="<%= @namePrefix %>[formatted_address]" value="<%= @location.formatted_address %>">
+  <input type="hidden" name="<%= @namePrefix %>[lat]" value="<%= @location.lat %>">
+  <input type="hidden" name="<%= @namePrefix %>[lng]" value="<%= @location.lng %>">
+  <input type="hidden" name="<%= @namePrefix %>[location_type]" value="<%= @location.location_type %>">
 </div>

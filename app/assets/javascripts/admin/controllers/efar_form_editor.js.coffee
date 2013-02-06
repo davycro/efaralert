@@ -3,7 +3,7 @@ class Locations extends Spine.Controller
   constructor: (elSelector) ->
     @el = $(elSelector)
     super()
-    @index = 0
+    @index = @el.data('length')
     App.LocationSearch.bind 'saveLocation', (location) =>
       @addLocation(location)
 
@@ -15,6 +15,7 @@ class Locations extends Spine.Controller
     }
     @append @view("efar_form_editor/location_field")(viewData)
     @index += 1
+    $('select', @el).last().focus()
 
 
 class App.EfarFormEditor extends Spine.Controller

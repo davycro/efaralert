@@ -4,13 +4,24 @@
 - content_for :section_actions do
   %a.btn.btn-link{:href => edit_admin_efar_path(@efar) } Edit
 
-.control-group
-  %label.control-label Community Center
-  .controls
-    = @efar.community_center.name
+.form-horizontal
+  .control-group
+    %label.control-label Community Center
+    .controls
+      = @efar.community_center.name
 
-.control-group
-  %label.control-label Contact Numbers
-  .controls
-    - @efar.contact_numbers.each do |listing|
-      .number=listing.contact_number
+  .control-group
+    %label.control-label Contact Numbers
+    .controls
+      - @efar.contact_numbers.each do |listing|
+        .number=listing.contact_number
+
+  %legend Locations
+  - @efar.locations.each do |location|
+    .control-group
+      .controls
+        %p= location.formatted_address
+        %label Occupied at:
+        %span= location.occupied_at
+
+
