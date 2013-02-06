@@ -24,7 +24,7 @@ class Admin::EfarsController < ApplicationController
   def create
     @efar = Efar.new(params[:efar])
     if @efar.save
-      redirect_to admin_efar_path(@efar), :notice => "New efar created"
+      redirect_to admin_efars_path, :notice => "New efar created"
     else
       render :action => 'new'
     end

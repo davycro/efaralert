@@ -16,7 +16,7 @@
   .efar-contact-number-fields{'data-length'=>@efar.contact_numbers.size}
     - @efar.contact_numbers.each_with_index do |listing, i|
       .control-group{ :class => listing.errors[:contact_number].present? && "error" }
-        %label.control-label= "#{i+1}"
+        %label.control-label #
         .controls
           - unless listing.new_record?
             %input{ :type=>'hidden',:name=>"efar[contact_numbers_attributes][#{i}][id]", :value => listing.id }
@@ -63,11 +63,6 @@
   .control-group
     .controls
       %button.btn.btn-small{'data-type'=>'add-location', 'type'=>'button'} Add Location
-
-  
-
-
-
 
   .form-actions
     %button.btn.btn-primary{:type=>'submit'} Save

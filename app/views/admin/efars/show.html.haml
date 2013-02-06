@@ -1,27 +1,28 @@
 - content_for :section_header do
-  %h3= "EFAR #{@efar.full_name}"
+  %h3= "#{@efar.full_name}"
 
 - content_for :section_actions do
   %a.btn.btn-link{:href => edit_admin_efar_path(@efar) } Edit
 
-.form-horizontal
-  .control-group
-    %label.control-label Community Center
-    .controls
-      = @efar.community_center.name
+- if flash[:notice].present?
+  .alert
+    = flash[:notice]
+    %button.close{:type=>"button", "data-dismiss"=>"alert"} &times;
 
-  .control-group
-    %label.control-label Contact Numbers
-    .controls
-      - @efar.contact_numbers.each do |listing|
-        .number=listing.contact_number
+%dl.dl-horizontal
+  %dt Community Center
+  %dd= @efar.community_center.name
 
-  %legend Locations
-  - @efar.locations.each do |location|
-    .control-group
-      .controls
-        %p= location.formatted_address
-        %label Occupied at:
-        %span= location.occupied_at
+%dl.dl-horizontal
+  %dt Contact Numbers
+  - @efar.contact_numbers.each do |c|
+    %dd= c.contact_number
+
+- @efar.locations.each do |l|
+  %dl.dl-horizontal
+    %dt Address
+    %dd= l.formatted_address
+    %dt Occupied at
+    %dd= l.occupied_at.titlecase
 
 

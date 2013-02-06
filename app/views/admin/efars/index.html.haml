@@ -9,23 +9,21 @@
 - if flash[:notice].present?
   .alert
     = flash[:notice]
-    %button.close{:type=>"button", "data-dismiss"=>"alert"} x
+    %button.close{:type=>"button", "data-dismiss"=>"alert"} &times;
 
 %table.table
   %thead
     %tr
       %th #
       %th Full Name
-      %th Mobile #
-      %th Location
+      %th Community Centre
 
   %tbody
     - @efars.each do |efar|
       %tr
         %td= efar.id
         %td= efar.full_name
-        %td= efar.contact_number
-        %td= "#{efar.street}, #{efar.suburb}"
+        %td= efar.community_center.name
         %td
           .btn-group
             %a.btn.btn-mini.dropdown-toggle{"data-toggle"=>"dropdown", :href=>'#'}
