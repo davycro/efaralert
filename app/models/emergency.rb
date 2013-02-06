@@ -131,7 +131,7 @@ class Emergency < ActiveRecord::Base
       # make list of names and contact numbers
       message += "\n"
       sent_dispatch_messages.map(&:efar).each do |efar|
-        message += "#{efar.full_name} - #{efar.contact_number}\n"
+        message += "#{efar.full_name} - #{efar.contact_numbers.join(', ')}\n"
       end
 
       # send message to every head efar

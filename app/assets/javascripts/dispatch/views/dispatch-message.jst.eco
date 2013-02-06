@@ -24,7 +24,7 @@
 
       <div class="efar-summary-group">
         <div class="group-label">
-          Address
+          Location
         </div>
         <div class="group-item">
           <%= @efar_location.formatted_address %>
@@ -37,7 +37,7 @@
         </div>
         <div class="group-item">
           <% for contact_number in @efar.contact_numbers: %>
-            <%= contact_number %><br>
+            <%= contact_number.contact_number %><br>
           <% end %>
         </div>
       </div>

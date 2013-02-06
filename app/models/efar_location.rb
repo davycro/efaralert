@@ -22,6 +22,8 @@ class EfarLocation < ActiveRecord::Base
   attr_accessible :formatted_address, :lat, :lng,
     :location_type
 
+  geocoded_by :formatted_address, :latitude => :lat, :longitude => :lng
+
   validates :lat, :lng, :formatted_address, :presence => true
 
   scope :valid_location,

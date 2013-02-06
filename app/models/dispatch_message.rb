@@ -42,11 +42,11 @@ class DispatchMessage < ActiveRecord::Base
   end
 
   def lat
-    self.efar.lat
+    self.efar_location.lat
   end
 
   def lng
-    self.efar.lng
+    self.efar_location.lng
   end
 
   def state_message
@@ -124,7 +124,7 @@ class DispatchMessage < ActiveRecord::Base
     self.efar.send_text_message(message)
 
     message_for_head_efar = %/
-      #{efar.full_name} en route to emergency at #{emergency.address_formatted_for_text_message}. Their contact number is: #{efar.contact_number}
+      #{efar.full_name} en route to emergency at #{emergency.address_formatted_for_text_message}. Their contact number is: #{efar.contact_numbers.join('and ')}
     /.squish
     self.head_efars.each do |head_efar|
       head_efar.send_text_message message_for_head_efar
@@ -144,7 +144,7 @@ class DispatchMessage < ActiveRecord::Base
     self.efar.send_text_message(message)
 
     message_for_head_efar = %/
-      #{efar.full_name} ON SCENE at #{emergency.address_formatted_for_text_message}. Their contact number is: #{efar.contact_number}
+      #{efar.full_name} ON SCENE at #{emergency.address_formatted_for_text_message}. Their contact number is: #{efar.contact_numbers.join('and ')}
     /.squish
     self.head_efars.each do |head_efar|
       head_efar.send_text_message message_for_head_efar
@@ -164,7 +164,7 @@ class DispatchMessage < ActiveRecord::Base
     self.efar.send_text_message(message)
 
     message_for_head_efar = %/
-      #{efar.full_name} DECLINED to respond to emergency at #{emergency.address_formatted_for_text_message}. Their contact number is: #{efar.contact_number}
+      #{efar.full_name} DECLINED to respond to emergency at #{emergency.address_formatted_for_text_message}. Their contact number is: #{efar.contact_numbers.join('and ')}
     /.squish
     self.head_efars.each do |head_efar|
       head_efar.send_text_message message_for_head_efar
@@ -190,7 +190,7 @@ class DispatchMessage < ActiveRecord::Base
   end
 
   def as_json(options = {})
-    super(:methods => [:efar, :lat, :lng])
+    super(:methods => [:efar, :lat, :lng, :efar_location])
   end
 
   def self.find_most_active_for_number(contact_number)
