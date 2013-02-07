@@ -9,30 +9,39 @@
     = csrf_meta_tags
     = render :partial => 'layouts/ga'
   %body             
-    .container-fluid
-      .row
-        .span3
-          .efar-shield
-            %i.efar-sprite-logo
-            .logo-text EFAR ADMIN
-          %ul.nav.nav-list.admin-sidebar-nav
-            %li.nav-header Accounts
-            %li{:class=> controller.controller_name=="admins" && "active"}
-              %a{:href=>admin_admins_path} Admins
-            %li{:class=> controller.controller_name=="dispatchers" && "active"}
-              %a{:href=>admin_dispatchers_path} Dispatchers
-            %li{:class=> controller.controller_name=="researchers" && "active"}
-              %a{:href=>admin_researchers_path} Researchers
-            %li{:class=> controller.controller_name=="community_centers" && "active"}
-              %a{:href=>admin_community_centers_path} Community Centers
-            %li{:class=> controller.controller_name=="head_efars" && "active"}
-              %a{:href=>admin_head_efars_path} Head Efars
-            %li{:class=> controller.controller_name=="efars" && "active"}
-              %a{:href=>admin_efars_path} Efars
-            %li.divider
+
+    .navbar.navbar-inverse.navbar-fixed-top.navbar-admin-layout
+      .navbar-inner
+        .container
+          .efar-brand{:href=>'#'}
+            .efar-shield
+              %i.efar-sprite-logo
+              .logo-text EFAR ADMIN
+          %ul.nav
+            %li.dropdown
+              %a.dropdown-toggle{'data-toggle'=>'dropdown'}
+                Accounts
+                %b.caret
+              %ul.dropdown-menu
+                %li
+                  %a{:href=>admin_admins_path} Admins
+                %li
+                  %a{:href=>admin_dispatchers_path} Dispatchers
+                %li
+                  %a{:href=>admin_researchers_path} Researchers
+                %li
+                  %a{:href=>admin_community_centers_path} Community Centers
+                %li
+                  %a{:href=>admin_head_efars_path} Head Efars
+                %li
+                  %a{:href=>admin_efars_path} Efars
+          %ul.nav.pull-right
             %li
-              = link_to 'Logout', admin_session_path, :method => :delete  
-        .span9
+              = link_to 'Logout', admin_session_path, :method => :delete 
+
+    .container
+      .row
+        .span12
           .section
             .section-header
               = yield :section_header

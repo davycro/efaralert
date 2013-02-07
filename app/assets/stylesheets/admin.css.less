@@ -6,13 +6,14 @@
 
 // Padding given to left and right margins of section boxes
 @horizontalPadding: @baseLineHeight;
+@navbarHeight: 60px;
 
 //
 // Scaffolding and layout styles
 // --------------------------------------------------
 
 body {
-  padding-top: 20px;
+  padding-top: @navbarHeight+@baseLineHeight;
 }
 
 .fixed {
@@ -59,34 +60,31 @@ body {
   padding: 10px 15px 0;
 }
 
-.admin-sidebar-nav {
-  background-color: #f7f7f7;
-  border-width: 0px 1px 1px 1px;
-  border-color: #454545;
-  border-style: solid;
-  .border-bottom-radius(4px);
-  padding-bottom: 10px;
-  padding-top: 10px;
+.navbar-admin-layout {
+  .navbar-inner {
+    #gradient > .vertical(#333A39, #1f2423);  
+  }
+  .efar-brand {
+    float: left;
+    display: block;
+    height: @navbarHeight;
+    overflow: hidden;
+  }
 }
 
 .efar-shield {
-  background-color: #1b1b1b;
-  #gradient > .vertical(#333A39, #1f2423);
-  .border-top-radius(4px);
   color: white;
-  padding-left: 10px;
-  padding-top: 5px;
-  height: 60px;
+  padding-top: 3px;
 
   .logo-text {
     float: left;
     width: 100px;
     height: 10px;
     margin-left: 10px;
-    font-weight: bold;
+    // font-weight: bold;
     padding-top: 7px;
     font-size: 20px;
-    color: white;
+    color: @grayLighter;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.5);
   }
 
