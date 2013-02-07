@@ -60,4 +60,8 @@ class Efar < ActiveRecord::Base
     return responses.first
   end
 
+  def contact_number
+    self.contact_numbers.first
+  end
+
 end

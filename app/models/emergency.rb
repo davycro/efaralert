@@ -34,6 +34,7 @@ class Emergency < ActiveRecord::Base
   end
 
   after_create :create_dispatch_messages
+  after_create :log_new_emergency
 
   def create_dispatch_messages
     nearby_efar_locations.each do |location|
@@ -45,8 +46,12 @@ class Emergency < ActiveRecord::Base
     end
   end
 
+  def log_new_emergency
+    ActivityLog.log "Emergency at #{formatted_address}. Category: #{@category}. #{self.nearby_efar_locations.size} efars notified."
+  end
+
   def nearby_efar_locations
-    EfarLocation.near([self.lat, self.lng], 0.5).limit(10)
+    @nearby_efar_locations ||= EfarLocation.near([self.lat, self.lng], 0.5).limit(10)
   end
 
   def nearby_efars

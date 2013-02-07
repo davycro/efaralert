@@ -94,7 +94,7 @@ class DispatchMessage < ActiveRecord::Base
   end
 
   def send_help_messages
-    Rails.logger.info "Sending Help Message"
+    ActivityLog.log "#{self.efar.full_name} needs help, proceeding to dispatch head efars"
 
     message = %/
       Ok, someone will call to assist you immediately
@@ -113,7 +113,7 @@ class DispatchMessage < ActiveRecord::Base
 
   # state change: sent -> en route
   def set_state_to_en_route_and_then_send_messages
-    Rails.logger.info "EFAR #{efar.full_name} is En Route!"
+    ActivityLog.log "#{self.efar.full_name} is en route to emergency at #{emergency.formatted_address}"
 
     self.state='en_route'
     self.save
@@ -133,7 +133,7 @@ class DispatchMessage < ActiveRecord::Base
 
   # state change: en route -> on scene
   def set_state_to_on_scene_and_then_send_messages
-    Rails.logger.info "EFAR #{efar.full_name} is On Scene!"
+    ActivityLog.log "#{self.efar.full_name} arrived at emergency at #{emergency.formatted_address}"
 
     self.state='on_scene'
     self.save
@@ -153,7 +153,7 @@ class DispatchMessage < ActiveRecord::Base
 
   # state change: ? -> declined
   def set_state_to_declined_and_then_send_messages
-    Rails.logger.info "EFAR #{efar.full_name} is Declined!"
+    ActivityLog.log "#{self.efar.full_name} declined to respond to emergency at #{emergency.formatted_address}"
 
     self.state='declined'
     self.save

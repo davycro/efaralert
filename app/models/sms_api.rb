@@ -33,11 +33,10 @@ class SmsApi
         :concat => '3',
         :client_message_id => opts[:client_message_id])
       if message_id.present?
-        log "message sent to #{number}, #{message}"
+        ActivityLog.log "Text message sent to #{number}: \"#{message}\""
         response[:status] = 'success'
         response[:clickatell_id] = message_id
       else
-        log "failed to message #{number}, no message id"
         respose[:status] = 'failed'
         response[:clickatell_error_message] = 'no message id'
       end
@@ -48,7 +47,7 @@ class SmsApi
         tries += 1
         retry
       else
-        log "failed to message #{number}, #{e.message}"
+        ActivityLog.log "Failed to text message #{number}: #{message}. Reason: #{e.message}"
         response[:status] = 'failed'
         response[:clickatell_error_message] = e.message
       end
