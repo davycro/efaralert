@@ -164,7 +164,9 @@ class DispatchMessage < ActiveRecord::Base
     self.efar.send_text_message(message)
 
     message_for_head_efar = %/
-      #{efar.full_name} DECLINED to respond to emergency at #{emergency.address_formatted_for_text_message}. Their contact number is: #{efar.contact_numbers.join('and ')}
+      #{efar.full_name} DECLINED to respond to emergency at 
+      #{emergency.address_formatted_for_text_message}. 
+      Their contact number is: #{efar.contact_numbers.join('and ')}
     /.squish
     self.head_efars.each do |head_efar|
       head_efar.send_text_message message_for_head_efar
@@ -175,7 +177,8 @@ class DispatchMessage < ActiveRecord::Base
     message = %/
       EFAR #{efar.full_name}, your help is needed! 
       #{emergency.category_formatted_for_nil} at  
-      #{emergency.address_formatted_for_text_message}. Will you rescue? Reply YES or NO
+      #{emergency.address_formatted_for_text_message}. 
+      Will you rescue? Reply YES or NO
       /.squish
     resp = self.efar.send_text_message(message)
     if resp[:status] == 'success'
@@ -198,7 +201,9 @@ class DispatchMessage < ActiveRecord::Base
     return nil if listing.blank?
     efar = listing.efar
     return nil if efar.blank?
-    dispatch_message = efar.dispatch_messages.where("created_at >= :start_date", { :start_date => 2.hours.ago }).order('created_at DESC').first
+    dispatch_message = efar.dispatch_messages.
+      where("created_at >= :start_date", { :start_date => 2.hours.ago }).
+      order('created_at DESC').first
     return dispatch_message
 
   end
