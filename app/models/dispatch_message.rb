@@ -124,7 +124,7 @@ class DispatchMessage < ActiveRecord::Base
     self.efar.send_text_message(message)
 
     message_for_head_efar = %/
-      #{efar.full_name} en route to emergency at #{emergency.address_formatted_for_text_message}. Their contact number is: #{efar.contact_numbers.join('and ')}
+      #{efar.full_name} en route to emergency at #{emergency.address_formatted_for_text_message}. Their contact number is: #{efar.contact_number}
     /.squish
     self.head_efars.each do |head_efar|
       head_efar.send_text_message message_for_head_efar
@@ -144,7 +144,7 @@ class DispatchMessage < ActiveRecord::Base
     self.efar.send_text_message(message)
 
     message_for_head_efar = %/
-      #{efar.full_name} ON SCENE at #{emergency.address_formatted_for_text_message}. Their contact number is: #{efar.contact_numbers.join('and ')}
+      #{efar.full_name} ON SCENE at #{emergency.address_formatted_for_text_message}. Their contact number is: #{efar.contact_number}
     /.squish
     self.head_efars.each do |head_efar|
       head_efar.send_text_message message_for_head_efar
@@ -166,7 +166,7 @@ class DispatchMessage < ActiveRecord::Base
     message_for_head_efar = %/
       #{efar.full_name} DECLINED to respond to emergency at 
       #{emergency.address_formatted_for_text_message}. 
-      Their contact number is: #{efar.contact_numbers.join('and ')}
+      Their contact number is: #{efar.contact_number}
     /.squish
     self.head_efars.each do |head_efar|
       head_efar.send_text_message message_for_head_efar

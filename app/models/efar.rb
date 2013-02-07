@@ -61,7 +61,7 @@ class Efar < ActiveRecord::Base
   end
 
   def contact_number
-    self.contact_numbers.first
+    self.contact_numbers.first.contact_number
   end
 
 end

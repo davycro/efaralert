@@ -1,0 +1,9 @@
+%h2 Activity Log
+
+.activity-log
+  - @activity_log.each do |log|
+    .item
+      %small
+        = "#{log.logged_at_in_cape_town_time_zone}"        
+      %p.lead=log.message
+      

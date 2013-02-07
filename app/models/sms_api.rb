@@ -47,7 +47,7 @@ class SmsApi
         tries += 1
         retry
       else
-        ActivityLog.log "Failed to text message #{number}: #{message}. Reason: #{e.message}"
+        ActivityLog.log "Failed to text message #{number}: \"#{message}\". Reason: #{e.message}"
         response[:status] = 'failed'
         response[:clickatell_error_message] = e.message
       end
