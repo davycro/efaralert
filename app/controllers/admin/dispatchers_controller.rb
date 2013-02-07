@@ -1,5 +1,5 @@
 class Admin::DispatchersController < ApplicationController
-  layout 'efar_admin'
+  layout 'admin'
 
   before_filter :require_admin_login
 
