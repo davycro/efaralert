@@ -1,8 +1,7 @@
-- content_for :section_header do
-  %h3= "#{@efar.full_name}"
-
-- content_for :section_actions do
-  %a.btn.btn-link{:href => edit_admin_efar_path(@efar) } Edit
+%h3
+  = "#{@efar.full_name}"
+  .pull-right
+    %a.btn.btn-link{:href => edit_admin_efar_path(@efar) } Edit
 
 - if flash[:notice].present?
   .alert

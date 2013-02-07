@@ -1,10 +1,1 @@
-- content_for :section_header do
-  %h3 Edit EFAR
-
-- content_for :section_actions do
-  %a.btn.btn-link{:href => admin_efars_path } Cancel
-
-- if @efar.errors.present?
-  .alert.alert-error There were some errors saving the efar. See below for more information.
-
 = render :partial => 'editor'

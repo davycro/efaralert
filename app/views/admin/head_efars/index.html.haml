@@ -1,10 +1,12 @@
-- content_for :section_header do
-  %h3 Head Efars
+.page-header
+  %h3
+    Head Efars
+    .pull-right
+      %a.btn.btn-primary.btn-small{:href => new_admin_head_efar_path}
+        %i.icon-plus.icon-white
+        Create
 
-- content_for :section_actions do
-  %a.btn.btn-primary{:href => new_admin_head_efar_path}
-    %i.icon-plus.icon-white
-    Create new head efar
+
 
 - if flash[:notice].present?
   .alert

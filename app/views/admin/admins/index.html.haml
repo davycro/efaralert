@@ -1,10 +1,10 @@
-- content_for :section_header do
-  %h3 Admins
-
-- content_for :section_actions do
-  %a.btn.btn-primary{:href => new_admin_admin_path}
-    %i.icon-plus.icon-white
-    Create new admin
+.page-header
+  %h3
+    Admins
+    .pull-right
+      %a.btn.btn-primary.btn-small{:href => new_admin_admin_path}
+        %i.icon-plus.icon-white
+        Create
 
 - if flash[:notice].present?
   .alert

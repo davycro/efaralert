@@ -1,10 +1,11 @@
-- content_for :section_header do
-  %h3 Community Centers
+.page-header
+  %h3
+    Community Centers
+    .pull-right
+      %a.btn.btn-primary.btn-small{:href => new_admin_community_center_path}
+        %i.icon-plus.icon-white
+        Create
 
-- content_for :section_actions do
-  %a.btn.btn-primary{:href => new_admin_community_center_path}
-    %i.icon-plus.icon-white
-    Create new community center
 
 - if flash[:notice].present?
   .alert
@@ -16,6 +17,8 @@
     %tr
       %th Name
       %th Location
+        
+
   %tbody
     - @community_centers.each do |community_center|
       %tr

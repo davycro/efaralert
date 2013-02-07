@@ -1,10 +1,12 @@
-- content_for :section_header do
-  %h3 Efars
+.page-header
+  %h3
+    Efars
+    .pull-right
+      %a.btn.btn-primary.btn-small{:href => new_admin_efar_path}
+        %i.icon-plus.icon-white
+        Create
 
-- content_for :section_actions do
-  %a.btn.btn-primary{:href => new_admin_efar_path}
-    %i.icon-plus.icon-white
-    Create new Efar
+
 
 - if flash[:notice].present?
   .alert
@@ -16,7 +18,7 @@
     %tr
       %th #
       %th Full Name
-      %th Community Centre
+      %th Community Centre        
 
   %tbody
     - @efars.each do |efar|

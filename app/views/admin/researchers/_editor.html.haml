@@ -1,5 +1,11 @@
 = form_for([:admin, @researcher], :html => {:class => 'form-horizontal'}) do |f|
   
+  %legend
+    Researcher
+
+  - if @researcher.errors.present?
+    .alert.alert-error There were some errors saving the researcher. See below for more information.  
+
   = horizontal_text_field(@researcher, :full_name)
   = horizontal_text_field(@researcher, :email)
   = horizontal_text_field(@researcher, :affiliation)

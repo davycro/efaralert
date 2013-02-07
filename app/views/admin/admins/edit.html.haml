@@ -1,8 +1,4 @@
-- content_for :section_header do
-  %h3 Edit admin
-
-- content_for :section_actions do
-  %a.btn.btn-link{:href => admin_admins_path } Cancel
+%legend Edit Admin
 
 - if @admin.errors.present?
   .alert.alert-error There were some errors editing the admin. See below for more information.

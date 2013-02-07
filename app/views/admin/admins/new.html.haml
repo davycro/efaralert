@@ -1,8 +1,7 @@
-- content_for :section_header do
-  %h3 Create an admin
-
-- content_for :section_actions do
-  %a.btn.btn-link{:href => admin_admins_path } Cancel
+%legend
+  Create Admin
+  .pull-right
+    %a.btn.btn-link{:href => admin_admins_path } Cancel
 
 - if @admin.errors.present?
   .alert.alert-error There were some errors creating a new admin. See below for more information.

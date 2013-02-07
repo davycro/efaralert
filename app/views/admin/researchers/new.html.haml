@@ -1,10 +1,1 @@
-- content_for :section_header do
-  %h3 Create a researcher
-
-- content_for :section_actions do
-  %a.btn.btn-link{:href => admin_researchers_path } Cancel
-
-- if @researcher.errors.present?
-  .alert.alert-error There were some errors creating a new researcher. See below for more information.
-
 = render :partial => 'editor'

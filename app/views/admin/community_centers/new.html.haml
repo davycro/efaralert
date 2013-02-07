@@ -1,10 +1,1 @@
-- content_for :section_header do
-  %h3 Create a community center
-
-- content_for :section_actions do
-  %a.btn.btn-link{:href => admin_community_centers_path } Cancel
-
-- if @community_center.errors.present?
-  .alert.alert-error There were some errors creating a new community center. See below for more information.
-
 = render :partial => 'editor'
