@@ -6,7 +6,7 @@ class ClickatellController < ApplicationController
     # assume that response is for the latest dispatch message
     text = params[:text]
     dispatch_message = DispatchMessage.find_most_active_for_number(params[:from])
-    Rails.logger.info dispatch_message
+    ActivityLog.log "SMS received from #{params[:from]}. Message: #{params[:text]}"
     if params[:text].present?
       dispatch_message.process_response text
     end
