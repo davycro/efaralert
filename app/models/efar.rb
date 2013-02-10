@@ -13,7 +13,7 @@ class Efar < ActiveRecord::Base
 
   # Individual Attributes
   attr_accessible :full_name, :community_center_id, :contact_numbers_attributes,
-    :locations_attributes
+    :locations_attributes, :slum_id
 
   PER_PAGE = 50
 
@@ -25,6 +25,7 @@ class Efar < ActiveRecord::Base
     :inverse_of => :efar
   has_many :contact_numbers, :class_name => 'EfarContactNumber',
     :dependent => :destroy, :inverse_of => :efar
+  belongs_to :slum
 
   accepts_nested_attributes_for :contact_numbers, :allow_destroy => :true,
     :reject_if => :all_blank

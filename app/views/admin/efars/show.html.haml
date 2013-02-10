@@ -24,4 +24,9 @@
     %dt Occupied at
     %dd= l.occupied_at.titlecase
 
+- if @efar.slum.present?
+  %dl.dl-horizontal
+    %dt Informal Settlement
+    %dd= @efar.slum.name
+
 

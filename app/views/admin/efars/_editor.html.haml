@@ -20,6 +20,11 @@
     .controls
       = select("efar", "community_center_id", CommunityCenter.all.collect { |c| [c.name, c.id] } )
 
+  .control-group
+    %label.control-label Informal Settlement
+    .controls
+      = select "efar", "slum_id", Slum.all.collect{ |s| [s.name, s.id] }, {:include_blank => 'None'}
+
   %legend Contact Numbers
 
   .efar-contact-number-fields{'data-length'=>@efar.contact_numbers.size}
