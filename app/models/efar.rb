@@ -5,6 +5,7 @@
 #  id                  :integer          not null, primary key
 #  full_name           :string(255)      not null
 #  community_center_id :integer          not null
+#  slum_id             :integer
 #
 
 # The efar table represents all efars willing to provide a mobile phone number

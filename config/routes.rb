@@ -22,6 +22,7 @@ EfarDispatch::Application.routes.draw do
     resources :head_efars
     resources :efars
     resources :activity_logs
+    resources :slums
     resource :session
   end
   match 'admin/' => 'admin/admins#index'

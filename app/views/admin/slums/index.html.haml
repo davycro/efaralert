@@ -1,0 +1,35 @@
+.page-header
+  %h3
+    Informal Settlements
+    .pull-right
+      %a.btn.btn-primary.btn-small{:href => new_admin_slum_path}
+        %i.icon-plus.icon-white
+        Create
+
+- if flash[:notice].present?
+  .alert
+    = flash[:notice]
+    %button.close{:type=>"button", "data-dismiss"=>"alert"} &times;
+
+%table.table
+  %thead
+    %tr
+      %th Name
+  %tbody
+    - @slums.each do |slum|
+      %tr
+        %td= slum.name
+        %td
+          .btn-group
+            %a.btn.btn-mini.dropdown-toggle{"data-toggle"=>"dropdown", :href=>'#'}
+              %i.icon-cog
+              %span.caret
+            %ul.dropdown-menu.pull-right
+              %li
+                %a{:href=>edit_admin_slum_path(slum)}
+                  %i.icon-pencil
+                  Edit
+              %li
+                %a{:href=>admin_slum_path(slum), "data-confirm"=>"Are you sure?", "data-method"=>"delete"}
+                  %i.icon-trash
+                  Delete

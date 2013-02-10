@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: activity_logs
+#
+#  id         :integer          not null, primary key
+#  message    :string(255)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class ActivityLog < ActiveRecord::Base
   attr_accessible :message
 
