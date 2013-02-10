@@ -19,11 +19,11 @@ end
 
 task :send_first_invite_to_manenberg => :environment do
 
-  raise "careful now!"
+  # raise "careful now!"
 
   community_center = CommunityCenter.find_by_name("The People's Centre")
   # efar = CandidateEfar.where(:full_name=>'David Crockett', :community_center_id=>community_center.id).first
-  CandidateEfar.where(:community_center_id => community_center.id).all.each do |efar|
+  CandidateEfar.where(:community_center_id => community_center.id, :first_invite_status_part_one => nil).all.each do |efar|
     deliver_first_message efar
   end
 
