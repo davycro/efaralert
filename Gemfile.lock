@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/lukeredpath/clickatell.git
+  revision: 9f7e39cf6a8ea1f314a7464f9b830149de924bbe
+  specs:
+    clickatell (0.8.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -36,7 +42,6 @@ GEM
       sass (>= 3.1)
     builder (3.0.0)
     choice (0.1.6)
-    clickatell (0.8.2)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -187,7 +192,7 @@ DEPENDENCIES
   annotate (>= 2.5.0)
   bcrypt-ruby (~> 3.0.0)
   bourbon
-  clickatell
+  clickatell!
   coffee-rails (~> 3.2.1)
   delayed_job_active_record
   eco

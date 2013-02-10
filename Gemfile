@@ -50,4 +50,4 @@ gem "twitter-bootstrap-rails"
 gem 'annotate', ">=2.5.0"
 
 gem 'delayed_job_active_record'
-gem 'clickatell'
+gem 'clickatell', :git => 'git://github.com/lukeredpath/clickatell.git'
