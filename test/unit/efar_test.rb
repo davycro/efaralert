@@ -6,6 +6,7 @@
 #  full_name           :string(255)      not null
 #  community_center_id :integer          not null
 #  slum_id             :integer
+#  contact_number      :string(255)      not null
 #
 
 require 'test_helper'
@@ -15,9 +16,5 @@ class EfarTest < ActiveSupport::TestCase
   test "has many locations" do
     david = efars(:david)
     assert david.locations.present?
-  end
-  test "has many contact numbers" do
-    david = efars(:david)
-    assert david.contact_numbers.present?
   end
 end

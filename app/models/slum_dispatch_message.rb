@@ -151,9 +151,7 @@ class SlumDispatchMessage < ActiveRecord::Base
   end
 
   def self.find_most_active_for_number(contact_number)
-    listing = EfarContactNumber.find_by_contact_number contact_number
-    return nil if listing.blank?
-    efar = listing.efar
+    efar = Efar.find_by_contact_number contact_number
     return nil if efar.blank?
     dispatch_message = efar.slum_dispatch_messages.
       where("created_at >= :start_date", { :start_date => 2.hours.ago }).

@@ -31,7 +31,6 @@ class SlumEmergency < ActiveRecord::Base
       dm.efar = efar
       dm.slum_emergency = self
       dm.save
-      puts dm.to_yaml
     end
   end
 
@@ -74,20 +73,6 @@ class SlumEmergency < ActiveRecord::Base
       self.category = 'Emergency'
     end
     self.category
-  end
-
-  def self.rehearse!
-    #
-    # variables
-    dispatcher   = Dispatcher.find_by_username "davycro"
-    shack_number = "21"
-    slum         = Slum.find_by_name "Hillview"
-    category     = "Uncontrolled bleed"
-
-    emergency = self.create(
-      :dispatcher_id => dispatcher.id,
-      :category => category,
-      :slum_id => slum.id)
   end
 
 end

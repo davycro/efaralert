@@ -6,20 +6,26 @@
 #  full_name           :string(255)      not null
 #  community_center_id :integer          not null
 #  slum_id             :integer
+#  contact_number      :string(255)      not null
 #
 
 david:
   full_name: 'david crockett'
   community_center: mothers_unite
+  contact_number: 123
 
 buck:
   full_name: 'buck crockett'
   community_center: mothers_unite
+  contact_number: 1234
+
 
 jack:
   full_name: 'jack crockett'
   community_center: mothers_unite
+  contact_number: 125
 
 bill:
   full_name: 'bill crockett'
   community_center: mothers_unite
+  contact_number: 1213

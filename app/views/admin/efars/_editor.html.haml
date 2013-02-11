@@ -7,13 +7,12 @@
 - if @efar.errors.present?
   .alert.alert-error There were some errors saving the efar. See below for more information.
 
-- @efar.contact_numbers.build if @efar.contact_numbers.size==0
-
 = form_for([:admin, @efar], :html => {:class => 'form-horizontal efar-form-editor'}) do |f|
   
   %legend Personal Info
 
   = horizontal_text_field(@efar, :full_name)
+  = horizontal_text_field(@efar, :contact_number, :help_text => "Please include a country code prefix")
 
   .control-group
     %label.control-label Community Center
@@ -25,26 +24,6 @@
     .controls
       = select "efar", "slum_id", Slum.all.collect{ |s| [s.name, s.id] }, {:include_blank => 'None'}
 
-  %legend Contact Numbers
-
-  .efar-contact-number-fields{'data-length'=>@efar.contact_numbers.size}
-    - @efar.contact_numbers.each_with_index do |listing, i|
-      .control-group{ :class => listing.errors[:contact_number].present? && "error" }
-        %label.control-label #
-        .controls
-          - unless listing.new_record?
-            %input{ :type=>'hidden',:name=>"efar[contact_numbers_attributes][#{i}][id]", :value => listing.id }
-          %input{:type=>'text',:name=>"efar[contact_numbers_attributes][#{i}][contact_number]", :value => listing.contact_number }
-          - if listing.errors[:contact_number].present?
-            %span.help-inline= listing.errors[:contact_number].first
-          - unless listing.nil? || listing.new_record?
-            %span Destroy
-            %input{ :type=>'checkbox', :name=>"efar[contact_numbers_attributes][#{i}][_destroy]"}
-
-  .control-group
-    .controls
-      %button.btn.btn-small{'data-type'=>'create-new-contact-number-field', 'type'=>'button'} Add number
-  
   %legend Locations
 
   .locations-list{'data-length'=>@efar.locations.size}
@@ -71,8 +50,6 @@
           %label.control-label Delete?
           .controls
             %input{ :type => 'checkbox', :name => "#{name_prefix}[_destroy]" }
-        
-
 
   .control-group
     .controls

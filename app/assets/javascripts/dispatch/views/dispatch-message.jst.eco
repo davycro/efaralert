@@ -36,9 +36,7 @@
           Mobile #
         </div>
         <div class="group-item">
-          <% for contact_number in @efar.contact_numbers: %>
-            <%= contact_number.contact_number %><br>
-          <% end %>
+          <%= @efar.contact_number %>
         </div>
       </div>
 

@@ -21,25 +21,16 @@ class Locations extends Spine.Controller
 class App.EfarFormEditor extends Spine.Controller
 
   events:
-    'click [data-type=create-new-contact-number-field]' : 'createNewContactNumberField'
     'click [data-type=add-location]' : 'launchLocationFinder'
 
   elements:
-    '.efar-contact-number-fields' : 'efarContactNumberFields'
     '.locations-list' : 'locationsListEl'
 
   constructor: ->
     @el = $('.efar-form-editor')
     super()
-    @numEfarContactNumbers = $(@efarContactNumberFields).data('length')
     @locationSearch = new App.LocationSearch("#location-search-app");
     @locations = new Locations(@locationsListEl)
-
-  createNewContactNumberField: (e) =>
-    e.preventDefault
-    $(@efarContactNumberFields).append @view('efar_form_editor/contact_number_field')({index: @numEfarContactNumbers})
-    $('[data-type=contactNumberInput]', @efarContactNumberFields).last().focus()
-    @numEfarContactNumbers += 1
 
   launchLocationFinder: (e) =>
     e.preventDefault

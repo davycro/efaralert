@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130210164702) do
+ActiveRecord::Schema.define(:version => 20130211043323) do
 
   create_table "activity_logs", :force => true do |t|
     t.string   "message"
@@ -84,11 +84,6 @@ ActiveRecord::Schema.define(:version => 20130210164702) do
 
   add_index "dispatchers", ["username"], :name => "index_dispatchers_on_username", :unique => true
 
-  create_table "efar_contact_numbers", :force => true do |t|
-    t.integer "efar_id",        :null => false
-    t.string  "contact_number", :null => false
-  end
-
   create_table "efar_locations", :force => true do |t|
     t.integer "efar_id",           :null => false
     t.string  "occupied_at"
@@ -102,6 +97,7 @@ ActiveRecord::Schema.define(:version => 20130210164702) do
     t.string  "full_name",           :null => false
     t.integer "community_center_id", :null => false
     t.integer "slum_id"
+    t.string  "contact_number",      :null => false
   end
 
   create_table "emergencies", :force => true do |t|

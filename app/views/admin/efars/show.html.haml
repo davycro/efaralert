@@ -12,11 +12,6 @@
   %dt Community Center
   %dd= @efar.community_center.name
 
-%dl.dl-horizontal
-  %dt Contact Numbers
-  - @efar.contact_numbers.each do |c|
-    %dd= c.contact_number
-
 - @efar.locations.each do |l|
   %dl.dl-horizontal
     %dt Address

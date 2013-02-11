@@ -57,6 +57,10 @@ class DispatchMessage < ActiveRecord::Base
     end
   end
 
+  def address
+    emergency.address_formatted_for_text_message  
+  end
+
   #
   # Validation Callbacks
 
@@ -103,7 +107,7 @@ class DispatchMessage < ActiveRecord::Base
 
     message_for_head_efar = %/
       EFAR #{self.efar.full_name} needs your help at 
-      #{emergency.address_formatted_for_text_message}! Please call them at 
+      #{address}! Please call them at 
       #{self.efar.contact_number}
     /.squish
     self.head_efars.each do |head_efar|
@@ -113,7 +117,7 @@ class DispatchMessage < ActiveRecord::Base
 
   # state change: sent -> en route
   def set_state_to_en_route_and_then_send_messages
-    ActivityLog.log "#{self.efar.full_name} is en route to emergency at #{emergency.formatted_address}"
+    ActivityLog.log "#{self.efar.full_name} is en route to emergency at #{address}"
 
     self.state='en_route'
     self.save
@@ -124,7 +128,7 @@ class DispatchMessage < ActiveRecord::Base
     self.efar.send_text_message(message)
 
     message_for_head_efar = %/
-      #{efar.full_name} en route to emergency at #{emergency.address_formatted_for_text_message}. Their contact number is: #{efar.contact_number}
+      #{efar.full_name} en route to emergency at #{address}. Their contact number is: #{efar.contact_number}
     /.squish
     self.head_efars.each do |head_efar|
       head_efar.send_text_message message_for_head_efar
@@ -133,7 +137,7 @@ class DispatchMessage < ActiveRecord::Base
 
   # state change: en route -> on scene
   def set_state_to_on_scene_and_then_send_messages
-    ActivityLog.log "#{self.efar.full_name} arrived at emergency at #{emergency.formatted_address}"
+    ActivityLog.log "#{self.efar.full_name} arrived at emergency at #{address}"
 
     self.state='on_scene'
     self.save
@@ -144,7 +148,7 @@ class DispatchMessage < ActiveRecord::Base
     self.efar.send_text_message(message)
 
     message_for_head_efar = %/
-      #{efar.full_name} ON SCENE at #{emergency.address_formatted_for_text_message}. Their contact number is: #{efar.contact_number}
+      #{efar.full_name} ON SCENE at #{address}. Their contact number is: #{efar.contact_number}
     /.squish
     self.head_efars.each do |head_efar|
       head_efar.send_text_message message_for_head_efar
@@ -153,7 +157,7 @@ class DispatchMessage < ActiveRecord::Base
 
   # state change: ? -> declined
   def set_state_to_declined_and_then_send_messages
-    ActivityLog.log "#{self.efar.full_name} declined to respond to emergency at #{emergency.formatted_address}"
+    ActivityLog.log "#{self.efar.full_name} declined to respond to emergency at #{address}"
 
     self.state='declined'
     self.save
@@ -165,7 +169,7 @@ class DispatchMessage < ActiveRecord::Base
 
     message_for_head_efar = %/
       #{efar.full_name} DECLINED to respond to emergency at 
-      #{emergency.address_formatted_for_text_message}. 
+      #{address}. 
       Their contact number is: #{efar.contact_number}
     /.squish
     self.head_efars.each do |head_efar|
@@ -175,9 +179,9 @@ class DispatchMessage < ActiveRecord::Base
 
   def deliver!
     message = %/
-      EFAR #{efar.full_name}, your help is needed! 
+      EFAR #{efar.full_name}, your help is urgently needed! 
       #{emergency.category_formatted_for_nil} at  
-      #{emergency.address_formatted_for_text_message}. 
+      #{address}. 
       Will you rescue? Reply YES or NO
       /.squish
     resp = self.efar.send_text_message(message)
@@ -197,9 +201,7 @@ class DispatchMessage < ActiveRecord::Base
   end
 
   def self.find_most_active_for_number(contact_number)
-    listing = EfarContactNumber.find_by_contact_number contact_number
-    return nil if listing.blank?
-    efar = listing.efar
+    efar = Efar.find_by_contact_number contact_number
     return nil if efar.blank?
     dispatch_message = efar.dispatch_messages.
       where("created_at >= :start_date", { :start_date => 2.hours.ago }).
