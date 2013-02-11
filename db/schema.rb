@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130211043323) do
+ActiveRecord::Schema.define(:version => 20130211050641) do
 
   create_table "activity_logs", :force => true do |t|
     t.string   "message"
@@ -116,14 +116,10 @@ ActiveRecord::Schema.define(:version => 20130211043323) do
   create_table "head_efars", :force => true do |t|
     t.string   "full_name",           :null => false
     t.integer  "community_center_id", :null => false
-    t.string   "email",               :null => false
-    t.string   "password_digest",     :null => false
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
     t.string   "contact_number",      :null => false
   end
-
-  add_index "head_efars", ["email"], :name => "index_head_efars_on_email", :unique => true
 
   create_table "researchers", :force => true do |t|
     t.string   "full_name",       :null => false

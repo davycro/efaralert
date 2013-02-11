@@ -7,7 +7,6 @@
     .alert.alert-error There were some errors saving the head efar. See below for more information.
 
   = horizontal_text_field(@head_efar, :full_name)
-  = horizontal_text_field(@head_efar, :email)
   = horizontal_text_field(@head_efar, :contact_number)
 
   .control-group
@@ -15,7 +14,6 @@
     .controls
       = select("head_efar", "community_center_id", CommunityCenter.all.collect { |c| [c.name, c.id] } )
 
-  = horizontal_password_field(@head_efar)
 
   .form-actions
     %button.btn.btn-primary{:type=>'submit'} Save

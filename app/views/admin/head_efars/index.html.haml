@@ -17,13 +17,13 @@
   %thead
     %tr
       %th Full Name
-      %th Email
+      %th Contact Number
       %th Community Centre
   %tbody
     - @head_efars.each do |head_efar|
       %tr
         %td= head_efar.full_name
-        %td= head_efar.email
+        %td= head_efar.contact_number
         %td= head_efar.community_center.name
         %td
           .btn-group
