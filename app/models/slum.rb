@@ -16,6 +16,8 @@ class Slum < ActiveRecord::Base
 
   before_destroy :nullify_associated_efars
 
+  has_many :efars
+
   def nullify_associated_efars
     Efar.where(:slum_id => self.id).update_all(:slum_id => nil)
   end

@@ -21,6 +21,7 @@ class Efar < ActiveRecord::Base
 
   belongs_to :community_center
   has_many :dispatch_messages
+  has_many :slum_dispatch_messages
   has_many :locations, :class_name => 'EfarLocation', :dependent => :destroy,
     :inverse_of => :efar
   has_many :contact_numbers, :class_name => 'EfarContactNumber',

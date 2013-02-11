@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130210154527) do
+ActiveRecord::Schema.define(:version => 20130210164702) do
 
   create_table "activity_logs", :force => true do |t|
     t.string   "message"
@@ -139,6 +139,24 @@ ActiveRecord::Schema.define(:version => 20130210154527) do
   end
 
   add_index "researchers", ["email"], :name => "index_researchers_on_email", :unique => true
+
+  create_table "slum_dispatch_messages", :force => true do |t|
+    t.integer  "slum_emergency_id",                              :null => false
+    t.integer  "efar_id",                                        :null => false
+    t.string   "clickatell_error_message"
+    t.string   "state",                    :default => "queued"
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
+  end
+
+  create_table "slum_emergencies", :force => true do |t|
+    t.integer  "slum_id",       :null => false
+    t.string   "category"
+    t.string   "shack_number"
+    t.integer  "dispatcher_id", :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
 
   create_table "slums", :force => true do |t|
     t.string   "name",       :null => false

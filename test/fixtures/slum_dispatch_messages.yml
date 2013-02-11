@@ -1,0 +1,24 @@
+# == Schema Information
+#
+# Table name: slum_dispatch_messages
+#
+#  id                       :integer          not null, primary key
+#  slum_emergency_id        :integer          not null
+#  efar_id                  :integer          not null
+#  clickatell_error_message :string(255)
+#  state                    :string(255)      default("queued")
+#  created_at               :datetime         not null
+#  updated_at               :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  slum_emergency_id: 1
+  efar_id: 1
+  clickatell_error_message: MyString
+
+two:
+  slum_emergency_id: 1
+  efar_id: 1
+  clickatell_error_message: MyString

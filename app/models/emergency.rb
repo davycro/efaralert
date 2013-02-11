@@ -118,7 +118,7 @@ class Emergency < ActiveRecord::Base
   end
 
   def head_efars
-    @head_efars ||= self.sent_dispatch_messages.map(&:head_efars).flatten.uniq.compact
+    @head_efars ||= self.dispatch_messages.map(&:head_efars).flatten.uniq.compact
   end
 
   def dispatch_head_efars!

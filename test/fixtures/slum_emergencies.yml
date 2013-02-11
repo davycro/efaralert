@@ -1,0 +1,26 @@
+# == Schema Information
+#
+# Table name: slum_emergencies
+#
+#  id            :integer          not null, primary key
+#  slum_id       :integer          not null
+#  category      :string(255)
+#  shack_number  :string(255)
+#  dispatcher_id :integer          not null
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  slum_id: 1
+  category: MyString
+  shack_number: MyString
+  dispatcher_id: 1
+
+two:
+  slum_id: 1
+  category: MyString
+  shack_number: MyString
+  dispatcher_id: 1
