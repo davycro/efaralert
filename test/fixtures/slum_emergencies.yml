@@ -13,14 +13,8 @@
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  slum_id: 1
-  category: MyString
-  shack_number: MyString
-  dispatcher_id: 1
-
-two:
-  slum_id: 1
-  category: MyString
-  shack_number: MyString
-  dispatcher_id: 1
+overcome:
+  slum: overcome
+  category: Broken bone
+  shack_number: 21
+  dispatcher: davycro 

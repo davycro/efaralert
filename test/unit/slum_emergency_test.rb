@@ -40,8 +40,6 @@ class SlumEmergencyTest < ActiveSupport::TestCase
         :shack_number  => shack_number
       )
 
-    puts emergency.to_yaml
-
     #
     # assertions
     assert_equal efar_names.size, emergency.slum_dispatch_messages.size 

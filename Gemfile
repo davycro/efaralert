@@ -22,6 +22,10 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+group :test do
+  gem "mocha", "~> 0.12.8", :require => false
+end
+
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'eco'
@@ -51,3 +55,4 @@ gem 'annotate', ">=2.5.0"
 
 gem 'delayed_job_active_record'
 gem 'clickatell', :git => 'git://github.com/lukeredpath/clickatell.git'
+

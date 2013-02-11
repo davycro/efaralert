@@ -148,6 +148,7 @@ class SlumDispatchMessage < ActiveRecord::Base
       self.clickatell_error_message = resp[:clickatell_error_message]
     end
     self.save!
+    return resp
   end
 
   def self.find_most_active_for_number(contact_number)
@@ -158,7 +159,5 @@ class SlumDispatchMessage < ActiveRecord::Base
       order('created_at DESC').first
     return dispatch_message
   end
-
-
 
 end
