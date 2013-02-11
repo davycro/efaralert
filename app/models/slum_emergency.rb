@@ -52,12 +52,12 @@ class SlumEmergency < ActiveRecord::Base
       # initiate the message text
       message = %/
         #{category_formatted_for_nil} at #{formatted_address}. 
-        #{sent_slum_dispatch_messages.count} people alerted: 
+        #{slum_dispatch_messages.count} people alerted: 
       /.squish
 
       # make list of names and contact numbers
       message += "\n"
-      sent_slum_dispatch_messages.map(&:efar).each do |efar|
+      slum_dispatch_messages.map(&:efar).each do |efar|
         message += "#{efar.full_name} - #{efar.contact_number}\n"
       end
 

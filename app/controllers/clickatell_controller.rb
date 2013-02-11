@@ -6,9 +6,13 @@ class ClickatellController < ApplicationController
     # assume that response is for the latest dispatch message
     text = params[:text]
     dispatch_message = DispatchMessage.find_most_active_for_number(params[:from])
+    slum_dispatch_message = SlumDispatchMessage.find_most_active_for_number params[:from]
     ActivityLog.log "SMS received from #{params[:from]}. Message: #{params[:text]}"
-    if params[:text].present?
+    if params[:text].present? and dispatch_message.present?
       dispatch_message.process_response text
+    end
+    if params[:text].present? and slum_dispatch_message.present?
+      slum_dispatch_message.process_response text
     end
     render :text => 'done'
   end
