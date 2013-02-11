@@ -8,6 +8,9 @@ class SmsApi
 
   # don't sent text messages in dev environment
   def in_silent_mode?
+    if ENV['CLICKATELL_API_ID'].blank?
+      return true
+    end
     if ENV['CLICKATELL_SILENT_MODE'].present? and ENV['CLICKATELL_SILENT_MODE']=='1'
       return true
     else
