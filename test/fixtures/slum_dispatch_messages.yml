@@ -13,12 +13,4 @@
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  slum_emergency_id: 1
-  efar_id: 1
-  clickatell_error_message: MyString
 
-two:
-  slum_emergency_id: 1
-  efar_id: 1
-  clickatell_error_message: MyString

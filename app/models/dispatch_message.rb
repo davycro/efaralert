@@ -194,6 +194,7 @@ class DispatchMessage < ActiveRecord::Base
       self.clickatell_error_message = resp[:clickatell_error_message]
     end
     self.save!
+    return resp
   end
 
   def as_json(options = {})

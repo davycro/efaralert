@@ -15,11 +15,5 @@ require 'test_helper'
 
 class EfarLocationTest < ActiveSupport::TestCase
 
-  test "should geolocate after saving a given address" do
-    loc = EfarLocation.new(given_address: "1 Dove Street, Cape Town, Western Cape 7925", occupied_at: 'anytime')
-    loc.efar = efars(:david)
-    assert loc.save
-    assert loc.lat.present?
-  end
 
 end

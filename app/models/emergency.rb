@@ -122,7 +122,7 @@ class Emergency < ActiveRecord::Base
   end
 
   def dispatch_head_efars!
-    if sent_dispatch_messages.count>0
+    if dispatch_messages.count>0
       ## Compose message to the head efars
       # find head efars
       if head_efars.blank?
@@ -135,7 +135,7 @@ class Emergency < ActiveRecord::Base
 
       # make list of names and contact numbers
       message += "\n"
-      sent_dispatch_messages.map(&:efar).each do |efar|
+      dispatch_messages.map(&:efar).each do |efar|
         message += "#{efar.full_name} - #{efar.contact_number}\n"
       end
 
