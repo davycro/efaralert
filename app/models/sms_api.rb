@@ -15,6 +15,13 @@ class SmsApi
     end
   end
 
+  #
+  # send text message
+  # returns a hash with the following parameters
+  #   :status -> either success or failed
+  #   :clickatell_id -> string id of a success message
+  #   :clickatell_error_message -> error message for a failed message
+
   def send_message(number, message, opts={})
     if in_silent_mode?
       log 'in silent mode, no message sent!'

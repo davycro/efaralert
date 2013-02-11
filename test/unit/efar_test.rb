@@ -17,4 +17,10 @@ class EfarTest < ActiveSupport::TestCase
     david = efars(:david)
     assert david.locations.present?
   end
+
+  test "can send a text message" do
+    david = efars(:david)
+    response = david.send_text_message "hello, this is just a test"
+    assert response[:status]=='success'
+  end
 end

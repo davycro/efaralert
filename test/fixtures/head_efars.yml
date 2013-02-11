@@ -1,0 +1,26 @@
+# == Schema Information
+#
+# Table name: head_efars
+#
+#  id                  :integer          not null, primary key
+#  full_name           :string(255)      not null
+#  community_center_id :integer          not null
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  contact_number      :string(255)      not null
+#
+
+david:
+  full_name: David Crockett
+  contact_number: 12345
+  community_center: mothers_unite
+
+buck:
+  full_name: Buck Crockett
+  contact_number: 112345
+  community_center: mothers_unite
+
+jack:
+  full_name: Jack Crockett
+  contact_number: 132345
+  community_center: mothers_unite
