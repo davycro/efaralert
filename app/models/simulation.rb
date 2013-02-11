@@ -1,6 +1,6 @@
 class Simulation
 
-  def self.slum_emergency
+  def self.hillview_three
 
     #
     # slum variables

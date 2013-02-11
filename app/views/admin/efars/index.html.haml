@@ -18,13 +18,15 @@
     %tr
       %th #
       %th Full Name
+      %th Contact Number
       %th Community Centre        
 
   %tbody
     - @efars.each do |efar|
       %tr
         %td= efar.id
-        %td= efar.full_name
+        %td= link_to efar.full_name, admin_efar_path(efar)
+        %td= efar.contact_number
         %td= efar.community_center.name
         %td
           .btn-group

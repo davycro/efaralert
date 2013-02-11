@@ -4,6 +4,8 @@ class ClickatellController < ApplicationController
   def callback
     # lookup efar by contact number
     # assume that response is for the latest dispatch message
+    params[:text] ||= ""
+
     text = params[:text]
     dispatch_message = DispatchMessage.find_most_active_for_number(params[:from])
     slum_dispatch_message = SlumDispatchMessage.find_most_active_for_number params[:from]
@@ -14,6 +16,11 @@ class ClickatellController < ApplicationController
     if params[:text].present? and slum_dispatch_message.present?
       slum_dispatch_message.process_response text
     end
+
+    if params[:text].downcase=='simulate'
+      Simulation.hillview_three
+    end
+
     render :text => 'done'
   end
 
