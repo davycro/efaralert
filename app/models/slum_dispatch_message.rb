@@ -28,6 +28,10 @@ class SlumDispatchMessage < ActiveRecord::Base
     "#{slum_emergency.formatted_address}"
   end
 
+  def readable_location
+    "#{slum_emergency.readable_location}"
+  end
+
   def process_response(text)
     text = text.downcase
     if text=='help'
@@ -53,7 +57,7 @@ class SlumDispatchMessage < ActiveRecord::Base
   end
 
   def send_help_messages
-    ActivityLog.log "#{self.efar.full_name} needs help at #{self.address}, proceeding to dispatch head efars"
+    ActivityLog.log "#{self.efar.full_name} needs help at #{self.readable_location}, proceeding to dispatch head efars"
 
     message = %/
       Ok, someone will call to assist you immediately
@@ -62,7 +66,7 @@ class SlumDispatchMessage < ActiveRecord::Base
 
     message_for_head_efar = %/
       EFAR #{self.efar.full_name} needs your help at 
-      #{self.address}! Please call them at 
+      #{self.readable_location}! Please call them at 
       #{self.efar.contact_number}
     /.squish
     self.head_efars.each do |head_efar|
@@ -72,7 +76,7 @@ class SlumDispatchMessage < ActiveRecord::Base
 
   # state change: sent -> en route
   def set_state_to_en_route_and_then_send_messages
-    ActivityLog.log "#{self.efar.full_name} is en route to emergency at #{address}"
+    ActivityLog.log "#{self.efar.full_name} is en route to emergency at #{readable_location}"
 
     self.state='en_route'
     self.save
@@ -83,7 +87,7 @@ class SlumDispatchMessage < ActiveRecord::Base
     self.efar.send_text_message(message)
 
     message_for_head_efar = %/
-      #{efar.full_name} en route to emergency at #{address}. Their contact number is: #{efar.contact_number}
+      #{efar.full_name} en route to emergency at #{readable_location}. Their contact number is: #{efar.contact_number}
     /.squish
     self.head_efars.each do |head_efar|
       head_efar.send_text_message message_for_head_efar
@@ -92,7 +96,7 @@ class SlumDispatchMessage < ActiveRecord::Base
 
   # state change: en route -> on scene
   def set_state_to_on_scene_and_then_send_messages
-    ActivityLog.log "#{self.efar.full_name} arrived at emergency at #{address}"
+    ActivityLog.log "#{self.efar.full_name} arrived at emergency at #{readable_location}"
 
     self.state='on_scene'
     self.save
@@ -103,7 +107,7 @@ class SlumDispatchMessage < ActiveRecord::Base
     self.efar.send_text_message(message)
 
     message_for_head_efar = %/
-      #{efar.full_name} ON SCENE at #{address}. Their contact number is: #{efar.contact_number}
+      #{efar.full_name} ON SCENE at #{readable_location}. Their contact number is: #{efar.contact_number}
     /.squish
     self.head_efars.each do |head_efar|
       head_efar.send_text_message message_for_head_efar
@@ -112,7 +116,7 @@ class SlumDispatchMessage < ActiveRecord::Base
 
   # state change: ? -> declined
   def set_state_to_declined_and_then_send_messages
-    ActivityLog.log "#{self.efar.full_name} declined to respond to emergency at #{address}"
+    ActivityLog.log "#{self.efar.full_name} declined to respond to emergency at #{readable_location}"
 
     self.state='declined'
     self.save
@@ -124,7 +128,7 @@ class SlumDispatchMessage < ActiveRecord::Base
 
     message_for_head_efar = %/
       #{efar.full_name} DECLINED to respond to emergency at 
-      #{address}. 
+      #{readable_location}. 
       Their contact number is: #{efar.contact_number}
     /.squish
     self.head_efars.each do |head_efar|
@@ -136,7 +140,7 @@ class SlumDispatchMessage < ActiveRecord::Base
     message = %/
       EFAR #{efar.full_name}, your help is urgently needed! 
       #{slum_emergency.category_formatted_for_nil} at  
-      #{address}. 
+      #{readable_location}. 
       Will you rescue right now!? Reply YES or NO
       /.squish
     resp = self.efar.send_text_message(message)

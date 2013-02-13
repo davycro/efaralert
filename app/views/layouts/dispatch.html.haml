@@ -27,7 +27,6 @@
                   %a{ :href => account_path } My Account
                 %li
                   = link_to 'Logout', session_path, :method => :delete
-                        
 
   .container
     .row
@@ -36,7 +35,7 @@
 
 :javascript
   jQuery(function(){
-    new App("#{controller.action_name}");
+    new App("#{controller.controller_name}/#{controller.action_name}");
   });
 
 

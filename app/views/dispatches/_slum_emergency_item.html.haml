@@ -12,7 +12,7 @@
       .emergency-content
         %dl.dl-horizontal
           %dt Location
-          %dd= em.formatted_address
+          %dd= em.readable_location
           %dt EFAR Status
           %dd
             - if em.slum_dispatch_messages.count==0

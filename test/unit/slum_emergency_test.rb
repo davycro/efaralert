@@ -9,6 +9,7 @@
 #  dispatcher_id :integer          not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  landmarks     :string(255)
 #
 
 require 'test_helper'

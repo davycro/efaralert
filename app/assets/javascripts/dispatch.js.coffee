@@ -155,14 +155,23 @@ class MapController extends Spine.Controller
     console.log('failed to create dispatch')
 
 
+class NewInformalEmergencyController extends Spine.Controller
+  constructor: ->
+    @el = $('.informal-emergencies-new')
+    super()
+    $('select').first().focus()
+
+
 class App
-  constructor: (actionName) ->
-    if actionName=='index'
+  constructor: (path) ->
+    if path=='emergencies/index'
       @emergencyIndexController = new IndexController
-    if actionName=='show'
+    if path=='emergencies/show'
       @showController = new ShowController
-    if actionName=='new'
+    if path=='emergencies/new'
       @mapController = new MapController
+    if path=='informal_emergencies/new'
+      @newInfromalEmergencyController = new NewInformalEmergencyController
 
     
 

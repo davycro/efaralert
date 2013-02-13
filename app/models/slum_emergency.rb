@@ -9,10 +9,11 @@
 #  dispatcher_id :integer          not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  landmarks     :string(255)
 #
 
 class SlumEmergency < ActiveRecord::Base
-  attr_accessible :category, :dispatcher_id, :shack_number, :slum_id
+  attr_accessible :category, :dispatcher_id, :shack_number, :slum_id, :landmarks
 
   validates :shack_number, :dispatcher_id, :slum_id, :presence => true
 
@@ -55,6 +56,16 @@ class SlumEmergency < ActiveRecord::Base
 
   def formatted_address
     "#{shack_number} #{slum.name}"
+  end
+
+  def readable_location
+    return @loc if @loc.present?
+    @loc = ""
+    @loc = formatted_address
+    if landmarks.present?
+      @loc += " (#{landmarks})"
+    end
+    return @loc
   end
 
   def dispatch_head_efars!

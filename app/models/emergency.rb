@@ -13,11 +13,28 @@
 #  location_type     :string(255)
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  landmarks         :string(255)
 #
 
 class Emergency < ActiveRecord::Base
+
+  CATEGORIES = [
+    'General emergency',
+    'Uncontrolled bleed',
+    'Motor vehicle accident',
+    'Broken bone',
+    'Unconscious person',
+    'Fall from a height',
+    'Seizure',
+    'Burn',
+    'Impaled object',
+    'Shortness of breath',
+    'Abdominal pain',
+    'Confused person'
+  ]
+
   attr_accessible :input_address, :dispatcher_id, :category, :formatted_address, 
-    :lat, :lng, :location_type, :state
+    :lat, :lng, :location_type, :state, :landmarks
 
   validates :input_address, :dispatcher_id,
     :presence => true
