@@ -20,6 +20,8 @@
           %ul.nav
             %li{:class=>controller.controller_name=='dispatches' && "active"}
               %a{:href => dispatches_path } Dispatches
+          %a.btn.btn-primary{ :href=> new_dispatch_path }
+            New Dispatch
           %ul.nav.pull-right
             %li.dropdown
               %a{ :href => '#', :class => "dropdown-toggle", "data-toggle" => "dropdown" }

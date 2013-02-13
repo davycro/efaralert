@@ -23,6 +23,15 @@ class App.GeocoderResult extends Spine.Model
   setMarker: (result) ->
     @marker = new google.maps.Marker(position: result.geometry.location)
 
+  reverseGeocode: ->
+    geocoder = new google.maps.Geocoder()
+    geocoder.geocode {'latLng':@marker.getPosition()}, (results, status) =>
+      if (status == google.maps.GeocoderStatus.OK)
+        result = results[0]
+        @formatted_address = result.formatted_address
+        @location_type = result.geometry.location_type
+        @save()        
+
 
 class Search extends Spine.Controller
   elements:
@@ -102,6 +111,7 @@ class Search extends Spine.Controller
 
   clickSaveButton: (e) =>
     e.preventDefault()
+    @selectedGeocoderResult.reverseGeocode()
     App.GeocodedAddressField.trigger 'renderAddress', @selectedGeocoderResult
     @modalEl.modal('hide')
     $('[data-type=start-search]').hide()
@@ -125,7 +135,12 @@ class Show extends Spine.Controller
     super()
     @modelName = modelName
     App.GeocodedAddressField.bind 'renderAddress', (result) =>
+      @result = result
       @render(result)
+
+    App.GeocoderResult.bind 'update', (result) =>
+      if @result
+        @render(result)
 
   render: (result) ->
     view_data = { result: result, modelName: @modelName }

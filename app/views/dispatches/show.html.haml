@@ -1,4 +1,14 @@
+%ul.breadcrumb
+  %li
+    %a{:href => dispatches_path } Dispatches
+    %span.divider /
+  %li.active
+    Show
+
 .page-header
-  %h3 Dispatch
+  %h4
+    = @dispatch.emergency_category
+    @
+    = @dispatch.readable_location
 
 = @dispatch.to_yaml

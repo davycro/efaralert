@@ -1,4 +1,4 @@
-<button class='btn btn-primary' data-type='start-search'>
+<button class='btn' data-type='start-search'>
   Search
 </button>
 
