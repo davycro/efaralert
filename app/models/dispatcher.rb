@@ -24,6 +24,7 @@ class Dispatcher < ActiveRecord::Base
 
   has_many :emergencies
   has_many :slum_emergencies
+  has_many :dispatches
 
   def dispatch_feed
     # aggregate of slum and emergencies from the last 24 hours

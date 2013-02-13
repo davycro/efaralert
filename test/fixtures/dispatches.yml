@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  dispatcher_id: 1
+  emergency_category: MyString
+  geolocation_id: 1
+  landmarks: MyString
+
+two:
+  dispatcher_id: 1
+  emergency_category: MyString
+  geolocation_id: 1
+  landmarks: MyString
