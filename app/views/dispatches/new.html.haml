@@ -1,33 +1,26 @@
-%legend
-  New Dispatch
-  .pull-right
-    %a.btn.btn-link{:href=>dispatches_path} Cancel
+#newDispatch
 
-- if @dispatch.errors.present?
-  .alert.alert-error There were some errors sending the dispatch. See below for more information
+  .page-header
+    %h4
+      New Dispatch
+      .pull-right
+        %a.btn.btn-link{:href=>dispatches_path} Cancel
 
-= form_for @dispatch, :html => { :class => 'form-horizontal' } do |f|
-  
-  .control-group
-    %label.control-label Emergency Category
-    .controls
-      = select "dispatch", 'emergency_category', Dispatch::EMERGENCY_CATEGORIES
+  - if @dispatch.errors.present?
+    .alert.alert-error Location required to send a dispatch   
 
-  .control-group
-    %label.control-label Location
-    .controls
-      %div{'data-type'=>'dispatch-location-editor'}
-      .btn-group
-        %button.btn{'data-type'=>'add-geolocation'} Street Address
-        %button.btn{'data-type'=>'add-township'} Informal Settlement
+  .tabbable
+    %ul.nav.nav-tabs
+      %li.active
+        %a{:href => "#/street_address"}
+          Street Address
+      %li
+        %a{:href => "#/township"}
+          Informal Settlement
 
-  .control-group
-    %label.control-label Landmarks
-    .controls
-      %input{ :type=> 'text', :name => "dispatch[landmarks]", :placeholder => 'Optional', :value => @dispatch.landmarks}
-      %span.help-block
-        %small e.g. "Across from the green container"
-
-  .form-actions
-    %button.btn.btn-primary.disabled{:type=>'submit', 'disabled'=>'disabled'} Send Dispatch
+    #formTabs.tab-content
+      #streetAddressFormTab.tab-pane
+        = render :partial => 'geolocation_dispatch_form'
+      #townshipFormTab.tab-pane
+        = render :partial => 'township_dispatch_form'
     

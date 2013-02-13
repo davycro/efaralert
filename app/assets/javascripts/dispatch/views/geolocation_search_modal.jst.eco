@@ -1,0 +1,33 @@
+<div class='modal hide fade' role='dialog' tabindex='1'>
+  <div class="modal-body">
+    <div class="search-bar">
+      <form>
+        <div class="input-append">
+          <input type="text" class="input-xlarge" placeholder="Search for an address in Cape Town">
+          <button type="submit" class="btn">Search</button>
+        </div>
+      </form>
+    </div>
+    <div class="search-results">
+      <h5>Results</h5>
+      <div class="row-fluid">
+        <div class='span8'>
+          <div class='search-map'></div>
+        </div>
+        <div class='span4'>
+          <div class='map-sidebar'>
+            <ul class='nav nav-pills nav-stacked'></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="search-actions">
+      <button class="btn btn-primary" data-type='save'>
+        Add location
+      </button>
+      <a class='btn btn-link' data-type='cancel'>Cancel</a>
+    </div>
+  </div>
+</div>

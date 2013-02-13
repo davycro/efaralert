@@ -3,11 +3,14 @@
 #= require twitter/bootstrap
 #= require spine/spine
 #= require spine/ajax
+#= require spine/route
+#= require spine/manager
 #= require jquery.timeago
 #= require_self
-#= require_tree ./dispatch/models
-#= require_tree ./dispatch/lib
-#= require_tree ./dispatch/views
+#= require_tree ./models
+#= require_tree ./controllers
+#= require_tree ./lib
+#= require_tree ./views
 
 class ShowController
   constructor:->
@@ -170,8 +173,8 @@ class App
       @showController = new ShowController
     if path=='emergencies/new'
       @mapController = new MapController
-    if path=='informal_emergencies/new'
-      @newInfromalEmergencyController = new NewInformalEmergencyController
+    if path=='dispatches/new' or path=='dispatches/create'
+      @newDispatch = new App.NewDispatch
 
     
 

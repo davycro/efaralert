@@ -1,0 +1,21 @@
+= form_for @dispatch, :html => { :class => 'form-horizontal', 'data-type'=>'new-dispatch-form' } do |f|
+
+  .control-group
+    %label.control-label Emergency Category
+    .controls
+      = select "dispatch", 'emergency_category', Dispatch::EMERGENCY_CATEGORIES
+
+  .control-group
+    %label.control-label Location
+    .controls
+      %div{'data-type'=>'geocoded-address-field', 'data-model-name'=>'dispatch'}
+
+  .control-group
+    %label.control-label Landmarks
+    .controls
+      %input.landmarks{ :type=> 'text', :name => "dispatch[landmarks]", :placeholder => 'Optional', :value => @dispatch.landmarks}
+      %span.help-block
+        %small e.g. "Across from the green container"
+
+  .form-actions
+    %button.btn.btn-primary{:type=>'submit', 'disabled'=>'disabled'} Send Dispatch

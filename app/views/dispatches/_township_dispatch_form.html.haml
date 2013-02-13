@@ -1,0 +1,24 @@
+
+= form_for @dispatch, :html => { :class => 'form-horizontal', 'data-type'=>'new-dispatch-form' } do |f|
+  
+  .control-group
+    %label.control-label Emergency Category
+    .controls
+      = select "dispatch", 'emergency_category', Dispatch::EMERGENCY_CATEGORIES
+
+  .control-group
+    %label.control-label Informal Settlement
+    .controls
+      .form-inline
+        %input{:type=>'text', :name=>'dispatch[township_house_number]', :value => @dispatch.township_house_number, :placeholder => "Township house number"}
+        = collection_select "dispatch", "township_id", Township.all, :id, :name
+
+  .control-group
+    %label.control-label Landmarks
+    .controls
+      %input{ :type=> 'text', :name => "dispatch[landmarks]", :placeholder => 'Optional', :value => @dispatch.landmarks}
+      %span.help-block
+        %small e.g. "Across from the green container"
+
+  .form-actions
+    %button.btn.btn-primary{:type=>'submit'} Send Dispatch

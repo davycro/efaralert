@@ -1,0 +1,9 @@
+<div class="input-append">
+  <input type="text" class='input-xlarge' name="<%= @modelName %>[formatted_address]" value="<%= @result.formatted_address %>" disabled>
+
+  <button class="btn" type="button" data-type='edit-search'>Edit</button>
+</div>
+
+<input type="hidden" name="<%= @modelName %>[lat]" value="<%= @result.lat %>">
+<input type="hidden" name="<%= @modelName %>[lng]" value="<%= @result.lng %>">
+<input type="hidden" name="<%= @modelName %>[location_type]" value="<%= @result.location_type %>">

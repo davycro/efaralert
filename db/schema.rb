@@ -85,13 +85,18 @@ ActiveRecord::Schema.define(:version => 20130213123443) do
   add_index "dispatchers", ["username"], :name => "index_dispatchers_on_username", :unique => true
 
   create_table "dispatches", :force => true do |t|
-    t.integer  "dispatcher_id",      :null => false
+    t.integer  "dispatcher_id",         :null => false
     t.string   "emergency_category"
     t.integer  "geolocation_id"
     t.integer  "township_id"
+    t.string   "township_house_number"
     t.string   "landmarks"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.float    "lat"
+    t.float    "lng"
+    t.string   "formatted_address"
+    t.string   "location_type"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
   end
 
   create_table "efar_locations", :force => true do |t|
@@ -122,15 +127,6 @@ ActiveRecord::Schema.define(:version => 20130213123443) do
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
     t.string   "landmarks"
-  end
-
-  create_table "geolocations", :force => true do |t|
-    t.float    "lat",               :null => false
-    t.float    "lng",               :null => false
-    t.string   "formatted_address", :null => false
-    t.string   "location_type"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
   end
 
   create_table "head_efars", :force => true do |t|

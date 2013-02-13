@@ -17,6 +17,7 @@ class DispatchesController < ApplicationController
 
   def create
     @dispatch = Dispatch.new params[:dispatch]
+    @dispatch.dispatcher = current_dispatcher
     if @dispatch.save
       redirect_to @dispatch
     else
