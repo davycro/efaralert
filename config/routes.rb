@@ -1,7 +1,9 @@
 EfarDispatch::Application.routes.draw do
   
   # Base resources used by dispatchers
+  resources :dispatches
   resources :emergencies
+  resources :informal_emergencies
   resource :session
   resource :account
 
@@ -83,7 +85,7 @@ EfarDispatch::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'emergencies#index'
+  root :to => 'dispatches#index'
 
   # See how all your routes lay out with "rake routes"
 

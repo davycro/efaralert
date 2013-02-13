@@ -20,10 +20,17 @@ class SlumEmergency < ActiveRecord::Base
   belongs_to :slum
 
   has_many :slum_dispatch_messages, :dependent => :destroy
-  has_many :sent_slum_dispatch_messages, :class_name => "SlumDispatchMessage",
+  has_many :sent_dispatch_messages, :class_name => "SlumDispatchMessage",
     :conditions => {:state => %w(sent en_route on_scene declined)}
 
+  %w(en_route on_scene declined failed).each do |dispatch_message_state_name|
+    has_many "#{dispatch_message_state_name}_dispatch_messages".to_sym,
+      :class_name => "SlumDispatchMessage", 
+      :conditions => { :state => dispatch_message_state_name }
+  end
+
   after_create :create_dispatch_messages
+  after_create :log_new_emergency
 
   def create_dispatch_messages
     self.slum.efars.each do |efar|
@@ -32,6 +39,10 @@ class SlumEmergency < ActiveRecord::Base
       dm.slum_emergency = self
       dm.save
     end
+  end
+
+  def log_new_emergency
+    ActivityLog.log "Emergency at #{formatted_address}. Category: #{@category}. #{self.slum.efars.size} efars notified."
   end
 
   def dispatch_efars!
