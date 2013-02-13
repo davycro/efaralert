@@ -1,7 +1,7 @@
 !!!
 %html
   %head
-    %title EFAR DISPATCH
+    %title EFAR
     = stylesheet_link_tag 'dispatch'
 
     %script{:src => "http://maps.googleapis.com/maps/api/js?sensor=false"}
@@ -10,13 +10,16 @@
     = csrf_meta_tags
   %body
 
-    .navbar.navbar-inverse.navbar-fixed-top
+    .navbar.navbar-inverse.navbar-fixed-top.navbar-efar
       .navbar-inner
         .container
+          .efar-brand{:href=>'#'}
+            .efar-shield
+              %i.efar-sprite-logo
+              .logo-text EFAR Dispatch
           %ul.nav
-            %li{:class=>controller.controller_name=='emergencies' && "active"}
-              %a{:href => emergencies_path } Dispatches
-          %a.btn.btn-primary{:href => new_emergency_path} New Dispatch
+            %li{:class=>controller.controller_name=='dispatches' && "active"}
+              %a{:href => dispatches_path } Dispatches
           %ul.nav.pull-right
             %li.dropdown
               %a{ :href => '#', :class => "dropdown-toggle", "data-toggle" => "dropdown" }
@@ -29,9 +32,7 @@
                   = link_to 'Logout', session_path, :method => :delete
 
   .container
-    .row
-      .span12
-        = yield
+    = yield
 
 :javascript
   jQuery(function(){

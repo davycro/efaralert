@@ -1,17 +1,9 @@
+.page-header
+  %h3
+    Dispatches from the last 24 hours
+    .pull-right
+      %a.btn{:href=>new_emergency_path}
+        Dispatch to street address
+      %a.btn{:href=>new_informal_emergency_path}
+        Dispatch to informal address
 
-.dispatch-feed
-  .section
-    .header
-      .pull-right
-        %a.btn{:href=>new_emergency_path}
-          Dispatch to street address
-        %a.btn{:href=>new_informal_emergency_path}
-          Dispatch to informal address
-      .header-body
-        %h4= "Showing dispatches from the last 24 hours"
-
-    - @records.each do |record|
-      - if record.is_a?(Emergency)
-        = render :partial => 'emergency_item', :locals => { :emergency => record }
-      - if record.is_a?(SlumEmergency)
-        = render :partial => 'slum_emergency_item', :locals => { :slum_emergency => record }

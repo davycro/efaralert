@@ -1,7 +1,7 @@
 !!!
 %html
   %head
-    %title EFAR Dispatcher
+    %title EFAR
     = stylesheet_link_tag "admin", :media => "all"
     = yield :js
     %script{:src => "http://maps.googleapis.com/maps/api/js?sensor=false"}
@@ -10,7 +10,7 @@
     = render :partial => 'layouts/ga'
   %body             
 
-    .navbar.navbar-inverse.navbar-fixed-top.navbar-admin-layout
+    .navbar.navbar-inverse.navbar-fixed-top.navbar-efar
       .navbar-inner
         .container
           .efar-brand{:href=>'#'}

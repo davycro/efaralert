@@ -1,0 +1,52 @@
+//
+// Variables
+// --------------------------------------------------
+
+// Padding given to left and right margins of section boxes
+@navbarHeight: 60px;
+
+//
+// Scaffolding and layout styles
+// --------------------------------------------------
+
+body {
+  padding-top: @navbarHeight + @baseLineHeight;
+}
+
+// Navbar
+.navbar-efar {
+  .navbar-inner {
+    #gradient > .vertical(#333A39, #1f2423);  
+  }
+  .efar-brand {
+    float: left;
+    display: block;
+    height: @navbarHeight;
+    overflow: hidden;
+  }
+}
+.efar-shield {
+  color: white;
+  padding-top: 3px;
+
+  .logo-text {
+    float: left;
+    width: 100px;
+    height: 10px;
+    margin-left: 10px;
+    padding-top: 7px;
+    font-size: 20px;
+    color: @grayLighter;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.5);
+  }
+
+  .efar-sprite-logo {
+    background-image: url("/assets/efar_sprite.png");
+    background-position: -8px -8px;
+    background-repeat: no-repeat;
+    display: block;
+    float: left;
+    width: 50px;
+    height: 55px;
+  }
+}
