@@ -8,17 +8,9 @@ class ClickatellController < ApplicationController
 
     text = params[:text]
     dispatch_message = DispatchMessage.find_most_active_for_number(params[:from])
-    slum_dispatch_message = SlumDispatchMessage.find_most_active_for_number params[:from]
     ActivityLog.log "SMS received from #{params[:from]}. Message: #{params[:text]}"
     if params[:text].present? and dispatch_message.present?
       dispatch_message.process_response text
-    end
-    if params[:text].present? and slum_dispatch_message.present?
-      slum_dispatch_message.process_response text
-    end
-
-    if params[:text].downcase=='simulate'
-      Simulation.hillview_three
     end
 
     render :text => 'done'

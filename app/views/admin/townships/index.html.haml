@@ -2,7 +2,7 @@
   %h3
     Informal Settlements
     .pull-right
-      %a.btn.btn-primary.btn-small{:href => new_admin_slum_path}
+      %a.btn.btn-primary.btn-small{:href => new_admin_township_path}
         %i.icon-plus.icon-white
         Create
 
@@ -16,9 +16,9 @@
     %tr
       %th Name
   %tbody
-    - @slums.each do |slum|
+    - @townships.each do |township|
       %tr
-        %td= slum.name
+        %td= township.name
         %td
           .btn-group
             %a.btn.btn-mini.dropdown-toggle{"data-toggle"=>"dropdown", :href=>'#'}
@@ -26,10 +26,10 @@
               %span.caret
             %ul.dropdown-menu.pull-right
               %li
-                %a{:href=>edit_admin_slum_path(slum)}
+                %a{:href=>edit_admin_township_path(township)}
                   %i.icon-pencil
                   Edit
               %li
-                %a{:href=>admin_slum_path(slum), "data-confirm"=>"Are you sure?", "data-method"=>"delete"}
+                %a{:href=>admin_township_path(township), "data-confirm"=>"Are you sure?", "data-method"=>"delete"}
                   %i.icon-trash
                   Delete

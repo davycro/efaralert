@@ -2,8 +2,6 @@ EfarDispatch::Application.routes.draw do
   
   # Base resources used by dispatchers
   resources :dispatches
-  resources :emergencies
-  resources :informal_emergencies
   resource :session
   resource :account
 
@@ -24,7 +22,7 @@ EfarDispatch::Application.routes.draw do
     resources :head_efars
     resources :efars
     resources :activity_logs
-    resources :slums
+    resources :townships
     resource :session
   end
   match 'admin/' => 'admin/admins#index'
@@ -32,7 +30,6 @@ EfarDispatch::Application.routes.draw do
   namespace :api do
     resources :efars
     resources :community_centers
-    resources :emergencies
     resources :dispatch_messages
   end
 

@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     dispatcher = Dispatcher.find_by_username(params[:username])
     if dispatcher && dispatcher.authenticate(params[:password])
       session[:dispatcher_id] = dispatcher.id
-      redirect_to emergencies_path, :notice => "logged in!"
+      redirect_to root_path, :notice => "logged in!"
     else
       flash.now.alert = "Invalid username or password"
       render "new"

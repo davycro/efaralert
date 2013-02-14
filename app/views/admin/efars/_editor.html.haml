@@ -22,7 +22,7 @@
   .control-group
     %label.control-label Informal Settlement
     .controls
-      = select "efar", "slum_id", Slum.all.collect{ |s| [s.name, s.id] }, {:include_blank => 'None'}
+      = select "efar", "township_id", Township.all.collect{ |s| [s.name, s.id] }, {:include_blank => 'None'}
 
   %legend Locations
 

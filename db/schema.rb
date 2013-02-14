@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130214092800) do
+ActiveRecord::Schema.define(:version => 20130214094216) do
 
   create_table "activity_logs", :force => true do |t|
     t.string   "message"
@@ -114,20 +114,6 @@ ActiveRecord::Schema.define(:version => 20130214092800) do
     t.integer "township_id"
   end
 
-  create_table "emergencies", :force => true do |t|
-    t.integer  "dispatcher_id",     :null => false
-    t.string   "input_address",     :null => false
-    t.string   "category"
-    t.string   "state"
-    t.string   "formatted_address"
-    t.float    "lat",               :null => false
-    t.float    "lng",               :null => false
-    t.string   "location_type"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
-    t.string   "landmarks"
-  end
-
   create_table "head_efars", :force => true do |t|
     t.string   "full_name",           :null => false
     t.integer  "community_center_id", :null => false
@@ -146,31 +132,6 @@ ActiveRecord::Schema.define(:version => 20130214092800) do
   end
 
   add_index "researchers", ["email"], :name => "index_researchers_on_email", :unique => true
-
-  create_table "slum_dispatch_messages", :force => true do |t|
-    t.integer  "slum_emergency_id",                              :null => false
-    t.integer  "efar_id",                                        :null => false
-    t.string   "clickatell_error_message"
-    t.string   "state",                    :default => "queued"
-    t.datetime "created_at",                                     :null => false
-    t.datetime "updated_at",                                     :null => false
-  end
-
-  create_table "slum_emergencies", :force => true do |t|
-    t.integer  "slum_id",       :null => false
-    t.string   "category"
-    t.string   "shack_number"
-    t.integer  "dispatcher_id", :null => false
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-    t.string   "landmarks"
-  end
-
-  create_table "slums", :force => true do |t|
-    t.string   "name",       :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
 
   create_table "townships", :force => true do |t|
     t.string   "name",       :null => false
