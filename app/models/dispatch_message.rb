@@ -3,14 +3,14 @@
 # Table name: dispatch_messages
 #
 #  id                       :integer          not null, primary key
-#  emergency_id             :integer          not null
 #  efar_id                  :integer          not null
 #  state                    :string(255)
 #  created_at               :datetime         not null
 #  updated_at               :datetime         not null
 #  clickatell_id            :string(255)
 #  clickatell_error_message :string(255)
-#  efar_location_id         :integer          not null
+#  dispatch_id              :integer          not null
+#  efar_location_id         :integer
 #
 
 class DispatchMessage < ActiveRecord::Base
@@ -34,31 +34,28 @@ class DispatchMessage < ActiveRecord::Base
   # Attribute shortcuts
 
   belongs_to :efar
-  belongs_to :emergency
+  belongs_to :dispatch
   belongs_to :efar_location
+
+  #
+  # Scopes
+  scope :sent, where(:state => %w(sent en_route on_scene declined))
+  STATE_MESSAGES.keys.each do |state_name|
+    unless state_name=='sent'
+      scope state_name.to_sym, where(:state => state_name)
+    end
+  end
 
   def head_efars
     self.efar.head_efars
   end
 
-  def lat
-    self.efar_location.lat
+  def has_geolocation?
+    efar_location.present?
   end
 
-  def lng
-    self.efar_location.lng
-  end
-
-  def state_message
-    if self.state=='failed'
-      return "Failed, #{self.clickatell_error_message}"
-    else
-      return STATE_MESSAGES[self.state]
-    end
-  end
-
-  def address
-    emergency.address_formatted_for_text_message  
+  def readable_location
+    dispatch.readable_location  
   end
 
   #
@@ -107,7 +104,7 @@ class DispatchMessage < ActiveRecord::Base
 
     message_for_head_efar = %/
       EFAR #{self.efar.full_name} needs your help at 
-      #{address}! Please call them at 
+      #{readable_location}! Please call them at 
       #{self.efar.contact_number}
     /.squish
     self.head_efars.each do |head_efar|
@@ -117,7 +114,7 @@ class DispatchMessage < ActiveRecord::Base
 
   # state change: sent -> en route
   def set_state_to_en_route_and_then_send_messages
-    ActivityLog.log "#{self.efar.full_name} is en route to emergency at #{address}"
+    ActivityLog.log "#{self.efar.full_name} is en route to emergency at #{readable_location}"
 
     self.state='en_route'
     self.save
@@ -128,7 +125,7 @@ class DispatchMessage < ActiveRecord::Base
     self.efar.send_text_message(message)
 
     message_for_head_efar = %/
-      #{efar.full_name} en route to emergency at #{address}. Their contact number is: #{efar.contact_number}
+      #{efar.full_name} en route to emergency at #{readable_location}. Their contact number is: #{efar.contact_number}
     /.squish
     self.head_efars.each do |head_efar|
       head_efar.send_text_message message_for_head_efar
@@ -137,7 +134,7 @@ class DispatchMessage < ActiveRecord::Base
 
   # state change: en route -> on scene
   def set_state_to_on_scene_and_then_send_messages
-    ActivityLog.log "#{self.efar.full_name} arrived at emergency at #{address}"
+    ActivityLog.log "#{self.efar.full_name} arrived at emergency at #{readable_location}"
 
     self.state='on_scene'
     self.save
@@ -148,7 +145,7 @@ class DispatchMessage < ActiveRecord::Base
     self.efar.send_text_message(message)
 
     message_for_head_efar = %/
-      #{efar.full_name} ON SCENE at #{address}. Their contact number is: #{efar.contact_number}
+      #{efar.full_name} ON SCENE at #{readable_location}. Their contact number is: #{efar.contact_number}
     /.squish
     self.head_efars.each do |head_efar|
       head_efar.send_text_message message_for_head_efar
@@ -157,7 +154,7 @@ class DispatchMessage < ActiveRecord::Base
 
   # state change: ? -> declined
   def set_state_to_declined_and_then_send_messages
-    ActivityLog.log "#{self.efar.full_name} declined to respond to emergency at #{address}"
+    ActivityLog.log "#{self.efar.full_name} declined to respond to emergency at #{readable_location}"
 
     self.state='declined'
     self.save
@@ -169,7 +166,7 @@ class DispatchMessage < ActiveRecord::Base
 
     message_for_head_efar = %/
       #{efar.full_name} DECLINED to respond to emergency at 
-      #{address}. 
+      #{readable_location}. 
       Their contact number is: #{efar.contact_number}
     /.squish
     self.head_efars.each do |head_efar|
@@ -180,8 +177,8 @@ class DispatchMessage < ActiveRecord::Base
   def deliver!
     message = %/
       EFAR #{efar.full_name}, your help is urgently needed! 
-      #{emergency.category_formatted_for_nil} at  
-      #{address}. 
+      #{dispatch.emergency_category} at  
+      #{readable_location}. 
       Will you rescue? Reply YES or NO
       /.squish
     resp = self.efar.send_text_message(message)
@@ -198,7 +195,7 @@ class DispatchMessage < ActiveRecord::Base
   end
 
   def as_json(options = {})
-    super(:methods => [:efar, :lat, :lng, :efar_location])
+    super(:methods => [:efar, :efar_location])
   end
 
   def self.find_most_active_for_number(contact_number)

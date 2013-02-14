@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130213123443) do
+ActiveRecord::Schema.define(:version => 20130214092800) do
 
   create_table "activity_logs", :force => true do |t|
     t.string   "message"
@@ -62,14 +62,14 @@ ActiveRecord::Schema.define(:version => 20130213123443) do
   end
 
   create_table "dispatch_messages", :force => true do |t|
-    t.integer  "emergency_id",             :null => false
     t.integer  "efar_id",                  :null => false
     t.string   "state"
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
     t.string   "clickatell_id"
     t.string   "clickatell_error_message"
-    t.integer  "efar_location_id",         :null => false
+    t.integer  "dispatch_id",              :null => false
+    t.integer  "efar_location_id"
   end
 
   add_index "dispatch_messages", ["clickatell_id"], :name => "index_dispatch_messages_on_clickatell_id"
@@ -87,7 +87,6 @@ ActiveRecord::Schema.define(:version => 20130213123443) do
   create_table "dispatches", :force => true do |t|
     t.integer  "dispatcher_id",         :null => false
     t.string   "emergency_category"
-    t.integer  "geolocation_id"
     t.integer  "township_id"
     t.string   "township_house_number"
     t.string   "landmarks"
@@ -111,8 +110,8 @@ ActiveRecord::Schema.define(:version => 20130213123443) do
   create_table "efars", :force => true do |t|
     t.string  "full_name",           :null => false
     t.integer "community_center_id", :null => false
-    t.integer "slum_id"
     t.string  "contact_number",      :null => false
+    t.integer "township_id"
   end
 
   create_table "emergencies", :force => true do |t|

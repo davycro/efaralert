@@ -5,8 +5,8 @@
 #  id                  :integer          not null, primary key
 #  full_name           :string(255)      not null
 #  community_center_id :integer          not null
-#  slum_id             :integer
 #  contact_number      :string(255)      not null
+#  township_id         :integer
 #
 
 # The efar table represents all efars willing to provide a mobile phone number
@@ -14,7 +14,7 @@ class Efar < ActiveRecord::Base
 
   # Individual Attributes
   attr_accessible :full_name, :community_center_id,
-    :locations_attributes, :slum_id, :contact_number
+    :locations_attributes, :township_id, :contact_number
 
   PER_PAGE = 50
 
@@ -26,7 +26,7 @@ class Efar < ActiveRecord::Base
   has_many :slum_dispatch_messages
   has_many :locations, :class_name => 'EfarLocation', :dependent => :destroy,
     :inverse_of => :efar
-  belongs_to :slum
+  belongs_to :township
 
   accepts_nested_attributes_for :locations, :allow_destroy => :true
 
