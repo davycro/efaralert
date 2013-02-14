@@ -29,13 +29,8 @@ class Dispatcher < ActiveRecord::Base
   def dispatch_feed
     # aggregate of slum and emergencies from the last 24 hours
     # sorted by newest first
-    records = emergencies.
-      order('created_at DESC').
-      where(:created_at => 24.hours.ago .. Time.now)
-    records += slum_emergencies.
-      order('created_at DESC').
-      where(:created_at => 1.day.ago .. Time.now)
-    records.sort { |a,b| a.created_at <=> b.created_at }.reverse
-    return records
+    Dispatch.where(:dispatcher_id => self.id).
+      where(:created_at => 24.hours.ago .. Time.now).
+      order('created_at DESC').all
   end 
 end

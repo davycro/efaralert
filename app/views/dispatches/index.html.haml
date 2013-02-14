@@ -1,6 +1,14 @@
 .page-header
-  %h3
+  %h2
     Dispatches from the last 24 hours
     .pull-right
       %a.btn{:href=>new_dispatch_path}
         New Dispatch
+
+#dispatches-index
+
+
+:javascript
+  jQuery(function(){
+      new App.IndexDispatch
+  });

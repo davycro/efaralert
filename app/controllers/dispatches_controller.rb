@@ -4,7 +4,11 @@ class DispatchesController < ApplicationController
   layout 'dispatch'
 
   def index
-    @dispatches = current_dispatcher.dispatches
+    @dispatches = current_dispatcher.dispatch_feed
+    respond_to do |format|
+      format.html
+      format.json { render json: @dispatches.to_json }
+    end
   end
 
   def show
@@ -19,6 +23,8 @@ class DispatchesController < ApplicationController
     @dispatch = Dispatch.new params[:dispatch]
     @dispatch.dispatcher = current_dispatcher
     if @dispatch.save
+      @dispatch.alert_the_efars!
+      @dispatch.alert_the_head_efars!
       redirect_to @dispatch
     else
       render action: 'new'

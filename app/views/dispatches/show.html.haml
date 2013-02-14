@@ -12,8 +12,7 @@
     ago
 
 - if @dispatch.messages.size==0
-  .well
-    %strong No Nearby Efars
+  %p No Nearby Efars
 
 - if @dispatch.messages.size > 0
   %div{'data-type'=>'dispatch-messages-table', 'data-dispatch-id'=>@dispatch.id}

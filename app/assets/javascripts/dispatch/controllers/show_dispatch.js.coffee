@@ -18,10 +18,8 @@ class DispatchMessagesTable extends Spine.Controller
     setTimeout @doPoll, 6*1000
 
 
-
 class App.ShowDispatch extends Spine.Controller
 
   constructor:->
     super()
     @table = new DispatchMessagesTable
-    
