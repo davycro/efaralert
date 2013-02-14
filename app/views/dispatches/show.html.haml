@@ -1,15 +1,15 @@
 .page-header
   %h2
     = @dispatch.emergency_category
+    %small
+      = distance_of_time_in_words_to_now @dispatch.created_at
+      ago
     .pull-right
       %a.btn.btn-link{:href => dispatches_path} View all dispatches
 
 %p.lead
-  At
-  = @dispatch.readable_location
-  %span.time
-    = distance_of_time_in_words_to_now @dispatch.created_at
-    ago
+  at
+  = @dispatch.readable_location    
 
 - if @dispatch.messages.size==0
   %p No Nearby Efars

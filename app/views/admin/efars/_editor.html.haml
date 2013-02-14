@@ -22,6 +22,7 @@
   .control-group
     %label.control-label Informal Settlement
     .controls
+      %input{:type=>'text', :name => 'efar[township_house_number]', :value => @efar.township_house_number, :placeholder => 'House Number' }
       = select "efar", "township_id", Township.all.collect{ |s| [s.name, s.id] }, {:include_blank => 'None'}
 
   %legend Locations

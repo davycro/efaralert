@@ -10,6 +10,11 @@
           <input type="text" class="input-xlarge" placeholder="Search for an address in Cape Town" data-type='search-input'>
           <button type="submit" class="btn">Search</button>
         </div>
+        <span class='help-block'>
+          <small>
+            For best results type in the suburb (e.g. "Manenberg", or "Lavendar Hill"). If a street number cannot be found, then try inputting a cross street (e.g. "4th St and NYC")
+          </small>
+        </span>
       </form>
     </div>
     <div class="search-results">

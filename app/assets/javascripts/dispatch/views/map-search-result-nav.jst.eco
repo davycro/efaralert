@@ -1,5 +1,0 @@
-<li>
-  <a data-type='geocodeResult' data-lat='<%= @geometry.location.lat() %>' data-lng='<%= @geometry.location.lng() %>' data-formatted-address='<%= @formatted_address %>'>
-    <%= @formatted_address %>
-  </a>
-</li>

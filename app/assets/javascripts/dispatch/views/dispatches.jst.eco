@@ -10,6 +10,11 @@
       at <%= dispatch.readable_location %>
     </p>
     <p>
+    <% if dispatch.message_stats.total==0: %>
+      No EFARs nearby      
+    <% else: %>
+      <em>Responders: </em>
+    <% end %>
     <% if dispatch.message_stats.sent>0: %>
       <span class='badge badge-inverse'>
         <%= dispatch.message_stats.sent %>
@@ -45,9 +50,6 @@
         <%= dispatch.message_stats.queued %>
       </span>
       pending message    
-    <% end %>
-    <% if dispatch.message_stats.total==0: %>
-      No EFARs nearby      
     <% end %>
     </p>
     <a href='/dispatches/<%= dispatch.id %>' class=''>
