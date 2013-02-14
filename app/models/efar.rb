@@ -2,11 +2,12 @@
 #
 # Table name: efars
 #
-#  id                  :integer          not null, primary key
-#  full_name           :string(255)      not null
-#  community_center_id :integer          not null
-#  contact_number      :string(255)      not null
-#  township_id         :integer
+#  id                    :integer          not null, primary key
+#  full_name             :string(255)      not null
+#  community_center_id   :integer          not null
+#  contact_number        :string(255)      not null
+#  township_id           :integer
+#  township_house_number :string(255)
 #
 
 # The efar table represents all efars willing to provide a mobile phone number
@@ -14,7 +15,7 @@ class Efar < ActiveRecord::Base
 
   # Individual Attributes
   attr_accessible :full_name, :community_center_id,
-    :locations_attributes, :township_id, :contact_number
+    :locations_attributes, :township_id, :contact_number, :township_house_number
 
   PER_PAGE = 50
 

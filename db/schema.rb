@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130214094216) do
+ActiveRecord::Schema.define(:version => 20130214112912) do
 
   create_table "activity_logs", :force => true do |t|
     t.string   "message"
@@ -108,10 +108,11 @@ ActiveRecord::Schema.define(:version => 20130214094216) do
   end
 
   create_table "efars", :force => true do |t|
-    t.string  "full_name",           :null => false
-    t.integer "community_center_id", :null => false
-    t.string  "contact_number",      :null => false
+    t.string  "full_name",             :null => false
+    t.integer "community_center_id",   :null => false
+    t.string  "contact_number",        :null => false
     t.integer "township_id"
+    t.string  "township_house_number"
   end
 
   create_table "head_efars", :force => true do |t|

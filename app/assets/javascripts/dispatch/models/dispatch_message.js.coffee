@@ -1,6 +1,6 @@
 class App.DispatchMessage extends Spine.Model
   @configure "DispatchMessage", "efar_id", "dispatch_id", "state", "efar",
-    "updated_at", "efar_location"
+    "updated_at", "efar_location", "efars_origin_location"
   
   @extend Spine.Model.Ajax
   @url: "/api/dispatch_messages"
@@ -8,5 +8,5 @@ class App.DispatchMessage extends Spine.Model
   constructor: ->
     super
 
-  @fetchForEmergency: (emergency_id) ->
-    @fetch({data: {'emergency_id': emergency_id}, processData: true})
+  @fetchForDispatch: (dispatch_id) ->
+    @fetch({data: {'dispatch_id': dispatch_id}, processData: true})

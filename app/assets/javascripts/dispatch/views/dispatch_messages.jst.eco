@@ -1,0 +1,48 @@
+<h4>EFARs</h4>
+<table class='table'>
+  <thead>
+    <tr>
+      <th>Status</th>
+      <th>Name</th>
+      <th>Contact Number</th>
+      <th>Location</th>
+      <th><div class='pull-right'>Updated</div></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for message in @records: %>
+      <tr>
+        <td>
+          <% if message.state=='queued': %>
+            <span class='label'>Queued</span>
+          <% else if message.state=='sent': %>
+            <span class='label label-warning'>Sent</span>
+          <% else if message.state=='en_route': %>
+            <span class='label label-info'>En route</span>
+          <% else if message.state=='on_scene': %>
+            <span class='label label-success'>On scene</span>
+          <% else if message.state=='failed': %>
+            <span class='label label-important'>Message failed</span>
+          <% else if message.state=='declined': %>
+            <span class='label label-inverse'>Declined</span>
+          <% end %>
+        </td>
+
+        <td>
+          <%= message.efar.full_name %>
+        </td>
+
+        <td>
+          <%= message.efar.contact_number %>
+        </td>
+
+        <td>
+          <%= message.efars_origin_location %>
+        </td>
+
+        <td><div class='pull-right'><span class='timeago time hide' title="<%= message.updated_at %>"><%= message.updated_at %></span></div></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

@@ -58,6 +58,14 @@ class DispatchMessage < ActiveRecord::Base
     dispatch.readable_location  
   end
 
+  def efars_origin_location
+    if has_geolocation?
+      return efar_location.formatted_address
+    else
+      return [efar.township_house_number, efar.township.name].compact.join(' ')
+    end
+  end
+
   #
   # Validation Callbacks
 
@@ -195,7 +203,7 @@ class DispatchMessage < ActiveRecord::Base
   end
 
   def as_json(options = {})
-    super(:methods => [:efar, :efar_location])
+    super(:methods => [:efar, :efar_location, :efars_origin_location])
   end
 
   def self.find_most_active_for_number(contact_number)

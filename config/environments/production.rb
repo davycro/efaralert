@@ -21,7 +21,7 @@ EfarDispatch::Application.configure do
   config.assets.digest = true
 
   config.assets.precompile += %w(research.css full_screen_login.css dispatch.css admin.css) 
-  config.assets.precompile += %w(full_screen_login.js dispatch.js mapper.js admin/admin.js)
+  config.assets.precompile += %w(full_screen_login.js dispatch/dispatch.js mapper.js admin/admin.js)
 
   # Defaults to nil and saved in location specified by config.assets.prefix
   # config.assets.manifest = YOUR_PATH

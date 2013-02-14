@@ -68,115 +68,21 @@ class IndexController
     setTimeout(@doPoll, 5*1000)
 
 
-class MapController extends Spine.Controller
-  elements:
-    '#map-results' : 'mapEl'
-    'input[name=searchAddress]' : 'searchInput'
-    'select[name=category]' : 'selectCategory'
-    'ul[data-type=searchResults]' : 'searchResultsNav'
-    '[data-type=geocodeResult]' : 'geocodeResult'
-    'button[data-type=submitDispatch]' : 'submitDispatchButton'
-    '#submitDispatchModal' : 'submitDispatchModal'
 
-  events:
-    'click [data-type=geocodeResult]' : 'clickGeocodeResult'
-    'submit form[data-type=search]' : 'submitSearch'
-    'click [data-type=submitDispatch]' : 'submitDispatch'
-
-  constructor: ->
-    @el = $('.emergencies-new')
-    @markers = []
-    super()
-    @selectCategory.focus()
-    @setMap()
-
-
-  setMap:->
-    options = {
-      zoom: 15
-      center: new google.maps.LatLng(-33.9838663, 18.5552215)
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-      streetViewControl: false
-      mapTypeControl: false
-    }
-    @map = new google.maps.Map(@mapEl[0], options)
-
-  submitSearch: (e) =>
-    e.preventDefault()
-    searchAddress = @searchInput.val() + ", Cape Town, South Africa"
-    geocoder = new google.maps.Geocoder()
-    geocoder.geocode {'address': searchAddress}, (results, status) =>
-      if (status == google.maps.GeocoderStatus.OK)
-        @searchResultsNav.html ''
-        @clearMarkers()
-        @addSearchResult(result) for result in results
-        @geocodeResult.first().click()
-      else
-        console.log(status)
-
-  addSearchResult: (result) ->
-    console.log(result)
-    @searchResultsNav.append JST["dispatch/views/map-search-result-nav"](result)
-    marker = new google.maps.Marker(
-        position: result.geometry.location
-      )
-    marker.setMap(@map)
-    $('[data-type=geocodeResult]', @searchResultsNav).last().data('marker', marker)
-    @markers.push(marker)
-    @refreshElements()
-
-  clickGeocodeResult: (e) =>
-    el = $(e.currentTarget)
-    $('li', @searchResultsNav).removeClass('active')
-    el.parent().addClass('active')
-    @activeMarker = el.data('marker')
-    @map.panTo(@activeMarker.getPosition())
-    @enableSubmitDispatchButton()
-    @submitDispatchButton.focus()
-
-  clearMarkers: =>
-    @disableSubmitDispatchButton()
-    marker.setMap(null) for marker in @markers
-    @markers = [ ]
-
-  enableSubmitDispatchButton: =>
-    @submitDispatchButton.removeClass 'disabled'
-  disableSubmitDispatchButton: =>
-    @submitDispatchButton.addClass 'disabled'
-
-  submitDispatch: =>
-    @submitDispatchModal.modal({keyboard: false})
-    input_address = @searchInput.val()
-    input_category = @selectCategory.val()
-    App.Emergency.createFromMarker(@activeMarker, input_address, input_category, {success: @dispatchCreated, fail: @dispatchFailed})
-
-  dispatchCreated: ->
-    # scope is a spine js model instance
-    window.location = "/emergencies/#{@id}"
-
-  dispatchFailed: ->
-    console.log('failed to create dispatch')
-
-
-class NewInformalEmergencyController extends Spine.Controller
-  constructor: ->
-    @el = $('.informal-emergencies-new')
-    super()
-    $('select').first().focus()
 
 
 class App
   constructor: (path) ->
-    if path=='emergencies/index'
-      @emergencyIndexController = new IndexController
-    if path=='emergencies/show'
-      @showController = new ShowController
-    if path=='emergencies/new'
-      @mapController = new MapController
-    if path=='dispatches/new' or path=='dispatches/create'
-      @newDispatch = new App.NewDispatch
+    # if path=='emergencies/index'
+    #   @emergencyIndexController = new IndexController
+    # if path=='emergencies/show'
+    #   @showController = new ShowController
+    # if path=='emergencies/new'
+    #   @mapController = new MapController
+    # if path=='dispatches/new' or path=='dispatches/create'
+    #   @newDispatch = new App.NewDispatch
 
     
 
-
+jQuery(".timeago").timeago();
 window.App = App

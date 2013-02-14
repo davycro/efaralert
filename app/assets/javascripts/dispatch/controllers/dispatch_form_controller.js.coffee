@@ -29,10 +29,6 @@ class TabPanes extends Spine.Stack
     township: TownshipTab
     street_address: StreetAddressTab
 
-  routes:
-    '/street_address' : 'street_address'
-    '/township' : 'township'
-
   constructor: ->
     @el = $('#tabPanes')
     super()
@@ -44,13 +40,23 @@ class App.NewDispatch extends Spine.Controller
   events:
     'click .nav-tabs a' : 'clickTab'
 
-  constructor: ->
+  constructor: (path) ->
     @el = $('#newDispatch')
     super()
     @tabs_panes = new TabPanes
 
+    @routes
+      "/street_address": (params) ->
+        @tabs_panes.street_address.active(params)
+        $('[data-tab=street_address]').addClass('active')
+      "/township": (params) ->
+        @tabs_panes.township.active(params)
+        $('[data-tab=township]').addClass('active')
+
     Spine.Route.setup()
-    @navigate('/street_address')
+    path or= '/street_address'
+    @navigate(path)
+
 
   clickTab: (e) =>
     @navTabsLi.removeClass('active')

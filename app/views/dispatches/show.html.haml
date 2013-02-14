@@ -1,14 +1,24 @@
-%ul.breadcrumb
-  %li
-    %a{:href => dispatches_path } Dispatches
-    %span.divider /
-  %li.active
-    Show
-
 .page-header
-  %h4
+  %h2
     = @dispatch.emergency_category
-    @
-    = @dispatch.readable_location
+    .pull-right
+      %a.btn.btn-link{:href => dispatches_path} View all dispatches
 
-= @dispatch.to_yaml
+%p.lead
+  At
+  = @dispatch.readable_location
+  %span.time
+    = distance_of_time_in_words_to_now @dispatch.created_at
+    ago
+
+- if @dispatch.messages.size==0
+  .well
+    %strong No Nearby Efars
+
+- if @dispatch.messages.size > 0
+  %div{'data-type'=>'dispatch-messages-table', 'data-dispatch-id'=>@dispatch.id}
+
+:javascript
+  jQuery(function(){
+      new App.ShowDispatch
+  });
