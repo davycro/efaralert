@@ -1,28 +1,16 @@
-# == Schema Information
-#
-# Table name: slum_dispatch_messages
-#
-#  id                       :integer          not null, primary key
-#  slum_emergency_id        :integer          not null
-#  efar_id                  :integer          not null
-#  clickatell_error_message :string(255)
-#  state                    :string(255)      default("queued")
-#  created_at               :datetime         not null
-#  updated_at               :datetime         not null
-#
 
 require 'test_helper'
 
-class SlumDispatchMessageTest < ActiveSupport::TestCase
+class TownshipDispatchMessageTest < ActiveSupport::TestCase
 
   def setup
-    @emergency = slum_emergencies(:overcome)
+    @dispatch = dispatches(:overcome)
     @efar = efars(:buck)
-    @efar.slum = @emergency.slum
-    @efar.save 
+    @efar.township = @dispatch.township
+    @efar.save
 
-    @message = SlumDispatchMessage.new
-    @message.slum_emergency = @emergency
+    @message = DispatchMessage.new
+    @message.dispatch = @dispatch
     @message.efar = @efar
     @message.save
   end
@@ -71,13 +59,5 @@ class SlumDispatchMessageTest < ActiveSupport::TestCase
     
     @message.process_response "HELP"
   end
-
-  test "find_most_active_for_number only returns a recent message" do
-    assert_equal @message, SlumDispatchMessage.find_most_active_for_number(@efar.contact_number)
-    @message.created_at = 6.hours.ago
-    @message.save
-    assert_equal nil, SlumDispatchMessage.find_most_active_for_number(@efar.contact_number), "should find no message"
-  end
-
 
 end

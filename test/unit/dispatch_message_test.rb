@@ -20,14 +20,14 @@ require 'test_helper'
 class DispatchMessageTest < ActiveSupport::TestCase
 
   def setup
-    @emergency = emergencies(:trill_road)
+    @dispatch = dispatches(:trill_road)
     @efar = efars(:buck)
     @efar_location = efar_locations(:trill_road)
     @efar_location.efar = @efar
     @efar_location.save
 
     @message = DispatchMessage.new
-    @message.emergency = @emergency
+    @message.dispatch = @dispatch
     @message.efar = @efar
     @message.efar_location = @efar_location
     @message.save
