@@ -16,17 +16,24 @@
 %table.table
   %thead
     %tr
-      %th #
       %th Full Name
       %th Contact Number
+      %th Locations
       %th Community Centre        
 
   %tbody
     - @efars.each do |efar|
       %tr
-        %td= efar.id
         %td= link_to efar.full_name, admin_efar_path(efar)
         %td= efar.contact_number
+        %td
+          - efar.locations.each do |location|
+            = location.formatted_address
+            %br
+          - if efar.township.present?
+            = efar.township_house_number
+            = efar.township.name
+            
         %td= efar.community_center.name
         %td
           .btn-group

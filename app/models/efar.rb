@@ -23,13 +23,14 @@ class Efar < ActiveRecord::Base
   validates :contact_number, :uniqueness => true
 
   belongs_to :community_center
-  has_many :dispatch_messages
-  has_many :slum_dispatch_messages
+  has_many :dispatch_messages, :dependent => :destroy
   has_many :locations, :class_name => 'EfarLocation', :dependent => :destroy,
     :inverse_of => :efar
   belongs_to :township
 
   accepts_nested_attributes_for :locations, :allow_destroy => :true
+
+  before_validation :format_contact_number
 
   def self.all_for_page(page)  
     page ||= 0
@@ -48,6 +49,23 @@ class Efar < ActiveRecord::Base
 
   def send_text_message(message)
     return SMS_API.send_message(self.contact_number, message)
+  end
+
+  def format_contact_number
+    return false if contact_number.blank?
+    num = self.contact_number.to_s
+    if num.length < 9
+      errors.add(:contact_number, "must be at least nine digits")
+      return false
+    end
+    if num[0..1] == "27"
+      return true
+    end
+    if num[0] == "0"
+      num = num[1..-1]
+    end
+    self.contact_number = "27#{num}"
+    return true
   end
 
 end

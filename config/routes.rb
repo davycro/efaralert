@@ -25,7 +25,7 @@ EfarDispatch::Application.routes.draw do
     resources :townships
     resource :session
   end
-  match 'admin/' => 'admin/admins#index'
+  match 'admin/' => 'admin/efars#index'
 
   namespace :api do
     resources :efars

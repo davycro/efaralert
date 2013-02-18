@@ -24,4 +24,21 @@ class EfarTest < ActiveSupport::TestCase
     response = david.send_text_message "hello, this is just a test"
     assert response[:status]=='success'
   end
+
+  test "can format contact_number" do
+    david = efars(:david)
+    unformatted_num = "123456789"
+    formatted_num = "27" + unformatted_num
+    david.contact_number = unformatted_num
+    david.format_contact_number
+    assert david.contact_number==formatted_num
+
+    unformatted_num = "0" + unformatted_num
+    david.contact_number = unformatted_num
+    david.format_contact_number
+    assert david.contact_number==formatted_num
+
+    david.format_contact_number
+    assert david.contact_number==formatted_num
+  end
 end

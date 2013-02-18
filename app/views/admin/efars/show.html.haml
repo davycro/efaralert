@@ -1,7 +1,16 @@
-%h3
-  = "#{@efar.full_name}"
-  .pull-right
-    %a.btn.btn-link{:href => edit_admin_efar_path(@efar) } Edit
+%ul.breadcrumb
+  %li
+    = link_to "Efars", admin_efars_path
+    %span.divider /
+  %li.active
+    = @efar.full_name
+
+
+.page-header
+  %h3
+    = "#{@efar.full_name}"
+    .pull-right
+      %a.btn.btn-link{:href => edit_admin_efar_path(@efar) } Edit
 
 - if flash[:notice].present?
   .alert
@@ -11,6 +20,8 @@
 %dl.dl-horizontal
   %dt Community Center
   %dd= @efar.community_center.name
+  %dt Contact Number
+  %dd= @efar.contact_number
 
 - @efar.locations.each do |l|
   %dl.dl-horizontal
@@ -22,6 +33,8 @@
 - if @efar.township.present?
   %dl.dl-horizontal
     %dt Informal Settlement
-    %dd= @efar.township.name
+    %dd
+      = @efar.township_house_number
+      = @efar.township.name
 
 
