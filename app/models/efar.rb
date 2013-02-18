@@ -36,7 +36,7 @@ class Efar < ActiveRecord::Base
     page ||= 0
     per_page = PER_PAGE
 
-    return self.limit(per_page).offset(per_page*page).all
+    return self.limit(per_page).offset(per_page*page).order('created_at DESC').all
   end
   
   def head_efars
