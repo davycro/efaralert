@@ -1,0 +1,22 @@
+.page-header
+  %h2
+    EFARS
+    %small Map
+    .pull-right
+      .btn-toolbar
+        .btn-group
+          %a.btn{:href => admin_efars_path }
+            Table
+          %a.btn.active{:href => map_admin_efars_path}
+            Map
+        .btn-group
+          %a.btn{:href=> new_admin_efar_path }
+            Create
+
+#efar-location-mapper.google-map
+
+:javascript
+
+  jQuery(function(){
+    new App.EfarLocationMapper('#efar-location-mapper');
+  });

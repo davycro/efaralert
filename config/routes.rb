@@ -20,7 +20,12 @@ EfarDispatch::Application.routes.draw do
     resources :researchers
     resources :community_centers
     resources :head_efars
-    resources :efars
+    resources :efars do
+      collection do
+        get 'map'
+      end
+    end
+    resources :efar_locations
     resources :activity_logs
     resources :townships
     resource :session

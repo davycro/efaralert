@@ -32,5 +32,4 @@ class EfarLocation < ActiveRecord::Base
 
   belongs_to :efar
 
-
 end

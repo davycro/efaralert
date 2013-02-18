@@ -1,12 +1,16 @@
 .page-header
-  %h3
-    Efars
+  %h2
+    EFARS
     .pull-right
-      %a.btn.btn-primary.btn-small{:href => new_admin_efar_path}
-        %i.icon-plus.icon-white
-        Create
-
-
+      .btn-toolbar
+        .btn-group
+          %a.btn.active{:href => admin_efars_path }
+            Table
+          %a.btn{:href => map_admin_efars_path}
+            Map
+        .btn-group
+          %a.btn{:href=> new_admin_efar_path }
+            Create
 
 - if flash[:notice].present?
   .alert
