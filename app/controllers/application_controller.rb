@@ -17,17 +17,6 @@ class ApplicationController < ActionController::Base
     @current_admin ||= Admin.find(session[:admin_id]) if session[:admin_id].present?
   end
 
-  # researcher
-  def require_researcher_login
-    unless current_researcher
-      redirect_to new_research_session_path
-    end
-  end
-
-  def current_researcher
-    @current_researcher ||= Researcher.find(session[:researcher_id]) if session[:researcher_id].present?
-  end
-
   # dispatcher
   def require_dispatcher_login
     unless current_dispatcher

@@ -7,17 +7,9 @@ EfarDispatch::Application.routes.draw do
 
   match 'clickatell/' => 'clickatell#callback'
 
-  namespace :research do
-    resource :map
-    resource :account
-    resource :session
-  end
-  match 'research/' => 'research/maps#show'
-
   namespace :admin do
     resources :admins
     resources :dispatchers
-    resources :researchers
     resources :community_centers
     resources :head_efars
     resources :efars do

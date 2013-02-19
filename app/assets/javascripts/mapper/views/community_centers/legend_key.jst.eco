@@ -1,5 +1,0 @@
-<li>
-  <a href="#" data-id="<%= @id %>">
-    <%= @name %>
-  </a>
-</li>

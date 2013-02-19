@@ -1,4 +1,0 @@
-<!-- Displayed in a marker window -->
-<address>
-  <%= @formatted_address %>
-</address>

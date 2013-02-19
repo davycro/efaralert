@@ -1,5 +1,0 @@
-<ul class="nav nav-pills">
-  <li><a data-type="efars">Efars</a></li>
-  <li><a data-type="emergencies">Emergencies</a></li>
-  <li><a data-type="community_centers">Community Centers</a></li>
-</ul>
