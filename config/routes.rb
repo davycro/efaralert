@@ -10,6 +10,7 @@ EfarDispatch::Application.routes.draw do
   namespace :admin do
     resources :admins
     resources :dispatchers
+    resources :dispatches
     resources :community_centers
     resources :head_efars
     resources :efars do

@@ -37,7 +37,10 @@
                   %a{:href=>admin_efars_path} Efars
 
             %li{:class => controller.controller_name =='efars' && 'active' }
-              %a{:href => admin_efars_path } Efars
+              %a{:href => admin_efars_path } EFARs
+
+            %li{:class => controller.controller_name =='dispatches' && 'active' }
+              %a{:href => admin_dispatches_path } Dispatches
 
             %li{:class=>controller.controller_name=='activity_logs' && "active"}
               %a{:href=>admin_activity_logs_path } Activity Log

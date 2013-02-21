@@ -1,0 +1,50 @@
+.page-header
+  %h2 All Dispatches
+
+- @dispatches.each do |dispatch|
+  
+  .dispatch-item
+
+    .time
+      = dispatch.logged_at_in_cape_town_time_zone
+
+    %p.lead
+      = dispatch.emergency_category
+      at
+      = dispatch.readable_location
+    %p  
+      - if dispatch.messages.count==0
+        No EFARs nearby
+
+      - if dispatch.messages.sent.count > 0
+        %span.badge.badge-inverse
+          = dispatch.messages.sent.count
+        notified
+
+      - if dispatch.messages.en_route.count > 0
+        %span.badge.badge-warning
+          = dispatch.messages.en_route.count
+        en route
+
+        %span.badge.badge-success
+          = dispatch.messages.on_scene.count
+        on scene
+
+      - if dispatch.messages.declined.count > 0
+        %span.badge
+          = dispatch.messages.declined.count
+        declined
+
+      - if dispatch.messages.failed.count > 0
+        %span.badge.badge-important
+          = dispatch.messages.failed.count
+        failed
+
+    %p
+      %small
+        Dispatched by
+        = dispatch.dispatcher.full_name
+      %small
+        = link_to 'view details', admin_dispatch_path(dispatch)
+
+
