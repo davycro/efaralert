@@ -1,2 +1,2 @@
-<%= @efar.full_name %><br/>
+<%= @full_name %><br/>
 <%= @formatted_address %>

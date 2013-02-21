@@ -18,7 +18,6 @@ EfarDispatch::Application.routes.draw do
         get 'map'
       end
     end
-    resources :efar_locations
     resources :activity_logs
     resources :townships
     resource :session

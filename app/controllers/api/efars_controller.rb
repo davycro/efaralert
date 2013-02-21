@@ -4,7 +4,7 @@ class Api::EfarsController < ApplicationController
   def index
     respond_to do |format|
       format.json do 
-        @efars = Efar.valid_location.certified.all
+        @efars = Efar.has_geolocation.all
         render json: @efars.to_json
       end
     end

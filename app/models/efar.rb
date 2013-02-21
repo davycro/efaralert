@@ -34,6 +34,8 @@ class Efar < ActiveRecord::Base
   has_many :dispatch_messages, :dependent => :destroy
   belongs_to :township
 
+  scope :has_geolocation, where('lat is not null')
+
   before_validation :format_contact_number
 
   def self.all_for_page(page)  

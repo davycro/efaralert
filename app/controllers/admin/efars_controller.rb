@@ -9,6 +9,16 @@ class Admin::EfarsController < ApplicationController
     @efars = Efar.all_for_page(@page)
   end
 
+  def map
+    respond_to do |format|
+      format.json do 
+        @efars = Efar.has_geolocation.all
+        render json: @efars.to_json
+      end
+      format.html
+    end 
+  end
+
   def edit
     @efar = Efar.find(params[:id])
   end
