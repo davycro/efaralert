@@ -5,7 +5,7 @@
     = stylesheet_link_tag "admin", :media => "all"
     = yield :js
     %script{:src => "http://maps.googleapis.com/maps/api/js?sensor=false"}
-    = javascript_include_tag "admin/admin"
+    = javascript_include_tag "application"
     = csrf_meta_tags
     = render :partial => 'layouts/ga'
   %body             

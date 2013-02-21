@@ -9,30 +9,10 @@
   - if @dispatch.errors.present?
     .alert.alert-error Location required to send a dispatch   
 
-  .tabbable
-    %ul.nav.nav-tabs
-      %li{'data-tab'=>'street_address'}
-        %a{:href => "#/street_address"}
-          Street Address
-      %li{'data-tab'=>'township'}
-        %a{:href => "#/township"}
-          Informal Settlement
+  = render :partial => 'form'        
 
-    #formTabs.tab-content
-      #streetAddressFormTab.tab-pane
-        = render :partial => 'geolocation_dispatch_form'
-      #townshipFormTab.tab-pane
-        = render :partial => 'township_dispatch_form'
-
-- if @dispatch.errors.present?
-  :javascript
-    jQuery(function(){
-        new App.NewDispatch('/township')
-    });
-
-- if @dispatch.errors.blank?
-  :javascript
-    jQuery(function(){
-        new App.NewDispatch('/street_address')
-    });
+:javascript
+  jQuery(function(){
+      new App.Controllers.Dispatches.New()
+  });
 

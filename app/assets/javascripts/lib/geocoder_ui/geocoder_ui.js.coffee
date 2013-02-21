@@ -1,4 +1,4 @@
-class App.GeocoderResult extends Spine.Model
+class GeocoderResult extends Spine.Model
   @configure "GeocoderResult", "lat", "lng", 
     "formatted_address", "location_type", "marker"
 
@@ -56,13 +56,13 @@ class Search extends Spine.Controller
     @modalEl.on 'shown', =>
       @startSearch()
 
-    App.GeocoderResult.bind 'refresh', (results) =>
+    GeocoderResult.bind 'refresh', (results) =>
       @sidebarList.html ''
       @addGeocoderResult(result) for result in results
       @selectGeocoderResult results[0]
 
   render: ->
-    @html @view('geocoded_address_field/search')
+    @html view('search')
 
   clickStartSearch: (e) =>
     e.preventDefault()
@@ -93,13 +93,13 @@ class Search extends Spine.Controller
     geocoder = new google.maps.Geocoder()
     geocoder.geocode {'address': searchAddress}, (results, status) =>
       if (status == google.maps.GeocoderStatus.OK)
-        App.GeocoderResult.loadGoogleResults(results)
+        GeocoderResult.loadGoogleResults(results)
       else
         console.log(status)
 
   addGeocoderResult: (result) ->
-    result.marker.setMap(@map)  
-    @sidebarList.append @view('geocoded_address_field/sidebar_result_item')(result)
+    result.marker.setMap(@map)
+    @sidebarList.append view('sidebar_result_item')(result)
 
   selectGeocoderResult: (result) ->
     $('li', @sidebarList).removeClass 'active'
@@ -112,7 +112,7 @@ class Search extends Spine.Controller
   clickSaveButton: (e) =>
     e.preventDefault()
     @selectedGeocoderResult.reverseGeocode()
-    App.GeocodedAddressField.trigger 'renderAddress', @selectedGeocoderResult
+    AddressField.trigger 'renderAddress', @selectedGeocoderResult
     @modalEl.modal('hide')
     $('[data-type=start-search]').hide()
 
@@ -120,12 +120,12 @@ class Search extends Spine.Controller
     e.preventDefault()
     @modalEl.modal('hide')
     @sidebarList.html ''
-    App.GeocoderResult.destroyAll()
+    GeocoderResult.destroyAll()
 
   clickResult: (e) =>
     e.preventDefault()
     el = $(e.currentTarget)
-    result = App.GeocoderResult.find(el.data('id'))
+    result = GeocoderResult.find(el.data('id'))
     @selectGeocoderResult result
 
 
@@ -134,20 +134,20 @@ class Show extends Spine.Controller
   constructor: (modelName) ->
     super()
     @modelName = modelName
-    App.GeocodedAddressField.bind 'renderAddress', (result) =>
+    AddressField.bind 'renderAddress', (result) =>
       @result = result
       @render(result)
 
-    App.GeocoderResult.bind 'update', (result) =>
+    GeocoderResult.bind 'update', (result) =>
       if @result
         @render(result)
 
   render: (result) ->
     view_data = { result: result, modelName: @modelName }
-    @html @view('geocoded_address_field/show')(view_data)
+    @html view('show')(view_data)
 
 
-class App.GeocodedAddressField extends Spine.Controller
+class AddressField extends Spine.Controller
   @extend Spine.Events
 
   events:
@@ -166,3 +166,14 @@ class App.GeocodedAddressField extends Spine.Controller
   clickEditSearch: (e) =>
     e.preventDefault()
     @search.modalEl.modal()
+
+# Utilities and Shims
+
+view = (name) ->
+  JST["lib/geocoder_ui/views/#{name}"]
+
+# Globals
+
+GeocoderUi = @GeocoderUi = {}
+
+GeocoderUi.AddressField = AddressField
