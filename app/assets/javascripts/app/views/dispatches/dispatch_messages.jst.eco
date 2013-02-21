@@ -37,7 +37,7 @@
         </td>
 
         <td>
-          <%= message.efars_origin_location %>
+          <%= message.efar.readable_location %>
         </td>
 
         <td><div class='pull-right'><span class='timeago time hide' title="<%= message.updated_at %>"><%= message.updated_at %></span></div></td>

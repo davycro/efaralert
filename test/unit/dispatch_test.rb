@@ -21,14 +21,14 @@ require 'test_helper'
 class DispatchTest < ActiveSupport::TestCase
 
   def initialize_dispatch_to_trill_road
-    trill_road = efar_locations(:trill_road)
+    trill_road = efars(:trill_road)
     dispatch = Dispatch.new(lat: trill_road.lat,
       lng: trill_road.lng,
       dispatcher_id: 1,
       formatted_address: "50 trill road, cape town",
       emergency_category: "broken bone"
     )
-    return dispatch  
+    return dispatch
   end
 
   test "should know its location type" do
@@ -37,11 +37,11 @@ class DispatchTest < ActiveSupport::TestCase
     assert dispatches(:trill_road).has_geolocation?
   end
 
-  test "should find nearby efar locations" do
+  test "should find nearby efars" do
     broken_bone = initialize_dispatch_to_trill_road
-    nearby_efar_locations = broken_bone.nearby_efar_locations
-    assert nearby_efar_locations.include?(efar_locations(:trill_road))
-    assert nearby_efar_locations.include?(efar_locations(:herschel_road))
+    nearby_efars = broken_bone.nearby_efars
+    assert nearby_efars.include?(efars(:trill_road))
+    assert nearby_efars.include?(efars(:herschel_road))
   end
 
   test "should create dispatch messages for a street address" do
@@ -49,7 +49,7 @@ class DispatchTest < ActiveSupport::TestCase
     assert dispatch.save, "Dispatch did not save: #{dispatch.to_yaml}"
     dispatch = Dispatch.find(dispatch.id)
     assert dispatch.messages.present?, "No dispatch messages created"
-    assert dispatch.messages.detect { |dm| dm.efar_location.id==efar_locations(:trill_road).id }, "Couldn't trill road"
+    assert dispatch.messages.detect { |dm| dm.efar.id==efars(:trill_road).id }, "Couldn't trill road"
   end
 
   test "creates dispatch messages for a township" do
@@ -65,8 +65,7 @@ class DispatchTest < ActiveSupport::TestCase
     # associate efars with informal settlements
     efar_names.each do |efar_name|
       efar = efars(efar_name.to_sym)
-      efar.township = township
-      efar.save
+      efar.update_attribute :township_id, township.id
     end
 
     #

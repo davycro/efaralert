@@ -6,8 +6,7 @@ class TownshipDispatchMessageTest < ActiveSupport::TestCase
   def setup
     @dispatch = dispatches(:overcome)
     @efar = efars(:buck)
-    @efar.township = @dispatch.township
-    @efar.save
+    @efar.update_attribute :township_id, @dispatch.township.id
 
     @message = DispatchMessage.new
     @message.dispatch = @dispatch

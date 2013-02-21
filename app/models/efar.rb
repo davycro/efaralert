@@ -48,12 +48,14 @@ class Efar < ActiveRecord::Base
   end
 
   def as_json(options = {})
-    super(:methods => [])
+    super(:methods => [:readable_location])
   end
 
   def send_text_message(message)
     return SMS_API.send_message(self.contact_number, message)
   end
+
+  geocoded_by :formatted_address, :latitude => :lat, :longitude => :lng
 
   def format_contact_number
     return false if contact_number.blank?

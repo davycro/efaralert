@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130221151003) do
+ActiveRecord::Schema.define(:version => 20130221220527) do
 
   create_table "activity_logs", :force => true do |t|
     t.string   "message"
@@ -69,7 +69,6 @@ ActiveRecord::Schema.define(:version => 20130221151003) do
     t.string   "clickatell_id"
     t.string   "clickatell_error_message"
     t.integer  "dispatch_id",              :null => false
-    t.integer  "efar_location_id"
   end
 
   add_index "dispatch_messages", ["clickatell_id"], :name => "index_dispatch_messages_on_clickatell_id"

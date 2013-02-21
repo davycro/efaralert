@@ -71,36 +71,22 @@ class Dispatch < ActiveRecord::Base
   after_create :log_new_dispatch
 
   def create_messages
-    if has_geolocation?
-      nearby_efar_locations.each do |location|
-        dm = DispatchMessage.new
-        dm.efar = location.efar
-        dm.dispatch = self
-        dm.efar_location = location
-        dm.save
-      end
-    else
-      nearby_efars.each do |efar|
-        dm = DispatchMessage.new
-        dm.efar = efar
-        dm.dispatch = self
-        dm.save
-      end
+    nearby_efars.each do |efar|
+      dm = DispatchMessage.new
+      dm.efar = efar
+      dm.dispatch = self
+      dm.save
     end
   end
 
   def log_new_dispatch
-    ActivityLog.log "#{emergency_category} at #{readable_location}. #{self.nearby_efar_locations.size} efars notified."
-  end
-
-  def nearby_efar_locations
-    @nearby_efar_locations ||= EfarLocation.near([self.lat, self.lng], 0.5).limit(10)
+    ActivityLog.log "#{emergency_category} at #{readable_location}. #{self.nearby_efars.size} efars notified."
   end
 
   def nearby_efars
     return @nearby_efars unless @nearby_efars.blank?
     if has_geolocation?
-      @nearby_efars = nearby_efar_locations.map(&:efar).compact.uniq
+      @nearby_efars = Efar.near([self.lat, self.lng], 0.5).limit(10)
     else
       @nearby_efars = self.township.efars
     end

@@ -13,6 +13,9 @@
 #  formatted_address     :string(255)
 #  location_type         :string(255)
 #
+DEFAULTS: &DEFAULTS
+  full_name: 'david crockett'
+  community_center: mothers_unite
 
 david:
   full_name: 'david crockett'
@@ -24,7 +27,6 @@ buck:
   community_center: mothers_unite
   contact_number: 1234
 
-
 jack:
   full_name: 'jack crockett'
   community_center: mothers_unite
@@ -34,3 +36,27 @@ bill:
   full_name: 'bill crockett'
   community_center: mothers_unite
   contact_number: 1213
+
+trill_road:
+  formatted_address: "50 Trill Road, Cape Town 7925, South Africa"
+  lat: -33.93909
+  lng: 18.47024
+  location_type: street_address
+  contact_number: 12345
+  <<: *DEFAULTS
+
+herschel_road:
+  formatted_address: "7 Herschel Road, Cape Town 7925, South Africa"
+  lat: -33.9385
+  lng: 18.4704799
+  location_type: street_address
+  contact_number: 123456
+  <<: *DEFAULTS
+
+dove_street:
+  formatted_address: "1 Dove Street, Cape Town 7925, South Africa"
+  lat: -33.9341
+  lng: 18.4652
+  location_type: street_address
+  contact_number: 1234567
+  <<: *DEFAULTS

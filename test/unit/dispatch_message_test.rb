@@ -10,7 +10,6 @@
 #  clickatell_id            :string(255)
 #  clickatell_error_message :string(255)
 #  dispatch_id              :integer          not null
-#  efar_location_id         :integer
 #
 
 
@@ -21,15 +20,11 @@ class DispatchMessageTest < ActiveSupport::TestCase
 
   def setup
     @dispatch = dispatches(:trill_road)
-    @efar = efars(:buck)
-    @efar_location = efar_locations(:trill_road)
-    @efar_location.efar = @efar
-    @efar_location.save
+    @efar = efars(:trill_road)
 
     @message = DispatchMessage.new
     @message.dispatch = @dispatch
     @message.efar = @efar
-    @message.efar_location = @efar_location
     @message.save
   end
 

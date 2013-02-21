@@ -18,10 +18,6 @@ require 'test_helper'
 
 class EfarTest < ActiveSupport::TestCase
   # Replace this with your real tests.
-  test "has many locations" do
-    david = efars(:david)
-    assert david.locations.present?
-  end
 
   test "can send a text message" do
     david = efars(:david)

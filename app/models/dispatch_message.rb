@@ -10,7 +10,6 @@
 #  clickatell_id            :string(255)
 #  clickatell_error_message :string(255)
 #  dispatch_id              :integer          not null
-#  efar_location_id         :integer
 #
 
 class DispatchMessage < ActiveRecord::Base
@@ -25,7 +24,7 @@ class DispatchMessage < ActiveRecord::Base
     'failed'     => 'Failed'
   }
 
-  attr_accessible :efar_id, :emergency_id, :state, :clickatell_id, :efar_location_id
+  attr_accessible :efar_id, :emergency_id, :state, :clickatell_id
 
   before_validation :set_nil_state_to_queued
   validates :state, :inclusion => { :in => STATE_MESSAGES.keys }
@@ -35,7 +34,6 @@ class DispatchMessage < ActiveRecord::Base
 
   belongs_to :efar
   belongs_to :dispatch
-  belongs_to :efar_location
 
   #
   # Scopes
@@ -50,20 +48,8 @@ class DispatchMessage < ActiveRecord::Base
     self.efar.head_efars
   end
 
-  def has_geolocation?
-    efar_location.present?
-  end
-
   def readable_location
     dispatch.readable_location  
-  end
-
-  def efars_origin_location
-    if has_geolocation?
-      return efar_location.formatted_address
-    else
-      return [efar.township_house_number, efar.township.name].compact.join(' ')
-    end
   end
 
   #
@@ -203,7 +189,7 @@ class DispatchMessage < ActiveRecord::Base
   end
 
   def as_json(options = {})
-    super(:methods => [:efar, :efar_location, :efars_origin_location])
+    super(:methods => [:efar])
   end
 
   def self.find_most_active_for_number(contact_number)
