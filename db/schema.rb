@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130219122507) do
+ActiveRecord::Schema.define(:version => 20130221145111) do
 
   create_table "activity_logs", :force => true do |t|
     t.string   "message"
@@ -113,6 +113,10 @@ ActiveRecord::Schema.define(:version => 20130219122507) do
     t.string  "contact_number",        :null => false
     t.integer "township_id"
     t.string  "township_house_number"
+    t.float   "lat"
+    t.float   "lng"
+    t.string  "formatted_address"
+    t.string  "location_type"
   end
 
   create_table "head_efars", :force => true do |t|

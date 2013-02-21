@@ -8,6 +8,10 @@
 #  contact_number        :string(255)      not null
 #  township_id           :integer
 #  township_house_number :string(255)
+#  lat                   :float
+#  lng                   :float
+#  formatted_address     :string(255)
+#  location_type         :string(255)
 #
 
 david:

@@ -8,6 +8,10 @@
 #  contact_number        :string(255)      not null
 #  township_id           :integer
 #  township_house_number :string(255)
+#  lat                   :float
+#  lng                   :float
+#  formatted_address     :string(255)
+#  location_type         :string(255)
 #
 
 # The efar table represents all efars willing to provide a mobile phone number
@@ -15,11 +19,14 @@ class Efar < ActiveRecord::Base
 
   # Individual Attributes
   attr_accessible :full_name, :community_center_id,
-    :locations_attributes, :township_id, :contact_number, :township_house_number
+    :locations_attributes, :township_id, :contact_number, 
+    :township_house_number, :lat, :lng, :formatted_address,
+    :location_type
 
   PER_PAGE = 50
 
-  validates :full_name, :community_center_id, :contact_number, :presence => true
+  validates :full_name, :community_center_id, :contact_number, 
+    :presence => true
   validates :contact_number, :uniqueness => true
 
   belongs_to :community_center
