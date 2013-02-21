@@ -4,6 +4,8 @@
     constructor: ->
       @el = $('.efar-form-editor')
       super()
-      @address_field = new GeocoderUi.AddressField()  
+      @address_field = new GeocoderUi.AddressField()
+      $('input[type=text]', @el).first().focus()
+
 
 
