@@ -22,19 +22,7 @@
   %dd= @efar.community_center.name
   %dt Contact Number
   %dd= @efar.contact_number
-
-- @efar.locations.each do |l|
-  %dl.dl-horizontal
-    %dt Address
-    %dd= l.formatted_address
-    %dt Occupied at
-    %dd= l.occupied_at.titlecase
-
-- if @efar.township.present?
-  %dl.dl-horizontal
-    %dt Informal Settlement
-    %dd
-      = @efar.township_house_number
-      = @efar.township.name
+  %dt Location
+  %dd= @efar.readable_location
 
 

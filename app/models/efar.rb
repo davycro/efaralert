@@ -18,10 +18,11 @@
 class Efar < ActiveRecord::Base
 
   # Individual Attributes
-  attr_accessible :full_name, :community_center_id,
-    :locations_attributes, :township_id, :contact_number, 
-    :township_house_number, :lat, :lng, :formatted_address,
-    :location_type
+  attr_accessible :full_name, 
+    :contact_number, 
+    :community_center_id,
+    :township_id, :township_house_number,
+    :lat, :lng, :formatted_address, :location_type
 
   PER_PAGE = 50
 
@@ -31,11 +32,7 @@ class Efar < ActiveRecord::Base
 
   belongs_to :community_center
   has_many :dispatch_messages, :dependent => :destroy
-  has_many :locations, :class_name => 'EfarLocation', :dependent => :destroy,
-    :inverse_of => :efar
   belongs_to :township
-
-  accepts_nested_attributes_for :locations, :allow_destroy => :true
 
   before_validation :format_contact_number
 
@@ -51,7 +48,7 @@ class Efar < ActiveRecord::Base
   end
 
   def as_json(options = {})
-    super(:methods => [:locations])
+    super(:methods => [])
   end
 
   def send_text_message(message)
@@ -73,6 +70,17 @@ class Efar < ActiveRecord::Base
     end
     self.contact_number = "27#{num}"
     return true
+  end
+
+  def readable_location
+    return @readable_location if @readable_location.present?
+    @readable_location = ""
+    if township_id.present?
+      @readable_location = "#{township_house_number} #{township.name}" 
+    else
+      @readable_location = "#{formatted_address}"
+    end
+    return @readable_location
   end
 
 end

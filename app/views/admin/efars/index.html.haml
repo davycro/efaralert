@@ -30,14 +30,7 @@
       %tr
         %td= link_to efar.full_name, admin_efar_path(efar)
         %td= efar.contact_number
-        %td
-          - efar.locations.each do |location|
-            = location.formatted_address
-            %br
-          - if efar.township.present?
-            = efar.township_house_number
-            = efar.township.name
-            
+        %td= efar.readable_location
         %td= efar.community_center.name
         %td
           .btn-group

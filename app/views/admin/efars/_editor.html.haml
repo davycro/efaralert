@@ -9,10 +9,8 @@
 
 = form_for([:admin, @efar], :html => {:class => 'form-horizontal efar-form-editor'}) do |f|
   
-  %legend Personal Info
-
   = horizontal_text_field(@efar, :full_name)
-  = horizontal_text_field(@efar, :contact_number, :help_text => "Please include a country code prefix")
+  = horizontal_text_field(@efar, :contact_number, :help_text => "Must be a south african number")
 
   .control-group
     %label.control-label Community Center
@@ -20,41 +18,15 @@
       = select("efar", "community_center_id", CommunityCenter.all.collect { |c| [c.name, c.id] } )
 
   .control-group
+    %label.control-label Location
+    .controls
+      %div{'data-type'=>'geocoded-address-field', 'data-model-name'=>'efar'}
+
+  .control-group
     %label.control-label Informal Settlement
     .controls
       %input{:type=>'text', :name => 'efar[township_house_number]', :value => @efar.township_house_number, :placeholder => 'House Number' }
       = select "efar", "township_id", Township.all.collect{ |s| [s.name, s.id] }, {:include_blank => 'None'}
-
-  %legend Locations
-
-  .locations-list{'data-length'=>@efar.locations.size}
-    - @efar.locations.each_with_index do |location, i|
-      .location-item
-
-        - name_prefix = "efar[locations_attributes][#{i}]"
-        %input{:type=>'hidden',:name=>"#{name_prefix}[id]",:value=>location.id}
-
-        .control-group
-          %label.control-label Address
-          .controls
-            %span.input-xlarge.uneditable-input
-              = location.formatted_address
-
-        .control-group
-          %label.control-label Occupied at
-          .controls
-            %select{:name => "#{name_prefix}[occupied_at]"}
-              - %w(daytime nighttime anytime).each do |option_value|
-                %option{ :selected => location.occupied_at.downcase==option_value }= option_value
-
-        .control-group
-          %label.control-label Delete?
-          .controls
-            %input{ :type => 'checkbox', :name => "#{name_prefix}[_destroy]" }
-
-  .control-group
-    .controls
-      %button.btn.btn-small{'data-type'=>'add-location', 'type'=>'button'} Add Location
 
   .form-actions
     %button.btn.btn-primary{:type=>'submit'} Save
