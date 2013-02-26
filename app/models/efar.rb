@@ -38,6 +38,8 @@ class Efar < ActiveRecord::Base
 
   before_validation :format_contact_number
 
+  include Extensions::ContactNumber
+
   def self.all_for_page(page)  
     page ||= 0
     per_page = PER_PAGE
