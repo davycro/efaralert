@@ -86,7 +86,7 @@ class Dispatch < ActiveRecord::Base
   def nearby_efars
     return @nearby_efars unless @nearby_efars.blank?
     if has_geolocation?
-      @nearby_efars = Efar.near([self.lat, self.lng], 0.5).limit(10)
+      @nearby_efars = Efar.near([self.lat, self.lng], 0.3, :order => 'distance')
     else
       @nearby_efars = self.township.efars
     end

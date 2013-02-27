@@ -12,7 +12,7 @@
   .control-group
     %label.control-label Community Center
     .controls
-      = select("head_efar", "community_center_id", CommunityCenter.all.collect { |c| [c.name, c.id] } )
+      = select("head_efar", "community_center_id", CommunityCenter.all.collect { |c| [c.name, c.id] }, { :include_blank => true } )
 
 
   .form-actions

@@ -8,7 +8,7 @@ class Admin::SessionsController < ApplicationController
     admin = Admin.find_by_email(params[:email])
     if admin && admin.authenticate(params[:password])
       session[:admin_id] = admin.id
-      redirect_to admin_admins_path, :notice => "logged in!"
+      redirect_to admin_efars_path, :notice => "logged in!"
     else
       flash.now.alert = "Invalid email or password"
       render "new"

@@ -32,7 +32,7 @@ task :scramble_efar_contact_numbers => :environment do
   raise "dev only!" unless Rails.env == 'development'
 
   Efar.all.each do |efar|
-    efar.contact_number = efar.contact_number + "9"
+    efar.contact_number = efar.contact_number + "B"
     efar.save
   end
 
