@@ -66,24 +66,19 @@ class DispatchMessage < ActiveRecord::Base
 
   def process_response(text)
     text = text.downcase
-    if text=='help'
+    if text[0..6].include?('help')
       return send_help_messages
     end
-    if self.state=='sent'
-      if text=='yes' or text=='y' or text=='ye'
+    if text[0..4].include?('yes') or text=='y' or text=='ye'
+      if self.state=='sent'
         return set_state_to_en_route_and_then_send_messages
       end
-      if text=='no' or text=='n'
-        return set_state_to_declined_and_then_send_messages
-      end
-    end
-    if self.state=='en_route'
-      if text=='yes' or text=='ye' or text=='y'
+      if self.state=='en_route'
         return set_state_to_on_scene_and_then_send_messages
       end
-      if text=='no' or text=='n'
-        return set_state_to_declined_and_then_send_messages
-      end
+    end
+    if text[0..4].include?('no') or text=='n'
+      return set_state_to_declined_and_then_send_messages(text)  
     end
     return false
   end
@@ -147,8 +142,8 @@ class DispatchMessage < ActiveRecord::Base
   end
 
   # state change: ? -> declined
-  def set_state_to_declined_and_then_send_messages
-    ActivityLog.log "#{self.efar.full_name} declined to respond to emergency at #{readable_location}"
+  def set_state_to_declined_and_then_send_messages(reason = '')
+    ActivityLog.log "#{self.efar.full_name} declined to respond to emergency at #{readable_location}. Reason: #{reason}"
 
     self.state='declined'
     self.save
@@ -160,7 +155,7 @@ class DispatchMessage < ActiveRecord::Base
 
     message_for_head_efar = %/
       #{efar.full_name} DECLINED to respond to emergency at 
-      #{readable_location}. 
+      #{readable_location}. Reason: #{reason}. 
       Their contact number is: #{efar.contact_number}
     /.squish
     self.head_efars.each do |head_efar|
