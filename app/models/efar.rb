@@ -36,7 +36,7 @@ class Efar < ActiveRecord::Base
 
   scope :has_geolocation, where('lat is not null')
 
-  before_validation :format_contact_number
+  
 
   include Extensions::ContactNumber
   include Extensions::CapeTownLocation
@@ -53,30 +53,7 @@ class Efar < ActiveRecord::Base
   end
 
   def as_json(options = {})
-    super(:methods => [:readable_location])
-  end
-
-  def send_text_message(message)
-    return SMS_API.send_message(self.contact_number, message)
-  end
-
-  geocoded_by :formatted_address, :latitude => :lat, :longitude => :lng
-
-  def format_contact_number
-    return false if contact_number.blank?
-    num = self.contact_number.to_s
-    if num.length < 9
-      errors.add(:contact_number, "must be at least nine digits")
-      return false
-    end
-    if num[0..1] == "27"
-      return true
-    end
-    if num[0] == "0"
-      num = num[1..-1]
-    end
-    self.contact_number = "27#{num}"
-    return true
-  end
+    super(:methods => [:readable_location, :readable_contact_number])
+  end  
 
 end

@@ -33,14 +33,19 @@
         </td>
 
         <td>
-          <%= message.efar.contact_number %>
+          <%= message.efar.readable_contact_number %>
         </td>
 
         <td>
           <%= message.efar.readable_location %>
         </td>
 
-        <td><div class='pull-right'><span class='timeago time hide' title="<%= message.updated_at %>"><%= message.updated_at %></span></div></td>
+        <td>
+          <div class='pull-right'>
+            <%= message.readable_timestamps.updated_at.military_time %> - 
+            <%= message.readable_timestamps.updated_at.short_date %>
+          </div>
+        </td>
       </tr>
     <% end %>
   </tbody>

@@ -32,7 +32,7 @@ module Extensions
         # remove city and country from the address
         @readable_location = "#{extract_street_and_house_number_from_formatted_address}"
       end
-      if attributes.has_key?(:landmarks) and landmarks.present?
+      if self.respond_to?(:landmarks) and landmarks.present?
         @readable_location += " (#{landmarks})"
       end
       return @readable_location

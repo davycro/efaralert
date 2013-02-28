@@ -29,6 +29,8 @@ class DispatchMessage < ActiveRecord::Base
   before_validation :set_nil_state_to_queued
   validates :state, :inclusion => { :in => STATE_MESSAGES.keys }
 
+  include Extensions::ReadableTimestamps
+
   #
   # Attribute shortcuts
 
@@ -184,7 +186,7 @@ class DispatchMessage < ActiveRecord::Base
   end
 
   def as_json(options = {})
-    super(:methods => [:efar])
+    super(:methods => [:efar, :readable_timestamps])
   end
 
   def self.find_most_active_for_number(contact_number)
@@ -194,7 +196,8 @@ class DispatchMessage < ActiveRecord::Base
       where("created_at >= :start_date", { :start_date => 2.hours.ago }).
       order('created_at DESC').first
     return dispatch_message
-
   end
+
+
   
 end

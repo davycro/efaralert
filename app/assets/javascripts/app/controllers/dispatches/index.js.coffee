@@ -1,6 +1,6 @@
 class Dispatch extends Spine.Model
   @configure "Dispatch", "readable_location", "emergency_category",
-    "created_at", "message_stats"
+    "created_at", "message_stats", "readable_timestamps"
   
   @extend Spine.Model.Ajax
   @url: "/dispatches"

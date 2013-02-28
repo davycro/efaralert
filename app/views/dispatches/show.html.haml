@@ -7,6 +7,8 @@
     .pull-right
       %a.btn.btn-link{:href => dispatches_path} View all dispatches
 
+
+%small= @dispatch.created_at.strftime("%H:%M - %d %b %y")
 %p.lead
   at
   = @dispatch.readable_location    

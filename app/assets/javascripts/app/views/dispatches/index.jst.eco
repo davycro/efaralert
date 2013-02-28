@@ -6,6 +6,9 @@
         <span class='timeago' title="<%= dispatch.created_at %>"><%= dispatch.created_at %></span>
       </small>
     </h3>
+    <small>
+      <%= dispatch.readable_timestamps.created_at.military_time %>
+    </small>
     <p class='lead'>
       at <%= dispatch.readable_location %>
     </p>

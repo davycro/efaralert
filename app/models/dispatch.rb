@@ -22,6 +22,7 @@ class Dispatch < ActiveRecord::Base
     :lng, :location_type
 
   include Extensions::CapeTownLocation
+  include Extensions::ReadableTimestamps
 
   EMERGENCY_CATEGORIES = [
     'General emergency',
@@ -112,7 +113,7 @@ class Dispatch < ActiveRecord::Base
   end
 
   def as_json(options = {})
-    super(:methods => [:readable_location, :message_stats])
+    super(:methods => [:readable_location, :message_stats, :readable_timestamps])
   end
 
   def logged_at_in_cape_town_time_zone
