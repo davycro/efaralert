@@ -39,6 +39,7 @@ class Efar < ActiveRecord::Base
   before_validation :format_contact_number
 
   include Extensions::ContactNumber
+  include Extensions::CapeTownLocation
 
   def self.all_for_page(page)  
     page ||= 0
@@ -76,17 +77,6 @@ class Efar < ActiveRecord::Base
     end
     self.contact_number = "27#{num}"
     return true
-  end
-
-  def readable_location
-    return @readable_location if @readable_location.present?
-    @readable_location = ""
-    if township_id.present?
-      @readable_location = "#{township_house_number} #{township.name}" 
-    else
-      @readable_location = "#{formatted_address}"
-    end
-    return @readable_location
   end
 
 end
