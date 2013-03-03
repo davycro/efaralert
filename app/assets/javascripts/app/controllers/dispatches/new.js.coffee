@@ -1,4 +1,20 @@
-AddressField = GeocoderUi.AddressField
+
+class LocationField extends Spine.Controller
+  elements:
+    '.modal' : 'modal'
+    
+  events:
+    'click [data-type=show-modal]' : 'clickShowModal'
+
+  constructor: ->
+    @el = $('[data-type=location-field]')
+    super
+    @append view('location_modal')
+
+  clickShowModal: (e) =>
+    e.preventDefault()
+    @modal.modal()
+
 
 @module 'App.Controllers.Dispatches', ->
 
@@ -8,8 +24,13 @@ AddressField = GeocoderUi.AddressField
       @el = $('#newDispatch')
       super()
       $('select').first().focus()
-      @address_field = new AddressField()
-      AddressField.bind 'renderAddress', (result) =>
-        $('input.landmarks').focus()
-        $('button[type=submit]').removeAttr('disabled')
+      @location_field = new LocationField()
+      # @address_field = new AddressField()
+      # AddressField.bind 'renderAddress', (result) =>
+      #   $('input.landmarks').focus()
+      #   $('button[type=submit]').removeAttr('disabled')
+
+# Utilities and Shims
+view = (name) ->
+  JST["app/views/dispatches/#{name}"]
       
