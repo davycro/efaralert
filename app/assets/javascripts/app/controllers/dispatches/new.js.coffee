@@ -1,8 +1,15 @@
 
+class TownshipSelector extends Spine.Controller
+
+  
+  
+class AddressSelector extends Spine.Controller
+
+
 class LocationField extends Spine.Controller
   elements:
     '.modal' : 'modal'
-    
+
   events:
     'click [data-type=show-modal]' : 'clickShowModal'
 

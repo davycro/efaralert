@@ -145,6 +145,7 @@
 .nav-tabs-modal > li {
   float: left;
 }
+.nav-tabs-modal > li > label,
 .nav-tabs-modal > li > a {
   padding-right: 12px;
   padding-left: 12px;
@@ -162,6 +163,14 @@
 // Make the list-items overlay the bottom border
 .nav-tabs-modal > li {
   margin-bottom: -1px;
+}
+.nav-tabs-modal > li > label {
+  padding-top: 8px;
+  display: block;
+  margin-bottom: 0px;
+  padding-bottom: 8px;
+  line-height: @baseLineHeight;
+  border: 1px solid transparent;  
 }
 // Actual tabs (as links)
 .nav-tabs-modal > li > a {

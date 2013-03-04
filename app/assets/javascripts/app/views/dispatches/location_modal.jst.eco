@@ -6,6 +6,11 @@
 <div class='modal hide fade modal-location-field' role='dialog' tabindex='1'>
 
   <ul class='nav nav-tabs-modal'>
+    <li>
+      <label>
+        Location type:
+      </label>
+    </li>
     <li class='active'>
       <a href='#'>
         Street Address
@@ -21,7 +26,7 @@
   <div class="modal-body">
     Hello
   </div>
-  
+
   <div class="modal-footer">
     <div class="search-actions">
       <button class="btn btn-primary" data-type='save' type='button'>
