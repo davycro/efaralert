@@ -167,6 +167,7 @@
 .nav-tabs-modal > li > label {
   padding-top: 8px;
   display: block;
+  cursor: default;
   margin-bottom: 0px;
   padding-bottom: 8px;
   line-height: @baseLineHeight;
@@ -191,6 +192,10 @@
   border: 1px solid #ddd;
   border-bottom-color: transparent;
   cursor: default;
+}
+// TAB PANES
+.tab-stack > *:not(.active) {
+  display: none;
 }
 
 #map-results {

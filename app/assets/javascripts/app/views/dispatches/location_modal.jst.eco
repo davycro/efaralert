@@ -12,19 +12,24 @@
       </label>
     </li>
     <li class='active'>
-      <a href='#'>
+      <a href='#street-address' data-type='tab-button'>
         Street Address
       </a>
     </li>
     <li class=''>
-      <a href='#'>
+      <a href='#informal-settlement' data-type='tab-button'>
         Informal Settlement
       </a>
     </li>
   </ul>
 
-  <div class="modal-body">
-    Hello
+  <div class="modal-body tab-stack">
+    <div class='active' id='street-address'>
+      street address
+    </div>
+    <div class='' id='informal-settlement'>
+      informal settlement
+    </div>
   </div>
 
   <div class="modal-footer">
