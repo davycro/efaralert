@@ -12,32 +12,19 @@
       </label>
     </li>
     <li class='active'>
-      <a href='#street-address' data-type='tab-button'>
+      <a href='#/address' data-type='tab-button'>
         Street Address
       </a>
     </li>
     <li class=''>
-      <a href='#informal-settlement' data-type='tab-button'>
+      <a href='#/settlement' data-type='tab-button'>
         Informal Settlement
       </a>
     </li>
   </ul>
 
-  <div class="modal-body tab-stack">
-    <div class='active' id='street-address'>
-      street address
-    </div>
-    <div class='' id='informal-settlement'>
-      informal settlement
-    </div>
-  </div>
+  <div id='location-stack' class='stack'>
 
-  <div class="modal-footer">
-    <div class="search-actions">
-      <button class="btn btn-primary" data-type='save' type='button'>
-        Add location
-      </button>
-      <a class='btn btn-link' data-type='cancel'>Cancel</a>
-    </div>
   </div>
+  
 </div>
