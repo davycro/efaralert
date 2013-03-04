@@ -4,9 +4,24 @@
 </button>
 
 <div class='modal hide fade modal-location-field' role='dialog' tabindex='1'>
+
+  <ul class='nav nav-tabs-modal'>
+    <li class='active'>
+      <a href='#'>
+        Street Address
+      </a>
+    </li>
+    <li class=''>
+      <a href='#'>
+        Informal Settlement
+      </a>
+    </li>
+  </ul>
+
   <div class="modal-body">
     Hello
   </div>
+  
   <div class="modal-footer">
     <div class="search-actions">
       <button class="btn btn-primary" data-type='save' type='button'>

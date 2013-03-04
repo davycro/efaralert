@@ -119,12 +119,69 @@
   }
 }
 
-//
-// Location Field
+// LOCATION FIELD
+// --------------
+
 @modalWidth: 640px; // best if a multiple of 80px
 .modal-location-field {
   width: @modalWidth;
   margin-left: (@modalWidth/2)*-1; // half the width
+
+  .modal-body {
+    padding-top: 0px;
+  }
+}
+
+// MODAL TABS
+// -------------
+
+// Common styles
+.nav-tabs-modal {
+  .clearfix();
+  background-color: #f5f5f5;
+  .border-top-radius(4px);
+  padding-top: 9px;
+}
+.nav-tabs-modal > li {
+  float: left;
+}
+.nav-tabs-modal > li > a {
+  padding-right: 12px;
+  padding-left: 12px;
+  margin-right: 2px;
+  line-height: 14px; // keeps the overall height an even number
+}
+
+// TABS
+// ----
+
+// Give the tabs something to sit on
+.nav-tabs-modal {
+  border-bottom: 1px solid #ddd;
+}
+// Make the list-items overlay the bottom border
+.nav-tabs-modal > li {
+  margin-bottom: -1px;
+}
+// Actual tabs (as links)
+.nav-tabs-modal > li > a {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  line-height: @baseLineHeight;
+  border: 1px solid transparent;
+  .border-top-radius(4px);
+  &:hover {
+    border-color: @grayLighter @grayLighter #ddd;
+  }
+}
+// Active state, and it's :hover to override normal :hover
+.nav-tabs-modal > .active > a,
+.nav-tabs-modal > .active > a:hover {
+  color: @gray;
+  background-color: @bodyBackground;
+  border: 1px solid #ddd;
+  border-bottom-color: transparent;
+  cursor: default;
 }
 
 #map-results {
