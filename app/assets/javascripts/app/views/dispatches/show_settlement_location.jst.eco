@@ -1,0 +1,7 @@
+<div class="input-prepend input-append">
+  <span class="add-on">Settlement: </span>
+  <input class="span2" type="text" value="<%= @record.name %>" disabled>
+  <button class="btn" type="button" data-type='edit'>Edit</button>
+</div>
+
+<input type="hidden" name="<%= @modelName %>[township_id]" value="<%= @record.id %>">

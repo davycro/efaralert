@@ -21,4 +21,8 @@ class Township < ActiveRecord::Base
   def nullify_associated_efars
     Efar.where(:township_id => self.id).update_all(:township_id => nil)
   end
+
+  def as_json(options={})
+    super(:methods => [:efars])
+  end
 end

@@ -28,6 +28,7 @@ EfarDispatch::Application.routes.draw do
     resources :efars
     resources :community_centers
     resources :dispatch_messages
+    resources :townships
   end
 
   # The priority is based upon order of creation:
