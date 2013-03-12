@@ -1,6 +1,6 @@
 <div class="input-prepend input-append">
   <span class="add-on">Settlement: </span>
-  <input class="span2" type="text" value="<%= @record.name %>" disabled>
+  <input class="span2" type="text" value="<%= @record.name %>" name="location" disabled>
   <button class="btn" type="button" data-type='edit'>Edit</button>
 </div>
 

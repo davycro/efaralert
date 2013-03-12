@@ -290,20 +290,62 @@ class LocationField extends Spine.Controller
     e.preventDefault()
     @modal.modal 'hide'
 
+  focus: ->
+    @showModalButton.focus()
+
 
 @module 'App.Controllers.Dispatches', ->
 
   class @New extends Spine.Controller
+    events:
+      'submit [data-type=new-dispatch-form]' : 'submit'
+
+    elements:
+      '[data-field-type=landmarks]' : 'landmarksField'
+      '[data-field-type=category]' : 'categoryField'
+      '[data-field-type=location]' : 'locationField'
+      'button[type=submit]' : 'submitButton'
 
     constructor: (path) ->
       @el = $('#newDispatch')
       super()
-      $('select').first().focus()
       @location_field = new LocationField()
-      # @address_field = new AddressField()
-      # AddressField.bind 'renderAddress', (result) =>
-      #   $('input.landmarks').focus()
-      #   $('button[type=submit]').removeAttr('disabled')
+      @location_field.modal.on 'hide', =>
+        @validateLocation()
+
+      @disableFields()
+
+    disableFields: ->
+      @landmarksField.find('input').attr('disabled', true)
+      @categoryField.find('select').attr('disabled', true)
+
+    #
+    # validators
+
+    validateLocation: =>
+      if $('input[name=location]').length < 1
+        @location_field.focus()
+      else
+
+
+    #
+    # events
+
+    submit: (e) =>
+      e.preventDefault()
+      # obtain value for the landmarks input
+      # check if that value is greater than 5 characters
+      # if not, show a red error box above the input
+      # return false
+
+      # check for presence of input[name=location]
+      # if not, show a red error box above the input
+      # return false
+
+      # if we make it this far, submit the form 
+
+
+
 
 # Utilities and Shims
 view = (name) ->

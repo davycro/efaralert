@@ -1,21 +1,21 @@
 = form_for @dispatch, :html => { :class => 'form-horizontal', 'data-type'=>'new-dispatch-form' } do |f|
 
-  .control-group
-    %label.control-label Emergency Category
-    .controls
-      = select "dispatch", 'emergency_category', Dispatch::EMERGENCY_CATEGORIES
-
-  .control-group
+  .control-group{'data-field-type'=>'location'}
     %label.control-label Location
     .controls
       %div{'data-type'=>'location-field', 'data-model-name'=>'dispatch'}
 
-  .control-group
+  .control-group{'data-field-type'=>'landmarks'}
     %label.control-label Landmarks
     .controls
-      %input.landmarks{ :type=> 'text', :name => "dispatch[landmarks]", :placeholder => 'Optional', :value => @dispatch.landmarks}
+      %input.landmarks{ :type=> 'text', :name => "dispatch[landmarks]", :placeholder => 'Required', :value => @dispatch.landmarks }
       %span.help-block
-        %small e.g. "Across from the green container"
+        %small e.g. "House number 31", "at the corner of Sheldt St and Thames Ave", or "look for a red container"
+
+  .control-group{'data-field-type'=>'category'}
+    %label.control-label Emergency Category
+    .controls
+      = select "dispatch", 'emergency_category', Dispatch::EMERGENCY_CATEGORIES, {:html=>{:class=>'category'}}
 
   .form-actions
-    %button.btn.btn-primary{:type=>'submit', 'disabled'=>'disabled'} Send Dispatch
+    %button.btn.btn-primary{:type=>'submit','data-type'=>'submit'} Send Dispatch

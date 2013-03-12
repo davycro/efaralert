@@ -1,5 +1,5 @@
 <div class="input-append">
-  <input type="text" class='input-xlarge' name="<%= @modelName %>[formatted_address]" value="<%= @result.formatted_address %>" disabled>
+  <input type="text" class='input-xlarge' name="location" value="<%= @result.formatted_address %>" disabled>
 
   <button class="btn" type="button" data-type='edit'>Edit</button>
 </div>
