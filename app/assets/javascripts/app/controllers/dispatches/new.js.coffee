@@ -81,8 +81,8 @@ class LocationSettlement extends Spine.Controller
     e.preventDefault()
     record_id = @select.find(':selected').data('id')
     record = Township.find(record_id)
-    LocationField.trigger 'addSettlement', record
-    LocationField.trigger 'hide'
+    LocationSelector.trigger 'addSettlement', record
+    LocationSelector.trigger 'hide'
 
   changeSelect: (e) =>
     e.preventDefault()
@@ -95,7 +95,7 @@ class ShowSettlement extends Spine.Controller
   constructor: (modelName) ->
     super
     @modelName = modelName
-    LocationField.bind 'addSettlement', (record) =>
+    LocationSelector.bind 'addSettlement', (record) =>
       @render(record)
 
   render: (record) ->
@@ -179,12 +179,12 @@ class LocationAddress extends Spine.Controller
   clickSaveButton: (e) =>
     e.preventDefault()
     @selectedGeocoderResult.reverseGeocode()
-    LocationField.trigger 'addAddress', @selectedGeocoderResult
-    LocationField.trigger 'hide'
+    LocationSelector.trigger 'addAddress', @selectedGeocoderResult
+    LocationSelector.trigger 'hide'
 
   clickCancelButton: (e) =>
     e.preventDefault()
-    LocationField.trigger 'cancel'
+    LocationSelector.trigger 'cancel'
 
   clickResult: (e) =>
     e.preventDefault()
@@ -198,7 +198,7 @@ class ShowAddress extends Spine.Controller
   constructor: (modelName) ->
     super
     @modelName = modelName
-    LocationField.bind 'addAddress', (result) =>
+    LocationSelector.bind 'addAddress', (result) =>
       @result = result
       @render(result)
 
@@ -229,7 +229,7 @@ class LocationStack extends Spine.Stack
     super
 
 
-class LocationField extends Spine.Controller
+class LocationSelector extends Spine.Controller
   @extend Spine.Events
 
   elements:
@@ -243,7 +243,7 @@ class LocationField extends Spine.Controller
     'click [data-type=cancel]' : 'clickCancelButton'
 
   constructor: ->
-    @el = $('[data-type=location-field]')
+    @el = $('[data-type=location-selector]')
     super
     #
     # add the show divs
@@ -265,7 +265,7 @@ class LocationField extends Spine.Controller
         @stack.settlement.active()
     #
     # add address
-    LocationField.bind 'hide', (result) =>
+    LocationSelector.bind 'hide', (result) =>
       @showModalButton.hide()
       @modal.modal 'hide'
     #
@@ -309,8 +309,8 @@ class LocationField extends Spine.Controller
     constructor: (path) ->
       @el = $('#newDispatch')
       super()
-      @location_field = new LocationField()
-      @location_field.modal.on 'hide', =>
+      @location_selector = new LocationSelector()
+      @location_selector.modal.on 'hide', =>
         @validateLocation()
 
       @disableFields()
@@ -319,13 +319,24 @@ class LocationField extends Spine.Controller
       @landmarksField.find('input').attr('disabled', true)
       @categoryField.find('select').attr('disabled', true)
 
+    enableFields: ->
+      @landmarksField.find('input').removeAttr('disabled')
+      @categoryField.find('select').removeAttr('disabled')
+
     #
     # validators
 
     validateLocation: =>
       if $('input[name=location]').length < 1
-        @location_field.focus()
+        @locationField.find('.help-inline').html "must be present"
+        @locationField.addClass('error')
+        @location_selector.focus()
       else
+        @enableFields()
+        @locationField.removeClass('error')
+        @locationField.addClass('success')
+        @locationField.find('.help-inline').hide()
+        @landmarksField.find('input').focus()
 
 
     #
