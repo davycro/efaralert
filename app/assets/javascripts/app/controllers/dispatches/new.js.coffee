@@ -304,6 +304,7 @@ class LocationSelector extends Spine.Controller
       '[data-field-type=landmarks]' : 'landmarksField'
       '[data-field-type=category]' : 'categoryField'
       '[data-field-type=location]' : 'locationField'
+      '.alert-error' : 'alertError'
       'button[type=submit]' : 'submitButton'
 
     constructor: (path) ->
@@ -312,6 +313,7 @@ class LocationSelector extends Spine.Controller
       @location_selector = new LocationSelector()
       @location_selector.modal.on 'hide', =>
         @validateLocation()
+        true
 
       @disableFields()
 
@@ -331,29 +333,36 @@ class LocationSelector extends Spine.Controller
         @locationField.find('.help-inline').html "must be present"
         @locationField.addClass('error')
         @location_selector.focus()
+        return false
       else
         @enableFields()
         @locationField.removeClass('error')
         @locationField.addClass('success')
         @locationField.find('.help-inline').hide()
         @landmarksField.find('input').focus()
+        return true
 
+    validateLandmarks: ->
+      if @landmarksField.find('input').attr('value').length < 5
+        @landmarksField.addClass('error')
+        @landmarksField.find('.help-inline').html "must be present and longer than five characters"
+        @landmarksField.find('input').focus()
+        return false
+      else
+        @landmarksField.removeClass('error')
+        @landmarksField.addClass('success')
+        return true
 
     #
     # events
 
     submit: (e) =>
-      e.preventDefault()
-      # obtain value for the landmarks input
-      # check if that value is greater than 5 characters
-      # if not, show a red error box above the input
-      # return false
-
-      # check for presence of input[name=location]
-      # if not, show a red error box above the input
-      # return false
-
-      # if we make it this far, submit the form 
+      if ( @validateLocation() and @validateLandmarks() )
+        return true 
+      else
+        @alertError.show()
+        e.preventDefault()
+        return false
 
 
 

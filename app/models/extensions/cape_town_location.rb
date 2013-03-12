@@ -9,7 +9,7 @@ module Extensions
     included do
 
       # TODO improve location validation
-      validates :township_house_number, :township_id, :presence => true, :if => :nil_geolocation?
+      validates :township_id, :presence => true, :if => :nil_geolocation?
 
       geocoded_by :formatted_address, :latitude => :lat, :longitude => :lng
 
@@ -27,7 +27,7 @@ module Extensions
       return @readable_location if @readable_location.present?
       @readable_location = ""
       if township_id.present?
-        @readable_location = "#{township_house_number} #{township.name}" 
+        @readable_location = [township_house_number, township.name].compact.join(" ") 
       else
         # remove city and country from the address
         @readable_location = "#{extract_street_and_house_number_from_formatted_address}"

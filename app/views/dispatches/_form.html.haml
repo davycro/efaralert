@@ -1,4 +1,8 @@
 = form_for @dispatch, :html => { :class => 'form-horizontal', 'data-type'=>'new-dispatch-form' } do |f|
+  
+  .alert.alert-error.hide
+    %button{:type=>'button', :class=>'close', 'data-dismiss'=>'alert'} &times;
+    There were some errors sending the dispatch.
 
   .control-group{'data-field-type'=>'location'}
     %label.control-label Location
@@ -10,6 +14,7 @@
     %label.control-label Landmarks
     .controls
       %input.landmarks{ :type=> 'text', :name => "dispatch[landmarks]", :placeholder => 'Required', :value => @dispatch.landmarks }
+      %span.help-inline
       %span.help-block
         %small e.g. "House number 31", "at the corner of Sheldt St and Thames Ave", or "look for a red container"
 
