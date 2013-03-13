@@ -1,0 +1,17 @@
+<div class="modal-body">
+  <input type="text" name="township_house_number" placeholder="House number">
+  <select data-type='township'>
+    <% for township in @records: %>
+      <option data-id="<%= township.id %>">
+        <%= township.name %>
+      </option>
+    <% end %>
+  </select>
+</div>
+
+<div class="modal-footer">
+  <button class="btn btn-primary" data-type='save' type='submit'>
+    Add location
+  </button>
+  <a class='btn btn-link' data-type='cancel'>Cancel</a>
+</div>

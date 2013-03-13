@@ -1,0 +1,36 @@
+<div class='modal hide fade modal-address-selector' role='dialog' tabindex='1'>
+
+  <div class='modal-header'>
+    <form data-type='search-form'>
+      <div class="input-append">
+        <input type="text" class="input-xlarge" placeholder="Search for an address in Cape Town" data-type='search-input'>
+        <button type="submit" class="btn">Search</button>
+      </div>
+      <span class='help-block'>
+        <small>
+          Hint: You can also search by cross street (e.g. "4th St and NYC")
+        </small>
+      </span>
+    </form>
+  </div>
+
+  <div class='modal-body'>
+    <div class="row-fluid">
+      <div class='span8'>
+        <div class='search-map' data-type='map'></div>
+      </div>
+      <div class='span4'>
+        <div class='map-sidebar' data-type='map-sidebar'>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class='modal-footer'>
+    <button class="btn btn-primary" data-type='save' type='button'>
+      Add location
+    </button>
+    <a class='btn btn-link' data-type='cancel'>Cancel</a>
+  </div>
+  
+</div>

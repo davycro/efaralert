@@ -1,0 +1,5 @@
+<li>
+  <a data-type='geocoder-result' data-id='<%= @id %>' href='#'>
+    <%= @formatted_address %>
+  </a>
+</li>

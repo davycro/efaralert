@@ -1,0 +1,23 @@
+<!-- has attributes: lat, lng, fomatted address -->
+
+<% if @lat: %>
+  
+  <div class="input-append">
+    <input type="text" class='input-xlarge' name="address" value="<%= @formatted_address %>" disabled>
+
+    <button class="btn" type="button" data-type='edit-address'>Edit</button>
+    <button class="btn" type="button" data-type='clear-address'>Clear</button>
+  </div>
+
+<% else: %>
+  <div class="input-append">
+    <input type="text" class='input-xlarge' name="address">
+
+    <button class="btn" type="button" data-type='search-address'>Find</button>
+  </div>
+<% end %>
+
+<input type="hidden" name="efar[lat]" value="<%= @lat %>">
+<input type="hidden" name="efar[formatted_address]" value="<%= @formatted_address %>">
+<input type="hidden" name="efar[lng]" value="<%= @lng %>">
+<input type="hidden" name="efar[location_type]" value="<%= @location_type %>">
