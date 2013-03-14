@@ -23,21 +23,6 @@ class Dispatch < ActiveRecord::Base
 
   include Extensions::CapeTownLocation
   include Extensions::ReadableTimestamps
-
-  EMERGENCY_CATEGORIES = [
-    'General emergency',
-    'Uncontrolled bleed',
-    'Motor vehicle accident',
-    'Broken bone',
-    'Unconscious person',
-    'Fall from a height',
-    'Seizure',
-    'Burn',
-    'Impaled object',
-    'Shortness of breath',
-    'Abdominal pain',
-    'Confused person'
-  ]
   
   validates :dispatcher_id, :presence => true
 
