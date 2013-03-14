@@ -1,2 +1,3 @@
 <%= @full_name %><br/>
-<%= @formatted_address %>
+<%= @formatted_address %><br/>
+<%= @lat %>, <%= @lng %>

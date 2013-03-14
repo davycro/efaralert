@@ -20,6 +20,8 @@
           %ul.nav
             %li{:class=>controller.controller_name=='dispatches' && "active"}
               %a{:href => dispatches_path } Dispatches
+            %li{:class=>controller.controller_name=='efars' && "active"}
+              %a{:href => efars_path } EFARs
           %a.btn.btn-primary{ :href=> new_dispatch_path }
             New Dispatch
           %ul.nav.pull-right
