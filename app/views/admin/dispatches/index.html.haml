@@ -21,11 +21,6 @@
           = dispatch.messages.sent.count
         notified
 
-      - if dispatch.messages.en_route.count > 0
-        %span.badge.badge-warning
-          = dispatch.messages.en_route.count
-        en route
-
         %span.badge.badge-success
           = dispatch.messages.on_scene.count
         on scene

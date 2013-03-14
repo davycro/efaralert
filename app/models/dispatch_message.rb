@@ -18,7 +18,6 @@ class DispatchMessage < ActiveRecord::Base
     'queued'     => 'Queued',
     'sending'    => 'Sending',
     'sent'       => 'Sent',
-    'en_route'   => 'En route',
     'on_scene'   => 'On scene',
     'declined'   => 'Declined',
     'failed'     => 'Failed'
@@ -39,7 +38,7 @@ class DispatchMessage < ActiveRecord::Base
 
   #
   # Scopes
-  scope :sent, where(:state => %w(sent en_route on_scene declined))
+  scope :sent, where(:state => %w(sent on_scene declined))
   STATE_MESSAGES.keys.each do |state_name|
     unless state_name=='sent'
       scope state_name.to_sym, where(:state => state_name)
@@ -73,9 +72,6 @@ class DispatchMessage < ActiveRecord::Base
     end
     if text[0..4].include?('yes') or text=='y' or text=='ye'
       if self.state=='sent'
-        return set_state_to_en_route_and_then_send_messages
-      end
-      if self.state=='en_route'
         return set_state_to_on_scene_and_then_send_messages
       end
     end
@@ -103,27 +99,7 @@ class DispatchMessage < ActiveRecord::Base
     end
   end
 
-  # state change: sent -> en route
-  def set_state_to_en_route_and_then_send_messages
-    ActivityLog.log "#{self.efar.full_name} is en route to emergency at #{readable_location}"
-
-    self.state='en_route'
-    self.save
-
-    message = %/
-      Thank you! We alerted your head EFAR that you are on the way. Reply YES when you arrive at the emergency. Reply HELP if you need help.
-    /.squish
-    self.efar.send_text_message(message)
-
-    message_for_head_efar = %/
-      #{efar.full_name} en route to emergency at #{readable_location}. Their contact number is: #{efar.contact_number}
-    /.squish
-    self.head_efars.each do |head_efar|
-      head_efar.send_text_message message_for_head_efar
-    end
-  end
-
-  # state change: en route -> on scene
+  # state change: sent -> on scene
   def set_state_to_on_scene_and_then_send_messages
     ActivityLog.log "#{self.efar.full_name} arrived at emergency at #{readable_location}"
 
@@ -131,7 +107,7 @@ class DispatchMessage < ActiveRecord::Base
     self.save
 
     message = %/
-      Thank you! We alerted your head EFAR that you are at the emergency. Reply HELP if you need help. An ambulance will meet you soon.
+      Thank you! The ambulance will meet you soon. Reply HELP if you need help. David Crockett will refund your airtime.
     /.squish
     self.efar.send_text_message(message)
 
@@ -169,8 +145,9 @@ class DispatchMessage < ActiveRecord::Base
     message = %/
       EFAR #{efar.full_name}, your help is urgently needed! 
       #{dispatch.emergency_category} at  
-      #{readable_location}. 
-      Will you rescue? Reply YES or NO
+      #{readable_location}.
+      Reply YES when you are at the emergency.
+      David Crockett will refund your airtime.
       /.squish
     resp = self.efar.send_text_message(message)
     if resp[:status] == 'success'

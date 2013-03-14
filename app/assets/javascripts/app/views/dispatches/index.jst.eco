@@ -24,12 +24,6 @@
       </span>
       notified    
     <% end %>
-    <% if dispatch.message_stats.en_route>0: %>
-      <span class='badge badge-warning'>
-        <%= dispatch.message_stats.en_route %>
-      </span>
-      en route    
-    <% end %>
     <% if dispatch.message_stats.on_scene>0: %>
       <span class='badge badge-success'>
         <%= dispatch.message_stats.on_scene %>

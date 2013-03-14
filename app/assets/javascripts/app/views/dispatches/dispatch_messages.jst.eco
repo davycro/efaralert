@@ -17,8 +17,6 @@
             <span class='label'>Queued</span>
           <% else if message.state=='sent': %>
             <span class='label label-warning'>Sent</span>
-          <% else if message.state=='en_route': %>
-            <span class='label label-info'>En route</span>
           <% else if message.state=='on_scene': %>
             <span class='label label-success'>On scene</span>
           <% else if message.state=='failed': %>

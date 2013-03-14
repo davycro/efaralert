@@ -49,14 +49,6 @@ class DispatchMessageTest < ActiveSupport::TestCase
     stub_efar_and_head_efars_to_expect_text_messages
     
     @message.process_response "YeS"
-    assert @message.state=='en_route'
-  end
-
-  test "reply yes to en_route message" do
-    # setup
-    @message.state = 'en_route'
-    stub_efar_and_head_efars_to_expect_text_messages
-    @message.process_response "YeS"
     assert @message.state=='on_scene'
   end
 
