@@ -45,6 +45,8 @@ class GeocoderResult extends Spine.Model
 
 
 class AddressSelector extends Spine.Controller
+  @extend Spine.Events
+
   elements:
     '.modal' : 'modal'
     '[data-type=search-input]' : 'searchInput'
@@ -55,6 +57,8 @@ class AddressSelector extends Spine.Controller
   events:
     'submit [data-type=search-form]' : 'submitSearchForm'
     'click [data-type=geocoder-result]' : 'clickResult'
+    'click [data-type=cancel]' : 'clickCancelButton'
+    'click [data-type=save]' : 'clickSaveButton'
 
   constructor: ->
     super
@@ -70,6 +74,8 @@ class AddressSelector extends Spine.Controller
     super()
     @searchInput.focus()
     @resizeMap()
+    if @searchInput.val() and @searchInput.val().length>0
+      GeocoderResult.geocode @searchInput.val()
 
   render: ->
     @html view('address_selector')
@@ -103,6 +109,8 @@ class AddressSelector extends Spine.Controller
   # outside actions
 
   open: (searchStr) ->
+    if searchStr
+      @searchInput.val(searchStr)
     @modal.modal()
 
   #
@@ -114,9 +122,12 @@ class AddressSelector extends Spine.Controller
   clickSaveButton: (e) =>
     e.preventDefault()
     @selectedGeocoderResult.reverseGeocode()
+    AddressSelector.trigger 'saveAddress', @selectedGeocoderResult
+    @modal.modal 'hide'
 
   clickCancelButton: (e) =>
     e.preventDefault()
+    @modal.modal 'hide'
 
   clickResult: (e) =>
     e.preventDefault()
@@ -125,14 +136,13 @@ class AddressSelector extends Spine.Controller
     @selectGeocoderResult result
 
 
-
-
 @module 'App.Controllers.Admin.Efars', ->
 
   class @Form extends Spine.Controller
     events:
       'click [data-type=edit-address]': 'clickEditAddress'
       'click [data-type=search-address]': 'clickSearchAddress'
+      'click [data-type=clear-address]' : 'clickClearAddress'
     elements:
       '[data-type=efar-address]' : 'efarAddress'
 
@@ -142,6 +152,8 @@ class AddressSelector extends Spine.Controller
       # render efar address
       @efarAddress.html view('efar_address')(@efarAddress.data('efar'))
       @addressSelector = new AddressSelector()
+      AddressSelector.bind 'saveAddress', (result) =>
+        @efarAddress.html view('efar_address')(result)
       @append @addressSelector
       @addressSelector.render()
 
@@ -149,9 +161,17 @@ class AddressSelector extends Spine.Controller
     # events
     clickEditAddress: (e) =>
       e.preventDefault()
-      @addressSelector.open()
+      searchStr = $('input[name=address]', @efarAddress).val()
+      @addressSelector.open(searchStr)
 
     clickSearchAddress: (e) =>
+      e.preventDefault()
+      searchStr = $('input[name=address]', @efarAddress).val()
+      @addressSelector.open(searchStr)
+
+    clickClearAddress: (e) =>
+      e.preventDefault()
+      @efarAddress.html view('efar_address')({})
 
 # Utilities and Shims
 view = (name) ->
