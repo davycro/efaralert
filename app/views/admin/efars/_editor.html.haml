@@ -20,10 +20,17 @@
     .control-group
       %label.control-label Location
       .controls
-        %strong Address
+        - if @efar.errors[:location].present?
+          .alert.alert-error
+            %strong Error:
+            You must include a location
+        %h5 Address
         %div{'data-type'=>'efar-address', 'data-efar' => @efar.to_json }
         or
-        %strong Settlement
+        %div.settlement
+          %h5 Settlement
+          %input{:type=>'text', :name => "efar[township_house_number]", :value => @efar.township_house_number, :placeholder => "House Number"}
+          = select "efar", "township_id", Township.all.collect { |t| [t.name, t.id] }, :include_blank => true
 
     .form-actions
       %button.btn.btn-primary{:type=>'submit'} Save

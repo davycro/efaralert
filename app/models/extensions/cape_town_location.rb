@@ -13,6 +13,8 @@ module Extensions
 
       geocoded_by :formatted_address, :latitude => :lat, :longitude => :lng
 
+      validate :township_or_address_must_be_present
+
     end
 
     def nil_geolocation?
@@ -43,6 +45,12 @@ module Extensions
       # returns just the street and house number
       str = self.formatted_address
       return str.split(',').reject { |s| s.include?("Cape Town") or s.include?("South Africa") }.compact.join(", ")
+    end
+
+    def township_or_address_must_be_present
+      if nil_geolocation? and self.township_id.blank?
+        errors.add :location, "cannot be blank"
+      end
     end
 
   end

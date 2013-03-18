@@ -153,7 +153,12 @@ class AddressSelector extends Spine.Controller
       @efarAddress.html view('efar_address')(@efarAddress.data('efar'))
       @addressSelector = new AddressSelector()
       AddressSelector.bind 'saveAddress', (result) =>
+        @addressResult = result
         @efarAddress.html view('efar_address')(result)
+      GeocoderResult.bind 'update', (result) =>
+        if @addressResult
+          @efarAddress.html view('efar_address')(result)
+          
       @append @addressSelector
       @addressSelector.render()
 
