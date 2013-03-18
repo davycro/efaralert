@@ -23,21 +23,6 @@ class Dispatch < ActiveRecord::Base
 
   include Extensions::CapeTownLocation
   include Extensions::ReadableTimestamps
-
-  EMERGENCY_CATEGORIES = [
-    'General emergency',
-    'Uncontrolled bleed',
-    'Motor vehicle accident',
-    'Broken bone',
-    'Unconscious person',
-    'Fall from a height',
-    'Seizure',
-    'Burn',
-    'Impaled object',
-    'Shortness of breath',
-    'Abdominal pain',
-    'Confused person'
-  ]
   
   validates :dispatcher_id, :presence => true
 
@@ -104,7 +89,6 @@ class Dispatch < ActiveRecord::Base
 
   def message_stats
     { 'sent' => messages.sent.count,
-      'en_route' => messages.en_route.count,
       'on_scene' => messages.on_scene.count,
       'failed' => messages.failed.count,
       'queued' => messages.queued.count,

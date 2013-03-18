@@ -2,6 +2,7 @@ EfarDispatch::Application.routes.draw do
   
   # Base resources used by dispatchers
   resources :dispatches
+  resources :efars
   resource :session
   resource :account
 

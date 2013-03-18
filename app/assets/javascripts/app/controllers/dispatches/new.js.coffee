@@ -319,11 +319,11 @@ class LocationSelector extends Spine.Controller
 
     disableFields: ->
       @landmarksField.find('input').attr('disabled', true)
-      @categoryField.find('select').attr('disabled', true)
+      @categoryField.find('input').attr('disabled', true)
 
     enableFields: ->
       @landmarksField.find('input').removeAttr('disabled')
-      @categoryField.find('select').removeAttr('disabled')
+      @categoryField.find('input').removeAttr('disabled')
 
     #
     # validators
@@ -353,11 +353,24 @@ class LocationSelector extends Spine.Controller
         @landmarksField.addClass('success')
         return true
 
+    validateCategory: ->
+      if @categoryField.find('input').attr('value').length < 5
+        @categoryField.addClass('error')
+        @categoryField.find('.help-inline').html "must be present and longer than five characters"
+        @categoryField.find('input').focus()
+        return false
+      else
+        @categoryField.removeClass('error')
+        @categoryField.addClass('success')
+        return true
+
+
+
     #
     # events
 
     submit: (e) =>
-      if ( @validateLocation() and @validateLandmarks() )
+      if ( @validateLocation() and @validateLandmarks() and @validateCategory() )
         return true 
       else
         @alertError.show()
