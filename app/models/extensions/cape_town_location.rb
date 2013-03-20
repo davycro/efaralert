@@ -8,9 +8,6 @@ module Extensions
 
     included do
 
-      # TODO improve location validation
-      validates :township_id, :presence => true, :if => :nil_geolocation?
-
       geocoded_by :formatted_address, :latitude => :lat, :longitude => :lng
 
       validate :township_or_address_must_be_present
@@ -44,6 +41,7 @@ module Extensions
       # removes the city and country from a formatted address
       # returns just the street and house number
       str = self.formatted_address
+      return nil if str.blank?
       return str.split(',').reject { |s| s.include?("Cape Town") or s.include?("South Africa") }.compact.join(", ")
     end
 

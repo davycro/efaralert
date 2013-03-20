@@ -10,17 +10,18 @@ module Extensions
 
     def readable_contact_number
       cn = self.contact_number
+      return "" if cn.blank?
       # replace the country code with a 0
       "0#{cn[2..3]} #{cn[4..6]} #{cn[7..-1]}"
     end
 
     def format_contact_number_for_south_africa
-      return false if contact_number.blank?
+      self.contact_number ||= ""
       country_code = "27"
       num = self.contact_number.to_s
       if num.length < 9
         errors.add(:contact_number, "must be at least nine digits")
-        return false
+        return true
       end
       if num[0..1] == country_code
         return true
