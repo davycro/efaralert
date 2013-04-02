@@ -19,12 +19,9 @@
         %small Enter a location to help the EFAR find the emergency. For example: "House number 31", "at the corner of Sheldt St and Thames Ave", or "look for a red container"
 
   .control-group{'data-field-type'=>'category'}
-    %label.control-label Describe the emergency:
+    %label.control-label Emergency Category
     .controls
-      %input.category.span6{ :type=>'text', :name => "dispatch[emergency_category]", :placeholder => 'Required', :value => @dispatch.emergency_category }
-      %span.help-inline
-      %span.help-block
-        %small Describe the emergency. For example: "Shortness of breath", or "Motor accident"
+      = select "dispatch", 'emergency_category', Dispatch::EMERGENCY_CATEGORIES
 
   .form-actions
     %button.btn.btn-primary{:type=>'submit','data-type'=>'submit'} Send Dispatch

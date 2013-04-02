@@ -21,6 +21,21 @@ class Dispatch < ActiveRecord::Base
     :landmarks, :township_id, :township_house_number, :formatted_address, :lat,
     :lng, :location_type
 
+  EMERGENCY_CATEGORIES = [
+    'General emergency',
+    'Uncontrolled bleed',
+    'Motor vehicle accident',
+    'Broken bone',
+    'Unconscious person',
+    'Fall from a height',
+    'Seizure',
+    'Burn',
+    'Impaled object',
+    'Shortness of breath',
+    'Abdominal pain',
+    'Confused person'
+  ]
+
   include Extensions::CapeTownLocation
   include Extensions::ReadableTimestamps
   

@@ -302,7 +302,6 @@ class LocationSelector extends Spine.Controller
 
     elements:
       '[data-field-type=landmarks]' : 'landmarksField'
-      '[data-field-type=category]' : 'categoryField'
       '[data-field-type=location]' : 'locationField'
       '.alert-error' : 'alertError'
       'button[type=submit]' : 'submitButton'
@@ -319,11 +318,9 @@ class LocationSelector extends Spine.Controller
 
     disableFields: ->
       @landmarksField.find('input').attr('disabled', true)
-      @categoryField.find('input').attr('disabled', true)
 
     enableFields: ->
       @landmarksField.find('input').removeAttr('disabled')
-      @categoryField.find('input').removeAttr('disabled')
 
     #
     # validators
@@ -353,32 +350,16 @@ class LocationSelector extends Spine.Controller
         @landmarksField.addClass('success')
         return true
 
-    validateCategory: ->
-      if @categoryField.find('input').attr('value').length < 5
-        @categoryField.addClass('error')
-        @categoryField.find('.help-inline').html "must be present and longer than five characters"
-        @categoryField.find('input').focus()
-        return false
-      else
-        @categoryField.removeClass('error')
-        @categoryField.addClass('success')
-        return true
-
-
-
     #
     # events
 
     submit: (e) =>
-      if ( @validateLocation() and @validateLandmarks() and @validateCategory() )
+      if ( @validateLocation() and @validateLandmarks() )
         return true 
       else
         @alertError.show()
         e.preventDefault()
         return false
-
-
-
 
 # Utilities and Shims
 view = (name) ->
