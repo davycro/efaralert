@@ -50,72 +50,10 @@
 // View specific
 // --------------------------------------------------
 
-.emergencies-index {
-  .item-emergency {
-    padding: @baseLineHeight/2 @horizontalPadding 0;
-    border-bottom: 1px solid @grayLighter;
-  }
-  .item-emergency:last-child {
-    border-bottom: none;
-  }
-  .emergency-status-data > li {
-    display: none;
-  }
-}
-
-.emergencies-show {
-  .dispatch-message-item {
-    padding: @baseLineHeight/2 @baseLineHeight;
-    border-bottom: 1px solid @grayLighter;
-    .efar-name {
-      font-size: 14px;
-      font-weight: bold;
-      margin-bottom: @baseLineHeight/2;
-    }
-    .efar-summary-group {
-      font-size: 12px;
-      .clearfix();
-      
-      .group-label {
-        float: left;
-        width: 120px;
-        font-weight: bold;
-        color: @grayLight;
-      }
-      .group-item {
-        display: inline-block;
-      }
-    }
-  }
-  .notice {
-    padding: @baseLineHeight/2 @baseLineHeight;  
-  }
-  .dispatch-message-item:last-child {
-    border-bottom: none;
-  }
-}
-
 .account-editor {
   .form-actions,
   form {
     margin-bottom: 0px;
-  }
-}
-
-//
-// New emergency form
-
-.emergencies-new {
-  form {
-  }
-  .search-field {
-    margin-bottom: @baseLineHeight;
-  }
-  .mapfield {
-    margin-bottom: @baseLineHeight;
-  }
-  .nav-stacked li:hover {
-    cursor:pointer;
   }
 }
 
@@ -211,8 +149,7 @@
 }
 
 .page-footer {
-  border-top: 1px solid @grayLighter;
-  margin-top: @baseLineHeight*2;
+  margin-top: @baseLineHeight*4;
   padding-top: @baseLineHeight;
   color: @grayLight;
   margin-bottom: @baseLineHeight*2;

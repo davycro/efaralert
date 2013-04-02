@@ -1,0 +1,36 @@
+<%- is_admin ||= false -%>
+
+<div class='dispatch-item'>
+  <h3>
+    <%= dispatch.emergency_category %>
+    <small>
+      <%= time_ago_in_words dispatch.created_at %> ago
+    </small>
+  </h3>
+  <small>
+    <%= formatted_dispatch_time(dispatch.created_at) %>
+  </small>
+  <p class='lead'>
+    at <%= dispatch.readable_location %>
+  </p>
+ 
+  <p>
+    <%= pluralize dispatch.messages.count, "responder" %> notified
+  </p>
+
+  <%- if is_admin.present? -%>
+    <p>
+      <small>
+        Dispatched by <%= dispatch.dispatcher.full_name %>
+      </small>
+      <small>
+        <%= link_to "view details", admin_dispatch_path(dispatch) %>
+      </small>
+    </p>
+
+  <%- else -%>
+    <a href='/dispatches/<%= dispatch.id %>' class=''>
+      More Info
+    </a>
+  <%- end -%>
+</div>

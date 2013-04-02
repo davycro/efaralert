@@ -22,8 +22,6 @@ class Dispatcher < ActiveRecord::Base
 
   validates :username, :uniqueness => true
 
-  has_many :emergencies
-  has_many :slum_emergencies
   has_many :dispatches
 
   def dispatch_feed

@@ -1,6 +1,7 @@
-[ ] revert to dropdown in dispatch UI
-[ ] remove respond live feed view
+[x] revert to dropdown in dispatch UI
+[x] remove respond live feed view
 [ ] add case insensitive logins
+[ ] auto focus login screens
 
 
 

@@ -4,7 +4,7 @@ class DispatchesController < ApplicationController
   layout 'dispatch'
 
   def index
-    @dispatches = current_dispatcher.dispatch_feed
+    @dispatches = current_dispatcher.dispatches.order('created_at DESC').all
     respond_to do |format|
       format.html
       format.json { render json: @dispatches.to_json }

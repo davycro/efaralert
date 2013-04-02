@@ -18,8 +18,6 @@ class DispatchMessage < ActiveRecord::Base
     'queued'     => 'Queued',
     'sending'    => 'Sending',
     'sent'       => 'Sent',
-    'on_scene'   => 'On scene',
-    'declined'   => 'Declined',
     'failed'     => 'Failed'
   }
 
@@ -38,6 +36,8 @@ class DispatchMessage < ActiveRecord::Base
 
   #
   # Scopes
+  # sent is a special case that includes legacy states "on_scene" and "declined"
+  
   scope :sent, where(:state => %w(sent on_scene declined))
   STATE_MESSAGES.keys.each do |state_name|
     unless state_name=='sent'
@@ -70,14 +70,6 @@ class DispatchMessage < ActiveRecord::Base
     if text[0..6].include?('help')
       return send_help_messages
     end
-    if text[0..4].include?('yes') or text=='y' or text=='ye'
-      if self.state=='sent'
-        return set_state_to_on_scene_and_then_send_messages
-      end
-    end
-    if text[0..4].include?('no') or text=='n'
-      return set_state_to_declined_and_then_send_messages(text)  
-    end
     return false
   end
 
@@ -99,55 +91,11 @@ class DispatchMessage < ActiveRecord::Base
     end
   end
 
-  # state change: sent -> on scene
-  def set_state_to_on_scene_and_then_send_messages
-    ActivityLog.log "#{self.efar.full_name} arrived at emergency at #{readable_location}"
-
-    self.state='on_scene'
-    self.save
-
-    message = %/
-      Thank you! The ambulance will meet you soon. Reply HELP if you need help. David Crockett will refund your airtime.
-    /.squish
-    self.efar.send_text_message(message)
-
-    message_for_head_efar = %/
-      #{efar.full_name} ON SCENE at #{readable_location}. Their contact number is: #{efar.contact_number}
-    /.squish
-    self.head_efars.each do |head_efar|
-      head_efar.send_text_message message_for_head_efar
-    end
-  end
-
-  # state change: ? -> declined
-  def set_state_to_declined_and_then_send_messages(reason = '')
-    ActivityLog.log "#{self.efar.full_name} declined to respond to emergency at #{readable_location}. Reason: #{reason}"
-
-    self.state='declined'
-    self.save
-
-    message = %/
-      Okay. Hopefully another efar can respond for you.
-    /.squish
-    self.efar.send_text_message(message)
-
-    message_for_head_efar = %/
-      #{efar.full_name} DECLINED to respond to emergency at 
-      #{readable_location}. Reason: #{reason}. 
-      Their contact number is: #{efar.contact_number}
-    /.squish
-    self.head_efars.each do |head_efar|
-      head_efar.send_text_message message_for_head_efar
-    end
-  end
-
   def deliver!
     message = %/
       EFAR #{efar.full_name}, your help is urgently needed! 
       #{dispatch.emergency_category} at  
       #{readable_location}.
-      Reply YES when you are at the emergency.
-      David Crockett will refund your airtime.
       /.squish
     resp = self.efar.send_text_message(message)
     if resp[:status] == 'success'

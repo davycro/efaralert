@@ -12,8 +12,6 @@
 #  dispatch_id              :integer          not null
 #
 
-
-
 require 'test_helper'
 
 class DispatchMessageTest < ActiveSupport::TestCase
@@ -42,25 +40,9 @@ class DispatchMessageTest < ActiveSupport::TestCase
     assert @message.state=='sent'
   end
 
-  test "reply yes to sent message" do
-    # setup
-    @message.state = 'sent'
-
-    stub_efar_and_head_efars_to_expect_text_messages
-    
-    @message.process_response "YeS"
-    assert @message.state=='on_scene'
-  end
-
   test "reply help to any message" do
     stub_efar_and_head_efars_to_expect_text_messages
     @message.process_response "HELP"
-  end
-
-  test "reply no to any message" do
-    stub_efar_and_head_efars_to_expect_text_messages
-    @message.process_response "No I cannot"
-    assert @message.state=='declined'
   end
 
   test "find_most_active_for_number only returns a recent message" do

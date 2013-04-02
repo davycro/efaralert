@@ -104,10 +104,8 @@ class Dispatch < ActiveRecord::Base
 
   def message_stats
     { 'sent' => messages.sent.count,
-      'on_scene' => messages.on_scene.count,
       'failed' => messages.failed.count,
       'queued' => messages.queued.count,
-      'declined' => messages.declined.count,
       'total' => messages.count }
   end
 

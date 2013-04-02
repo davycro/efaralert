@@ -1,15 +1,9 @@
 .page-header
   %h2
     Dispatches
-    %small from the last 24 hours
     .pull-right
       %a.btn{:href=>new_dispatch_path}
         New Dispatch
 
-#dispatches-index
-
-
-:javascript
-  jQuery(function(){
-      new App.Controllers.Dispatches.Index()
-  });
+- @dispatches.each do |dispatch|
+  = render :partial => 'shared/dispatch_item', :locals => { :dispatch => dispatch }

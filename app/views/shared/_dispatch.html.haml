@@ -1,0 +1,34 @@
+- return_link ||= dispatches_path
+
+.page-header
+  %h2
+    = @dispatch.emergency_category
+    %small
+      = distance_of_time_in_words_to_now @dispatch.created_at
+      ago
+    .pull-right
+      %a.btn.btn-link{:href => return_link} View all dispatches
+
+
+%small= @dispatch.created_at.strftime("%H:%M - %d %b %y")
+%p.lead
+  at
+  = @dispatch.readable_location    
+
+- if @dispatch.messages.size==0
+  %p No Nearby Efars
+
+- if @dispatch.messages.size > 0
+  %h4 Responders
+  %table.table
+    %thead
+      %tr
+        %th Name
+        %th Contact Number
+        %th Location
+    %tbody
+      - @dispatch.messages.each do |message|
+        %tr
+          %td= message.efar.full_name
+          %td= message.efar.readable_contact_number
+          %td= message.efar.readable_location
