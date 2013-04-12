@@ -1,9 +1,5 @@
-.page-header
-  %h2
-    Dispatches
-    .pull-right
-      %a.btn{:href=>new_dispatch_path}
-        New Dispatch
+#dispatchApp{'data-suburb' => @current_suburb.to_json, 'data-dispatch-categories' => Dispatch::EMERGENCY_CATEGORIES.to_json}
 
-- @dispatches.each do |dispatch|
-  = render :partial => 'shared/dispatch_item', :locals => { :dispatch => dispatch }
+:javascript
+  
+  app = new App.Controllers.Dispatch();

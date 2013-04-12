@@ -4,19 +4,13 @@ class DispatchesController < ApplicationController
   layout 'dispatch'
 
   def index
-    @dispatches = current_dispatcher.dispatches.order('created_at DESC').all
     respond_to do |format|
       format.html
-      format.json { render json: @dispatches.to_json }
+      format.json {
+        @dispatches = current_dispatcher.dispatches.order('created_at DESC').where(:created_at => 24.hours.ago .. Time.now).all
+        render json: @dispatches.to_json
+      }
     end
-  end
-
-  def show
-    @dispatch = Dispatch.find(params[:id])
-  end
-
-  def new
-    @dispatch = Dispatch.new
   end
 
   def create
@@ -25,9 +19,9 @@ class DispatchesController < ApplicationController
     if @dispatch.save
       @dispatch.alert_the_efars!
       @dispatch.alert_the_head_efars!
-      redirect_to @dispatch
-    else
-      render action: 'new'
+    end
+    respond_to do |format|
+      format.json { render json: @dispatch.to_json }
     end
   end
 end

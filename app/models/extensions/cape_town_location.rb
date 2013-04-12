@@ -28,8 +28,12 @@ module Extensions
       if township_id.present?
         @readable_location = [township_house_number, township.name].compact.join(" ") 
       else
-        # remove city and country from the address
-        @readable_location = "#{extract_street_and_house_number_from_formatted_address}"
+        if self.respond_to?(:input_address)
+          @readable_location = "#{input_address}"
+        else
+          # remove city and country from the address
+          @readable_location = "#{extract_street_and_house_number_from_formatted_address}"
+        end
       end
       if self.respond_to?(:landmarks) and landmarks.present?
         @readable_location += " (#{landmarks})"

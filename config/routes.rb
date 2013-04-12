@@ -21,6 +21,7 @@ EfarDispatch::Application.routes.draw do
     end
     resources :activity_logs
     resources :townships
+    resources :suburbs
     resource :session
   end
   match 'admin/' => 'admin/efars#index'

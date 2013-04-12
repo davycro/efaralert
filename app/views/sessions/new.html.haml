@@ -4,7 +4,7 @@
       .span2
         = image_tag 'efar_login_logo_med.png'
       .span6
-        %form{ :action => session_path, :method => "POST" }
+        %form.form-horizontal{ :action => session_path, :method => "POST" }
           %legend Dispatch Panel
           
           - if flash[:notice].present?
@@ -13,7 +13,22 @@
             .alert=flash[:alert]
 
           %p Content restricted to ambulance dispatchers, please login for access:
-          %input{:type=>"text", :name=>'username', :placeholder=>"Username"}
-          %input{:type=>"password", :name=>"password", :placeholder=>"Password"}
-          %br
-          %button.btn{:type=>"submit"} Sign In
+
+          .control-group
+            %label.control-label Name
+            .controls
+              = select "dispatcher", "id", Dispatcher.all.collect { |r| [r.full_name, r.id] }
+
+          .control-group
+            %label.control-label Drainage
+            .controls
+              = select "drainage", "id", Suburb.all.collect { |r| [r.name, r.id] }
+
+          .control-group
+            %label.control-label Password
+            .controls
+              %input{:type=>"password", :name=>"password", :placeholder=>"Password"}
+
+          .form-actions
+            %button.btn{:type=>"submit"} Sign In
+          

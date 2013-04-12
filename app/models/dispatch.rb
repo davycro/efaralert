@@ -14,12 +14,13 @@
 #  location_type         :string(255)
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
+#  input_address         :string(255)
 #
 
 class Dispatch < ActiveRecord::Base
   attr_accessible :dispatcher_id, :emergency_category, 
     :landmarks, :township_id, :township_house_number, :formatted_address, :lat,
-    :lng, :location_type
+    :lng, :location_type, :input_address
 
   EMERGENCY_CATEGORIES = [
     'General emergency',

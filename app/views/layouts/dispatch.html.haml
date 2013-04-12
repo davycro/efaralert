@@ -8,22 +8,22 @@
     = javascript_include_tag 'application'
     = render :partial => 'layouts/ga'
     = csrf_meta_tags
-  %body
 
+  %body
     .navbar.navbar-inverse.navbar-fixed-top.navbar-efar
       .navbar-inner
-        .container
+        .container-fluid
+          / Brand and Logo
           .efar-brand{:href=>'#'}
             .efar-shield
               %i.efar-sprite-logo
               .logo-text EFAR Dispatch
+          / Dispatches Button
           %ul.nav
             %li{:class=>controller.controller_name=='dispatches' && "active"}
-              %a{:href => dispatches_path } Dispatches
-            %li{:class=>controller.controller_name=='efars' && "active"}
-              %a{:href => efars_path } EFARs
-          %a.btn.btn-primary{ :href=> new_dispatch_path }
-            New Dispatch
+              %a{:href => dispatches_path }
+                = "#{@current_suburb.name}"
+          / Logout dropdown
           %ul.nav.pull-right
             %li.dropdown
               %a{ :href => '#', :class => "dropdown-toggle", "data-toggle" => "dropdown" }
@@ -34,17 +34,10 @@
                   %a{ :href => account_path } My Account
                 %li
                   = link_to 'Logout', session_path, :method => :delete
-
-  .container
-    = yield
-
-    .page-footer
-      %small
-        Site created by David Crockett. If you need assistance you may call him on his mobile 
-        %em anytime.
-        %b 071-439 9721
-
-
-
-
     
+    .messenger
+      .container-fluid
+        .content
+
+    .container-fluid
+      = yield

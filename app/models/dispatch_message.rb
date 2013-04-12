@@ -95,7 +95,7 @@ class DispatchMessage < ActiveRecord::Base
     message = %/
       EFAR #{efar.full_name}, your help is urgently needed! 
       #{dispatch.emergency_category} at  
-      #{readable_location}.
+      #{readable_location}. Remember, only respond if its safe.
       /.squish
     resp = self.efar.send_text_message(message)
     if resp[:status] == 'success'

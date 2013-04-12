@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130221220527) do
+ActiveRecord::Schema.define(:version => 20130411235444) do
 
   create_table "activity_logs", :force => true do |t|
     t.string   "message"
@@ -95,6 +95,7 @@ ActiveRecord::Schema.define(:version => 20130221220527) do
     t.string   "location_type"
     t.datetime "created_at",            :null => false
     t.datetime "updated_at",            :null => false
+    t.string   "input_address"
   end
 
   create_table "efars", :force => true do |t|
@@ -115,6 +116,16 @@ ActiveRecord::Schema.define(:version => 20130221220527) do
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
     t.string   "contact_number",      :null => false
+  end
+
+  create_table "suburbs", :force => true do |t|
+    t.string   "name",              :null => false
+    t.float    "lat"
+    t.float    "lng"
+    t.string   "formatted_address"
+    t.string   "location_type"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "townships", :force => true do |t|

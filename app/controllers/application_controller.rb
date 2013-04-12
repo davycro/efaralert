@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
 
   # dispatcher
   def require_dispatcher_login
-    unless current_dispatcher
+    unless (current_dispatcher and current_suburb)
       redirect_to new_session_path
     end
   end
@@ -27,4 +27,9 @@ class ApplicationController < ActionController::Base
   def current_dispatcher
     @current_dispatcher ||= Dispatcher.find(session[:dispatcher_id]) if session[:dispatcher_id].present?
   end
+  
+  def current_suburb
+    @current_suburb ||= Suburb.find(session[:suburb_id]) if session[:suburb_id].present?
+  end
+
 end
