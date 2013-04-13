@@ -4,9 +4,8 @@
     <span></span>
   </div>
   <form class='form-inline'>
-    <label>New dispatch</label>
-    <input type="text" class="span4" placeholder="Street address" name="input_address">
-    <input type="text" class="span4" placeholder="Location / Landmarks" name="landmarks">
+    <input type="text" class="span4" placeholder="HOUSE NUMBER AND STREET NAME" name="input_address">
+    <input type="text" class="span4" placeholder="Helpful landmarks" name="landmarks">
     <select name="emergency_category">
       <% for category in @emergencyCategories: %>
         <option><%= category %></option>

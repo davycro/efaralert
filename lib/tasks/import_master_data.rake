@@ -23,6 +23,58 @@ task :seed_manenberg_community_centre => :environment do
   community_center.save!
 end
 
+desc 'import control room persons'
+task :import_control_room => :environment do
+
+  #
+  # file information
+  spread_sheet_root_file_path = 'lib/registers/control_room_dispatchers.xls'
+
+  #
+  # column variables
+  full_name_column = 'B'
+
+  #
+  # row configruation
+  start_row = 2
+  final_row = 40
+
+  #
+  # set the password
+  password = 'efar'
+
+  #
+  # open the spreadsheet
+  require 'roo'
+  require 'iconv'
+
+  ss = Excel.new(Rails.root.join(spread_sheet_root_file_path).to_s)
+  ss.default_sheet = ss.sheets.first
+
+  #
+  # loop through every row of the register
+  selected_row = start_row
+  while selected_row <= final_row do
+
+
+    full_name = ss.cell(selected_row, full_name_column)
+    full_name = full_name.titlecase
+
+    dispatcher = Dispatcher.find_or_initialize_by_full_name(full_name)
+    dispatcher.username = full_name.underscore
+    dispatcher.password = password
+    dispatcher.password_confirmation = password
+
+    if dispatcher.save
+      $stdout.printf("%-3s %-50s\n", 
+        '', dispatcher.full_name)
+    end
+    
+    selected_row += 1 # must be at the end of the loop
+  end
+
+end
+
 desc 'import manenberg phone register'
 task :import_manenberg_efar_candidates => :environment do
 
