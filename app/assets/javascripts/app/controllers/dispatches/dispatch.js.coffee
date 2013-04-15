@@ -71,7 +71,7 @@ class MapField extends Spine.Controller
     $(window).resize =>
       $(@el).height $(window).height() - $(@el).offset().top - 20
 
-  renderMap: ->
+  render: ->
     $(window).resize()
     lat = Config.suburb.lat
     lng = Config.suburb.lng
@@ -142,13 +142,20 @@ class Topbar extends Spine.Controller
     'form' : 'form'
     '.alert' : 'alert'
     'button[type=submit]' : 'submitButton'
+    'input[name=input_address]' : 'addressInput'
+    'input[name=landmarks]' : 'landmarksInput'
 
   constructor: ->
     super()
-    @render()
 
   render: ->
     @html view('topbar')({emergencyCategories: Config.emergencyCategories})
+    $('input[name=input_address]').popover({
+      content: view("addressInputPopoverContent")()
+    })
+    $('input[name=landmarks]').popover({
+      content: view('landmarksInputPopoverContent')()
+    })
 
   submitForm: (e) =>
     e.preventDefault()
@@ -174,7 +181,8 @@ class Config extends Spine.Module
       @topbar = new Topbar()
       @mapField = new MapField()
       @append @topbar, @mapField
-      @mapField.renderMap()
+      @topbar.render()
+      @mapField.render()
       @efarsMapper = new EfarsMapper()
       @dispatches = new Dispatches()
 
