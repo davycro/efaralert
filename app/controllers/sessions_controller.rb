@@ -11,6 +11,7 @@ class SessionsController < ApplicationController
     if @dispatcher && @dispatcher.authenticate(params[:password])
       session[:dispatcher_id] = @dispatcher.id
       session[:suburb_id] = params[:drainage][:id]
+      ActivityLog.log "Dispatcher #{@dispatcher.full_name} logged in"
       redirect_to root_path, :notice => "logged in!"
     else
       flash.now.alert = "Password"
