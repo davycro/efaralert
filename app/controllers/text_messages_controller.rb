@@ -3,7 +3,10 @@ class TextMessagesController < InheritedResources::Base
   before_filter :require_dispatcher_login
 
   def index
-    @text_messages = TextMessage.where("id > ? and created_at > ?", (params[:index] || 0), 6.hours.ago)
+    @text_messages = TextMessage.where("id > ? and created_at > ?", (params[:index] || 0), 6.hours.ago).all
+    @text_messages.delete_if { |m| 
+      Geocoder::Calculations.distance_between([m.efar.lat, m.efar.lng], [current_suburb.lat, current_suburb.lng], :units => :km) > 5
+    }
     respond_with(@text_messages)
   end
 
