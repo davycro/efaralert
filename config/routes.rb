@@ -1,8 +1,8 @@
 EfarDispatch::Application.routes.draw do
   
   # Base resources used by dispatchers
-  resources :dispatches
   resources :efars
+  resources :text_messages
   resource :session
   resource :account
 
@@ -11,16 +11,13 @@ EfarDispatch::Application.routes.draw do
   namespace :admin do
     resources :admins
     resources :dispatchers
-    resources :dispatches
     resources :community_centers
-    resources :head_efars
     resources :efars do
       collection do
         get 'map'
       end
     end
     resources :activity_logs
-    resources :townships
     resources :suburbs
     resource :session
   end
@@ -29,8 +26,6 @@ EfarDispatch::Application.routes.draw do
   namespace :api do
     resources :efars
     resources :community_centers
-    resources :dispatch_messages
-    resources :townships
   end
 
   # The priority is based upon order of creation:
@@ -82,7 +77,7 @@ EfarDispatch::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'dispatches#index'
+  root :to => 'efars#index'
 
   # See how all your routes lay out with "rake routes"
 

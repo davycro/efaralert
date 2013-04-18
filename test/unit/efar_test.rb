@@ -2,16 +2,16 @@
 #
 # Table name: efars
 #
-#  id                    :integer          not null, primary key
-#  full_name             :string(255)      not null
-#  community_center_id   :integer          not null
-#  contact_number        :string(255)      not null
-#  township_id           :integer
-#  township_house_number :string(255)
-#  lat                   :float
-#  lng                   :float
-#  formatted_address     :string(255)
-#  location_type         :string(255)
+#  id                  :integer          not null, primary key
+#  full_name           :string(255)      not null
+#  community_center_id :integer          not null
+#  contact_number      :string(255)      not null
+#  lat                 :float
+#  lng                 :float
+#  formatted_address   :string(255)
+#  location_type       :string(255)
+#  given_address       :string(255)
+#  is_head_efar        :boolean          default(FALSE)
 #
 
 require 'test_helper'

@@ -47,17 +47,60 @@
 }
 
 //
-// View specific
-// --------------------------------------------------
-
 // Dispatch App
+// --------------------------------------------------
 
 .dispatch-map {
   background: @gray;
 }
 
+.efar-info-window {
+  width: 200px;
+  font-size: 11px;
+  line-height: 12px;
 
-// Account Editor
+  .header {
+    margin-bottom: 4px;
+    border-bottom: 1px solid @grayLight;
+    padding-bottom: 2px;
+  }
+
+  .text-messages-container {
+    width: 200px;
+    overflow-y: auto;
+    height: 110px;
+    margin-bottom: 5px;
+  }
+
+  .text-message {
+    border-left: 3px solid @green;
+    padding-left: 2px;
+    padding-right: 5px;
+    padding-bottom: 2px;
+    margin-bottom: 3px;
+  }
+  .text-message-sent-by-dispatcher {
+    border-left: 3px solid @purple;
+  }
+  .text-message-not-viewed-by-dispatcher {
+    background: lighten(@yellow, 20%);
+    padding-top: 2px;
+  }
+
+  textarea {
+    width: 190px;
+    padding: 3px;
+    height: 40px;
+    font-size: 11px;
+    line-height: 12px;
+    margin-bottom: 0px;
+  }
+} 
+
+//
+// Misc
+// --------------------------------------------------
+
 .account-editor {
   .form-actions,
   form {
@@ -65,13 +108,9 @@
   }
 }
 
-// TAB PANES
 .stack > *:not(.active) {
   display: none;
 }
-
-
-// Misc
 
 .page-footer {
   margin-top: @baseLineHeight*4;
@@ -79,11 +118,6 @@
   color: @grayLight;
   margin-bottom: @baseLineHeight*2;
 }
-
-#efars-index {
-
-}
-
 
 
 

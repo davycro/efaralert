@@ -15,13 +15,11 @@
   %thead
     %tr
       %th Full Name
-      %th Username
       
   %tbody
     - @dispatchers.each do |dispatcher|
       %tr
         %td= dispatcher.full_name
-        %td= dispatcher.username
         %td
           .btn-group
             %a.btn.btn-mini.dropdown-toggle{"data-toggle"=>"dropdown", :href=>'#'}

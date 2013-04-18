@@ -4,13 +4,11 @@
 #
 #  id              :integer          not null, primary key
 #  full_name       :string(255)      not null
-#  username        :string(255)      not null
 #  password_digest :string(255)      not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #
 
 davycro:
-  username: davycro
   full_name: "David Crockett"
   password_digest: ljklkjljlkjlkj

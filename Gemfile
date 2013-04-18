@@ -56,3 +56,5 @@ gem 'annotate', ">=2.5.0"
 gem 'delayed_job_active_record'
 gem 'clickatell', :git => 'git://github.com/lukeredpath/clickatell.git'
 
+gem 'inherited_resources'
+

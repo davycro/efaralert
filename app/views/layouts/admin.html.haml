@@ -30,19 +30,12 @@
                 %li
                   %a{:href=>admin_community_centers_path} Community Centers
                 %li
-                  %a{:href=>admin_townships_path} Informal Settlements
-                %li
-                  %a{:href=>admin_head_efars_path} Head Efars
-                %li
                   %a{:href=>admin_efars_path} Efars
                 %li
                   %a{:href => admin_suburbs_path } Suburbs
 
             %li{:class => controller.controller_name =='efars' && 'active' }
               %a{:href => admin_efars_path } EFARs
-
-            %li{:class => controller.controller_name =='dispatches' && 'active' }
-              %a{:href => admin_dispatches_path } Dispatches
 
             %li{:class=>controller.controller_name=='activity_logs' && "active"}
               %a{:href=>admin_activity_logs_path } Activity Log

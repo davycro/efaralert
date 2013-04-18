@@ -6,13 +6,14 @@ class SessionsController < ApplicationController
   end
 
   def create
-    dispatcher = Dispatcher.find(params[:dispatcher][:id])
-    if dispatcher && dispatcher.authenticate(params[:password])
-      session[:dispatcher_id] = dispatcher.id
+    @dispatcher = Dispatcher.find(params[:dispatcher][:id])
+    @drainage = Suburb.find(params[:drainage][:id])
+    if @dispatcher && @dispatcher.authenticate(params[:password])
+      session[:dispatcher_id] = @dispatcher.id
       session[:suburb_id] = params[:drainage][:id]
       redirect_to root_path, :notice => "logged in!"
     else
-      flash.now.alert = "Invalid username or password"
+      flash.now.alert = "Password"
       render "new"
     end
   end

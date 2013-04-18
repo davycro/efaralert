@@ -14,7 +14,6 @@
       = form_for(@dispatcher, :as => :account, :url => account_path, :method => :put, :html => {:class=>"form-horizontal"}) do |f|
 
         = horizontal_text_field(@dispatcher, :full_name)
-        = horizontal_text_field(@dispatcher, :username)
 
         .control-group{:class => @dispatcher.errors.present? && "error" }
           %label.control-label New password

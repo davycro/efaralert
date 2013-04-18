@@ -1,0 +1,17 @@
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Click to see head efars">
+    <span class="label label-info">
+      <%= @records.length %>
+    </span>
+    Head EFARs
+  </a>
+  <ul class="dropdown-menu">
+    <% for record in @records: %>
+      <li>
+        <a href="#/efars/<%= record.id %>">
+          <%= record.full_name %>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+</li>

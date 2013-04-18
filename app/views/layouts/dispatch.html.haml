@@ -5,7 +5,7 @@
     = stylesheet_link_tag 'dispatch'
 
     %script{:src => "http://maps.googleapis.com/maps/api/js?sensor=false"}
-    = javascript_include_tag 'application'
+    = javascript_include_tag 'dispatch'
     = render :partial => 'layouts/ga'
     = csrf_meta_tags
 
@@ -18,11 +18,15 @@
             .efar-shield
               %i.efar-sprite-logo
               .logo-text EFAR Dispatch
-          / Dispatches Button
+          / Suburb
           %ul.nav
-            %li{:class=>controller.controller_name=='dispatches' && "active"}
-              %a{:href => dispatches_path }
+            %li{:class=>controller.controller_name=='efars' && "active"}
+              %a{:href => efars_path }
                 = "#{@current_suburb.name}"
+          / custom dropdown controlled by js
+          %ul.nav.hide{'data-type'=>'activeEfarsMenu'}
+          %ul.nav.hide{'data-type'=>'headEfarsMenu'}
+          %ul.nav.hide{'data-type'=>'newMessagesMenu'}
           / Logout dropdown
           %ul.nav.pull-right
             %li.dropdown

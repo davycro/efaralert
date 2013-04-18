@@ -1,9 +1,0 @@
-<div>
-  <em>
-    <%= @emergency_category %> - <%= @input_address %> (<%= @landmarks %>)
-  </em>
-  <br/>
-  <% if @message_stats: %>
-    <%= @message_stats.sent %> notified
-  <% end %>
-</div>

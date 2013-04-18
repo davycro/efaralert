@@ -1,18 +1,5 @@
-#efars-index
-  .page-header
-    %h2
-      EFARS
-      %small Map
-      .pull-right
-        .btn-toolbar
-          .btn-group
-            %a.btn.btn-link{:href=>'#', 'data-lat'=>'-33.9909', 'data-lng'=>'18.5542', 'data-zoom'=>15, 'data-type'=>'pan-map'}
-              Manenberg
-
-  #efar-location-mapper.google-map
+#dispatchApp{'data-suburb' => @current_suburb.to_json, 'data-dispatcher' => @current_dispatcher.to_json}
 
 :javascript
-
-  jQuery(function(){
-    new App.Controllers.Efars.Index('#efar-location-mapper');
-  });
+  
+  app = new Dispatch.App();

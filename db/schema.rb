@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130411235444) do
+ActiveRecord::Schema.define(:version => 20130418011830) do
 
   create_table "activity_logs", :force => true do |t|
     t.string   "message"
@@ -61,61 +61,23 @@ ActiveRecord::Schema.define(:version => 20130411235444) do
     t.string   "formatted_address"
   end
 
-  create_table "dispatch_messages", :force => true do |t|
-    t.integer  "efar_id",                  :null => false
-    t.string   "state"
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
-    t.string   "clickatell_id"
-    t.string   "clickatell_error_message"
-    t.integer  "dispatch_id",              :null => false
-  end
-
-  add_index "dispatch_messages", ["clickatell_id"], :name => "index_dispatch_messages_on_clickatell_id"
-
   create_table "dispatchers", :force => true do |t|
     t.string   "full_name",       :null => false
-    t.string   "username",        :null => false
     t.string   "password_digest", :null => false
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
   end
 
-  add_index "dispatchers", ["username"], :name => "index_dispatchers_on_username", :unique => true
-
-  create_table "dispatches", :force => true do |t|
-    t.integer  "dispatcher_id",         :null => false
-    t.string   "emergency_category"
-    t.integer  "township_id"
-    t.string   "township_house_number"
-    t.string   "landmarks"
-    t.float    "lat"
-    t.float    "lng"
-    t.string   "formatted_address"
-    t.string   "location_type"
-    t.datetime "created_at",            :null => false
-    t.datetime "updated_at",            :null => false
-    t.string   "input_address"
-  end
-
   create_table "efars", :force => true do |t|
-    t.string  "full_name",             :null => false
-    t.integer "community_center_id",   :null => false
-    t.string  "contact_number",        :null => false
-    t.integer "township_id"
-    t.string  "township_house_number"
+    t.string  "full_name",                              :null => false
+    t.integer "community_center_id",                    :null => false
+    t.string  "contact_number",                         :null => false
     t.float   "lat"
     t.float   "lng"
     t.string  "formatted_address"
     t.string  "location_type"
-  end
-
-  create_table "head_efars", :force => true do |t|
-    t.string   "full_name",           :null => false
-    t.integer  "community_center_id", :null => false
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
-    t.string   "contact_number",      :null => false
+    t.string  "given_address"
+    t.boolean "is_head_efar",        :default => false
   end
 
   create_table "suburbs", :force => true do |t|
@@ -128,10 +90,15 @@ ActiveRecord::Schema.define(:version => 20130411235444) do
     t.datetime "updated_at",        :null => false
   end
 
-  create_table "townships", :force => true do |t|
-    t.string   "name",       :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+  create_table "text_messages", :force => true do |t|
+    t.integer  "efar_id",                                 :null => false
+    t.integer  "dispatcher_id"
+    t.text     "content"
+    t.boolean  "viewed_by_dispatcher", :default => false
+    t.string   "sender_name"
+    t.string   "sender_class_name"
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
   end
 
 end

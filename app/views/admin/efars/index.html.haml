@@ -20,18 +20,20 @@
 %table.table
   %thead
     %tr
-      %th Full Name
-      %th Contact Number
-      %th Locations
-      %th Community Centre        
+      %th Name
+      %th Contact number
+      %th Location
+      %th Community centre
+      %th Head?      
 
   %tbody
     - @efars.each do |efar|
       %tr
         %td= link_to efar.full_name, admin_efar_path(efar)
         %td= efar.contact_number
-        %td= efar.readable_location
+        %td= efar.given_address
         %td= efar.community_center.name
+        %td= "Yes" if efar.is_head_efar
         %td
           .btn-group
             %a.btn.btn-mini.dropdown-toggle{"data-toggle"=>"dropdown", :href=>'#'}
@@ -46,13 +48,4 @@
                 %a{:href=>admin_efar_path(efar), "data-confirm"=>"Are you sure?", "data-method"=>"delete"}
                   %i.icon-trash
                   Delete
-          
-.form-actions
-  %ul.pager
-    - if @page>0
-      %li
-        %a{:href => admin_efars_path(:page => (@page-1) )} Prev
-    - if @efars.size==Efar::PER_PAGE
-      %li
-        %a{:href => admin_efars_path(:page => (@page+1) )} Next
   

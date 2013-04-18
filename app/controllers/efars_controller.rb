@@ -6,7 +6,7 @@ class EfarsController < ApplicationController
   def index
     respond_to do |format|
       format.json do
-        @efars = Efar.has_geolocation.all
+        @efars = Efar.near([current_suburb.lat, current_suburb.lng], 5).all # km
         render json: @efars.to_json
       end
       format.html
