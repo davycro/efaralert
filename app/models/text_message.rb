@@ -35,9 +35,9 @@ class TextMessage < ActiveRecord::Base
 
   def deliver
     if sender_class_name=='Dispatcher'
-      message = self.content
+      message = "EFAR Dispatch: #{self.content}"
       message += ". From #{self.dispatcher.full_name} (Metro EMS)"
-      self.efar.send_text_message(self.content)
+      self.efar.send_text_message(message)
     end
   end
 
