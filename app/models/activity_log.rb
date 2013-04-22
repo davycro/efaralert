@@ -13,6 +13,8 @@ class ActivityLog < ActiveRecord::Base
 
   def self.log(message)
     create(message: message)
+  rescue
+    Rails.logger.info "Could not log this message: #{message}"
   end
 
   def logged_at_in_cape_town_time_zone
