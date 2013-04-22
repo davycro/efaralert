@@ -127,20 +127,20 @@ class Markers extends Spine.Controller
   change: (record) ->
     marker = @constructor.find(record.id)
     if record.getUnreadMessages().length > 0
-      marker.setIcon(@icon('dot_red.png'))
+      marker.setIcon(@icon('red.png'))
     else if record.getMessages().length > 0
-      marker.setIcon(@icon('dot_green.png'))
+      marker.setIcon(@icon('green.png'))
     else if record.is_head_efar
       marker.setIcon(@headEfarIcon())
     else
       marker.setIcon(@icon())
 
   headEfarIcon: ->
-    @icon('circle_blue.png')
+    @icon('blue.png')
 
   icon: (name) ->
-    name or= 'dot_gray.png'
-    "/assets/markers/marker_#{name}"
+    name or= 'gray.png'
+    "/assets/fancy_markers/firstaid_#{name}"
 
 
 class Dispatch.Efars extends Spine.Controller
