@@ -112,6 +112,9 @@ class Markers extends Spine.Controller
     if record.is_head_efar
       icon = @headEfarIcon()
       zIndex = 3
+    else if record.is_active
+      icon = @activeEfarIcon()
+      zIndex = 2
     else
       icon = @icon()
       zIndex = 0
@@ -133,7 +136,7 @@ class Markers extends Spine.Controller
       marker.setIcon(@icon('red.png'))
       marker.setZIndex(3)
     else if record.getMessages().length > 0
-      marker.setIcon(@icon('green.png'))
+      marker.setIcon(@activeEfarIcon())
       marker.setZIndex(2)
     else if record.is_head_efar
       marker.setIcon(@headEfarIcon())
@@ -144,6 +147,9 @@ class Markers extends Spine.Controller
 
   headEfarIcon: ->
     @icon('blue.png')
+
+  activeEfarIcon: ->
+    @icon('green.png')
 
   icon: (name) ->
     name or= 'gray.png'

@@ -31,7 +31,7 @@ class TextMessage extends Spine.Model
 
 class Efar extends Spine.Model
   @configure "Efar", "formatted_address", "lat", "lng", "full_name",
-    "given_address", "is_head_efar"
+    "given_address", "is_head_efar", "is_active"
   @extend Spine.Model.Ajax
   @url: "/efars"
 
@@ -59,6 +59,7 @@ class Efar extends Spine.Model
   @allActive: () ->
     results = {}
     results[m.efar_id] or= @find(m.efar_id) for m in TextMessage.all()
+    results[record.id] or= record for record in Efar.findAllByAttribute("is_active", true)
     values = []
     for key,value of results
       values.push value

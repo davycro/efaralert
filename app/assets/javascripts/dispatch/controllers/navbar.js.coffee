@@ -64,7 +64,9 @@ class ActiveEfarsMenu extends Spine.Controller
       @render()
 
     Efar.bind 'update', (record) =>
-      if record.getMessages().length > 0
+      if record.is_active
+        @render()
+      else if record.getMessages().length > 0
         @render()
 
   render: ->

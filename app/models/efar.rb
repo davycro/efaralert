@@ -12,6 +12,7 @@
 #  location_type       :string(255)
 #  given_address       :string(255)
 #  is_head_efar        :boolean          default(FALSE)
+#  is_active           :boolean          default(FALSE)
 #
 
 # The efar table represents all efars willing to provide a mobile phone number
@@ -23,7 +24,7 @@ class Efar < ActiveRecord::Base
     :community_center_id,
     :lat, :lng, :formatted_address, :location_type,
     :given_address,
-    :is_head_efar
+    :is_head_efar, :is_active
 
   PER_PAGE = 50
 

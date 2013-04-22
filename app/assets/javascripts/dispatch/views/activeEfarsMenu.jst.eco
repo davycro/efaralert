@@ -3,7 +3,7 @@
     <span class="label label-success">
       <%= @records.length %>
     </span>
-    EFARs
+    Active EFARs
   </a>
   <ul class="dropdown-menu">
     <% for record in @records: %>

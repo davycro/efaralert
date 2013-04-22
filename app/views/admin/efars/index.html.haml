@@ -24,7 +24,8 @@
       %th Contact number
       %th Location
       %th Community centre
-      %th Head?      
+      %th Head?
+      %th Active?      
 
   %tbody
     - @efars.each do |efar|
@@ -34,6 +35,7 @@
         %td= efar.given_address
         %td= efar.community_center.name
         %td= "Yes" if efar.is_head_efar
+        %td= "Yes" if efar.is_active
         %td
           .btn-group
             %a.btn.btn-mini.dropdown-toggle{"data-toggle"=>"dropdown", :href=>'#'}

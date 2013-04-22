@@ -12,6 +12,7 @@
 #  location_type       :string(255)
 #  given_address       :string(255)
 #  is_head_efar        :boolean          default(FALSE)
+#  is_active           :boolean          default(FALSE)
 #
 
 require 'test_helper'
