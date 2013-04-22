@@ -8,13 +8,13 @@ class SessionsController < ApplicationController
   def create
     @dispatcher = Dispatcher.find(params[:dispatcher][:id])
     @drainage = Suburb.find(params[:drainage][:id])
-    if @dispatcher && @dispatcher.authenticate(params[:password])
+    if @dispatcher && @dispatcher.authenticate(params[:password].downcase)
       session[:dispatcher_id] = @dispatcher.id
       session[:suburb_id] = params[:drainage][:id]
       ActivityLog.log "Dispatcher #{@dispatcher.full_name} logged in"
       redirect_to root_path, :notice => "logged in!"
     else
-      flash.now.alert = "Password"
+      flash.now.alert = "Password Invalid"
       render "new"
     end
   end
