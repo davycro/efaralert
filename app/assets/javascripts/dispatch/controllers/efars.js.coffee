@@ -111,13 +111,16 @@ class Markers extends Spine.Controller
   add: (record) ->
     if record.is_head_efar
       icon = @headEfarIcon()
+      zIndex = 3
     else
       icon = @icon()
+      zIndex = 0
     marker = new google.maps.Marker({
       position: record.getPosition()
       icon: icon
       map: @map
       visible: true
+      zIndex: zIndex
     })
     google.maps.event.addListener marker, 'click', () =>
       @navigate '/efars', record.id
@@ -128,12 +131,16 @@ class Markers extends Spine.Controller
     marker = @constructor.find(record.id)
     if record.getUnreadMessages().length > 0
       marker.setIcon(@icon('red.png'))
+      marker.setZIndex(3)
     else if record.getMessages().length > 0
       marker.setIcon(@icon('green.png'))
+      marker.setZIndex(2)
     else if record.is_head_efar
       marker.setIcon(@headEfarIcon())
+      marker.setZIndex(2)
     else
       marker.setIcon(@icon())
+      marker.setZIndex(1)
 
   headEfarIcon: ->
     @icon('blue.png')
