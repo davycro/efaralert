@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
   def create
     @dispatcher = Dispatcher.find(params[:dispatcher][:id])
     @drainage = Suburb.find(params[:drainage][:id])
-    if @dispatcher && @dispatcher.authenticate(params[:password].downcase)
+    if @dispatcher && ( @dispatcher.authenticate(params[:password]) or @dispatcher.authenticate(params[:password].downcase) )
       session[:dispatcher_id] = @dispatcher.id
       session[:suburb_id] = params[:drainage][:id]
       ActivityLog.log "Dispatcher #{@dispatcher.full_name} logged in"
