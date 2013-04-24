@@ -26,5 +26,23 @@ class Dispatcher < ActiveRecord::Base
     Dispatch.where(:dispatcher_id => self.id).
       where(:created_at => 24.hours.ago .. Time.now).
       order('created_at DESC').all
-  end 
+  end
+
+  def authenticate(password)
+    password ||= ""
+    if super(password)
+      return true
+    else
+      return super(password.downcase)
+    end
+  end
+
+  def password=(str) 
+    str = str.downcase
+    super(str)
+  end
+
+  def password_confirmation=(str)
+    @password_confirmation=str.downcase
+  end
 end
