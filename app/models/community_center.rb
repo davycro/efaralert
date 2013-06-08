@@ -28,8 +28,6 @@ class CommunityCenter < ActiveRecord::Base
     :presence => true
 
   has_many :efars
-  has_many :head_efars
-  has_many :candidate_efars
   
   geocoded_by :geocode_search_address, :latitude => :lat, :longitude => :lng do |obj, results|
     if geo = results.first
@@ -43,4 +41,5 @@ class CommunityCenter < ActiveRecord::Base
   def geocode_search_address
     [street, suburb, city, postal_code, province, country].compact.join(", ")
   end
+
 end

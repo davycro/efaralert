@@ -1,32 +1,18 @@
 EfarDispatch::Application.routes.draw do
   
   # Base resources used by dispatchers
-  resources :efars
   resources :text_messages
   resource :session
-  resource :account
+  resources :admins
+  resources :community_centers
+  resources :efars do
+    collection do
+      get 'map'
+    end
+  end
+  resources :activity_logs
 
   match 'clickatell/' => 'clickatell#callback'
-
-  namespace :admin do
-    resources :admins
-    resources :dispatchers
-    resources :community_centers
-    resources :efars do
-      collection do
-        get 'map'
-      end
-    end
-    resources :activity_logs
-    resources :suburbs
-    resource :session
-  end
-  match 'admin/' => 'admin/efars#index'
-
-  namespace :api do
-    resources :efars
-    resources :community_centers
-  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

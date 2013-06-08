@@ -1,0 +1,29 @@
+%legend
+  Admin Editor
+  .pull-right
+    %a.btn.btn-link{:href => admins_path } Cancel
+
+- if @admin.errors.present?
+  .alert.alert-error There were some errors saving the admin admin. See below for more information.
+
+- if @admin.new_record? and @admin.errors.blank?
+  .alert.alert-info.alert-block
+    %h4 Warning! Creating new admins is dangerous!
+    %dl
+      %dt With great power comes great responsiblity. Admins are authorized to:
+      %dd Create new admins
+      %dd Delete any admin account
+      %dd Edit any admin account
+      %dd Create, edit, or delete any efar, or community account
+      %dd In summary, admins are gods of the system, only one or two people should be trusted with this level of control.
+    %button.btn{ :type=>"button", :data=>{:dismiss=>"alert"} } Okay, I understand
+
+= form_for(@admin, :html => {:class => 'form-horizontal'}) do |f|
+
+  = horizontal_text_field(@admin, :full_name)
+  = horizontal_text_field(@admin, :email)
+  = horizontal_password_field(@admin)
+
+  .form-actions
+    %button.btn.btn-primary{:type=>'submit'} Save
+    %a.btn{:href=>admins_path} Cancel

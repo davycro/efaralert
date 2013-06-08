@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130422095822) do
+ActiveRecord::Schema.define(:version => 20130607101140) do
 
   create_table "activity_logs", :force => true do |t|
     t.string   "message"
@@ -29,22 +29,6 @@ ActiveRecord::Schema.define(:version => 20130422095822) do
 
   add_index "admins", ["email"], :name => "index_admins_on_email", :unique => true
 
-  create_table "candidate_efars", :force => true do |t|
-    t.string   "full_name",                    :null => false
-    t.string   "full_address"
-    t.string   "contact_number",               :null => false
-    t.integer  "community_center_id",          :null => false
-    t.string   "training_score"
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
-    t.string   "first_invite_status_part_one"
-    t.string   "first_invite_status_part_two"
-    t.string   "second_invite_part_one"
-    t.string   "second_invite_part_two"
-    t.string   "third_invite_part_one"
-    t.string   "third_invite_part_two"
-  end
-
   create_table "community_centers", :force => true do |t|
     t.string   "name",              :null => false
     t.string   "street",            :null => false
@@ -61,13 +45,6 @@ ActiveRecord::Schema.define(:version => 20130422095822) do
     t.string   "formatted_address"
   end
 
-  create_table "dispatchers", :force => true do |t|
-    t.string   "full_name",       :null => false
-    t.string   "password_digest", :null => false
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-  end
-
   create_table "efars", :force => true do |t|
     t.string  "full_name",                              :null => false
     t.integer "community_center_id",                    :null => false
@@ -79,16 +56,6 @@ ActiveRecord::Schema.define(:version => 20130422095822) do
     t.string  "given_address"
     t.boolean "is_head_efar",        :default => false
     t.boolean "is_active",           :default => false
-  end
-
-  create_table "suburbs", :force => true do |t|
-    t.string   "name",              :null => false
-    t.float    "lat"
-    t.float    "lng"
-    t.string   "formatted_address"
-    t.string   "location_type"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
   end
 
   create_table "text_messages", :force => true do |t|

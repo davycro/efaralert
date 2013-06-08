@@ -1,6 +1,6 @@
 %ul.breadcrumb
   %li
-    = link_to "Efars", admin_efars_path
+    = link_to "Efars", efars_path
     %span.divider /
   %li.active
     = @efar.full_name
@@ -10,7 +10,7 @@
   %h3
     = "#{@efar.full_name}"
     .pull-right
-      %a.btn.btn-link{:href => edit_admin_efar_path(@efar) } Edit
+      %a.btn.btn-link{:href => edit_efar_path(@efar) } Edit
 
 - if flash[:notice].present?
   .alert

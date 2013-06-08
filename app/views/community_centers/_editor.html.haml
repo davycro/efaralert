@@ -1,9 +1,9 @@
-= form_for([:admin, @community_center], :html => {:class=> "form-horizontal"}) do |f|
+= form_for(@community_center, :html => {:class=> "form-horizontal"}) do |f|
   
   %legend
     Community Center
     .pull-right
-      %a.btn.btn-link{:href => admin_community_centers_path } Cancel
+      %a.btn.btn-link{:href => community_centers_path } Cancel
 
   - if @community_center.errors.present?
     .alert.alert-error There were some errors saving the community center. See below for more information.

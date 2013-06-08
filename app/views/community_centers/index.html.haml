@@ -2,7 +2,7 @@
   %h3
     Community Centers
     .pull-right
-      %a.btn.btn-primary.btn-small{:href => new_admin_community_center_path}
+      %a.btn.btn-primary.btn-small{:href => new_community_center_path}
         %i.icon-plus.icon-white
         Create
 
@@ -32,15 +32,15 @@
               %span.caret
             %ul.dropdown-menu.pull-right
               %li
-                %a{:href=>edit_admin_community_center_path(community_center)}
+                %a{:href=>edit_community_center_path(community_center)}
                   %i.icon-pencil
                   Edit
               %li
-                %a{:href=>admin_community_center_path(community_center), "data-confirm"=>"Are you sure?", "data-method"=>"delete"}
+                %a{:href=>community_center_path(community_center), "data-confirm"=>"Are you sure?", "data-method"=>"delete"}
                   %i.icon-trash
                   Delete
           
 .form-actions
-  %a.btn.btn-primary.btn-small{:href => new_admin_community_center_path}
+  %a.btn.btn-primary.btn-small{:href => new_community_center_path}
     %i.icon-plus.icon-white
     Add new community center  

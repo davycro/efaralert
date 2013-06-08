@@ -1,15 +1,20 @@
-class EfarsController < ApplicationController
-
-  before_filter :require_dispatcher_login
-  layout 'dispatch'
+class EfarsController < InheritedResources::Base
+  layout 'admin'
+  before_filter :require_admin_login
+  respond_to :html, :json
 
   def index
+    @efars = Efar.order('id DESC').all
+  end
+
+  def map
     respond_to do |format|
-      format.json do
-        @efars = Efar.near([current_suburb.lat, current_suburb.lng], 5).all # km
+      format.json do 
+        @efars = Efar.has_geolocation.all
         render json: @efars.to_json
       end
       format.html
-    end
+    end 
   end
+
 end
