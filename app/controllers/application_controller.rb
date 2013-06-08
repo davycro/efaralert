@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   # admin
   def require_admin_login
     unless current_admin
-      redirect_to new_admin_session_url
+      redirect_to new_session_url
     end
   end
 
