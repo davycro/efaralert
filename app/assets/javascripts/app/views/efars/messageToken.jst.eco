@@ -1,0 +1,6 @@
+<span class="token token-<%= @tokenType %>" data-id="<%= @id %>" data-type="<%= @tokenType %>">
+  <%= @full_name %> "<%= @readable_contact_number %>"
+  <% if @tokenType=='toSend': %>
+    <span class="remove">&times;</span>
+  <% end %>
+</span>

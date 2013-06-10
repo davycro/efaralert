@@ -1,0 +1,40 @@
+= render 'subheader'
+
+#message
+  %form.form-horizontal
+    .alert{'data-type'=>'sending', 'style'=>'display:none;'}
+      Sending message... please keep this window open.
+    .alert.alert-error{'data-type'=>'failed', 'style'=>'display:none;'}
+
+
+    .control-group{'data-type'=>'toSend'}
+      %label.control-label To
+      .controls
+        .tokens
+        %input.span4{'data-type'=>'recipients', 'type'=>'text', 'value' => 'Loading EFARs ...', 'disabled' => true}
+
+    .control-group{'data-type'=>'sent', 'style'=>'display:none;'}
+      %label.control-label Sent
+      .controls
+        .tokens
+
+    .control-group{'data-type'=>'error', 'style'=>'display:none;'}
+      %label.control-label Error
+      .controls
+        .tokens
+
+    .control-group
+      %label.control-label Message
+      .controls
+        .sent-message
+        %textarea.span4{:rows=>'3'}
+
+    .form-actions
+      %button.btn.btn-primary{:type=>'submit'} Send
+
+:javascript
+  jQuery(function() {
+    new App.Controllers.Efars.Message();
+  });
+
+

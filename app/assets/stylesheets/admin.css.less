@@ -72,6 +72,54 @@
   }
 }
 
+// Message Creator
+// ----------------
+
+.token {
+  display: block;
+  float: left;
+  padding: 2px 6px;
+  margin-bottom: 3px;
+  margin-right: 4px;
+  background: @infoBackground;
+  border: 1px solid @infoBorder;
+}
+.token-disabled {
+  background: @grayLighter;
+  border: 1px solid @grayLight;
+  padding: 4px 6px;
+}
+.token-sent {
+  color: @warningText;
+  background: @warningBackground;
+  border: 1px solid @warningBorder;
+  padding: 4px 6px;
+}
+.token-error {
+  color: @errorText;
+  background: @errorBackground;
+  border: 1px solid @errorBorder;
+  padding: 4px 6px;
+}
+.token .remove {
+  padding-left: 4px;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: @baseLineHeight;
+  color: @black;
+  text-shadow: 0 1px 0 rgba(255,255,255,1);
+  .opacity(20);
+  &:hover {
+    color: @black;
+    text-decoration: none;
+    cursor: pointer;
+    .opacity(40);
+  }
+}
+
+.sent-message blockquote {
+  margin-top: 5px;
+}
 
 
 

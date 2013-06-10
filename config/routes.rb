@@ -8,6 +8,10 @@ EfarDispatch::Application.routes.draw do
   resources :efars do
     collection do
       get 'map'
+      get 'message'
+    end
+    member do
+      post 'text_message'
     end
   end
   resources :activity_logs
