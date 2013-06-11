@@ -101,7 +101,7 @@ class Efar extends Spine.Model
     submitForm: (e) =>
       e.preventDefault()
       return true unless @validateMessage() and @validateRecipients()
-
+      return true unless confirm "#{$('.token').length} will be text messaged. Are you sure that you want to send this message?"
       $('button[type=submit]').attr('disabled', 'true')
       $('.form-actions').hide()
       $('.sent-message').append "<blockquote>#{@textarea.attr('value')}</blockquote>"
