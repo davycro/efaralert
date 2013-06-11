@@ -51,6 +51,7 @@ class Efar extends Spine.Model
       @addRecipient efar
 
     addRecipient: (efar) ->
+      return '' unless $(".token[data-id=#{efar.id}]").length==0
       efar.tokenType = 'toSend'
       $('.tokens', @toSendControlGroup).append view('messageToken')(efar)
       $('.tokens', @toSendControlGroup).addClass 'clearfix'
