@@ -1,6 +1,6 @@
 class Efar extends Spine.Model
   @configure "Efar", "formatted_address", "lat", "lng", "full_name", 
-    "contact_number", "readable_contact_number"
+    "contact_number", "readable_contact_number", "community_center_id"
   @extend Spine.Model.Ajax
   @url: "/efars"
 
@@ -14,8 +14,6 @@ class Efar extends Spine.Model
       Efar.labels.push label
     @trigger 'labelsready'
 
-
-
 @module 'App.Controllers.Efars', ->
 
   class @Message extends Spine.Controller
@@ -27,10 +25,10 @@ class Efar extends Spine.Model
       '.control-group[data-type=toSend]' : 'toSendControlGroup'
       '.control-group[data-type=sent]' : 'sentControlGroup'
       '.control-group[data-type=error]' : 'errorControlGroup'
-
     events:
       'submit form' : 'submitForm'
       'click .remove' : 'clickRemove'
+      'click [data-type=add-community-center]' : 'clickCommunityCenter'
 
     constructor: ->
       @el = $('#message')
@@ -50,8 +48,12 @@ class Efar extends Spine.Model
 
     updateRecipientInput: (item) =>
       efar = Efar.find Efar.labelMap[item]
+      @addRecipient efar
+
+    addRecipient: (efar) ->
       efar.tokenType = 'toSend'
       $('.tokens', @toSendControlGroup).append view('messageToken')(efar)
+      $('.tokens', @toSendControlGroup).addClass 'clearfix'
       ''
 
     allMessagesSent: () ->
@@ -105,6 +107,7 @@ class Efar extends Spine.Model
       $('.sent-message').append "<blockquote>#{@textarea.attr('value')}</blockquote>"
       @textarea.hide()
       @recipientsInput.hide()
+      $('.btn-group').hide()
       $('.token .remove').remove()
       $('.token').addClass('token-disabled')
       $('.control-label', @toSendControlGroup).html 'Sending'
@@ -113,6 +116,13 @@ class Efar extends Spine.Model
 
     clickRemove: (e) =>
       $(e.srcElement).parent().remove()
+
+    clickCommunityCenter: (e) =>
+      e.preventDefault()
+      id = $(e.srcElement).data('id')
+      efars = Efar.findAllByAttribute("community_center_id", id)
+      @addRecipient(efar) for efar in efars
+      true
 
 view = (name) ->
   JST["app/views/efars/#{name}"]

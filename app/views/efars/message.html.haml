@@ -6,12 +6,19 @@
       Sending message... please keep this window open.
     .alert.alert-error{'data-type'=>'failed', 'style'=>'display:none;'}
 
-
     .control-group{'data-type'=>'toSend'}
       %label.control-label To
       .controls
         .tokens
         %input.span4{'data-type'=>'recipients', 'type'=>'text', 'value' => 'Loading EFARs ...', 'disabled' => true}
+        .btn-group
+          %button.btn.btn-link.dropdown-toggle{'data-toggle'=>'dropdown'}
+            Add Group
+            %span.caret
+          %ul.dropdown-menu
+            - @community_centers.each do |cc|
+              %li
+                %a{:href=>'#', 'data-id'=>cc.id, 'data-type'=>'add-community-center'}= cc.name
 
     .control-group{'data-type'=>'sent', 'style'=>'display:none;'}
       %label.control-label Sent

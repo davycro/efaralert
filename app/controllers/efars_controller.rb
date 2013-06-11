@@ -3,6 +3,10 @@ class EfarsController < InheritedResources::Base
   before_filter :require_admin_login
   respond_to :html, :json, :js
 
+  def message
+    @community_centers = CommunityCenter.all
+  end
+
   def map
     respond_to do |format|
       format.json do 
@@ -19,7 +23,6 @@ class EfarsController < InheritedResources::Base
         @efar = Efar.find(params[:id])
         @efar.send_text_message params[:message]
         render json: @efar
-        # raise "error!"
       end
     end
   end

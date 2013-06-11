@@ -2,6 +2,7 @@ class CommunityCentersController < InheritedResources::Base
   layout 'admin'
 
   before_filter :require_admin_login
+  respond_to :html, :json, :js
 
   def create
     create! { community_centers_path }
