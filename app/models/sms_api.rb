@@ -37,9 +37,6 @@ class SmsApi
     response = {}
     begin
       message_id = @api.send_message(number, message, 
-        :set_mobile_originated => true, 
-        :from => '44259', 
-        :mo=>'1',
         :concat => '3',
         :client_message_id => opts[:client_message_id])
       if message_id.present?
