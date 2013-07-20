@@ -24,9 +24,12 @@ class Efar < ActiveRecord::Base
     :community_center_id,
     :lat, :lng, :formatted_address, :location_type,
     :given_address,
-    :is_head_efar, :is_active
+    :is_head_efar, :is_active,
+    :training_level
 
   PER_PAGE = 50
+  TRAINING_LEVELS = ['Basic', 'Intermediate EFAR (FAL1)', 'Advanced EFAR (FAL3)',
+    'Head Community Instructor']
 
   validates :full_name, :community_center_id, :contact_number, 
     :presence => true

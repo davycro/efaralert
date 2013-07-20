@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130607101140) do
+ActiveRecord::Schema.define(:version => 20130720031549) do
 
   create_table "activity_logs", :force => true do |t|
     t.string   "message"
@@ -46,9 +46,9 @@ ActiveRecord::Schema.define(:version => 20130607101140) do
   end
 
   create_table "efars", :force => true do |t|
-    t.string  "full_name",                              :null => false
-    t.integer "community_center_id",                    :null => false
-    t.string  "contact_number",                         :null => false
+    t.string  "full_name",                                :null => false
+    t.integer "community_center_id",                      :null => false
+    t.string  "contact_number",                           :null => false
     t.float   "lat"
     t.float   "lng"
     t.string  "formatted_address"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(:version => 20130607101140) do
     t.string  "given_address"
     t.boolean "is_head_efar",        :default => false
     t.boolean "is_active",           :default => false
+    t.string  "training_level",      :default => "Basic"
   end
 
   create_table "text_messages", :force => true do |t|

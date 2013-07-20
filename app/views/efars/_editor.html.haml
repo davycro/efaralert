@@ -20,6 +20,11 @@
     = horizontal_text_field(@efar, :given_address)
 
     .control-group
+      %label.control-label Training Level
+      .controls
+        = select "efar", "training_level", Efar::TRAINING_LEVELS
+
+    .control-group
       %label.control-label Head EFAR?
       .controls
         = check_box "efar", "is_head_efar"
