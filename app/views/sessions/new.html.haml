@@ -5,13 +5,12 @@
         = image_tag 'efar_login_logo_med.png'
       .span6
         %form{ :action => session_path, :method => "POST" }
-          %legend Admin Panel
+          %legend Sign in to EFAR
           - if flash[:notice].present?
             .alert.alert-info=flash[:notice]
           - if flash[:alert].present?
             .alert=flash[:alert]
           
-          %p Content restricted to EFAR administrators, please login for access:
           %input{:type=>"text", :name=>'email', :placeholder=>"Email"}
           %input{:type=>"password", :name=>"password", :placeholder=>"Password"}
           %br
