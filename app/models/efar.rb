@@ -11,8 +11,6 @@
 #  formatted_address   :string(255)
 #  location_type       :string(255)
 #  given_address       :string(255)
-#  is_head_efar        :boolean          default(FALSE)
-#  is_active           :boolean          default(FALSE)
 #  training_level      :string(255)      default("Basic")
 #  training_date       :date
 #
@@ -26,7 +24,6 @@ class Efar < ActiveRecord::Base
     :community_center_id,
     :lat, :lng, :formatted_address, :location_type,
     :given_address,
-    :is_head_efar, :is_active,
     :training_level, :training_date
 
   PER_PAGE = 50

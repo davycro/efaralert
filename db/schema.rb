@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130720032341) do
+ActiveRecord::Schema.define(:version => 20130720034043) do
 
   create_table "activity_logs", :force => true do |t|
     t.string   "message"
@@ -54,8 +54,6 @@ ActiveRecord::Schema.define(:version => 20130720032341) do
     t.string  "formatted_address"
     t.string  "location_type"
     t.string  "given_address"
-    t.boolean "is_head_efar",        :default => false
-    t.boolean "is_active",           :default => false
     t.string  "training_level",      :default => "Basic"
     t.date    "training_date"
   end
