@@ -13,6 +13,8 @@
 #  given_address       :string(255)
 #  is_head_efar        :boolean          default(FALSE)
 #  is_active           :boolean          default(FALSE)
+#  training_level      :string(255)      default("Basic")
+#  training_date       :date
 #
 
 # The efar table represents all efars willing to provide a mobile phone number
@@ -25,7 +27,7 @@ class Efar < ActiveRecord::Base
     :lat, :lng, :formatted_address, :location_type,
     :given_address,
     :is_head_efar, :is_active,
-    :training_level
+    :training_level, :training_date
 
   PER_PAGE = 50
   TRAINING_LEVELS = ['Basic', 'Intermediate EFAR (FAL1)', 'Advanced EFAR (FAL3)',

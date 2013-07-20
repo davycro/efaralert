@@ -20,6 +20,11 @@
     = horizontal_text_field(@efar, :given_address)
 
     .control-group
+      %label.control-label Geolocation
+      .controls
+        %div{'data-type'=>'efar-address', 'data-efar' => @efar.to_json }
+
+    .control-group
       %label.control-label Training Level
       .controls
         = select "efar", "training_level", Efar::TRAINING_LEVELS
@@ -30,10 +35,10 @@
         = check_box "efar", "is_head_efar"
 
     .control-group
-      %label.control-label Geolocation
-      .controls
-        %div{'data-type'=>'efar-address', 'data-efar' => @efar.to_json }
-        
+      %label.control-label Training Date
+      .controls.date-select
+        = date_select "efar", "training_date",end_year: Time.now.year, order: [:day, :month, :year]        
+
     .form-actions
       %button.btn.btn-primary{:type=>'submit'} Save
       %a.btn{:href=>efars_path} Cancel

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130720031549) do
+ActiveRecord::Schema.define(:version => 20130720032341) do
 
   create_table "activity_logs", :force => true do |t|
     t.string   "message"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(:version => 20130720031549) do
     t.boolean "is_head_efar",        :default => false
     t.boolean "is_active",           :default => false
     t.string  "training_level",      :default => "Basic"
+    t.date    "training_date"
   end
 
   create_table "text_messages", :force => true do |t|
