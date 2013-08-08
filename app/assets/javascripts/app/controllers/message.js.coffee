@@ -120,7 +120,7 @@ class Efar extends Spine.Model
 
     clickCommunityCenter: (e) =>
       e.preventDefault()
-      id = $(e.srcElement).data('id')
+      id = $(e.target).data('id')
       efars = Efar.findAllByAttribute("community_center_id", id)
       @addRecipient(efar) for efar in efars
       true
