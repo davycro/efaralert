@@ -116,7 +116,7 @@ class Efar extends Spine.Model
       @sendNextMessage()
 
     clickRemove: (e) =>
-      $(e.srcElement).parent().remove()
+      $(e.target).parent().remove()
 
     clickCommunityCenter: (e) =>
       e.preventDefault()
