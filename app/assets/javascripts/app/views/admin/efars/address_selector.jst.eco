@@ -3,7 +3,7 @@
   <div class='modal-header'>
     <form data-type='search-form'>
       <div class="input-append">
-        <input type="text" class="input-xlarge" placeholder="Search for an address in Cape Town" data-type='search-input'>
+        <input type="text" class="input-xlarge" placeholder="Search for an address in the Western Cape" data-type='search-input'>
         <button type="submit" class="btn">Search</button>
       </div>
       <span class='help-block'>

@@ -22,7 +22,7 @@ class GeocoderResult extends Spine.Model
 
   @geocode: (searchStr) ->
     searchStr or= ""
-    searchStr += ", Cape Town, South Africa"
+    searchStr += ", Western Cape, South Africa"
     geocoder = new google.maps.Geocoder()
     geocoder.geocode {'address': searchStr}, (results, status) =>
       if (status == google.maps.GeocoderStatus.OK)
