@@ -51,8 +51,8 @@ class Efar extends Spine.Model
         zoom: 10
         center: new google.maps.LatLng(-33.9838663, 18.5552215)
         mapTypeId: google.maps.MapTypeId.ROADMAP
-        streetViewControl: true
-        mapTypeControl: true  
+        streetViewControl: false
+        mapTypeControl: false  
       }
       @map = new google.maps.Map(@el[0], options)
 
