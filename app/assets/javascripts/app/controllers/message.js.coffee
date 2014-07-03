@@ -2,7 +2,7 @@ class Efar extends Spine.Model
   @configure "Efar", "formatted_address", "lat", "lng", "full_name", 
     "contact_number", "readable_contact_number", "community_center_id"
   @extend Spine.Model.Ajax
-  @url: "/efars"
+  @url: "/admin/efars"
 
   @labelMap = { }
   @labels = [ ]
@@ -68,7 +68,7 @@ class Efar extends Spine.Model
       efar = Efar.find $(el).data('id')
       $.ajax({
         type: "POST"
-        url: "/efars/#{efar.id}/text_message"
+        url: "/admin/efars/#{efar.id}/text_message"
         data: {message: @textarea.attr('value')}
       }).done(=>
         efar.tokenType = 'sent'
