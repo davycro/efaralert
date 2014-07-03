@@ -11,7 +11,7 @@
   %tbody
     - @efars.each do |efar|
       %tr
-        %td= link_to efar.full_name, efar
+        %td= link_to efar.full_name, [:admin, efar]
         %td= efar.readable_contact_number
         %td= efar.given_address
         %td= efar.community_center.name
@@ -22,11 +22,11 @@
               %span.caret
             %ul.dropdown-menu.pull-right
               %li
-                %a{:href=>edit_efar_path(efar)}
+                %a{:href=>edit_admin_efar_path(efar)}
                   %i.icon-pencil
                   Edit
               %li
-                %a{:href=>efar_path(efar), "data-confirm"=>"Are you sure?", "data-method"=>"delete"}
+                %a{:href=>admin_efar_path(efar), "data-confirm"=>"Are you sure?", "data-method"=>"delete"}
                   %i.icon-trash
                   Delete
   
