@@ -3,11 +3,11 @@
     %h3
       EFAR Editor
       .pull-right
-        %a.btn.btn-link{:href => efars_path } Cancel  
+        %a.btn.btn-link{:href => admin_efars_path } Cancel  
 
   .alert.alert-error.hide There were some errors saving the efar. See below for more information.
 
-  = form_for(@efar, :html => {:class => 'form-horizontal efar-form-editor'}) do |f|
+  = form_for([:admin, @efar], :html => {:class => 'form-horizontal efar-form-editor'}) do |f|
     
     = horizontal_text_field(@efar, :full_name)
     = horizontal_text_field(@efar, :contact_number, :help_text => "Must be a south african number")
@@ -36,7 +36,7 @@
 
     .form-actions
       %button.btn.btn-primary{:type=>'submit'} Save
-      %a.btn{:href=>efars_path} Cancel
+      %a.btn{:href=>admin_efars_path} Cancel
 
   :javascript
 
