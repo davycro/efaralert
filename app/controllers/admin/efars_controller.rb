@@ -1,4 +1,4 @@
-class EfarsController < InheritedResources::Base
+class Admin::EfarsController < InheritedResources::Base
   layout 'admin'
   before_filter :require_admin_login
   respond_to :html, :json, :js

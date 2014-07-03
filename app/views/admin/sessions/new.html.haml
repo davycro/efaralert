@@ -4,7 +4,7 @@
       .span2
         = image_tag 'efar_login_logo_med.png'
       .span6
-        %form{ :action => session_path, :method => "POST" }
+        %form{ :action => admin_session_path, :method => "POST" }
           %legend Sign in to EFAR
           - if flash[:notice].present?
             .alert.alert-info=flash[:notice]

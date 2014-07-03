@@ -1,20 +1,25 @@
 EfarDispatch::Application.routes.draw do
   
-  # Base resources used by dispatchers
-  resources :text_messages
-  resource :session
-  resources :admins
-  resources :community_centers
-  resources :efars do
-    collection do
-      get 'map'
-      get 'message'
+  # Admin resources
+  namespace :admin do
+    resource :session
+    resources :admins
+    resources :community_centers
+    resources :efars do
+      collection do
+        get 'map'
+        get 'message'
+      end
+      member do
+        post 'text_message'
+      end
     end
-    member do
-      post 'text_message'
-    end
+    resources :activity_logs
   end
-  resources :activity_logs
+  match 'admin/' => 'admin/efars#index'
+
+  resources :text_messages
+  
 
   match 'clickatell/' => 'clickatell#callback'
 
@@ -67,6 +72,7 @@ EfarDispatch::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
+  match 'admin/efars' => 'admin/efars#index', as: :admin_root
   root :to => 'efars#index'
 
   # See how all your routes lay out with "rake routes"
