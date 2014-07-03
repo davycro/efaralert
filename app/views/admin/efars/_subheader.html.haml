@@ -6,13 +6,13 @@
         .btn-group
           %a.btn{:href => admin_efars_path, :class=> controller.action_name=="index" && "active" }
             Table
-          %a.btn{:href => admin_map_efars_path, :class=> controller.action_name=="map" && "active" }
+          %a.btn{:href => map_admin_efars_path, :class=> controller.action_name=="map" && "active" }
             Map
         .btn-group
-          %a.btn{:href=> admin_new_efar_path, :class=> controller.action_name=="new" && "active" }
+          %a.btn{:href=> new_admin_efar_path, :class=> controller.action_name=="new" && "active" }
             Create
         .btn-group
-          %a.btn{:href => admin_message_efars_path, :class => controller.action_name=="message" && "active" }
+          %a.btn{:href => message_admin_efars_path, :class => controller.action_name=="message" && "active" }
             Message
 
 - if flash[:notice].present?

@@ -1,7 +1,7 @@
 class Efar extends Spine.Model
   @configure "Efar", "formatted_address", "lat", "lng", "full_name"
   @extend Spine.Model.Ajax
-  @url: "/efars/map"
+  @url: "/admin/efars/map"
 
   @bind 'refresh', (records) ->
     record.setMarker() for record in records
