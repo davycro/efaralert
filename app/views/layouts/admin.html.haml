@@ -24,17 +24,17 @@
                 %b.caret
               %ul.dropdown-menu
                 %li
-                  %a{:href=>admins_path} Admins
+                  %a{:href=>admin_admins_path} Admins
                 %li
-                  %a{:href=>community_centers_path} Community Centers
+                  %a{:href=>admin_community_centers_path} Community Centers
                 %li
-                  %a{:href=>efars_path} Efars
+                  %a{:href=>admin_efars_path} Efars
 
             %li{:class => controller.controller_name =='efars' && 'active' }
-              %a{:href => efars_path } EFARs
+              %a{:href => admin_efars_path } EFARs
 
             %li{:class=>controller.controller_name=='activity_logs' && "active"}
-              %a{:href=>activity_logs_path } Activity Log
+              %a{:href=>admin_activity_logs_path } Activity Log
           %ul.nav.pull-right
             %li
               = link_to 'Logout', admin_session_path, :method => :delete 

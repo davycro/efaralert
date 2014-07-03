@@ -2,7 +2,7 @@
   %h3
     Admins
     .pull-right
-      %a.btn.btn-primary.btn-small{:href => new_admin_path}
+      %a.btn.btn-primary.btn-small{:href => new_admin_admin_path}
         %i.icon-plus.icon-white
         Create
 
@@ -28,16 +28,16 @@
               %span.caret
             %ul.dropdown-menu.pull-right
               %li
-                %a{:href=>edit_admin_path(admin)}
+                %a{:href=>edit_admin_admin_path(admin)}
                   %i.icon-pencil
                   Edit
               - if @current_admin!=admin
                 %li
-                  %a{:href=>admin_path(admin), "data-confirm"=>"Are you sure?", "data-method"=>"delete"}
+                  %a{:href=>admin_admin_path(admin), "data-confirm"=>"Are you sure?", "data-method"=>"delete"}
                     %i.icon-trash
                     Delete
           
 .form-actions
-  %a.btn.btn-primary.btn-small{:href => new_admin_path}
+  %a.btn.btn-primary.btn-small{:href => new_admin_admin_path}
     %i.icon-plus.icon-white
     Add new Admin  

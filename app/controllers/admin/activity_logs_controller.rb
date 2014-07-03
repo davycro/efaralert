@@ -1,4 +1,4 @@
-class ActivityLogsController < InheritedResources::Base
+class Admin::ActivityLogsController < InheritedResources::Base
   layout 'admin'
   before_filter :require_admin_login
 

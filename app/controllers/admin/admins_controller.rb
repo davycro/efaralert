@@ -1,20 +1,20 @@
-class AdminsController < InheritedResources::Base
+class Admin::AdminsController < InheritedResources::Base
   layout 'admin'
   before_filter :require_admin_login
 
 
   def update
-    update! { admins_url }
+    update! { admin_admins_url }
   end
 
   def create
-    create! { admins_url }
+    create! { admin_admins_url }
   end
 
   def destroy
     @admin = Admin.find(params[:id])
     if @admin==@current_admin
-      redirect_to admins_path, :notice => "You cannot delete your own account"
+      redirect_to admin_admins_path, :notice => "You cannot delete your own account"
     else
       destroy!
     end
