@@ -1,0 +1,36 @@
+!!!
+%html
+  %head
+    %title EFAR
+    = stylesheet_link_tag "efar", :media => "all"
+    / = javascript_include_tag "full_screen_login"
+    = csrf_meta_tags
+    = render :partial => 'layouts/ga'
+  %body
+    .navbar.navbar-inverse.navbar-fixed-top.navbar-efar
+      .navbar-inner
+        .container
+          .efar-brand{:href=>'#'}
+            .efar-shield
+              %i.efar-sprite-logo
+              .logo-text EFAR ALERT
+          %ul.nav.pull-right
+            %li
+              = link_to 'Login', session_path, :method => :delete
+
+    / main
+    .container
+      .row
+        .span6    
+          %h2 What is EFAR Alert?
+          %p
+            EFAR alert is a messaging service provided by the Western Cape EMS for citizens with emergency medical training. If you sign up, then you will receive SMS alerts whenever critical medical emergencies occur in your community. You can use this information to assist your neighbors and help save lives.
+          %br
+          %p
+            .btn.btn-primary Click here to sign up
+    .footer
+      .container
+        .footer-panel
+          %small.muted
+            Sponsored by Western Cape EMS. Built by David Crockett
+          = debug(params) if Rails.env.development?

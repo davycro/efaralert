@@ -77,7 +77,7 @@ EfarDispatch::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   match 'admin/efars' => 'admin/efars#index', as: :admin_root
-  root :to => 'efars#show'
+  root :to => 'main#landing'
 
   # See how all your routes lay out with "rake routes"
 
