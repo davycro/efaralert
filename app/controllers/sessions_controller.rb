@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  layout 'efar_landing'
+  layout 'efar'
 
   def new
   end

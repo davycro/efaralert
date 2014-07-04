@@ -1,0 +1,29 @@
+.container
+  .login-container
+    %form.form-horizontal{ :action => session_path, :method => "POST" }
+      %legend Welcome EFAR, sign up to receive SMS alerts
+      .control-group
+        .control-label Full name
+        .controls
+          %input{:type => "text", :name => 'full_name'}
+
+      .control-group
+        .control-label Mobile phone number
+        .controls
+          %input{:type => "text", :name => 'full_name'}
+          .help-block
+            e.g. 010 123 4455
+
+      .control-group
+        .control-label Home address
+        .controls
+          %input{:type => "text", :name => 'full_name'}
+
+      .control-group
+        .control-label Password
+        .controls
+          %input{:type=>"password", :name=>"password"}
+      
+
+      %br
+      %button.btn{:type=>"submit"} Sign In

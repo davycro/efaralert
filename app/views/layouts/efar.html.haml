@@ -1,0 +1,24 @@
+!!!
+%html
+  %head
+    %title EFAR
+    = stylesheet_link_tag "efar", :media => "all"
+    / = javascript_include_tag "full_screen_login"
+    = csrf_meta_tags
+    = render :partial => 'layouts/ga'
+  %body
+    .navbar.navbar-inverse.navbar-fixed-top.navbar-efar
+      .navbar-inner
+        .container
+          .efar-brand{:href=>'#'}
+            .efar-shield
+              %i.efar-sprite-logo
+              .logo-text EFAR ALERT
+          %ul.nav.pull-right
+            %li
+              = link_to 'Login', session_path, :method => :delete
+
+    = yield
+
+    .footer
+      

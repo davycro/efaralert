@@ -2,6 +2,7 @@ EfarDispatch::Application.routes.draw do
   
   resource :session
   resources :efars
+  match 'signup/' => 'efars#new'
 
   # Admin resources
   namespace :admin do
