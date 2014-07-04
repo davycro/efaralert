@@ -6,6 +6,16 @@ class ApplicationController < ActionController::Base
   #
   # Login Methods
 
+  def require_efar_login
+    unless current_efar
+      redirect_to new_session_url
+    end
+  end
+
+  def current_efar
+    false
+  end
+
   # admin
   def require_admin_login
     unless current_admin

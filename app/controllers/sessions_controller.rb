@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  layout 'full_screen_login'
+  layout 'efar_landing'
 
   def new
   end
@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     admin = Admin.find_by_email(params[:email])
     if admin && admin.authenticate(params[:password])
       session[:admin_id] = admin.id
-      redirect_to root_url, :notice => "logged in!"
+      redirect_to admin_root_url, :notice => "logged in!"
     else
       flash.now.alert = "Invalid email or password"
       render "new"
@@ -17,7 +17,6 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:admin_id] = nil
-    redirect_to new_session_path, :notice => "You are now logged out"
+    redirect_to new_admin_session_path, :notice => "You are now logged out"
   end
-
 end
