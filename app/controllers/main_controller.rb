@@ -1,5 +1,9 @@
 class MainController < ApplicationController
+  layout 'main'
+
   def landing
-    render layout: false
+  end
+
+  def register
   end
 end

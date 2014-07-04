@@ -2,7 +2,7 @@
 %html
   %head
     %title EFAR
-    = stylesheet_link_tag "efar", :media => "all"
+    = stylesheet_link_tag "main", :media => "all"
     / = javascript_include_tag "full_screen_login"
     = csrf_meta_tags
     = render :partial => 'layouts/ga'
@@ -23,6 +23,7 @@
     .footer
       .container
         .footer-panel
-          %small.muted Created by David Crockett
+          %small.muted
+            Built by David Crockett. Sponsored by Western Cape EMS
           = debug(params) if Rails.env.development?
 
