@@ -1,0 +1,66 @@
+.container
+  .page-header
+    %h2 Register to receive SMS alerts
+  .row
+    .span8
+      %form{ :action => '#', :method => 'POST' }
+        .control-group
+          %label.control-label
+            Full name
+          .controls
+            %input.span6{:type=>'text', :name=>'efar[full_name]'}
+
+        .control-group
+          %label.control-label
+            Mobile phone number
+            %small
+              Where you will receive alerts. Please ensure it's correct!
+          .controls
+            %input.span6{:type=>'text', :name=>'efar[contact_number]'}
+
+        .control-group
+          %label.control-label
+            Address
+            %small
+              We will only alert you when medical emergencies occur within 300 meters of this location
+          .controls
+            %input.span6{:type=>'text', :name=>'efar[given_address]'}
+                
+
+        .control-group
+          %label.control-label
+            Suburb
+            %small
+              \.e.g. "Woodstock"
+          .controls
+            %input.span6{:type=>'text', :name=>'efar[suburb]'}
+
+        .control-group
+          %label.control-label
+            Emergency medical training
+            %small
+              You must be certified in a government approved program to register
+          .controls
+            = select "efar", "training_level", Efar::TRAINING_LEVELS
+
+        %hr
+
+        .control-group
+          %label.control-lable
+            Create a password:
+          .controls
+            %input.span6{:type=>'password', :name=>'efar[password]'}
+        
+        .form-actions
+          %button.btn.btn-primary{:type=>'submit'} Register
+          %a.btn{:href=>root_url} Cancel
+
+
+
+
+
+
+
+
+
+

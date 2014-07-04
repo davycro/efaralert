@@ -31,8 +31,8 @@ class Efar < ActiveRecord::Base
   has_secure_password
 
   PER_PAGE = 50
-  TRAINING_LEVELS = ['Basic', 'Intermediate EFAR (FAL1)', 'Advanced EFAR (FAL3)',
-    'Head Community Instructor']
+  TRAINING_LEVELS = ['Basic EFAR', 'Intermediate EFAR (FAL1)', 'Advanced EFAR (FAL3)',
+    'Head Community Instructor', 'EMT', 'Paramedic']
 
   validates :full_name, :community_center_id, :contact_number, 
     :presence => true
