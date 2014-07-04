@@ -13,6 +13,7 @@
 #  given_address       :string(255)
 #  training_level      :string(255)      default("Basic")
 #  training_date       :date
+#  password_digest     :string(255)
 #
 
 # The efar table represents all efars willing to provide a mobile phone number
@@ -24,7 +25,10 @@ class Efar < ActiveRecord::Base
     :community_center_id,
     :lat, :lng, :formatted_address, :location_type,
     :given_address,
-    :training_level, :training_date
+    :training_level, :training_date,
+    :password, :password_confirmation
+
+  has_secure_password
 
   PER_PAGE = 50
   TRAINING_LEVELS = ['Basic', 'Intermediate EFAR (FAL1)', 'Advanced EFAR (FAL3)',
@@ -33,6 +37,9 @@ class Efar < ActiveRecord::Base
   validates :full_name, :community_center_id, :contact_number, 
     :presence => true
   validates :contact_number, :uniqueness => true
+  validates :given_address, :presence => true, :on => :create
+  
+  validates :password, :on => :create, :presence => true
 
   belongs_to :community_center
 

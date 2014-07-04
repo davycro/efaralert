@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130720034043) do
+ActiveRecord::Schema.define(:version => 20140704110520) do
 
   create_table "activity_logs", :force => true do |t|
     t.string   "message"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(:version => 20130720034043) do
     t.string  "given_address"
     t.string  "training_level",      :default => "Basic"
     t.date    "training_date"
+    t.string  "password_digest"
   end
 
   create_table "text_messages", :force => true do |t|

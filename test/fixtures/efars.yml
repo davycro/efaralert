@@ -13,6 +13,7 @@
 #  given_address       :string(255)
 #  training_level      :string(255)      default("Basic")
 #  training_date       :date
+#  password_digest     :string(255)
 #
 
 # == Schema Information
