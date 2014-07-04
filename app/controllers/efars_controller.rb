@@ -6,7 +6,10 @@ class EfarsController < InheritedResources::Base
   def create
     @efar = Efar.new params[:efar]
     @efar.community_center = CommunityCenter.first
-    create!
+    create! {
+      session[:efar_id] = @efar.id
+      @efar
+    }
   end
 
 end

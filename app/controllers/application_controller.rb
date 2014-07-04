@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_efar
-    false
+    @current_efar ||= Efar.find(session[:efar_id]) if session[:efar_id].present?
   end
 
   # admin
