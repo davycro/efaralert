@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140704110520) do
+ActiveRecord::Schema.define(:version => 20140708064933) do
 
   create_table "activity_logs", :force => true do |t|
     t.string   "message"
@@ -58,6 +58,8 @@ ActiveRecord::Schema.define(:version => 20140704110520) do
     t.date    "training_date"
     t.string  "password_digest"
   end
+
+  add_index "efars", ["training_date"], :name => "index_efars_on_training_date"
 
   create_table "text_messages", :force => true do |t|
     t.integer  "efar_id",                                 :null => false

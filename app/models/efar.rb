@@ -38,10 +38,12 @@ class Efar < ActiveRecord::Base
     :presence => true
   validates :contact_number, :uniqueness => true
   validates :given_address, :presence => true, :on => :create
-  
   validates :password, :on => :create, :presence => true
 
   belongs_to :community_center
+
+  scope :active, where('training_date >= ? OR training_date IS NULL', 2.years.ago)
+  scope :expired, where('training_date < ?', 2.years.ago)
 
   include Extensions::ContactNumber
   include Extensions::CapeTownLocation

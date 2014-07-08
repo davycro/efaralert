@@ -13,6 +13,7 @@ EfarDispatch::Application.routes.draw do
       collection do
         get 'map'
         get 'message'
+        get 'expired'
       end
       member do
         post 'text_message'
