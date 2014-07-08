@@ -3,6 +3,11 @@ class Admin::EfarsController < InheritedResources::Base
   before_filter :require_admin_login
   respond_to :html, :json, :js
 
+  def expired
+    @efars = Efar.expired.order('id DESC').all
+    render action: 'index'
+  end
+
   def message
     @community_centers = CommunityCenter.all
   end
@@ -10,7 +15,7 @@ class Admin::EfarsController < InheritedResources::Base
   def map
     respond_to do |format|
       format.json do 
-        @efars = Efar.has_geolocation.all
+        @efars = Efar.active.has_geolocation.all
         render json: @efars.to_json
       end
       format.html
@@ -29,7 +34,7 @@ class Admin::EfarsController < InheritedResources::Base
 
   protected
     def collection
-      @efars ||= Efar.order('id DESC').all
+      @efars ||= Efar.active.order('id DESC').all
     end
 
 end

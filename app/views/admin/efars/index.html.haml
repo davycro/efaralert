@@ -1,5 +1,11 @@
 = render 'subheader'
 
+%ul.nav.nav-pills
+  %li{class: controller.action_name=="index" && "active"}
+    %a{:href => admin_efars_path } Active
+  %li{class: controller.action_name=="expired" && "active"}
+    %a{:href => expired_admin_efars_path } Expired
+
 %table.table
   %thead
     %tr
