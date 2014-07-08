@@ -89,7 +89,7 @@ class Search extends Spine.Controller
 
   geocodeSearchInput: (e) =>
     e.preventDefault()
-    searchAddress = @searchInput.val() + ", Cape Town, South Africa"
+    searchAddress = @searchInput.val() + ", South Africa"
     geocoder = new google.maps.Geocoder()
     geocoder.geocode {'address': searchAddress}, (results, status) =>
       if (status == google.maps.GeocoderStatus.OK)
