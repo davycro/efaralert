@@ -30,8 +30,15 @@ class StudyInvite < ActiveRecord::Base
   end
 
   def accepted!
+    reject_url = "http://efardispatch.com/study_invites/#{self.id}/reject"
     self.accepted = true
     self.save
+    self.efar.send_text_message %{
+        You are now enrolled in the EFAR SMS Alert system. EFAR alerts are for your
+        information only. You are not required to act upon SMS alerts, and you
+        should only help if the scene is safe. Click below if you wish to stop this service:
+        #{reject_url}
+      }.squish
   end
 
   def opened!
@@ -62,13 +69,7 @@ class StudyInvite < ActiveRecord::Base
 
     self.efar.send_text_message %{
       Attn EFAR! You are invited to join the EFAR SMS alert system. This system 
-      will alert you when emergencies occur near your home. These alerts are for 
-      your information only. You are not required to help with the emergency, 
-      and you should only help if it is safe for you to do so. This alert system 
-      is part of a study conducted by the University of Cape Town. You must 
-      consent to participate in the study in order to receive SMS alerts. You 
-      can cancel this service and withdraw from the study at anytime. If you 
-      have questions please contact Mr David Crockett at (060) 804 2569.
+      will alert you when emergencies occur near your home.
       }.squish
     self.efar.send_text_message %{
       #{self.efar.full_name}, please kindly click this link to join the EFAR SMS alert system: #{accept_url}
