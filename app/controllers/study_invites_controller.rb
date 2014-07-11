@@ -1,5 +1,5 @@
 class StudyInvitesController < InheritedResources::Base
-  before_filter :require_admin_login, :except => :show
+  before_filter :require_admin_login, :except => [ :show, :accept, :reject ]
   layout 'admin'
 
   def index
