@@ -1,0 +1,17 @@
+.page-header
+  %h2
+    Study Invites
+    .pull-right
+      .btn-toolbar
+        .btn-group
+          %a.btn{:href => study_invites_path, :class=> controller.action_name=="index" && "active" }
+            All
+          %a.btn{:href=> accepted_study_invites_path, :class=> controller.action_name=="accepted" && "active" }
+            Accepted
+          %a.btn{:href=> pending_study_invites_path, :class=> controller.action_name=="pending" && "active" }
+            Pending
+
+- if flash[:notice].present?
+  .alert
+    = flash[:notice]
+    %button.close{:type=>"button", "data-dismiss"=>"alert"} &times;

@@ -1,0 +1,32 @@
+= render :partial => 'subheader'
+
+%table.table#efars-index
+  %thead
+    %tr
+      %th Name
+      %th Contact number
+      %th Community
+      %th Invite Status
+
+  %tbody
+    - @efars.each do |efar|
+      %tr
+        %td= efar.full_name
+        %td= efar.readable_contact_number
+        %td= efar.community_center.name
+        %td
+          - if efar.study_invite.blank?
+            %a{'href'=>'#', 'data-type'=>'sendInvite', 'data-efar_id'=>efar.id} Invite
+          - if efar.study_invite.present? && efar.study_invite.pending?
+            Pending (
+            %a{'href'=>'#', 'data-type'=>'sendInvite', 'data-efar_id'=>efar.id} Send Again
+            )
+          - if efar.study_invite.present? && efar.study_invite.accepted?
+            Accepted
+
+
+
+:javascript
+  jQuery(function() {
+    new App.Controllers.StudyInvites.Index();
+  });

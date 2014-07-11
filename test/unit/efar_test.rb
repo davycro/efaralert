@@ -14,6 +14,7 @@
 #  training_level      :string(255)      default("Basic")
 #  training_date       :date
 #  password_digest     :string(255)
+#  study_invite_id     :integer
 #
 
 require 'test_helper'

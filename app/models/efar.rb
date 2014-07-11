@@ -14,6 +14,7 @@
 #  training_level      :string(255)      default("Basic")
 #  training_date       :date
 #  password_digest     :string(255)
+#  study_invite_id     :integer
 #
 
 # The efar table represents all efars willing to provide a mobile phone number
@@ -45,6 +46,8 @@ class Efar < ActiveRecord::Base
   scope :active, where('training_date >= ? OR training_date IS NULL', 2.years.ago)
   scope :expired, where('training_date < ?', 2.years.ago)
 
+  has_one :study_invite
+
   include Extensions::ContactNumber
   include Extensions::CapeTownLocation
 
@@ -57,6 +60,7 @@ class Efar < ActiveRecord::Base
   
   def as_json(options = {})
     super(:methods => [:readable_contact_number])
-  end  
+  end
+
 
 end

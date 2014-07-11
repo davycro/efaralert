@@ -25,6 +25,15 @@ EfarDispatch::Application.routes.draw do
   match 'admin/' => 'admin/efars#index'
 
   resources :text_messages
+  resources :study_invites do
+    member do
+      get 'accept'
+    end
+    collection do
+      get 'accepted'
+      get 'pending'
+    end
+  end
   
 
   match 'clickatell/' => 'clickatell#callback'
