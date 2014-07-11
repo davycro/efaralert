@@ -1,7 +1,7 @@
-class StudyInvite extends Spine.Model
-  @configure "StudyInvite", "efar_id", "accepted"
-  @extend Spine.Model.Ajax
-  @url: "/study_invites"
+# class StudyInvite extends Spine.Model
+#   @configure "StudyInvite", "efar_id", "accepted"
+#   @extend Spine.Model.Ajax
+#   @url: "/study_invites"
 
 
 @module 'App.Controllers.StudyInvites', ->
@@ -19,14 +19,19 @@ class StudyInvite extends Spine.Model
     clickSendInvite: (e) =>
       e.preventDefault()
       efar_id = $(e.target).data('efar_id')
+      statusEl = $(e.target).parent().siblings('.status')
+      statusEl.html 'sending'
+      $(e.target).hide()
       $.ajax({
         type: "POST"
         url: '/study_invites'
         data: {study_invite: {efar_id: efar_id}}
       }).done(=>
-        $(e.target).html "Invite Sent, click to send again"
+        statusEl.html "sent"
       ).fail(=>
-        $(e.target).html "Failed, click to send again"
+        statusEl.html "failed"
+        $(e.target).html "Send again"
+        $(e.target).show()
       )
 
 

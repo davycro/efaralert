@@ -28,6 +28,7 @@ EfarDispatch::Application.routes.draw do
   resources :study_invites do
     member do
       get 'accept'
+      get 'reject'
     end
     collection do
       get 'accepted'

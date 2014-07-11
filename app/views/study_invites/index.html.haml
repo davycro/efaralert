@@ -6,7 +6,8 @@
       %th Name
       %th Contact number
       %th Community
-      %th Invite Status
+      %th Status
+      %th 
 
   %tbody
     - @efars.each do |efar|
@@ -14,15 +15,13 @@
         %td= efar.full_name
         %td= efar.readable_contact_number
         %td= efar.community_center.name
+        %td.status
+          = efar.study_invite.status if efar.study_invite.present?
         %td
           - if efar.study_invite.blank?
-            %a{'href'=>'#', 'data-type'=>'sendInvite', 'data-efar_id'=>efar.id} Invite
+            %a{'href'=>'#', 'data-type'=>'sendInvite', 'data-efar_id'=>efar.id} Send Invite
           - if efar.study_invite.present? && efar.study_invite.pending?
-            Pending (
-            %a{'href'=>'#', 'data-type'=>'sendInvite', 'data-efar_id'=>efar.id} Send Again
-            )
-          - if efar.study_invite.present? && efar.study_invite.accepted?
-            Accepted
+            %a{'href'=>'#', 'data-type'=>'sendInvite', 'data-efar_id'=>efar.id} Send Invite
 
 
 

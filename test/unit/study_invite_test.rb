@@ -5,6 +5,8 @@
 #  id         :integer          not null, primary key
 #  efar_id    :integer          not null
 #  accepted   :boolean          default(FALSE)
+#  rejected   :boolean          default(FALSE)
+#  opened     :boolean          default(FALSE)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

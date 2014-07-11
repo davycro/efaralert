@@ -65,6 +65,8 @@ ActiveRecord::Schema.define(:version => 20140708151839) do
   create_table "study_invites", :force => true do |t|
     t.integer  "efar_id",                       :null => false
     t.boolean  "accepted",   :default => false
+    t.boolean  "rejected",   :default => false
+    t.boolean  "opened",     :default => false
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
   end
