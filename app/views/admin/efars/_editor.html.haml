@@ -43,3 +43,8 @@
     jQuery(function(){
       new App.Controllers.Admin.Efars.Form();
     });
+
+- if Rails.env.development?
+  %hr
+    = debug(@efar)
+    = debug(@efar.errors)

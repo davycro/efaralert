@@ -29,7 +29,7 @@ class Efar < ActiveRecord::Base
     :training_level, :training_date,
     :password, :password_confirmation
 
-  has_secure_password
+  # has_secure_password
 
   PER_PAGE = 50
   TRAINING_LEVELS = ['Basic EFAR', 'Intermediate EFAR (FAL1)', 'Advanced EFAR (FAL3)',
@@ -39,7 +39,7 @@ class Efar < ActiveRecord::Base
     :presence => true
   validates :contact_number, :uniqueness => true
   validates :given_address, :presence => true, :on => :create
-  validates :password, :on => :create, :presence => true
+  # validates :password, :on => :create, :presence => true
 
   belongs_to :community_center
 
