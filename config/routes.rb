@@ -35,6 +35,7 @@ EfarDispatch::Application.routes.draw do
       get 'pending'
     end
   end
+  resources :alerts
   
 
   match 'clickatell/' => 'clickatell#callback'

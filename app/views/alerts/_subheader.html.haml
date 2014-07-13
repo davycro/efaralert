@@ -1,0 +1,13 @@
+.page-header
+  %h2
+    = @page_name || "Alerts"
+    .pull-right
+      .btn-toolbar
+        .btn-group
+          %a.btn{:href => new_alert_path, :class=> controller.action_name=="new" && "active" }
+            New Alert
+
+- if flash[:notice].present?
+  .alert
+    = flash[:notice]
+    %button.close{:type=>"button", "data-dismiss"=>"alert"} &times;

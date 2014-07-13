@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140708151839) do
+ActiveRecord::Schema.define(:version => 20140713102338) do
 
   create_table "activity_logs", :force => true do |t|
     t.string   "message"
@@ -28,6 +28,25 @@ ActiveRecord::Schema.define(:version => 20140708151839) do
   end
 
   add_index "admins", ["email"], :name => "index_admins_on_email", :unique => true
+
+  create_table "alert_sms", :force => true do |t|
+    t.integer  "efar_id",    :null => false
+    t.integer  "alert_id",   :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "alerts", :force => true do |t|
+    t.string   "given_location"
+    t.string   "landmarks"
+    t.string   "incident_type"
+    t.float    "lat"
+    t.float    "lng"
+    t.string   "formatted_address"
+    t.string   "location_type"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
 
   create_table "community_centers", :force => true do |t|
     t.string   "name",              :null => false
