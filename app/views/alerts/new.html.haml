@@ -4,14 +4,14 @@
 
   %h4 Where is the emergency?
   .form-inline
-    %input.input-xlarge{:type=>'text', :placeholder=>'Location'}
-    %input.input-medium{:type=>'text', :value=>'Atlantis'}
-    %button.btn{:type=>'button'} Find
+    %input.input-xlarge{:type=>'text', :placeholder=>'Location', 'data-type'=>'location'}
+    %input.input-medium{:type=>'text', :value=>'Atlantis', 'data-type' => 'suburb'}
+    %button.btn{:type=>'button', 'data-type' => 'findButton'} Find
 
   #alert-location-mapper.google-map
 
   %label Landmarks
-  %input{:type=>'text'}
+  %input{:type=>'text', :name => 'landmarks'}
 
   %label Emergency type
   %input{:type=>'text'}
