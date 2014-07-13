@@ -46,7 +46,7 @@ class Efar < ActiveRecord::Base
   scope :active, where('training_date >= ? OR training_date IS NULL', 2.years.ago)
   scope :expired, where('training_date < ?', 2.years.ago)
 
-  has_one :study_invite
+  has_one :study_invite, :dependent => :destroy
 
   include Extensions::ContactNumber
   include Extensions::CapeTownLocation
