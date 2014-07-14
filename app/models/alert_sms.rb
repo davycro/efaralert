@@ -10,5 +10,12 @@
 #
 
 class AlertSms < ActiveRecord::Base
-  # attr_accessible :title, :body
+  attr_accessible :efar_id, :alert_id
+
+  belongs_to :efar
+  belongs_to :alert
+
+  def deliver
+    Rails.logger.info "Deliver SMS to #{efar.full_name} for emergency at #{alert.formatted_address}"
+  end
 end

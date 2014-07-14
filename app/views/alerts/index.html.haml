@@ -1,2 +1,24 @@
-%h1 Alerts#index
-%p Find me in app/views/alerts/index.html.haml
+.page-header
+  %h2
+    Alerts
+    .pull-right
+      .btn-toolbar
+        .btn-group
+          %a.btn.btn-primary{:href => new_alert_path, :class=> controller.action_name=="new" && "active" }
+            New Alert
+
+- if flash[:notice].present?
+  .alert
+    = flash[:notice]
+    %button.close{:type=>"button", "data-dismiss"=>"alert"} &times;
+
+%table.table
+  %thead
+    %tr
+      %th Location
+      %th EFARs notified
+  %tbody
+    - @alerts.each do |alert|
+      %tr
+        %td= alert.given_location
+        %td= alert.alert_sms.count

@@ -5,6 +5,9 @@ class Alert extends Spine.Model
   @extend Spine.Model.Ajax
   @url "/alerts"
 
+  ajaxAttributes: ->
+    return {}
+
 
 class GeocoderResult extends Spine.Model
   @configure "GeocoderResult", "lat", "lng", 
@@ -49,6 +52,7 @@ class GeocoderResult extends Spine.Model
       'click [data-type=findButton]' : 'clickFindButton'
       'click [data-type=geocoder-result]' : 'clickResult'
       'click [data-type=sendAlert]' : 'clickSendAlert'
+      'click [data-type=confirmAndSendAlert]' : 'clickConfirmAndSendAlert'
 
     constructor: ->
       @el = $('#alerts-content')
@@ -109,10 +113,21 @@ class GeocoderResult extends Spine.Model
         landmarks: @inputLandmarks.val()
         incident_type: (@inputIncidentType.val() or "Emergency")
       })
-      console.log @alert
       @confirmationModal.html view('confirmation_modal')(@alert)
       @confirmationModal.modal 'show'
 
+    clickConfirmAndSendAlert: (e) =>
+      e.preventDefault()
+      $('.modal-footer', @confirmationModal).html "Sending ..."
+      $.ajax({
+        type: "POST"
+        url: "/alerts"
+        data: {alert: @alert.attributes()}
+      }).done(=>
+        window.location.replace("/alerts")  
+      ).fail(=>
+        $('.modal-footer', @confirmationModal).html "Sorry something went wrong"  
+      )
 
     selectGeocoderResult: (result) ->
       $('li', @mapResults).removeClass 'active'
