@@ -1,0 +1,18 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  <h3>Please confirm</h3>
+</div>
+
+<div class="modal-body">
+  <p>You are about to send the following message to EFARs near the emergency:</p>
+  <blockquote>
+    <p>
+      EFAR Alert: <%= @incident_type %> at "<%= @given_location %>" (<%= @landmarks %>). Plz assist if safe.
+    </p>
+  </blockquote>
+</div>
+
+<div class="modal-footer">
+  <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+  <button class="btn btn-primary">Send Alert</button>
+</div>

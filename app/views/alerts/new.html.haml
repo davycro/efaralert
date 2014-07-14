@@ -1,23 +1,30 @@
-#new-alert
-  .page-header
-    %h2 New alert
+.page-header
+  %h2 New alert
 
-  %h4 Where is the emergency?
-  .form-inline
-    %input.input-xlarge{:type=>'text', :placeholder=>'Location', 'data-type'=>'location'}
-    %input.input-medium{:type=>'text', :value=>'Atlantis', 'data-type' => 'suburb'}
-    %button.btn{:type=>'button', 'data-type' => 'findButton'} Find
+%h4 Where is the emergency?
+.form-inline
+  %input.input-xxlarge{:type=>'text', :placeholder=>'Location', 'data-type'=>'location'}
+  %input.input-medium{:type=>'text', :value=>'Atlantis', 'data-type' => 'suburb'}
+  %button.btn{:type=>'button', 'data-type' => 'findButton'} Find
 
-  #alert-location-mapper.google-map
+.row
+  .span10
+    #alert-location-mapper.google-map
+  .span2
+    %h5 Results
+    %ul.nav.nav-pills.nav-stacked{'data-type'=>'mapResults'}
 
-  %label Landmarks
-  %input{:type=>'text', :name => 'landmarks'}
+%label Landmarks
+%input{:type=>'text', :name => 'landmarks'}
 
-  %label Emergency type
-  %input{:type=>'text'}
+%label Emergency type
+%input{:type=>'text', :name => 'incident_type'}
 
-  .form-actions
-    %button.btn.btn-primary Send Alert
+.form-actions
+  %button.btn.btn-primary{'data-type'=>'sendAlert'} Send Alert
+
+#confirmationModal.modal.hide.fade
+  Modal Content
 
 :javascript
 

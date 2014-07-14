@@ -39,7 +39,8 @@
             %li
               = link_to 'Logout', admin_session_path, :method => :delete 
 
-    .container
+    / id required for javascript scoping. do not remove
+    .container{'id'=>"#{controller.controller_name}-content"}
       .row
         = yield
       
