@@ -16,6 +16,9 @@ class AlertSms < ActiveRecord::Base
   belongs_to :alert
 
   def deliver
-    Rails.logger.info "Deliver SMS to #{efar.full_name} for emergency at #{alert.formatted_address}"
+    self.efar.send_text_message %{
+      EFAR Alert: #{self.alert.incident_type} at "#{self.alert.given_location}" 
+      (#{self.alert.landmarks}). Plz assist if safe.
+    }.squish
   end
 end
