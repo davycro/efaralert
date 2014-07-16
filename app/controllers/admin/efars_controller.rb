@@ -32,6 +32,11 @@ class Admin::EfarsController < InheritedResources::Base
     end
   end
 
+  def alert_subscribers
+    @efars = Efar.alert_subscriber.order('id DESC').all
+    render action: 'index'
+  end
+
   protected
     def collection
       @efars ||= Efar.active.order('id DESC').all

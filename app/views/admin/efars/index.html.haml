@@ -1,10 +1,13 @@
 = render 'subheader'
 
-%ul.nav.nav-pills
-  %li{class: controller.action_name=="index" && "active"}
-    %a{:href => admin_efars_path } Active
-  %li{class: controller.action_name=="expired" && "active"}
-    %a{:href => expired_admin_efars_path } Expired
+.index-header
+  %ul.nav.nav-pills
+    %li{class: controller.action_name=="index" && "active"}
+      %a{:href => admin_efars_path } Active
+    %li{class: controller.action_name=="expired" && "active"}
+      %a{:href => expired_admin_efars_path } Expired
+    %li{class: controller.action_name=="alert_subscribers" && "active"}
+      %a{:href => alert_subscribers_admin_efars_path } Mobile
 
 %table.table
   %thead

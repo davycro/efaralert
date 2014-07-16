@@ -5,9 +5,7 @@
       .btn-toolbar
         .btn-group
           %a.btn{:href => admin_efars_path, :class=> controller.action_name=="index" && "active" }
-            Table
-          %a.btn{:href => map_admin_efars_path, :class=> controller.action_name=="map" && "active" }
-            Map
+            Index
         .btn-group
           %a.btn{:href=> new_admin_efar_path, :class=> controller.action_name=="new" && "active" }
             Create

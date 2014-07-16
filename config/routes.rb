@@ -15,6 +15,7 @@ EfarDispatch::Application.routes.draw do
         get 'message'
         get 'expired'
         get 'active'
+        get 'alert_subscribers'
       end
       member do
         post 'text_message'
