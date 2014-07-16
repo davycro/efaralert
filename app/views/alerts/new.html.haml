@@ -10,6 +10,11 @@
 .row
   .span10
     #alert-location-mapper.google-map
+    %p.marker-info
+      Lat/Lng:
+      %span{'data-type'=>'latLng'} --
+      Nearby EFARs:
+      %span{'data-type'=>'nearbyEfars'} --
   .span2
     %h5 Results
     %ul.nav.nav-pills.nav-stacked{'data-type'=>'mapResults'}

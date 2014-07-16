@@ -68,6 +68,8 @@ class GeocoderResult extends Spine.Model
       '[data-type=mapResults]' : 'mapResults'
       'input[name=incident_type]' : 'inputIncidentType'
       'input[name=landmarks]' : 'inputLandmarks'
+      'span[data-type=latLng]' : 'spanLatLng'
+      'span[data-type=nearbyEfars]' : 'spanNearbyEfars'
     events:
       'click [data-type=findButton]' : 'clickFindButton'
       'click [data-type=geocoder-result]' : 'clickResult'
@@ -101,6 +103,7 @@ class GeocoderResult extends Spine.Model
       })
       google.maps.event.addListener @marker,'dragend', =>
         @map.panTo @marker.getPosition()
+        @loadNearbyEfars()
 
       GeocoderResult.bind 'refresh', (results) =>
         @mapResults.html view('map_sidebar')(results)
@@ -161,14 +164,25 @@ class GeocoderResult extends Spine.Model
       @marker.setPosition result.geometry.location
       @map.panTo @marker.getPosition()
       @selectedGeocoderResult = result
+      @loadNearbyEfars()
 
     setMarkerFromGeocoderResults: (results) ->
       result = results[0]
       @marker.setPosition result.geometry.location
       @map.panTo @marker.getPosition()
+      @loadNearbyEfars()
 
-    # extracts alert information, initializes model
-    buildAlert: ->
+    loadNearbyEfars: ->
+      $.ajax({
+        type: "GET"
+        url: "/admin/efars/near?lat=#{@marker.position.lat()}&lng=#{@marker.position.lng()}"
+      }).done((data) =>
+        @nearbyEfarCount = data.length
+        @spanNearbyEfars.html "#{@nearbyEfarCount}"
+      ).fail(=>
+        @spanNearbyEfars.html "Failed to load"
+      )
+      @spanLatLng.html "#{@marker.position.lat()},#{@marker.position.lng()}"
 
 
 
