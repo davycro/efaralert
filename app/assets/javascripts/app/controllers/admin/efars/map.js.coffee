@@ -39,7 +39,6 @@ class Efar extends Spine.Model
 
       Efar.fetch()
       
-
     addOne: (record) ->
       record.setMarker()
       record.setMap(@map)

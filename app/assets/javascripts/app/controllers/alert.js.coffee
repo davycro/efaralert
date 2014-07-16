@@ -8,6 +8,26 @@ class Alert extends Spine.Model
   ajaxAttributes: ->
     return {}
 
+class Efar extends Spine.Model
+  @configure "Efar", "formatted_address", "lat", "lng", "full_name"
+  @extend Spine.Model.Ajax
+  @url: "/admin/efars/map"
+
+  @bind 'refresh', (records) ->
+    record.setMarker() for record in records
+
+  setMarker: ->
+    @marker or= new google.maps.Marker(
+        position: new google.maps.LatLng(@lat, @lng)
+        icon: '/assets/markers/marker_dot_blue.png'
+        clickable: false
+      )
+
+  setMap: (map) ->
+    @map = map
+    @setMarker()
+    @marker.setMap(@map)
+
 
 class GeocoderResult extends Spine.Model
   @configure "GeocoderResult", "lat", "lng", 
@@ -59,6 +79,9 @@ class GeocoderResult extends Spine.Model
       super()
       @renderMap()
       @confirmationModal = $('#confirmationModal').modal({show: false})
+      Efar.bind 'refresh', (records) =>
+        @addEfar(record) for record in records
+      Efar.fetch()
 
     renderMap: ->
       @mapEl = $('#alert-location-mapper')
@@ -83,6 +106,9 @@ class GeocoderResult extends Spine.Model
         @mapResults.html view('map_sidebar')(results)
         @selectGeocoderResult results[0]
 
+    addEfar: (record) ->
+      record.setMarker()
+      record.setMap(@map)
 
     clickFindButton: (e) =>
       e.preventDefault()
