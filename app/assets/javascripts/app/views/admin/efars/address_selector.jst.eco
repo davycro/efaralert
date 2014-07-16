@@ -17,7 +17,7 @@
   <div class='modal-body'>
     <div class="row-fluid">
       <div class='span8'>
-        <div class='search-map' data-type='map'></div>
+        <div class='search-map google-map' data-type='map'></div>
       </div>
       <div class='span4'>
         <div class='map-sidebar' data-type='map-sidebar'>

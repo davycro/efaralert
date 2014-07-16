@@ -16,8 +16,9 @@
     <button class="btn" type="button" data-type='search-address'>Find</button>
   </div>
 <% end %>
-
-<input type="hidden" name="efar[lat]" value="<%= @lat %>">
+<div class="latlng" style="padding-top: 5px">
+  <input type="text" name="efar[lat]" value="<%= @lat %>" placeholder="lat" class="input-mini">
+  <input type="text" name="efar[lng]" value="<%= @lng %>" placeholder="lng" class="input-mini">
+</div>
 <input type="hidden" name="efar[formatted_address]" value="<%= @formatted_address %>">
-<input type="hidden" name="efar[lng]" value="<%= @lng %>">
 <input type="hidden" name="efar[location_type]" value="<%= @location_type %>">
