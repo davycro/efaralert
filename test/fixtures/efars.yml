@@ -15,6 +15,7 @@
 #  training_date       :date
 #  password_digest     :string(255)
 #  study_invite_id     :integer
+#  alert_subscriber    :boolean          default(FALSE)
 #
 
 # == Schema Information

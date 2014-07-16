@@ -32,7 +32,12 @@
     .control-group
       %label.control-label Training Date
       .controls.date-select
-        = date_select "efar", "training_date",end_year: Time.now.year, order: [:day, :month, :year]        
+        = date_select "efar", "training_date", end_year: Time.now.year, order: [:day, :month, :year]        
+
+    .control-group
+      %label.control-label Alert Subscriber?
+      .controls
+        = check_box "efar", "alert_subscriber"
 
     .form-actions
       %button.btn.btn-primary{:type=>'submit'} Save

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140713102338) do
+ActiveRecord::Schema.define(:version => 20140716112137) do
 
   create_table "activity_logs", :force => true do |t|
     t.string   "message"
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(:version => 20140713102338) do
     t.date    "training_date"
     t.string  "password_digest"
     t.integer "study_invite_id"
+    t.boolean "alert_subscriber",    :default => false
   end
 
   add_index "efars", ["training_date"], :name => "index_efars_on_training_date"

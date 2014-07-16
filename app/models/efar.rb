@@ -15,6 +15,7 @@
 #  training_date       :date
 #  password_digest     :string(255)
 #  study_invite_id     :integer
+#  alert_subscriber    :boolean          default(FALSE)
 #
 
 # The efar table represents all efars willing to provide a mobile phone number
@@ -27,7 +28,8 @@ class Efar < ActiveRecord::Base
     :lat, :lng, :formatted_address, :location_type,
     :given_address,
     :training_level, :training_date,
-    :password, :password_confirmation
+    :password, :password_confirmation,
+    :alert_subscriber
 
   # has_secure_password
 
