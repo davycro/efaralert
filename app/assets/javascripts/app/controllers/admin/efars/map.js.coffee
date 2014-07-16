@@ -49,7 +49,7 @@ class Efar extends Spine.Model
     renderMap: ->
       options = {
         zoom: 10
-        center: new google.maps.LatLng(-33.9838663, 18.5552215)
+        center: new google.maps.LatLng(-33.5638, 18.488)
         mapTypeId: google.maps.MapTypeId.ROADMAP
         streetViewControl: false
         mapTypeControl: false  
