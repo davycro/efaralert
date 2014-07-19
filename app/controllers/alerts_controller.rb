@@ -15,7 +15,8 @@ class AlertsController < ApplicationController
 
   def create
     @alert = Alert.new params[:alert]
-    if @alert.save
+    @alert.control_group = [false,true].sample
+    if @alert.save && !@alert.control_group
       @alert.deliver_sms
     end
     respond_with @alert

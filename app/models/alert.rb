@@ -12,6 +12,7 @@
 #  location_type     :string(255)
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  control_group     :boolean          default(FALSE)
 #
 
 class Alert < ActiveRecord::Base
@@ -30,6 +31,7 @@ class Alert < ActiveRecord::Base
   end
 
   def nearby_efars
-    Efar.alert_subscriber.near [self.lat, self.lng], 0.5, :units => :km
+    # Efar.alert_subscriber.near [self.lat, self.lng], 0.5, :units => :km
+    Efar.alert_subscriber.all
   end
 end

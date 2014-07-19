@@ -18,7 +18,7 @@ class AlertSms < ActiveRecord::Base
   def deliver
     self.efar.send_text_message %{
       EFAR Alert: #{self.alert.incident_type} at "#{self.alert.given_location}" 
-      (#{self.alert.landmarks}). Plz assist if safe.
+      (#{self.alert.landmarks}). Assist only if SAFE!
     }.squish
   end
 end
