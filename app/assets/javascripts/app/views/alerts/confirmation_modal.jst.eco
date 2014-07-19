@@ -7,7 +7,7 @@
   <p>You are about to send the following message to EFARs near the emergency:</p>
   <blockquote>
     <p>
-      EFAR Alert: <%= @incident_type %> at "<%= @given_location %>" (<%= @landmarks %>). Plz assist if safe.
+      EFAR Alert: <%= @incident_type %> at "<%= @given_location %>" <%= @landmarks %>.
     </p>
   </blockquote>
 </div>
