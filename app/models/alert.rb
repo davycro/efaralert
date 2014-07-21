@@ -31,7 +31,6 @@ class Alert < ActiveRecord::Base
   end
 
   def nearby_efars
-    # Efar.alert_subscriber.near [self.lat, self.lng], 0.5, :units => :km
-    Efar.alert_subscriber.all
+    Efar.alert_subscriber.near [self.lat, self.lng], 2, :units => :km
   end
 end
