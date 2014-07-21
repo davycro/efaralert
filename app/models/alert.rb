@@ -31,6 +31,9 @@ class Alert < ActiveRecord::Base
   end
 
   def nearby_efars
-    Efar.alert_subscriber.near [self.lat, self.lng], 2, :units => :km
+    efars = []
+    efars += Efar.alert_subscriber.near [self.lat, self.lng], 2, :units => :km
+    efars += Efar.alert_subscriber.where(training_level: 'Head Community Instructor').all
+    efars
   end
 end
