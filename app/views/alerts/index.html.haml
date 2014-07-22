@@ -22,7 +22,7 @@
   %tbody
     - @alerts.each_with_index do |alert, i|
       %tr
-        %td= i+1
+        %td= alert.id
         %td= alert.given_location
         %td= alert.incident_type
         %td
