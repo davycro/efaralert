@@ -19,6 +19,7 @@
       %th Location
       %th Incident type
       %th EFARs notified
+      %th Nearest EFAR (meters)
   %tbody
     - @alerts.each_with_index do |alert, i|
       %tr
@@ -29,3 +30,6 @@
           - if alert.control_group
             = "Control Group - "
           = alert.alert_sms.count
+        %td
+          - if alert.distance_of_nearest_efar.present?
+            = number_with_precision(alert.distance_of_nearest_efar*1000, precision: 0)

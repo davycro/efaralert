@@ -18,6 +18,7 @@ class AlertsController < ApplicationController
     @alert.control_group = [false,true].sample
     if @alert.save && !@alert.control_group
       @alert.deliver_sms
+      @alert.set_distance_of_nearest_efar
     end
     respond_with @alert
   end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140719105142) do
+ActiveRecord::Schema.define(:version => 20140723114026) do
 
   create_table "activity_logs", :force => true do |t|
     t.string   "message"
@@ -44,9 +44,10 @@ ActiveRecord::Schema.define(:version => 20140719105142) do
     t.float    "lng"
     t.string   "formatted_address"
     t.string   "location_type"
-    t.datetime "created_at",                           :null => false
-    t.datetime "updated_at",                           :null => false
-    t.boolean  "control_group",     :default => false
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
+    t.boolean  "control_group",            :default => false
+    t.float    "distance_of_nearest_efar"
   end
 
   create_table "community_centers", :force => true do |t|
