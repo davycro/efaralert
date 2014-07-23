@@ -23,6 +23,8 @@ class Alert < ActiveRecord::Base
 
   has_many :alert_sms, :dependent => :destroy, class_name: 'AlertSms'
 
+  EFAR_SEARCH_RADIUS = 2 # km
+
   def deliver_sms
     self.nearby_efars.each do |efar|
       sms = AlertSms.create(efar_id: efar.id, alert_id: self.id)  
@@ -32,7 +34,7 @@ class Alert < ActiveRecord::Base
 
   def nearby_efars
     efars = []
-    efars += Efar.alert_subscriber.near [self.lat, self.lng], 2, :units => :km
+    efars += Efar.alert_subscriber.near [self.lat, self.lng], EFAR_SEARCH_RADIUS, :units => :km
     efars += Efar.alert_subscriber.where(training_level: 'Head Community Instructor').all
     efars
   end

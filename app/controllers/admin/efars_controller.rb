@@ -25,7 +25,7 @@ class Admin::EfarsController < InheritedResources::Base
   def near
     respond_to do |format|
       format.json do
-        @efars = Efar.alert_subscriber.near([params[:lat], params[:lng]], 0.5, :units => :km)
+        @efars = Efar.alert_subscriber.near([params[:lat], params[:lng]], Alert::EFAR_SEARCH_RADIUS, :units => :km)
         render json: @efars.to_json
       end
     end
