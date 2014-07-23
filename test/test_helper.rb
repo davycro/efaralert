@@ -10,6 +10,11 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  def admin_login
+    @admin = admins(:one)
+    @admin.save
+    @request.session[:admin_id] = @admin.id
+  end
 end
 
 require 'mocha'

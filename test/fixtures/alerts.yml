@@ -1,0 +1,33 @@
+# == Schema Information
+#
+# Table name: alerts
+#
+#  id                       :integer          not null, primary key
+#  given_location           :string(255)
+#  landmarks                :string(255)
+#  incident_type            :string(255)
+#  lat                      :float
+#  lng                      :float
+#  formatted_address        :string(255)
+#  location_type            :string(255)
+#  created_at               :datetime         not null
+#  updated_at               :datetime         not null
+#  control_group            :boolean          default(FALSE)
+#  distance_of_nearest_efar :float
+#
+
+
+one:
+  given_location: "Gardenia St and Gazonia St, Atlantis"
+  landmarks: By the house
+  incident_type: Musculoskeletal complaint
+  lat: -33.573353
+  lng: 18.49334599
+  formatted_address: hell if i know
+  location_type: APPROXIMATE
+  control_group: false
+
+# column: value
+#
+two: {}
+#  column: value
