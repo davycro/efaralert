@@ -16,7 +16,8 @@
   %thead
     %tr
       %th #
-      %th Location
+      %th Location (landmark)
+      %th Lat/Lng
       %th Incident type
       %th EFARs notified
       %th Nearest EFAR (meters)
@@ -24,8 +25,12 @@
     - @alerts.each_with_index do |alert, i|
       %tr
         %td= alert.id
-        %td= alert.given_location
-        %td= alert.incident_type
+        %td
+          = display_alert_location_and_landmark alert
+        %td
+          = "#{alert.lat}, #{alert.lng}"
+        %td
+          = alert.incident_type
         %td
           - if alert.control_group
             = "Control Group - "

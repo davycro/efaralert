@@ -23,4 +23,13 @@ module ApplicationHelper
       :locals => locals
   end
 
+  def display_alert_location_and_landmark(alert)
+    str = ""
+    str += alert.given_location if alert.given_location.present?
+    if alert.landmarks.present?
+      str += " (#{alert.landmarks})"
+    end
+    str
+  end
+
 end
