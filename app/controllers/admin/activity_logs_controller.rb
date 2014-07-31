@@ -3,7 +3,7 @@ class Admin::ActivityLogsController < InheritedResources::Base
   before_filter :require_admin_login
 
   def index
-    @activity_log = ActivityLog.order('created_at DESC').all
+    @activity_log = ActivityLog.order('created_at DESC').limit(200).all
   end
 
 end
