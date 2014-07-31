@@ -15,7 +15,8 @@ class Admin::EfarsController < InheritedResources::Base
   def map
     respond_to do |format|
       format.json do 
-        @efars = Efar.alert_subscriber.all
+        # @efars = Efar.alert_subscriber.all
+        @efars = Efar.has_geolocation.all
         render json: @efars.to_json
       end
       format.html
