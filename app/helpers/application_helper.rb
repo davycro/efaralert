@@ -23,6 +23,11 @@ module ApplicationHelper
       :locals => locals
   end
 
+  def community_center_selector_field(record, locals={})
+    locals[:record] = record
+    render partial: "shared/community_center_selector_field", locals: locals
+  end
+
   def display_alert_location_and_landmark(alert)
     str = ""
     str += alert.given_location if alert.given_location.present?

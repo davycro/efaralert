@@ -11,12 +11,7 @@
     
     = horizontal_text_field(@efar, :full_name)
     = horizontal_text_field(@efar, :contact_number, :help_text => "Must be a south african number")
-
-    .control-group
-      %label.control-label Community Center
-      .controls
-        = select("efar", "community_center_id", CommunityCenter.all.collect { |c| [c.name, c.id] } )
-
+    = community_center_selector_field @efar
     = horizontal_text_field(@efar, :given_address)
 
     .control-group

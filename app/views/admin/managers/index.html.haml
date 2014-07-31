@@ -1,0 +1,35 @@
+= render 'shared/resource_page_header', :title => "Managers", :action_path => new_admin_manager_path
+
+%table.table
+  %thead
+    %tr
+      %th Name
+      %th Username
+      %th Community
+        
+
+  %tbody
+    - @managers.each do |manager|
+      %tr
+        %td= manager.full_name
+        %td= manager.username
+        %td= manager.community.name
+        %td
+          .btn-group
+            %a.btn.btn-mini.dropdown-toggle{"data-toggle"=>"dropdown", :href=>'#'}
+              %i.icon-cog
+              %span.caret
+            %ul.dropdown-menu.pull-right
+              %li
+                %a{:href=>edit_admin_manager_path(manager)}
+                  %i.icon-pencil
+                  Edit
+              %li
+                %a{:href=>admin_manager_path(manager), "data-confirm"=>"Are you sure?", "data-method"=>"delete"}
+                  %i.icon-trash
+                  Delete
+          
+.form-actions
+  %a.btn.btn-primary.btn-small{:href => new_admin_manager_path}
+    %i.icon-plus.icon-white
+    Add new Manager  

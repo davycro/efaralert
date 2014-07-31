@@ -1,5 +1,5 @@
 EfarDispatch::Application.routes.draw do
-  
+
   resource :session
   resources :efars
   match 'register/' => 'main#register', :as => :register
@@ -9,6 +9,7 @@ EfarDispatch::Application.routes.draw do
     resource :session
     resources :admins
     resources :community_centers
+    resources :managers
     resources :efars do
       collection do
         get 'map'

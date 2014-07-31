@@ -1,16 +1,4 @@
-.page-header
-  %h3
-    Community Centers
-    .pull-right
-      %a.btn.btn-primary.btn-small{:href => new_admin_community_center_path}
-        %i.icon-plus.icon-white
-        Create
-
-
-- if flash[:notice].present?
-  .alert
-    = flash[:notice]
-    %button.close{:type=>"button", "data-dismiss"=>"alert"} &times;
+= render 'shared/resource_page_header', :title => "Community Centers", :action_path => new_admin_community_center_path
 
 %table.table
   %thead

@@ -1,0 +1,13 @@
+.page-header
+  %h3
+    = title
+    .pull-right
+      %a.btn.btn-primary.btn-small{:href => action_path }
+        %i.icon-plus.icon-white
+        Create
+
+
+- if flash[:notice].present?
+  .alert
+    = flash[:notice]
+    %button.close{:type=>"button", "data-dismiss"=>"alert"} &times;

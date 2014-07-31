@@ -1,0 +1,4 @@
+.control-group
+  %label.control-label Community
+  .controls
+    = select "#{record.class.to_s.underscore}", "community_center_id", CommunityCenter.all.collect { |c| [c.name, c.id] } 
