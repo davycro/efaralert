@@ -1,0 +1,19 @@
+.container
+  .login-container
+    .row
+      .span2
+        = image_tag 'efar_login_logo_med.png'
+      .span6
+        %form{ :action => session_path, :method => "POST" }
+          %legend Login to EFAR Alert
+          - if flash[:notice].present?
+            .alert.alert-info=flash[:notice]
+          - if flash[:alert].present?
+            .alert=flash[:alert]
+          
+          %input{:type=>"text", :name=>'username', :placeholder=>"Username"}
+          %input{:type=>"password", :name=>"password", :placeholder=>"Password"}
+          %br
+          %button.btn{:type=>"submit"} Sign In
+
+                
