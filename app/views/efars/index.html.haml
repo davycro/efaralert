@@ -10,9 +10,11 @@
     - @efars.each do |efar|
       %tr
         %td
+          = efar.full_name
           - if efar.expired?
             %span.label.label-warning Expired
-          = efar.full_name
+          - if efar.not_competent?
+            %span.label.label-important Not Yet Competent
         %td
           = efar.readable_contact_number
         %td

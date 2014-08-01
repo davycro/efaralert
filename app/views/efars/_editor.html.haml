@@ -33,11 +33,11 @@
       %label.control-label Module scores
       .controls
         - 4.times do |i|
-          %input.span1{type:'text', name:"efar[module_#{i+1}]", placeholder: "#{i+1}"}
+          %input.span1{type:'text', name:"efar[module_#{i+1}]", placeholder: "#{i+1}", value: @efar["module_#{i+1}".to_sym]}
         %div{style:'margin-top:5px'}
           .checkbox
             CPR Competent?
-            = check_box @efar, :cpr_competent
+            = check_box 'efar', :cpr_competent
 
     = horizontal_text_field @efar, "certificate_number", help_text: "e.g. EFAR#{Time.now.year}/999"
 

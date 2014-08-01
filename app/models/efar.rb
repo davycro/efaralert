@@ -68,6 +68,15 @@ class Efar < ActiveRecord::Base
     self.training_date.present? && (self.training_date < 2.years.ago.to_date)
   end
 
+  def not_competent?
+    [self.module_1, self.module_2, self.module_3, self.module_4].each do |val|
+      return false if val.blank?
+    end
+    return true if (self.module_1+self.module_2+self.module_3+self.module_4)<30
+    return true unless self.cpr_competent
+    return false
+  end
+
   def self.all_for_page(page)  
     page ||= 0
     per_page = PER_PAGE

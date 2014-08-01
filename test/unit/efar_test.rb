@@ -32,6 +32,32 @@ require 'test_helper'
 class EfarTest < ActiveSupport::TestCase
   # Replace this with your real tests.
 
+  test "null cpr_competent equals competent" do
+    david = efars(:david)
+    david.cpr_competent = nil
+    assert !david.not_competent? 
+  end
+
+  test "low module score equals not competent" do
+    david = efars(:david)
+    david.module_4 = 1
+    david.module_3 = 1
+    david.module_2 = 1
+    david.module_1 = 1
+    david.cpr_competent = true
+    assert david.not_competent?
+  end
+
+    test "high module score equals not competent" do
+    david = efars(:david)
+    david.module_4 = 10
+    david.module_3 = 10
+    david.module_2 = 10
+    david.module_1 = 1
+    david.cpr_competent = true
+    assert !david.not_competent?
+  end
+
   test "can send a text message" do
     david = efars(:david)
     response = david.send_text_message "hello, this is just a test"
