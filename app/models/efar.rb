@@ -16,6 +16,15 @@
 #  password_digest     :string(255)
 #  study_invite_id     :integer
 #  alert_subscriber    :boolean          default(FALSE)
+#  dob                 :date
+#  gender              :string(255)
+#  occupation          :string(255)
+#  certificate_number  :string(255)
+#  module_1            :integer
+#  module_2            :integer
+#  module_3            :integer
+#  module_4            :integer
+#  cpr_competent       :boolean
 #
 
 # The efar table represents all efars willing to provide a mobile phone number
@@ -29,13 +38,14 @@ class Efar < ActiveRecord::Base
     :given_address,
     :training_level, :training_date,
     :password, :password_confirmation,
-    :alert_subscriber
-
-  # has_secure_password
+    :alert_subscriber,
+    :dob, :gender, :occupation,
+    :certificate_number, :module_4, :module_3, :module_2, :module_1, :cpr_competent
 
   PER_PAGE = 50
   TRAINING_LEVELS = ['Basic EFAR', 'Intermediate EFAR (FAL1)', 'Advanced EFAR (FAL3)',
     'Head Community Instructor', 'EMT', 'Paramedic']
+  GENDERS = %w{Male Female}
 
   validates :full_name, :community_center_id, :contact_number, 
     :presence => true

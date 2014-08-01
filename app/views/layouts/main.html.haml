@@ -3,7 +3,8 @@
   %head
     %title EFAR
     = stylesheet_link_tag "main", :media => "all"
-    / = javascript_include_tag "full_screen_login"
+    %script{:src => "http://maps.googleapis.com/maps/api/js?sensor=false"}
+    = javascript_include_tag "application"
     = csrf_meta_tags
     = render :partial => 'layouts/ga'
   %body
@@ -16,9 +17,10 @@
               .logo-text EFAR ALERT
           %ul.nav.pull-right
             %li
-              = link_to 'Login', session_path, :method => :delete
+              = link_to 'Logout', session_path, :method => :delete
 
-    = yield
+    .container
+      = yield
 
     .footer
       .container

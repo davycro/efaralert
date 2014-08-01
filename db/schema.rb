@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140731154956) do
+ActiveRecord::Schema.define(:version => 20140801154017) do
 
   create_table "activity_logs", :force => true do |t|
     t.string   "message"
@@ -80,6 +80,15 @@ ActiveRecord::Schema.define(:version => 20140731154956) do
     t.string  "password_digest"
     t.integer "study_invite_id"
     t.boolean "alert_subscriber",    :default => false
+    t.date    "dob"
+    t.string  "gender"
+    t.string  "occupation"
+    t.string  "certificate_number"
+    t.integer "module_1"
+    t.integer "module_2"
+    t.integer "module_3"
+    t.integer "module_4"
+    t.boolean "cpr_competent"
   end
 
   add_index "efars", ["training_date"], :name => "index_efars_on_training_date"

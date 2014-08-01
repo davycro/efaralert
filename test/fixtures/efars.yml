@@ -16,6 +16,15 @@
 #  password_digest     :string(255)
 #  study_invite_id     :integer
 #  alert_subscriber    :boolean          default(FALSE)
+#  dob                 :date
+#  gender              :string(255)
+#  occupation          :string(255)
+#  certificate_number  :string(255)
+#  module_1            :integer
+#  module_2            :integer
+#  module_3            :integer
+#  module_4            :integer
+#  cpr_competent       :boolean
 #
 
 DEFAULTS: &DEFAULTS

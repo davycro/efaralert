@@ -1,15 +1,51 @@
-.container
-  %form.form-horizontal{ :action => efars_path, :method => "POST" }
-    %legend 
-      Sign Up
-      %small receive SMS alerts when emergencies occur near your home
+#efarForm
+  .page-header
+    %h3
+      EFAR Editor
+      .pull-right
+        %a.btn.btn-link{:href => efars_path } Cancel  
+
+  .alert.alert-error.hide There were some errors saving the efar. See below for more information.
+
+  = form_for(@efar, :html => {:class => 'form-horizontal efar-form-editor'}) do |f|
     
-    = horizontal_text_field @efar, :full_name
-    = horizontal_text_field @efar, :contact_number, :label => 'Mobile phone number', :help_text => 'e.g. (010) 222 3344'
+    = horizontal_text_field(@efar, :full_name)
+    = horizontal_text_field(@efar, :contact_number, :help_text => "Must be a south african number")
+    .control-group
+      .controls
+        .checkbox
+          SMS Alert subscriber?
+          = check_box @efar, :alert_subscriber  
 
-    = horizontal_text_field @efar, :given_address, :label => 'Home address'
+    = horizontal_text_field(@efar, :given_address)
+    = render 'shared/efar_geolocation'
 
-    = horizontal_password_field @efar
+    = horizontal_select @efar, :gender, Efar::GENDERS
+    = horizontal_date_select @efar, 'dob', label: 'Day of birth', end_year: 100.years.ago.year
+    = horizontal_text_field @efar, :occupation
 
-    .form-actions
-      %button.btn.btn-primary{:type=>"submit"} Sign up
+    %hr
+
+    = horizontal_select @efar, :training_level, Efar::TRAINING_LEVELS
+    = horizontal_date_select @efar, :training_date, end_year: Time.now.year
+
+    .control-group
+      %label.control-label Module scores
+      .controls
+        - 4.times do |i|
+          %input.span1{type:'text', name:"efar[module_#{i+1}]", placeholder: "#{i+1}"}
+        %div{style:'margin-top:5px'}
+          .checkbox
+            CPR Competent?
+            = check_box @efar, :cpr_competent
+
+    = horizontal_text_field @efar, "certificate_number", help_text: "e.g. EFAR#{Time.now.year}/999"
+
+    = horizontal_form_actions cancel_path: efars_path
+
+  :javascript
+
+    jQuery(function(){
+      new App.Controllers.Admin.Efars.Form();
+    });
+

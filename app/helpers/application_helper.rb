@@ -16,6 +16,33 @@ module ApplicationHelper
       :locals => locals
   end
 
+  def horizontal_select(record, record_attribute, choices, locals={})
+    locals[:record] = record
+    locals[:record_attribute] = record_attribute
+    locals[:label] ||= record_attribute.to_s.titleize
+    locals[:choices] = choices
+    render partial: "shared/horizontal_select", locals: locals 
+  end
+
+  def horizontal_date_select(record, record_attribute, locals={})
+    locals[:record] = record
+    locals[:record_attribute] = record_attribute
+    locals[:label] ||= record_attribute.to_s.titleize
+    locals[:order] ||= [:day, :month, :year]
+    render partial: "shared/horizontal_date_select", locals: locals 
+  end
+
+  def horizontal_check_box(record, record_attribute, locals={})
+    locals[:record] = record
+    locals[:record_attribute] = record_attribute
+    locals[:label] ||= record_attribute.to_s.titleize
+    render partial: 'shared/horizontal_check_box', locals: locals
+  end
+
+  def horizontal_form_actions(locals={})
+    render partial: 'shared/horizontal_form_actions', locals: locals
+  end
+
   def horizontal_password_field(record, locals={})
     locals[:record] = record
 

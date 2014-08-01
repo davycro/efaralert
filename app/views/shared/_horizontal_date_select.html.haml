@@ -1,0 +1,4 @@
+.control-group{ :class => record.errors[record_attribute.to_sym].present? && "error" }
+  %label.control-label= label
+  .controls
+    = date_select record.class.to_s.underscore, record_attribute, {end_year: end_year, order: order}, {:class => 'span2'}

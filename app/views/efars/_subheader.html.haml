@@ -1,0 +1,11 @@
+.page-header
+  %h2
+    = "#{@current_manager.community.name} EFARs"
+    .pull-right
+      %a.btn.btn-primary{ href: new_efar_path }
+        Create EFAR
+
+- if flash[:notice].present?
+  .alert
+    = flash[:notice]
+    %button.close{:type=>"button", "data-dismiss"=>"alert"} &times;

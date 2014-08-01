@@ -1,0 +1,31 @@
+= render 'subheader'
+
+%table.table
+  %thead
+    %tr
+      %th Name
+      %th Mobile phone #
+      %th Home address
+  %tbody
+    - @efars.each do |efar|
+      %tr
+        %td
+          = efar.full_name
+        %td
+          = efar.readable_contact_number
+        %td
+          = efar.given_address
+        %td
+          .btn-group
+            %a.btn.btn-mini.dropdown-toggle{'data-toggle'=>'dropdown', href: '#'}
+              %i.icon-cog
+              %span.caret
+            %ul.dropdown-menu.pull-right
+              %li
+                %a{href: edit_efar_path(efar) }
+                  %i.icon-pencil
+                  Edit
+              %li
+                %a{href: efar_path(efar), 'data-confirm'=>'are you sure?', 'data-method'=>'delete'}
+                  %i.icon-trash
+                  Delete
