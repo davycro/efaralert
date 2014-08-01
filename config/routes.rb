@@ -2,7 +2,6 @@ EfarDispatch::Application.routes.draw do
 
   resource :session
   resources :efars
-  match 'register/' => 'main#register', :as => :register
 
   # Admin resources
   namespace :admin do
@@ -93,7 +92,7 @@ EfarDispatch::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   match 'admin/efars' => 'admin/efars#index', as: :admin_root
-  root :to => 'main#landing'
+  root :to => 'efars#index'
 
   # See how all your routes lay out with "rake routes"
 

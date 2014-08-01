@@ -6,14 +6,14 @@ class ApplicationController < ActionController::Base
   #
   # Login Methods
 
-  def require_efar_login
-    unless current_efar
+  def require_manager_login
+    unless current_manager
       redirect_to new_session_url
     end
   end
 
-  def current_efar
-    @current_efar ||= Efar.find(session[:efar_id]) if session[:efar_id].present?
+  def current_manager
+    @current_manager ||= Manager.find(session[:manager_id]) if session[:manager_id].present?
   end
 
   # admin
