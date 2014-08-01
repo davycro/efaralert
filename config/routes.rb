@@ -1,7 +1,13 @@
 EfarDispatch::Application.routes.draw do
 
   resource :session
-  resources :efars
+  resources :efars do
+    collection do
+      get 'expired'
+      get 'nyc' # not yet competent
+      get 'active'
+    end
+  end
 
   # Admin resources
   namespace :admin do

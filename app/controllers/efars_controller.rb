@@ -3,7 +3,24 @@ class EfarsController < ApplicationController
 	layout 'main'
 
   def index
-    @efars = Efar.all
+    @efars = @current_manager.efars.order('id DESC').all
+  end
+
+  def active
+    @efars = @current_manager.efars.active.order('id DESC').all
+    @efars.delete_if { |e| e.not_competent? }
+    render action: 'index'
+  end
+
+  def nyc
+    @efars = @current_manager.efars.order('id DESC').all
+    @efars.delete_if { |e| !e.not_competent? }
+    render action: 'index'
+  end
+
+  def expired
+    @efars = @current_manager.efars.expired.order('id DESC').all
+    render action: 'index'
   end
 
   def new

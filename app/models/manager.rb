@@ -21,6 +21,10 @@ class Manager < ActiveRecord::Base
   validates :full_name, :username, :community_center_id, presence: true
   validates :username, uniqueness: true
 
+  def efars
+    community.efars
+  end
+
   def community
     @community ||= self.community_center
   end

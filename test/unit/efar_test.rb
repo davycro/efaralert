@@ -48,7 +48,7 @@ class EfarTest < ActiveSupport::TestCase
     assert david.not_competent?
   end
 
-    test "high module score equals not competent" do
+  test "high module score equals not competent" do
     david = efars(:david)
     david.module_4 = 10
     david.module_3 = 10
@@ -56,6 +56,12 @@ class EfarTest < ActiveSupport::TestCase
     david.module_1 = 1
     david.cpr_competent = true
     assert !david.not_competent?
+  end
+
+  test "old training date equals expired" do
+    david = efars(:david)
+    david.training_date = 2.years.ago-1.day
+    assert david.expired?  
   end
 
   test "can send a text message" do

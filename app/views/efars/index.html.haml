@@ -1,35 +1,17 @@
-= render 'subheader'
-
-%table.table
-  %thead
-    %tr
-      %th Name
-      %th Mobile phone #
-      %th Home address
-  %tbody
-    - @efars.each do |efar|
-      %tr
-        %td
-          = efar.full_name
-          - if efar.expired?
-            %span.label.label-warning Expired
-          - if efar.not_competent?
-            %span.label.label-important Not Yet Competent
-        %td
-          = efar.readable_contact_number
-        %td
-          = efar.given_address
-        %td
-          .btn-group
-            %a.btn.btn-mini.dropdown-toggle{'data-toggle'=>'dropdown', href: '#'}
-              %i.icon-cog
-              %span.caret
-            %ul.dropdown-menu.pull-right
-              %li
-                %a{href: edit_efar_path(efar) }
-                  %i.icon-pencil
-                  Edit
-              %li
-                %a{href: efar_path(efar), 'data-confirm'=>'are you sure?', 'data-method'=>'delete'}
-                  %i.icon-trash
-                  Delete
+.row
+  .span2
+    %ul.nav.nav-tabs.nav-stacked
+      %li{'class' => controller.action_name=='active' && "active"}
+        %a{href: active_efars_path}
+          Active
+      %li{'class' => controller.action_name=='nyc' && "active"}
+        %a{href: nyc_efars_path}
+          Not yet competent
+      %li{'class' => controller.action_name=='expired' && "active"}
+        %a{href: expired_efars_path}
+          Expired
+      %li{'class' => controller.action_name=='index' && "active"}
+        %a{href: efars_path}
+          Everyone
+  .span10
+    = render 'table'
