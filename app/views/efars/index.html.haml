@@ -10,6 +10,8 @@
     - @efars.each do |efar|
       %tr
         %td
+          - if efar.expired?
+            %span.label.label-warning Expired
           = efar.full_name
         %td
           = efar.readable_contact_number

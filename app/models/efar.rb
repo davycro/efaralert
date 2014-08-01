@@ -64,6 +64,10 @@ class Efar < ActiveRecord::Base
   include Extensions::ContactNumber
   include Extensions::CapeTownLocation
 
+  def expired?
+    self.training_date.present? && (self.training_date < 2.years.ago.to_date)
+  end
+
   def self.all_for_page(page)  
     page ||= 0
     per_page = PER_PAGE
