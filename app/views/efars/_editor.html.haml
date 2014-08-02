@@ -20,6 +20,8 @@
     = horizontal_text_field(@efar, :given_address)
     = render 'shared/efar_geolocation'
 
+    %hr
+    
     = horizontal_select @efar, :gender, Efar::GENDERS
     = horizontal_date_select @efar, 'dob', label: 'Day of birth', end_year: 100.years.ago.year
     = horizontal_text_field @efar, :occupation
@@ -40,6 +42,13 @@
             = check_box 'efar', :cpr_competent
 
     = horizontal_text_field @efar, "certificate_number", help_text: "e.g. EFAR#{Time.now.year}/999"
+
+    %hr
+    .control-group
+      .controls
+        .checkbox
+          Issued Bib?
+          = check_box 'efar', :has_bib
 
     = horizontal_form_actions cancel_path: efars_path
 

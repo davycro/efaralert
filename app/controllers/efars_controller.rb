@@ -12,6 +12,11 @@ class EfarsController < ApplicationController
     render action: 'index'
   end
 
+  def bibbed
+    @efars = @current_manager.efars.has_bib.order('id DESC').all
+    render action: 'index'
+  end
+
   def nyc
     @efars = @current_manager.efars.order('id DESC').all
     @efars.delete_if { |e| !e.not_competent? }

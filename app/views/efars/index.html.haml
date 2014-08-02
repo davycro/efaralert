@@ -1,9 +1,25 @@
+.navbar
+  .navbar-inner
+    %form.form-search.navbar-form.pull-left{:action => search_efars_path, :method => 'get'}
+      %input{type:'text', placeholder: 'Search EFARs', name: 'search'}
+      %button.btn{type:'submit'} Search
+    %ul.nav.pull-right
+      %li.divider-vertical
+      %li
+        %a{href:'#'} Message Group
+      %li.divider-vertical
+      %li
+        %a{href:new_efar_path}
+          Create EFAR
 .row
   .span3
     %ul.nav.nav-tabs.nav-stacked
       %li{'class' => controller.action_name=='active' && "active"}
         %a{href: active_efars_path}
           Active
+      %li{'class' => controller.action_name=='bibbed' && "active"}
+        %a{href: bibbed_efars_path}
+          Issued Bib
       %li{'class' => controller.action_name=='nyc' && "active"}
         %a{href: nyc_efars_path}
           Not yet competent
@@ -14,21 +30,4 @@
         %a{href: efars_path}
           Everyone
   .span9
-    .navbar
-      .navbar-inner
-        %form.form-search.navbar-form.pull-left{:action => search_efars_path, :method => 'get'}
-          %input{type:'text', placeholder: 'Search EFARs', name: 'search'}
-          %button.btn{type:'submit'} Search
-        %ul.nav.pull-right
-          %li.divider-vertical
-          %li
-            %a{href:'#'} Message Group
-          %li.divider-vertical
-          %li
-            %a{href:new_efar_path}
-              Create EFAR
-
-
-
-
     = render 'table'

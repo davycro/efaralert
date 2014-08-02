@@ -25,6 +25,7 @@
 #  module_3            :integer
 #  module_4            :integer
 #  cpr_competent       :boolean
+#  has_bib             :boolean          default(FALSE)
 #
 
 DEFAULTS: &DEFAULTS

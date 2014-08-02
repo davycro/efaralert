@@ -7,6 +7,7 @@ EfarDispatch::Application.routes.draw do
       get 'nyc' # not yet competent
       get 'active'
       get 'search'
+      get 'bibbed'
     end
   end
 

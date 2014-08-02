@@ -8,10 +8,13 @@
       %tr
         %td
           = efar.full_name
-          - if efar.expired?
-            %span.label.label-warning Expired
-          - if efar.not_competent?
-            %span.label.label-important Not Yet Competent
+          - if controller.action_name != 'bibbed' and efar.has_bib
+            %span.label.label-warning Issued Bib
+          - if controller.action_name == 'index'
+            - if efar.expired?
+              %span.label.label-warning Training Expired
+            - if efar.not_competent?
+              %span.label.label-important Not Yet Competent
         %td
           = efar.readable_contact_number
         %td

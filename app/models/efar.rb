@@ -25,6 +25,7 @@
 #  module_3            :integer
 #  module_4            :integer
 #  cpr_competent       :boolean
+#  has_bib             :boolean          default(FALSE)
 #
 
 # The efar table represents all efars willing to provide a mobile phone number
@@ -40,7 +41,8 @@ class Efar < ActiveRecord::Base
     :password, :password_confirmation,
     :alert_subscriber,
     :dob, :gender, :occupation,
-    :certificate_number, :module_4, :module_3, :module_2, :module_1, :cpr_competent
+    :certificate_number, :module_4, :module_3, :module_2, :module_1, :cpr_competent,
+    :has_bib
 
   PER_PAGE = 50
   TRAINING_LEVELS = ['Basic EFAR', 'Intermediate EFAR (FAL1)', 'Advanced EFAR (FAL3)',
@@ -58,6 +60,7 @@ class Efar < ActiveRecord::Base
   scope :active, where('training_date >= ? OR training_date IS NULL', 2.years.ago)
   scope :expired, where('training_date < ?', 2.years.ago)
   scope :alert_subscriber, where('alert_subscriber = ?', true)
+  scope :has_bib, where('has_bib = ?', true)
 
   has_one :study_invite, :dependent => :destroy
 
