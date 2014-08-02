@@ -88,5 +88,9 @@ class Efar < ActiveRecord::Base
     super(:methods => [:readable_contact_number])
   end
 
+  def self.search(search)
+    search_condition = "%" + search + "%"
+    where('full_name LIKE ?', search_condition)
+  end
 
 end

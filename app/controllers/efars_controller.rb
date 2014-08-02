@@ -23,6 +23,12 @@ class EfarsController < ApplicationController
     render action: 'index'
   end
 
+  def search
+    search_condition = "%" + params[:search] + "%"
+    @efars = @current_manager.efars.where('full_name LIKE ?', search_condition).all
+    render action: 'index'
+  end
+
   def new
     @efar = Efar.new
   end

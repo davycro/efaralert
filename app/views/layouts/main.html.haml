@@ -12,10 +12,13 @@
     .navbar.navbar-inverse.navbar-fixed-top.navbar-efar
       .navbar-inner
         .container
-          .efar-brand{:href=>'#'}
+          %a.efar-brand{:href=>active_efars_path}
             .efar-shield
               %i.efar-sprite-logo
-              .logo-text EFAR MANAGER
+              .logo-text= @current_manager.community.name
+          %ul.nav
+            %li{:class => controller.controller_name == 'efars' && 'active'}
+              = link_to 'EFARs', active_efars_path
           %ul.nav.pull-right
             %li
               = link_to 'Logout', session_path, :method => :delete

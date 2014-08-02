@@ -6,6 +6,7 @@ EfarDispatch::Application.routes.draw do
       get 'expired'
       get 'nyc' # not yet competent
       get 'active'
+      get 'search'
     end
   end
 
