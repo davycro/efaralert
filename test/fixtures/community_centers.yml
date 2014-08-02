@@ -18,8 +18,8 @@
 #  formatted_address :string(255)
 #
 
-mothers_unite:
-  name: "Mothers Unite"
+one:
+  name: "Atlantis Efar Group"
   street: "38 Gladiola Road"
   postal_code: "7945"
   city: "Cape Town"

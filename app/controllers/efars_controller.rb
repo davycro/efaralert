@@ -58,6 +58,7 @@ class EfarsController < ApplicationController
     if @efar.save
       redirect_to efars_path, notice: "EFAR created"
     else
+      puts "FAILED TO SAVE EFAR: #{@efar.errors.to_json}" if Rails.env.test?
       render action: 'new'
     end
   end

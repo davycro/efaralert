@@ -17,7 +17,11 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
+one:
+  full_name: David Crockett
+  username: dcro
+  password_digest: dcro
+  community_center: one
 # column: value
 #
 two: {}

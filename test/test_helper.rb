@@ -15,6 +15,12 @@ class ActiveSupport::TestCase
     @admin.save
     @request.session[:admin_id] = @admin.id
   end
+
+  def manager_login
+    @manager = managers(:one)
+    @manager.save
+    @request.session[:manager_id] = @manager.id
+  end
 end
 
 require 'mocha'
