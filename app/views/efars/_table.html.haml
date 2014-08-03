@@ -2,7 +2,7 @@
   %thead
     %tr
       %th
-        = pluralize @efars.size, "EFAR"
+        = pluralize @efars.size, "#{@efars_group_title} EFAR"
   %tbody
     - @efars.each do |efar|
       = render partial: 'efar_modal', locals: {efar: efar}

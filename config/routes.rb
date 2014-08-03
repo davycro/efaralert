@@ -10,6 +10,9 @@ EfarDispatch::Application.routes.draw do
       get 'search'
       get 'bibbed'
     end
+    member do
+      post 'text_message'
+    end
   end
 
   # Admin resources
