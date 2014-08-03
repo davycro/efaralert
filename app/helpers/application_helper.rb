@@ -40,6 +40,7 @@ module ApplicationHelper
   end
 
   def horizontal_form_actions(locals={})
+    locals[:cancel_path] ||= nil
     render partial: 'shared/horizontal_form_actions', locals: locals
   end
 

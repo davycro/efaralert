@@ -1,5 +1,6 @@
 EfarDispatch::Application.routes.draw do
 
+  resource :account
   resource :session
   resources :efars do
     collection do

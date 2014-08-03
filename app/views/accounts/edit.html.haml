@@ -1,0 +1,7 @@
+= form_tag account_path, method: 'PUT', class: 'form-horizontal' do
+  %legend Account Editor
+  = horizontal_text_field @manager, :full_name
+  = horizontal_text_field @manager, :username
+  = horizontal_password_field @manager
+
+  = horizontal_form_actions

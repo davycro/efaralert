@@ -1,0 +1,19 @@
+- if flash[:notice].present?
+  .alert.alert-info=flash[:notice]
+
+.page-header
+  %h2 
+    Your Account
+    .pull-right
+      %a.btn.btn-link{href:edit_account_path} Edit
+
+
+%dl.dl-horizontal
+  %dt Full name
+  %dd= @manager.full_name
+  %dt Username
+  %dd= @manager.username
+  %dt Organization
+  %dd= @manager.community.name
+  %dt
+  %dd= link_to 'edit', edit_account_path

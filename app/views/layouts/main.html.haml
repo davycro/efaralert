@@ -20,8 +20,15 @@
             %li{:class => controller.controller_name == 'efars' && 'active'}
               = link_to 'EFARs', active_efars_path
           %ul.nav.pull-right
-            %li
-              = link_to 'Logout', session_path, :method => :delete
+            %li.dropdown
+              %a.dropdown-toggle{'data-toggle'=>'dropdown', href: '#'}
+                = @current_manager.full_name
+                %b.caret
+              %ul.dropdown-menu
+                %li
+                  = link_to 'Your Account', account_path
+                %li
+                  = link_to 'Logout', session_path, :method => :delete
 
     .container
       = yield
