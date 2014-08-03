@@ -5,9 +5,11 @@
         = pluralize @efars.size, "EFAR"
   %tbody
     - @efars.each do |efar|
+      = render partial: 'efar_modal', locals: {efar: efar}
       %tr
         %td
-          = efar.full_name
+          %a{href:"#efar_#{efar.id}_modal", role:'button', 'data-toggle'=>'modal'}
+            = efar.full_name
           - if controller.action_name != 'bibbed' and efar.has_bib
             %span.label.label-warning Issued Bib
           - if controller.action_name == 'index'
