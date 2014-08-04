@@ -1,6 +1,0 @@
-Failed to message the following recipients. Please make sure thier phone number is correct and try again. <br/><br/>
-<ul>
-<% for efar in @: %>
-  <li><%= efar.full_name %> "<%= efar.contact_number %>"</li>
-<% end %>
-</ul>

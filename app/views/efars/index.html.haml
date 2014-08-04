@@ -6,34 +6,13 @@
     %ul.nav.pull-right
       %li.divider-vertical
       %li
-        %a{href:'#groupMessageModal', role:'button', 'data-toggle'=>'modal'} Message Group
+        %a{href:'#messageModal', 'data-toggle'=>'message-modal'} Message EFARs
+        - modal_title = "Message " + pluralize(@efars.size, "#{@efars_group_title} EFAR")
+        #messageModal{'data-efars'=>@efars.to_json, 'data-title' => modal_title }
       %li.divider-vertical
       %li
         %a{href:new_efar_path}
           Create EFAR
-
-#groupMessageModal.modal.hide.fade{role: 'dialog', tabindex: '-1'}
-  .modal-header
-    %a.close{href:'#','data-dismiss'=>'modal'} &times;
-    %h3
-      Send message to 
-      = pluralize @efars.size, "#{@efars_group_title} EFAR"
-  .modal-body
-    .alert{'data-type'=>'sending', 'style'=>'display:none;'}
-      Sending message... please keep this window open.
-    %form{'data-efars'=>@efars.to_json(:only => [:id, :full_name])}
-      %textarea.input-block-level{:rows=>'3', placeholder: 'What do you want to say?'}
-      .sent-message
-      .group{'data-type'=>'sent-group', 'style'=>'display:none;'}
-        %label Sent
-        .tokens
-      .group{'data-type'=>'error-group', 'style'=>'display:none;'}
-        %label Error
-        .tokens
-  .modal-footer
-    %button.btn.btn-primary{type:'button'} Send
-    %a.btn.btn-link{href:'#', 'data-dismiss'=>'modal', 'data-type'=>'cancel'} Cancel
-
 
 .row
   .span3
@@ -56,7 +35,3 @@
   .span9
     = render 'table'
 
-:javascript
-  jQuery(function(){
-    new App.Controllers.GroupMessageModal();
-  });

@@ -1,11 +1,11 @@
+@module 'App.Plugins', ->
 
-@module 'App.Controllers', ->
-
-  class @GroupMessageModal extends Spine.Controller
+  class @MessageModal extends Spine.Controller
     elements:
       'form' : 'form'
       'button' : 'button'
       'textarea' : 'textarea'
+      '.modal' : 'modal'
       '[data-type=sent-group]': 'sentGroup'
       '[data-type=error-group]':'errorGroup'
       '[data-type=sending]' : 'sendingBox'
@@ -14,10 +14,17 @@
       'click button' : 'clickButton'
       'submit form' : 'submitForm'
 
-    constructor: ->
-      @el = $('#groupMessageModal')
+    constructor: (selector)->
+      @el = $(selector)
       super()
-      @loadEfars()
+      @loadData()
+      @html view('view')(@)
+      @modal.on 'shown', =>
+        @textarea.focus()
+      
+
+    activate: ()->
+      @modal.modal('show')
 
     done: () ->
       @sendingBox.html "Done. Message sent."
@@ -32,7 +39,7 @@
       efar = @efars.shift()
       $.ajax({
         type: "POST"
-        url: "/efars/#{efar.id}/text_message"
+        url: "#{@url}/#{efar.id}/text_message"
         data: {message: @textarea.attr('value')}
       }).done(=>
         efar.tokenType = 'sent'
@@ -46,8 +53,10 @@
         @sendNextMessage()
       )
 
-    loadEfars: ->
-      @efars = $(@form).data('efars')
+    loadData: ->
+      @efars = $(@el).data('efars')
+      @url = $(@el).data('url') or "/efars"
+      @modal_title = $(@el).data('title') or "Message EFARs"
 
     validateRecipients: () ->
       # stop if there are no recipients
@@ -80,6 +89,18 @@
       @sendingBox.show()
       @sendNextMessage()
 
+
+view = (name) ->
+  JST["plugins/message_modal/#{name}"]
+
+message_modals = {}
+
+$(document).on 'click', '[data-toggle="message-modal"]', (e) ->
+  e.preventDefault()
+  selector = $(@).attr('href')
+  message_modals[selector] or= new App.Plugins.MessageModal(selector)
+  controller = message_modals[selector]
+  controller.activate() 
 
 
 

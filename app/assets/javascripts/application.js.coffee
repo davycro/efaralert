@@ -7,7 +7,7 @@
 #= require spine/manager
 #= require jquery.timeago
 #= require_self
-#= require_tree ./lib
+#= require_tree ./plugins
 #= require_tree ./app
 
 @module = (names, fn) ->

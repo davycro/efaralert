@@ -1,0 +1,29 @@
+<div class="modal hide fade" role="dialog" tabindex="-1">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal" href="#">&times;</a>
+    <h3>
+      <%= @modal_title %>
+    </h3>
+  </div>
+  <div class="modal-body">
+    <div class="alert" data-type="sending" style="display:none;">
+      Sending message... please keep this window open.
+    </div>
+    <form>
+      <textarea class="input-block-level" placeholder="What do you want to say?" rows="3"></textarea>
+      <div class="sent-message"></div>
+      <div class="group" data-type="sent-group" style="display:none;">
+        <label>Sent</label>
+        <div class="tokens"></div>
+      </div>
+      <div class="group" data-type="error-group" style="display:none;">
+        <label>Error</label>
+        <div class="tokens"></div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" type="button">Send</button>
+    <a class="btn btn-link" data-dismiss="modal" data-type="cancel" href="#">Cancel</a>
+  </div>
+</div>

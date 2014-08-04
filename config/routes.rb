@@ -24,7 +24,6 @@ EfarDispatch::Application.routes.draw do
     resources :efars do
       collection do
         get 'map'
-        get 'message'
         get 'expired'
         get 'active'
         get 'alert_subscribers'

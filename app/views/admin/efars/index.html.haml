@@ -1,13 +1,20 @@
-= render 'subheader'
-
-.index-header
-  %ul.nav.nav-pills
-    %li{class: controller.action_name=="index" && "active"}
-      %a{:href => admin_efars_path } Active
-    %li{class: controller.action_name=="expired" && "active"}
-      %a{:href => expired_admin_efars_path } Expired
-    %li{class: controller.action_name=="alert_subscribers" && "active"}
-      %a{:href => alert_subscribers_admin_efars_path } Mobile
+.navbar
+  .navbar-inner
+    %form.form-search.navbar-form.pull-left{:action => search_efars_path, :method => 'get'}
+      %input{type:'text', placeholder: 'Search EFARs', name: 'search'}
+      %button.btn{type:'submit'} Search
+    %ul.nav.pull-right
+      %li.divider-vertical
+      %li
+        %a{href:'#'} View on map
+      %li.divider-vertical
+      %li
+        %a{href:'#messageModal', 'data-toggle'=>'message-modal'} Message EFARs
+        #messageModal{'data-efars'=>@efars.to_json, 'data-url'=>'/admin/efars'}
+      %li.divider-vertical
+      %li
+        %a{href:new_efar_path}
+          Create EFAR
 
 %table.table
   %thead

@@ -8,10 +8,6 @@ class Admin::EfarsController < InheritedResources::Base
     render action: 'index'
   end
 
-  def message
-    @community_centers = CommunityCenter.all
-  end
-
   def map
     respond_to do |format|
       format.json do 
