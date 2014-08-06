@@ -1,0 +1,38 @@
+%table.table
+  %thead
+    %tr
+      %th
+        = pluralize @efars.size, "#{@efars_group_title} EFAR"
+        = " - #{@community.name}" if @community.present?
+  %tbody
+    - @efars.each do |efar|
+      = render partial: 'efar_modal', locals: {efar: efar}
+      %tr
+        %td
+          %a{href:"#efar_#{efar.id}_modal", role:'button', 'data-toggle'=>'modal'}
+            = efar.full_name
+          - if controller.action_name != 'bibbed' and efar.has_bib
+            %span.label.label-warning Issued Bib
+          - if controller.action_name == 'index'
+            - if efar.expired?
+              %span.label.label-warning Training Expired
+            - if efar.not_competent?
+              %span.label.label-important Not Yet Competent
+        %td
+          = efar.readable_contact_number
+        %td
+          = efar.given_address
+        %td
+          .btn-group
+            %a.btn.btn-mini.dropdown-toggle{'data-toggle'=>'dropdown', href: '#'}
+              %i.icon-cog
+              %span.caret
+            %ul.dropdown-menu.pull-right
+              %li
+                %a{href: edit_efar_path(efar) }
+                  %i.icon-pencil
+                  Edit
+              %li
+                %a{href: efar_path(efar), 'data-confirm'=>'are you sure?', 'data-method'=>'delete'}
+                  %i.icon-trash
+                  Delete

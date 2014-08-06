@@ -16,33 +16,32 @@
         %a{href:new_efar_path}
           Create EFAR
 
-%table.table
-  %thead
-    %tr
-      %th Name
-      %th Contact number
-      %th Location
-      %th Community
+.row
+  .span3
+    %div
+      %label Community:
+      %select.community-select
+        %option{value: active_admin_efars_path, selected: @community.blank? && "true"} All
+        - CommunityCenter.all.each do |c|
+          %option{value: url_for(community_center_id: c.id), selected: @community==c && "true"}= c.name
 
-  %tbody
-    - @efars.each do |efar|
-      %tr
-        %td= link_to efar.full_name, [:admin, efar]
-        %td= efar.readable_contact_number
-        %td= efar.given_address
-        %td= efar.community_center.name
-        %td
-          .btn-group
-            %a.btn.btn-mini.dropdown-toggle{"data-toggle"=>"dropdown", :href=>'#'}
-              %i.icon-cog
-              %span.caret
-            %ul.dropdown-menu.pull-right
-              %li
-                %a{:href=>edit_admin_efar_path(efar)}
-                  %i.icon-pencil
-                  Edit
-              %li
-                %a{:href=>admin_efar_path(efar), "data-confirm"=>"Are you sure?", "data-method"=>"delete"}
-                  %i.icon-trash
-                  Delete
+    %label Status:
+    %ul.nav.nav-tabs.nav-stacked
+      %li{'class' => controller.action_name=='active' && "active"}
+        %a{href: active_admin_efars_path(:community_center_id => @community)}
+          Active
+      %li{'class' => controller.action_name=='bibbed' && "active"}
+        %a{href: bibbed_admin_efars_path(:community_center_id => @community)}
+          Issued Bib
+      %li{'class' => controller.action_name=='nyc' && "active"}
+        %a{href: nyc_admin_efars_path(:community_center_id => @community)}
+          Not yet competent
+      %li{'class' => controller.action_name=='expired' && "active"}
+        %a{href: expired_admin_efars_path(:community_center_id => @community)}
+          Expired
+      %li{'class' => controller.action_name=='index' && "active"}
+        %a{href: admin_efars_path(:community_center_id => @community)}
+          Everyone  
+  .span9
+    = render 'table'
   

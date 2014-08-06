@@ -1,0 +1,39 @@
+.modal.hide.fade{id: "efar_#{efar.id}_modal", role: 'dialog', tabindex: '-1'}
+  .modal-header
+    %button.close{type:'button', 'data-dismiss'=>'modal'} &times;
+    %h3= efar.full_name
+  .modal-body
+    %dl.dl-horizontal
+      %dt Full name
+      %dd= efar.full_name
+      %dt Contact number
+      %dd= efar.readable_contact_number
+      %dt Given address
+      %dd= efar.given_address
+      %dt Day of birth
+      %dd= efar.dob
+      %dt Gender
+      %dd= efar.gender
+      %dt Occupation
+      %dd= efar.occupation
+    %hr
+    %dl.dl-horizontal
+      %dt Training level
+      %dd= (efar.training_level or "--")
+      %dt Training date
+      %dd= (efar.training_date or "--")
+      %dt Certificate number
+      %dd
+        = (efar.certificate_number or "--")
+      %dt Module scores
+      %dd= "#{efar.module_1} #{efar.module_2} #{efar.module_3} #{efar.module_4}"
+      %dt CPR competent?
+      %dd= efar.cpr_competent
+    %hr
+    %dl.dl-horizontal
+      %dt Issued bib?
+      %dd= efar.has_bib
+      %dt SMS Alert subscriber?
+      %dd= efar.alert_subscriber
+  .modal-footer
+    %a.btn{href:edit_efar_path(efar)} Edit

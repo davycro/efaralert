@@ -25,7 +25,10 @@ EfarDispatch::Application.routes.draw do
       collection do
         get 'map'
         get 'expired'
+        get 'nyc' # not yet competent
         get 'active'
+        get 'search'
+        get 'bibbed'
         get 'alert_subscribers'
         get 'near'
       end
