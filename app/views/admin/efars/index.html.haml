@@ -50,9 +50,9 @@
     .btn-toolbar
       .btn-group
         %a.btn{href:'#messageModal', 'data-toggle'=>'message-modal'} Send Message
-        %a.btn{href:'#mapModal', 'data-toggle' => 'map-modal'} View Map
+        %a.btn{href:'#modalMap', 'data-toggle' => 'modal-map'} View Map
     #messageModal{'data-efars'=>@efars.to_json, 'data-url'=>'/admin/efars'}
-    #mapModal{'data-efars'=>@efars.to_json}
+    #modalMap{'data-efars'=>@efars.to_json}
 
 = render 'table'
   
