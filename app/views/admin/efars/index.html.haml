@@ -6,42 +6,53 @@
     %ul.nav.pull-right
       %li.divider-vertical
       %li
-        %a{href:'#'} View on map
-      %li.divider-vertical
-      %li
-        %a{href:'#messageModal', 'data-toggle'=>'message-modal'} Message EFARs
-        #messageModal{'data-efars'=>@efars.to_json, 'data-url'=>'/admin/efars'}
-      %li.divider-vertical
-      %li
         %a{href:new_efar_path}
           Create EFAR
 
-.row
-  .span3
-    %div
-      %label Community:
-      %select.community-select
-        %option{value: active_admin_efars_path, selected: @community.blank? && "true"} All
-        - CommunityCenter.all.each do |c|
-          %option{value: url_for(community_center_id: c.id), selected: @community==c && "true"}= c.name
+.action-top
+  .pull-left
+    .btn-toolbar
+      Community:
+      .btn-group
+        %a.btn.btn-link.dropdown-toggle{'data-toggle'=>'dropdown', href:'#'}
+          = current_community_name
+          %span.caret
+        %ul.dropdown-menu
+          %li
+            %a{href: active_admin_efars_path } All
+          - CommunityCenter.all.each do |c|
+            %li
+              %a{href: active_admin_efars_path(community_center_id: c.id)}= c.name
 
-    %label Status:
-    %ul.nav.nav-tabs.nav-stacked
-      %li{'class' => controller.action_name=='active' && "active"}
-        %a{href: active_admin_efars_path(:community_center_id => @community)}
-          Active
-      %li{'class' => controller.action_name=='bibbed' && "active"}
-        %a{href: bibbed_admin_efars_path(:community_center_id => @community)}
-          Issued Bib
-      %li{'class' => controller.action_name=='nyc' && "active"}
-        %a{href: nyc_admin_efars_path(:community_center_id => @community)}
-          Not yet competent
-      %li{'class' => controller.action_name=='expired' && "active"}
-        %a{href: expired_admin_efars_path(:community_center_id => @community)}
-          Expired
-      %li{'class' => controller.action_name=='index' && "active"}
-        %a{href: admin_efars_path(:community_center_id => @community)}
-          Everyone  
-  .span9
-    = render 'table'
+      Category:
+      .btn-group
+        %a.btn.btn-link.dropdown-toggle{'data-toggle'=>'dropdown', href:'#'}
+          = current_efar_category
+          %span.caret
+        %ul.dropdown-menu
+          %li
+            %a{href: active_admin_efars_path(:community_center_id => @community)}
+              Active
+          %li
+            %a{href: bibbed_admin_efars_path(:community_center_id => @community)}
+              Issued Bib
+          %li
+            %a{href: nyc_admin_efars_path(:community_center_id => @community)}
+              Not yet competent
+          %li
+            %a{href: expired_admin_efars_path(:community_center_id => @community)}
+              Expired
+          %li
+            %a{href: admin_efars_path(:community_center_id => @community)}
+              Everyone
+
+  .pull-right
+    .btn-toolbar
+      .btn-group
+        %a.btn{href:'#messageModal', 'data-toggle'=>'message-modal'} Send Message
+        %a.btn{href:'#mapModal', 'data-toggle' => 'map-modal'} View Map
+    #messageModal{'data-efars'=>@efars.to_json, 'data-url'=>'/admin/efars'}
+    #mapModal{'data-efars'=>@efars.to_json}
+
+= render 'table'
   

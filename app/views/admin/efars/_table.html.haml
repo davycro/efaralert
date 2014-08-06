@@ -1,9 +1,9 @@
 %table.table
   %thead
     %tr
-      %th
-        = pluralize @efars.size, "#{@efars_group_title} EFAR"
-        = " - #{@community.name}" if @community.present?
+      %th 
+        Showing
+        = pluralize @efars.size, "EFAR"
   %tbody
     - @efars.each do |efar|
       = render partial: 'efar_modal', locals: {efar: efar}
