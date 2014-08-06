@@ -34,6 +34,13 @@ class Admin::EfarsController < ApplicationController
     render action: 'index'
   end
 
+  def search
+    search_condition = "%" + params[:search] + "%"
+    @efars = Efar.where('full_name LIKE ?', search_condition).all
+    @efars_group_title = ""
+    render action: 'index'
+  end
+
   def map
     respond_to do |format|
       format.json do 
