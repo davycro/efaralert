@@ -16,6 +16,8 @@ module Admin::AdminHelper
       return "Not yet competent EFARs"
     when 'expired'
       return 'Expired EFARs'
+    when 'alert_subscriber'
+      return 'Alert subscriber'
     end
     'All EFARs'
   end

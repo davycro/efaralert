@@ -34,22 +34,16 @@ class Admin::EfarsController < ApplicationController
     render action: 'index'
   end
 
+  def alert_subscriber
+    @efars = efar_selector.alert_subscriber.order('id DESC').all
+    render action: 'index'
+  end
+
   def search
     search_condition = "%" + params[:search] + "%"
     @efars = Efar.where('full_name LIKE ?', search_condition).all
     @efars_group_title = ""
     render action: 'index'
-  end
-
-  def map
-    respond_to do |format|
-      format.json do 
-        # @efars = Efar.alert_subscriber.all
-        @efars = Efar.has_geolocation.all
-        render json: @efars.to_json
-      end
-      format.html
-    end 
   end
 
   def near
@@ -71,10 +65,7 @@ class Admin::EfarsController < ApplicationController
     end
   end
 
-  def alert_subscribers
-    @efars = Efar.alert_subscriber.order('id DESC').all
-    render action: 'index'
-  end
+
 
   def new
     @efar = Efar.new

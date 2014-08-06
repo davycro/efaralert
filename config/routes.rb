@@ -29,7 +29,7 @@ EfarDispatch::Application.routes.draw do
         get 'active'
         get 'search'
         get 'bibbed'
-        get 'alert_subscribers'
+        get 'alert_subscriber'
         get 'near'
       end
       member do
