@@ -52,6 +52,7 @@ class EfarsController < ApplicationController
     @efar = Efar.find params[:id]
     @efar.update_attributes params[:efar]
     if @efar.save
+      record_manager_activity "updated efar #{@efar.full_name}"
       redirect_to efars_path, notice: "EFAR updated"
     else
       render action: 'edit'
@@ -62,6 +63,7 @@ class EfarsController < ApplicationController
     @efar = Efar.new params[:efar]
     @efar.community_center = @current_manager.community
     if @efar.save
+      record_manager_activity "created EFAR #{@efar.full_name}"
       redirect_to efars_path, notice: "EFAR created"
     else
       puts "FAILED TO SAVE EFAR: #{@efar.errors.to_json}" if Rails.env.test?
@@ -82,7 +84,12 @@ class EfarsController < ApplicationController
   def destroy
     @efar = Efar.find params[:id]
     @efar.destroy
+    record_manager_activity "removed EFAR: #{@efar.full_name}"
     redirect_to efars_path, notice: "EFAR removed"
+  end
+
+  def record_manager_activity(message)
+    ActivityLog.log "#{current_manager.full_name}: #{message}"
   end
 
 end
