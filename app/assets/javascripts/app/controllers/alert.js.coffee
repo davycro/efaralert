@@ -11,7 +11,7 @@ class Alert extends Spine.Model
 class Efar extends Spine.Model
   @configure "Efar", "formatted_address", "lat", "lng", "full_name"
   @extend Spine.Model.Ajax
-  @url: "/admin/efars/map"
+  @url: "/alerts/efars_map"
 
   @bind 'refresh', (records) ->
     record.setMarker() for record in records

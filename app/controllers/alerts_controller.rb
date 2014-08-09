@@ -10,6 +10,15 @@ class AlertsController < ApplicationController
     @alerts = Alert.order('id DESC').all
   end
 
+  def efars_map
+    respond_to do |format|
+      format.json do
+        @efars = Efar.alert_subscriber.all
+        render json: @efars
+      end
+    end
+  end
+
   def new
   end
 
