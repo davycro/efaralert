@@ -6,11 +6,6 @@
     %ul.nav.pull-right
       %li.divider-vertical
       %li
-        %a{href:'#messageModal', 'data-toggle'=>'message-modal'} Message EFARs
-        - modal_title = "Message " + pluralize(@efars.size, "#{@efars_group_title} EFAR")
-        #messageModal{'data-efars'=>@efars.to_json, 'data-title' => modal_title }
-      %li.divider-vertical
-      %li
         %a{href:new_efar_path}
           Create EFAR
 
@@ -34,4 +29,11 @@
           Everyone
   .span9
     = render 'table'
+    %ul.pager
+      - unless params[:page]==0
+        %li
+          = link_to "Previous", page: (params[:page].to_i-1)
+      - unless @efars.size==0
+        %li
+          = link_to "Next", page: (params[:page].to_i+1)
 
