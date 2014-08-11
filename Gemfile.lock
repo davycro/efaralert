@@ -97,6 +97,9 @@ GEM
     json (1.7.5)
     jwt (0.1.5)
       multi_json (>= 1.0)
+    kaminari (0.16.1)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     less (2.2.2)
       commonjs (~> 0.2.6)
     less-rails (2.2.4)
@@ -211,6 +214,7 @@ DEPENDENCIES
   inherited_resources
   jquery-rails
   jquery-ui-rails
+  kaminari
   mocha (~> 0.12.8)
   mysql2
   rails (= 3.2.8)

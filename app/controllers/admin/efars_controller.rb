@@ -1,21 +1,22 @@
 class Admin::EfarsController < ApplicationController
   layout 'admin'
   before_filter :require_admin_login
+  before_filter :set_page
   respond_to :html, :json, :js
 
   def index
-    @efars = efar_selector.all
+    @efars = efar_selector.page(params[:page]).all
     render action: 'index'
   end
 
   def expired
-    @efars = efar_selector.expired.all
+    @efars = efar_selector.page(params[:page]).expired.all
     @efars_group_title = "Expired" 
     render action: 'index'
   end
 
   def bibbed
-    @efars = efar_selector.has_bib.all
+    @efars = efar_selector.has_bib.page(params[:page]).all
     @efars_group_title = "Bibbed"
     render action: 'index'
   end
@@ -28,14 +29,14 @@ class Admin::EfarsController < ApplicationController
   end
 
   def active
-    @efars = efar_selector.active.all
+    @efars = efar_selector.page(params[:page]).active.all
     @efars.delete_if { |e| e.not_competent? }
     @efars_group_title = "Active"
     render action: 'index'
   end
 
   def alert_subscriber
-    @efars = efar_selector.alert_subscriber.order('id DESC').all
+    @efars = efar_selector.alert_subscriber.page(params[:page]).all
     render action: 'index'
   end
 
@@ -102,6 +103,11 @@ class Admin::EfarsController < ApplicationController
   end
 
   protected
+
+    def set_page
+      params[:page] ||= 1
+      @page = params[:page]
+    end
 
     def efar_selector
       if params[:community_center_id].present?

@@ -9,6 +9,8 @@ gem 'mysql2'
 gem 'roo' # used for spreadsheet parsing
 gem 'haml'
 gem 'haml-rails'
+gem 'kaminari'
+
 
 # Gems used only for assets and not required
 # in production environments by default.
