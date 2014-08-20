@@ -1,41 +1,42 @@
 class EfarsController < ApplicationController
 	before_filter :require_manager_login
+  before_filter :set_page
 	layout 'main'
 
   def index
-    @efars = @current_manager.efars.order('id DESC').all
+    @efars = efar_selector.all
     @efars_group_title = ""
   end
 
   def active
-    @efars = @current_manager.efars.active.order('id DESC').all
+    @efars = efar_selector.active.all
     @efars.delete_if { |e| e.not_competent? }
     @efars_group_title = "Active"
     render action: 'index'
   end
 
   def bibbed
-    @efars = @current_manager.efars.has_bib.order('id DESC').all
+    @efars = efar_selector.has_bib.all
     @efars_group_title = "Bibbed"
     render action: 'index'
   end
 
   def nyc
-    @efars = @current_manager.efars.order('id DESC').all
+    @efars = efar_selector.all
     @efars.delete_if { |e| !e.not_competent? }
     @efars_group_title = "Not yet competent"
     render action: 'index'
   end
 
   def expired
-    @efars = @current_manager.efars.expired.order('id DESC').all
+    @efars = efar_selector.expired.all
     @efars_group_title = "Expired"
     render action: 'index'
   end
 
   def search
     search_condition = "%" + params[:search] + "%"
-    @efars = @current_manager.efars.where('full_name LIKE ?', search_condition).all
+    @efars = efar_selector.where('full_name LIKE ?', search_condition).all
     @efars_group_title = ""
     render action: 'index'
   end
@@ -88,8 +89,19 @@ class EfarsController < ApplicationController
     redirect_to efars_path, notice: "EFAR removed"
   end
 
-  def record_manager_activity(message)
-    ActivityLog.log "#{current_manager.full_name}: #{message}"
-  end
+  protected
+
+    def set_page
+      params[:page] ||= 1
+      @page = params[:page]
+    end
+
+    def record_manager_activity(message)
+      ActivityLog.log "#{current_manager.full_name}: #{message}"
+    end
+
+    def efar_selector
+      @current_manager.efars.order('id DESC')      
+    end
 
 end

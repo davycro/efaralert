@@ -5,18 +5,18 @@ class Admin::EfarsController < ApplicationController
   respond_to :html, :json, :js
 
   def index
-    @efars = efar_selector.page(params[:page]).all
+    @efars = efar_selector.all
     render action: 'index'
   end
 
   def expired
-    @efars = efar_selector.page(params[:page]).expired.all
+    @efars = efar_selector.expired.all
     @efars_group_title = "Expired" 
     render action: 'index'
   end
 
   def bibbed
-    @efars = efar_selector.has_bib.page(params[:page]).all
+    @efars = efar_selector.has_bib.all
     @efars_group_title = "Bibbed"
     render action: 'index'
   end
@@ -29,14 +29,14 @@ class Admin::EfarsController < ApplicationController
   end
 
   def active
-    @efars = efar_selector.page(params[:page]).active.all
+    @efars = efar_selector.active.all
     @efars.delete_if { |e| e.not_competent? }
     @efars_group_title = "Active"
     render action: 'index'
   end
 
   def alert_subscriber
-    @efars = efar_selector.alert_subscriber.page(params[:page]).all
+    @efars = efar_selector.alert_subscriber.all
     render action: 'index'
   end
 

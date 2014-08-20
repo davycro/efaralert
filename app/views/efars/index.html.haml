@@ -29,11 +29,4 @@
           Everyone
   .span9
     = render 'table'
-    %ul.pager
-      - unless params[:page]==0
-        %li
-          = link_to "Previous", page: (params[:page].to_i-1)
-      - unless @efars.size==0
-        %li
-          = link_to "Next", page: (params[:page].to_i+1)
 
