@@ -1,18 +1,18 @@
-== EFAR Alert
+= EFAR Alert
 
 EFAR Alert is a web-application that includes everything needed for small governments to manage emergency layperson first responders.
 
-= What can it do?
+=== What can it do?
 
 1. Builds a directory of layperson first responders, including their name, phone number, and address
 2. Maps the population of first responders so that you can see which areas are well served and which neighborhoods are sparcely protected
 3. Allows for bulk SMS messaging so that you can send notifications to groups of first responders such as invitations to meetings or general announcements
 4. Geotarged alerts so that first responders can be notified when emergencies occur near their homes
 
-= Who uses this?
+=== Who uses this?
 
 At the moment EFAR alert is used by the provincial EMS for the Western Cape in South Africa. 
 
-= Who made the software? Who should I contact if I wish to use it?
+=== Who made the software? Who should I contact if I wish to use it?
 
 The program was developed by David Crockett. Feel free to send any correspondance to my GitHub account.
