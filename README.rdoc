@@ -1,6 +1,7 @@
 = EFAR Alert
 
-EFAR Alert is a web-application that includes everything needed for small governments to manage emergency layperson first responders.
+EFAR Alert is a web-application that allows small governments to manage community first responder programs. It is tailored for resource limited regions, and currently used by the Western Cape EMS in South Africa.
+
 
 === What can it do?
 
@@ -9,10 +10,13 @@ EFAR Alert is a web-application that includes everything needed for small govern
 3. Allows for bulk SMS messaging so that you can send notifications to groups of first responders such as invitations to meetings or general announcements
 4. Geotarged alerts so that first responders can be notified when emergencies occur near their homes
 
-=== Who uses this?
 
-At the moment EFAR alert is used by the provincial EMS for the Western Cape in South Africa. 
+=== How does it work?
+
+EFAR alert runs on Ruby on Rails. SMS capabilities depends on ClickATell, but the source code could easily be modified to support another SMS client such as Twilio.
+
 
 === Who made the software? Who should I contact if I wish to use it?
 
-The program was developed by David Crockett. Feel free to send any correspondance to my GitHub account.
+The program was developed by David Crockett, a student at Dartmouth Medical School. He may be reached by email at David.M.Crockett.Med "at" Dartmouth.edu 
+
